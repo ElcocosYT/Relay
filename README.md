@@ -6,4 +6,10 @@ Your music and your soundboard in one place, with a virtual microphone for Disco
 
 Relay updates itself: when a new version comes out, it tells you when you open it.
 
-Made with love by SupperDupper. Free, forever.
+Made with love by SupperDupper. Free to download and use, with no ads.
+
+## License
+
+© 2026 SupperDupper. All rights reserved.
+
+Relay is free to download and use. Its code, design, artwork and interface are not open source: you may not copy, modify, redistribute or reuse them, in whole or in part, without written permission from SupperDupper.
