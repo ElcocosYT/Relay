@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <mask id="fan" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+      <rect x="0" y="0" width="64" height="64" fill="black"/>
+      <path d="M8 56 L8,8 A48 48 0 0 1 56,56 Z" fill="white" stroke="white" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M14.81,42.63 L40.69,-8.15" fill="none" stroke="black" stroke-width="6" stroke-linecap="round"/>
+      <path d="M21.37,49.19 L72.15,23.31" fill="none" stroke="black" stroke-width="6" stroke-linecap="round"/>
+    </mask>
+    <linearGradient id="main" gradientUnits="userSpaceOnUse" x1="8" y1="56" x2="52" y2="10">
+      <stop offset="0" stop-color="#FF2A3A"/>
+      <stop offset="1" stop-color="#C41220"/>
+    </linearGradient>
+    <linearGradient id="centro" gradientUnits="userSpaceOnUse" x1="8" y1="56" x2="52" y2="10">
+      <stop offset="0" stop-color="#FF4C57"/>
+      <stop offset="1" stop-color="#D4141F"/>
+    </linearGradient>
+    <linearGradient id="glass" gradientUnits="userSpaceOnUse" x1="10" y1="54" x2="46" y2="14">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.02"/>
+    </linearGradient>
+    <clipPath id="centroRec"><path d="M8 56 L48,-13.28 A80 80 0 0 1 77.28,16 Z"/></clipPath>
+  </defs>
+  <g mask="url(#fan)">
+    <rect x="0" y="0" width="64" height="64" fill="url(#main)"/>
+    <g clip-path="url(#centroRec)">
+      <rect x="0" y="0" width="64" height="64" fill="url(#centro)"/>
+      <rect x="0" y="0" width="64" height="64" fill="url(#glass)"/>
+      <path d="M16.5,41.28 L37,5.77" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="1" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
