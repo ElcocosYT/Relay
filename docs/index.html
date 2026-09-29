@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relay · Music player &amp; soundboard for Windows</title>
+<meta name="description" content="A free music player and soundboard for Windows. No ads. Play your library, fire sounds with hotkeys, send it all through your mic in calls, and show what's playing on Discord.">
+<meta name="theme-color" content="#0B0809">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+
+<!-- La tarjeta al compartir el enlace: WhatsApp, Discord, X, Telegram... -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Relay">
+<meta property="og:title" content="Relay · Music player & soundboard for Windows">
+<meta property="og:description" content="Free, no ads. Your music and your sounds in one place, through your mic in calls, and on your Discord status.">
+<meta property="og:url" content="https://elcocosyt.github.io/Relay/">
+<meta property="og:image" content="https://elcocosyt.github.io/Relay/og.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://elcocosyt.github.io/Relay/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --rojo: 255, 42, 58;
+  --rojoOscuro: 196, 18, 32;
+  --rosa: 255, 210, 213;
+  --claro: 255, 143, 152;
+  --fondo: #0B0809;
+  --texto: #F2F2F4;
+  --suave: rgba(238, 238, 244, .64);
+  --tenue: rgba(238, 238, 244, .38);
+  --linea: rgba(255, 255, 255, .09);
+  --ancho: 1160px;
+}
+* { box-sizing: border-box; }
+/* Sin barra de desplazamiento: la rueda, el tactil y el teclado siguen igual. */
+html { scroll-behavior: smooth; scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+body {
+  margin: 0; background: var(--fondo); color: var(--texto);
+  font: 500 16px/1.6 Manrope, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ── El fondo: los focos rojos de la aplicacion, y un grano fino ── */
+.cielo { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.cielo::before {
+  content: ""; position: absolute; inset: -20%;
+  background:
+    radial-gradient(40% 35% at 18% 22%, rgba(var(--rojo), .22), transparent 70%),
+    radial-gradient(35% 30% at 88% 12%, rgba(var(--rojoOscuro), .20), transparent 70%),
+    radial-gradient(45% 35% at 70% 88%, rgba(var(--rojo), .10), transparent 70%);
+  animation: deriva 26s ease-in-out infinite alternate;
+}
+.cielo::after {
+  content: ""; position: absolute; inset: 0; opacity: .05;
+  background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 4px 4px;
+}
+@keyframes deriva { to { transform: translate3d(3%, -2%, 0) scale(1.06); } }
+
+.marco { width: min(var(--ancho), 100% - 32px); margin: 0 auto; }
+
+/* ── Arriba ── */
+.barra {
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%);
+  background: rgba(11, 8, 9, .6); border-bottom: 1px solid var(--linea);
+}
+.barra .marco { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+/* La marca, como la de la barra de titulo de Relay: el abanico a la
+   izquierda y RELAY en mayusculas, 28 px de logo por 22 de letra. */
+.marca { display: flex; align-items: center; gap: 9px; font: 700 22px/28px Sora, sans-serif; letter-spacing: -.035em; color: #FCFCFD; }
+.marca span { position: relative; top: 1px; }
+.marca img { width: 28px; height: 28px; transition: transform .56s cubic-bezier(.34, 1.56, .64, 1), filter .32s ease; }
+.marca:hover img { transform: rotate(-14deg) scale(1.13); filter: drop-shadow(0 0 7px rgba(var(--rojo), .85)); }
+.enlaces { display: flex; align-items: center; gap: 6px; }
+.enlaces a.suave { padding: 9px 12px; border-radius: 10px; color: var(--suave); font-weight: 600; font-size: 14px; transition: color .2s, background .2s; }
+.enlaces a.suave:hover { color: #fff; background: rgba(255, 255, 255, .06); }
+
+/* ── Los botones ── */
+/*
+  El boton: se inclina hacia el raton (--mx, --my, los pone el guion), sube al
+  pasar por encima, y un brillo lo cruza. Cada cosa en su propiedad -translate,
+  scale- para que no se pisen.
+*/
+.boton {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 18px; border-radius: 12px;
+  font: 700 14.5px/1 Manrope, sans-serif; color: #fff;
+  background: linear-gradient(180deg, rgb(var(--rojo)), rgb(var(--rojoOscuro)));
+  box-shadow: 0 10px 30px -10px rgba(var(--rojo), .8), inset 0 1px 0 rgba(255, 255, 255, .25);
+  translate: var(--mx, 0px) calc(var(--my, 0px) + var(--sube, 0px));
+  transition: translate .35s cubic-bezier(.34, 1.56, .64, 1), scale .3s cubic-bezier(.34, 1.56, .64, 1), box-shadow .3s ease;
+}
+.boton:hover { --sube: -2px; box-shadow: 0 16px 40px -10px rgba(var(--rojo), .95), inset 0 1px 0 rgba(255, 255, 255, .3); }
+.boton:active { scale: .97; transition-duration: .09s; }
+.boton.grande { padding: 18px 28px; border-radius: 16px; font-size: 17px; }
+.boton::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, .38) 48%, transparent 66%);
+  translate: -120% 0; transition: translate .7s ease;
+}
+.boton:hover::after { translate: 120% 0; }
+.boton.grande::after { animation: destello 5.5s ease-in-out 2.4s infinite; }
+@keyframes destello { 0%, 72% { translate: -120% 0; } 90%, 100% { translate: 120% 0; } }
+/*
+  El icono al centro OPTICO del texto, no al de su caja: casi todo es
+  minuscula, y la flecha quedaba un pixel y medio por encima. Y su vaiven, a
+  partes iguales arriba y abajo: antes solo bajaba y se veia descentrado.
+*/
+.boton svg { width: 18px; height: 18px; flex: none; position: relative; top: 1px; }
+.boton.grande svg { width: 21px; height: 21px; }
+.boton:hover svg { animation: baja .9s ease-in-out infinite; }
+@keyframes baja { 0%, 100% { transform: translateY(-1.5px); } 50% { transform: translateY(1.5px); } }
+
+/* ── La portada ── */
+.portada { padding: 88px 0 40px; text-align: center; }
+/* El titulo: la misma marca de la barra, en grande y con las mismas
+   proporciones (logo 28/22 de la letra, hueco 9/22). */
+h1 {
+  margin: 0; display: inline-flex; align-items: center; gap: .41em;
+  font: 700 clamp(56px, 10vw, 112px)/1 Sora, sans-serif; letter-spacing: -.035em; color: #FCFCFD;
+  text-shadow: 0 0 60px rgba(var(--rojo), .35);
+}
+h1 > span { position: relative; top: .045em; display: inline-flex; perspective: 600px; }
+h1 img {
+  width: 1.27em; height: 1.27em;
+  filter: drop-shadow(0 0 .35em rgba(var(--rojo), .6)) drop-shadow(0 .15em .25em rgba(0, 0, 0, .6));
+  animation: logoEntra 1.1s cubic-bezier(.22, 1.3, .36, 1) both, flota 6s ease-in-out 1.1s infinite;
+  cursor: pointer;
+}
+@keyframes logoEntra {
+  from { opacity: 0; transform: rotate(-140deg) scale(.3); filter: blur(8px) drop-shadow(0 0 0 transparent); }
+}
+@keyframes flota { 50% { transform: translateY(-.06em) rotate(-4deg); } }
+/* Ya entrado solo flota: si no, al quitar la vuelta volveria a entrar. */
+h1 img.listo { animation: flota 6s ease-in-out infinite; }
+/* Al pulsarlo, una vuelta entera, como el de la aplicacion. */
+h1 img.listo.gira { animation: vuelta .9s cubic-bezier(.34, 1.56, .64, 1); }
+@keyframes vuelta { to { transform: rotate(360deg) scale(1.05); } }
+
+/* Las letras de RELAY: entran de una en una y, al pasar el raton, la ola de
+   la barra de titulo de la aplicacion. */
+.letra {
+  display: inline-block; transform-origin: 50% 80%;
+  animation: letraEntra .9s cubic-bezier(.22, 1, .36, 1) both;
+  animation-delay: calc(.25s + var(--i) * 70ms);
+}
+@keyframes letraEntra {
+  from { opacity: 0; transform: translateY(.45em) rotateX(-80deg); filter: blur(10px); }
+}
+/* Ya entradas, quietas: si no, al quitar la ola volvia a sonar la entrada.
+   La ola la pone el guion (clase .ola) y se quita sola al acabar, asi que
+   termina entera aunque el raton se vaya a mitad. */
+h1.entrado .letra { animation: none; }
+h1.entrado.ola .letra { animation: ola .7s ease-in-out both; animation-delay: calc(var(--i) * 60ms); }
+@keyframes ola { 40% { transform: translateY(-.14em); color: rgb(var(--rosa)); } }
+
+/* Lo demas de la portada, en cascada detras del titulo. */
+.cae { animation: cae .9s cubic-bezier(.22, 1, .36, 1) both; animation-delay: calc(.7s + var(--t) * 110ms); }
+@keyframes cae { from { opacity: 0; translate: 0 16px; filter: blur(6px); } }
+.lema { margin: 18px auto 0; max-width: 620px; font-size: clamp(17px, 2.3vw, 21px); color: var(--suave); }
+.acciones { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.detalle { font: 600 12.5px/1 "JetBrains Mono", monospace; letter-spacing: .04em; color: var(--tenue); }
+.detalle b { color: rgb(var(--rosa)); font-weight: 700; }
+.pildoras { display: flex; justify-content: center; gap: 8px; margin-top: 26px; flex-wrap: wrap; }
+.pildoras span {
+  font: 700 13px/1 Manrope, sans-serif; color: rgba(255, 236, 238, .9);
+  padding: 9px 14px; border-radius: 999px;
+  background: rgba(var(--rojo), .1); border: 1px solid rgba(var(--rojo), .35);
+  transition: background .2s, border-color .2s, translate .35s cubic-bezier(.34, 1.56, .64, 1);
+}
+.pildoras span:hover { translate: 0 -3px; background: rgba(var(--rojo), .2); border-color: rgba(var(--rojo), .65); }
+
+/*
+  La captura grande, en su ventana. Se inclina en 3D hacia el raton (--rx,
+  --ry) con un reflejo que lo sigue (--gx, --gy), y la de arriba crece un
+  poco al subir con la pagina (--s). Todo lo ponen los guiones de abajo.
+*/
+.escena { perspective: 1600px; }
+.ventana {
+  position: relative; margin: 64px auto 0; max-width: 1080px;
+  border-radius: 18px; padding: 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .02));
+  border: 1px solid rgba(var(--rojo), .3);
+  box-shadow: 0 50px 120px -40px rgba(var(--rojo), .55), 0 30px 60px -30px rgba(0, 0, 0, .9);
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  scale: var(--s, 1);
+  transition: transform .5s cubic-bezier(.22, 1, .36, 1), box-shadow .4s ease;
+  transform-style: preserve-3d;
+}
+.ventana.sigue { transition: transform .12s linear, box-shadow .4s ease; }
+.ventana::after {
+  content: ""; position: absolute; inset: 8px; border-radius: 12px; pointer-events: none;
+  background: radial-gradient(520px circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, .13), transparent 55%);
+  opacity: 0; transition: opacity .35s ease; mix-blend-mode: screen;
+}
+.ventana.sigue::after { opacity: 1; }
+.ventana:hover { box-shadow: 0 60px 140px -40px rgba(var(--rojo), .7), 0 30px 60px -30px rgba(0, 0, 0, .9); }
+/* height:auto: el height="870" del img fijaba la altura y, con menos ancho,
+   la captura salia ampliada y recortada por los lados. */
+.ventana img { border-radius: 12px; width: 100%; height: auto; aspect-ratio: 1600 / 870; background: #120c0e; }
+
+/* ── Secciones ── */
+section { padding: 96px 0 0; }
+.titulo { text-align: center; margin-bottom: 44px; }
+.titulo small { font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--claro)); }
+.titulo h2 { margin: 14px 0 0; font: 700 clamp(30px, 4.4vw, 44px)/1.1 Sora, sans-serif; letter-spacing: -.035em; }
+
+.rejilla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+/*
+  Las tarjetas: un foco que sigue al raton por dentro y enciende el borde
+  alrededor (--cx, --cy), una inclinacion leve hacia el, y el icono que salta.
+  El borde encendido es una capa detras, un pixel mas grande, que asoma por
+  el canto: la tarjeta es casi opaca.
+*/
+.tarjeta {
+  position: relative; isolation: isolate; padding: 24px; border-radius: 18px;
+  border: 1px solid transparent;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+/* Dos capas: detras el borde encendido (todo el canto), y encima el relleno
+   (solo por dentro del canto). Asi del borde solo asoma el pixel de fuera. */
+.tarjeta::before, .tarjeta::after { content: ""; position: absolute; pointer-events: none; }
+.tarjeta::before {
+  inset: -1px; z-index: -2; border-radius: 18px;
+  background:
+    radial-gradient(240px circle at var(--cx, 50%) var(--cy, -40%), rgba(var(--rojo), .95), transparent 70%),
+    rgba(255, 255, 255, .09);
+}
+.tarjeta::after {
+  inset: 0; z-index: -1; border-radius: 17px;
+  background:
+    radial-gradient(360px circle at var(--cx, 50%) var(--cy, -40%), rgba(var(--rojo), .1), transparent 60%),
+    linear-gradient(180deg, #161012, #100b0d);
+}
+/* .visto delante: la regla de .aparece va despues y ganaria. */
+.tarjeta.visto:hover { translate: 0 -4px; }
+.rejilla { perspective: 1200px; }
+.icono {
+  width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+  color: rgb(var(--rosa));
+  background: radial-gradient(circle at 30% 25%, rgba(var(--rojo), .45), rgba(var(--rojo), .12) 70%);
+  border: 1px solid rgba(var(--rojo), .45);
+  transition: transform .5s cubic-bezier(.34, 1.56, .64, 1), box-shadow .3s ease, color .3s;
+}
+.tarjeta:hover .icono { transform: scale(1.14) rotate(-7deg); color: #fff; box-shadow: 0 0 24px rgba(var(--rojo), .55); }
+/* Los iconos de la aplicacion, con las proporciones de la barra lateral
+   (alli 19 el globo, 17 las barras y los pads, 14x12 las rayas). */
+.icono svg { width: 21px; height: 21px; }
+.icono svg[viewBox="0 0 14 12"] { width: 17px; height: 14px; }
+.icono svg[viewBox="0 0 512 512"], .icono svg[fill-rule] { width: 19px; height: 19px; }
+.icono svg[viewBox="-3 0 19 19"] { width: 22px; height: 22px; }
+.tarjeta h3 { margin: 18px 0 6px; font: 700 18px/1.25 Sora, sans-serif; letter-spacing: -.02em; }
+.tarjeta p { margin: 0; color: var(--suave); font-size: 14.5px; }
+
+/* La galeria: pestanas con una pildora que se desliza hasta la elegida, y una
+   captura que cambia con un fundido. */
+.pestanas { position: relative; display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-bottom: 22px; }
+.pestanas button {
+  position: relative; z-index: 1;
+  font: 700 13.5px/1 Manrope, sans-serif; color: var(--suave); cursor: pointer;
+  padding: 10px 15px; border-radius: 999px; border: 1px solid var(--linea); background: rgba(255, 255, 255, .03);
+  transition: color .25s, background .25s, border-color .25s;
+}
+.pestanas button:hover { color: #fff; }
+.pestanas button[aria-selected="true"] { color: #fff; background: transparent; border-color: transparent; }
+.pildora {
+  position: absolute; left: 0; top: 0; z-index: 0; border-radius: 999px; pointer-events: none;
+  background: rgba(var(--rojo), .22); border: 1px solid rgba(var(--rojo), .6);
+  box-shadow: 0 0 22px -4px rgba(var(--rojo), .6);
+  transition: translate .5s cubic-bezier(.34, 1.3, .64, 1), width .5s cubic-bezier(.34, 1.3, .64, 1), height .3s;
+}
+.galeria { position: relative; }
+.galeria img { transition: opacity .35s ease; }
+.galeria img.cambiando { opacity: 0; }
+
+/* ── El visor: la captura entera, encima de todo ── */
+.ventana img { cursor: zoom-in; }
+.visor {
+  position: fixed; inset: 0; z-index: 50;
+  display: grid; place-items: center; padding: 64px 72px;
+  background: rgba(6, 4, 5, .82);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  opacity: 0; pointer-events: none; transition: opacity .3s ease;
+}
+.visor.abierto { opacity: 1; pointer-events: auto; }
+.visor figure { margin: 0; max-width: 100%; max-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.visor img {
+  max-width: 100%; max-height: calc(100vh - 170px); width: auto; height: auto;
+  border-radius: 12px; cursor: zoom-out;
+  box-shadow: 0 40px 120px -30px rgba(var(--rojo), .6), 0 20px 60px rgba(0, 0, 0, .7);
+  border: 1px solid rgba(var(--rojo), .3);
+  transform-origin: center; will-change: transform;
+}
+.visor figcaption { font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.visor figcaption b { color: rgb(var(--rosa)); font-weight: 700; }
+.visor .cerrar, .visor .flecha {
+  position: absolute; display: grid; place-items: center; cursor: pointer;
+  width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--linea);
+  color: #fff; background: rgba(255, 255, 255, .06);
+  transition: background .2s, border-color .2s, transform .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+.visor .cerrar:hover, .visor .flecha:hover { background: rgba(var(--rojo), .3); border-color: rgba(var(--rojo), .6); }
+.visor .cerrar { top: 16px; right: 16px; }
+.visor .flecha { top: 50%; margin-top: -22px; }
+.visor .flecha.atras { left: 16px; }
+.visor .flecha.alante { right: 16px; }
+.visor .flecha.atras:hover { transform: translateX(-2px); }
+.visor .flecha.alante:hover { transform: translateX(2px); }
+.visor svg { width: 20px; height: 20px; }
+.visor img.cambiando { opacity: 0; transition: opacity .2s ease; }
+@media (max-width: 560px) {
+  .visor { padding: 64px 12px; }
+  .visor .flecha { top: auto; bottom: 16px; margin-top: 0; }
+}
+
+/* ── El final: un halo que gira despacio detras ── */
+.final {
+  position: relative; overflow: hidden; isolation: isolate;
+  margin: 110px auto 0; padding: 56px 24px; text-align: center; border-radius: 26px;
+  background: radial-gradient(60% 90% at 50% 0%, rgba(var(--rojo), .22), transparent 70%), rgba(20, 14, 16, .9);
+  border: 1px solid rgba(var(--rojo), .25);
+}
+.final::before {
+  content: ""; position: absolute; left: 50%; top: 50%; z-index: -1; width: 140%; aspect-ratio: 1;
+  translate: -50% -50%; pointer-events: none;
+  background: conic-gradient(from 0deg, transparent 0 55%, rgba(var(--rojo), .35) 70%, transparent 85%);
+  filter: blur(40px); animation: gira 14s linear infinite;
+}
+@keyframes gira { to { rotate: 360deg; } }
+
+/* ── Arriba del todo: cuanto se ha bajado ── */
+.progreso {
+  position: fixed; left: 0; top: 0; z-index: 20; height: 2px; width: 100%;
+  transform-origin: 0 50%; transform: scaleX(var(--p, 0));
+  background: linear-gradient(90deg, rgb(var(--rojoOscuro)), rgb(var(--rojo)), rgb(var(--claro)));
+  box-shadow: 0 0 12px rgba(var(--rojo), .8);
+}
+/* La barra se oscurece al bajar, y los enlaces llevan una raya que crece. */
+.barra { transition: background .3s ease, box-shadow .3s ease; }
+.barra.bajada { background: rgba(11, 8, 9, .82); box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .9); }
+.enlaces a.suave { position: relative; }
+.enlaces a.suave::after {
+  content: ""; position: absolute; left: 12px; right: 12px; bottom: 5px; height: 2px; border-radius: 2px;
+  background: rgb(var(--rojo)); transform: scaleX(0); transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+}
+.enlaces a.suave:hover::after { transform: scaleX(1); }
+
+/* Las ascuas del fondo y el foco que sigue al raton. */
+#ascuas { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+.cielo .foco {
+  position: absolute; left: 0; top: 0; width: 900px; height: 900px; margin: -450px 0 0 -450px;
+  background: radial-gradient(closest-side, rgba(var(--rojo), .11), transparent);
+  translate: var(--fx, 50vw) var(--fy, 30vh); opacity: 0; transition: opacity .6s ease;
+}
+.cielo .foco.vivo { opacity: 1; }
+.final h2 { margin: 0 0 10px; font: 700 clamp(28px, 4vw, 40px)/1.1 Sora, sans-serif; letter-spacing: -.035em; }
+.final p { margin: 0 0 28px; color: var(--suave); }
+
+footer { padding: 48px 0 40px; text-align: center; color: var(--tenue); font-size: 13px; }
+footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12em; margin-bottom: 10px; }
+
+/* Aparecen al llegar: suben, se enfocan y se encienden. Con translate y no
+   transform, que es de la inclinacion de las ventanas y las tarjetas. */
+.aparece {
+  opacity: 0; translate: 0 26px; filter: blur(8px);
+  transition: opacity .8s ease, translate 1s cubic-bezier(.22, 1, .36, 1), filter .8s ease,
+              transform .5s cubic-bezier(.22, 1, .36, 1), box-shadow .4s ease, border-color .25s, background .25s;
+}
+.aparece.visto { opacity: 1; translate: none; filter: none; }
+.ventana.aparece.sigue {
+  transition: opacity .8s ease, translate 1s cubic-bezier(.22, 1, .36, 1), filter .8s ease,
+              transform .12s linear, box-shadow .4s ease;
+}
+
+@media (max-width: 860px) {
+  .rejilla { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .rejilla { grid-template-columns: 1fr; }
+  .enlaces a.suave { display: none; }
+  .portada { padding-top: 56px; }
+  section { padding-top: 72px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .aparece { opacity: 1; translate: none; filter: none; }
+  #ascuas, .cielo .foco { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="cielo"><div class="foco"></div></div>
+<canvas id="ascuas" aria-hidden="true"></canvas>
+<div class="progreso"></div>
+
+<header class="barra">
+  <div class="marco">
+    <a class="marca" href="#"><img src="logo.svg" alt=""><span>RELAY</span></a>
+    <nav class="enlaces">
+      <a class="suave" href="#features">Features</a>
+      <a class="suave" href="#screens">Screenshots</a>
+      <a class="suave" href="https://github.com/ElcocosYT/Relay" target="_blank" rel="noopener">GitHub</a>
+      <a class="boton descarga" href="https://github.com/ElcocosYT/Relay/releases/latest/download/Relay-Setup.exe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Download
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main class="marco">
+  <div class="portada">
+    <h1 aria-label="Relay"><img src="logo.svg" alt=""><span aria-hidden="true"><span class="letra" style="--i:0">R</span><span class="letra" style="--i:1">E</span><span class="letra" style="--i:2">L</span><span class="letra" style="--i:3">A</span><span class="letra" style="--i:4">Y</span></span></h1>
+    <p class="lema cae" style="--t:0">Your music and your soundboard in one place, with a virtual microphone for Discord and friends.</p>
+    <div class="acciones cae" style="--t:1">
+      <a class="boton grande descarga" href="https://github.com/ElcocosYT/Relay/releases/latest/download/Relay-Setup.exe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>
+        Download for Windows
+      </a>
+      <div class="detalle"><span class="version">Latest version</span> · Windows 10 &amp; 11 · 125 MB</div>
+    </div>
+    <div class="pildoras cae" style="--t:2"><span>No ads</span><span>Free</span><span>Forever</span></div>
+
+    <div class="escena"><div class="ventana aparece arriba"><img src="shots/now-playing.webp" alt="Relay playing a song, with its synced lyrics and the queue" width="1600" height="870"></div></div>
+  </div>
+
+  <section id="features">
+    <div class="titulo aparece"><small>What it does</small><h2>Everything you play, in one app</h2></div>
+    <div class="rejilla">
+      <div class="tarjeta aparece">
+        <div class="icono"><svg viewBox="0 0 14 12" fill="currentColor"><rect x="0" y="0" width="14" height="2" rx="1"/><rect x="0" y="5" width="14" height="2" rx="1"/><rect x="0" y="10" width="14" height="2" rx="1"/></svg></div>
+        <h3>Your library</h3>
+        <p>Albums, artists and playlists from your own files, with synced lyrics and themes in any colour.</p>
+      </div>
+      <div class="tarjeta aparece">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"> <rect x="2.5" y="2.5" width="8.5" height="8.5" rx="2.4"></rect> <rect x="13" y="2.5" width="8.5" height="8.5" rx="2.4"></rect> <rect x="2.5" y="13" width="8.5" height="8.5" rx="2.4"></rect> <path d="M15.4,13h3.7a2.4,2.4 0 0 1 2.4,2.4v3.7a2.4,2.4 0 0 1 -2.4,2.4h-3.7a2.4,2.4 0 0 1 -2.4,-2.4v-3.7a2.4,2.4 0 0 1 2.4,-2.4z M14.8,16.4h1.3v2.9h-1.3z M16.6,14.9h1.3v5.8h-1.3z M18.4,16.9h1.3v1.9h-1.3z"></path> </svg></div>
+        <h3>Soundboard</h3>
+        <p>Drop songs on pads, cut them to the exact moment and fire them with a hotkey, over your music.</p>
+      </div>
+      <div class="tarjeta aparece">
+        <div class="icono"><svg fill="currentColor" viewBox="-3 0 19 19"><path d="M11.665 7.915v1.31a5.257 5.257 0 0 1-1.514 3.694 5.174 5.174 0 0 1-1.641 1.126 5.04 5.04 0 0 1-1.456.384v1.899h2.312a.554.554 0 0 1 0 1.108H3.634a.554.554 0 0 1 0-1.108h2.312v-1.899a5.045 5.045 0 0 1-1.456-.384 5.174 5.174 0 0 1-1.641-1.126 5.257 5.257 0 0 1-1.514-3.695v-1.31a.554.554 0 1 1 1.109 0v1.31a4.131 4.131 0 0 0 1.195 2.917 3.989 3.989 0 0 0 5.722 0 4.133 4.133 0 0 0 1.195-2.917v-1.31a.554.554 0 1 1 1.109 0zM3.77 10.37a2.875 2.875 0 0 1-.233-1.146V4.738A2.905 2.905 0 0 1 3.77 3.58a3 3 0 0 1 1.59-1.59 2.902 2.902 0 0 1 1.158-.233 2.865 2.865 0 0 1 1.152.233 2.977 2.977 0 0 1 1.793 2.748l-.012 4.487a2.958 2.958 0 0 1-.856 2.09 3.025 3.025 0 0 1-.937.634 2.865 2.865 0 0 1-1.152.233 2.905 2.905 0 0 1-1.158-.233A2.957 2.957 0 0 1 3.77 10.37z"/></svg></div>
+        <h3>Through your mic</h3>
+        <p>Send your music and sounds into Discord calls and games, mixed with your own voice.</p>
+      </div>
+      <div class="tarjeta aparece">
+        <div class="icono"><svg viewBox="0 0 512 512" fill="currentColor"> <rect x="424" y="24" width="48" height="52"></rect> <rect x="424" y="188" width="48" height="300"></rect> <path d="M484.79,100h-73.578C396.188,100,384,112.188,384,127.211v9.578c0,15.023,12.188,27.21,27.211,27.21h73.578c15.023,0,27.21-12.187,27.21-27.21v-9.578C512,112.188,499.813,100,484.79,100z"></path> <rect x="231.985" y="24" width="48" height="276.641"></rect> <rect x="231.985" y="412.641" width="48" height="75.359"></rect> <path d="M292.774,324.641h-73.578c-15.023,0-27.21,12.187-27.21,27.211v9.578c0,15.024,12.187,27.211,27.21,27.211h73.578c15.023,0,27.211-12.187,27.211-27.211v-9.578C319.985,336.828,307.797,324.641,292.774,324.641z"></path> <rect x="40" y="308" width="48" height="180"></rect> <rect x="40" y="24" width="48" height="172"></rect> <path d="M100.79,220H27.211C12.188,220,0,232.188,0,247.211v9.578C0,271.813,12.188,284,27.211,284h73.578c15.023,0,27.21-12.187,27.21-27.21v-9.578C128,232.188,115.813,220,100.79,220z"></path> </svg></div>
+        <h3>Mixer</h3>
+        <p>Music, sounds and microphone on their own faders, each one to the device you pick.</p>
+      </div>
+      <div class="tarjeta aparece">
+        <div class="icono"><svg viewBox="4 4 24 24" fill="currentColor"><path d="M23.6361 9.33998C22.212 8.71399 20.6892 8.25903 19.0973 8C18.9018 8.33209 18.6734 8.77875 18.5159 9.13408C16.8236 8.89498 15.1469 8.89498 13.4857 9.13408C13.3283 8.77875 13.0946 8.33209 12.8974 8C11.3037 8.25903 9.77927 8.71565 8.35518 9.3433C5.48276 13.4213 4.70409 17.3981 5.09342 21.3184C6.99856 22.6551 8.84487 23.467 10.66 23.9983C11.1082 23.4189 11.5079 22.8029 11.8523 22.1536C11.1964 21.9195 10.5683 21.6306 9.9748 21.2951C10.1323 21.1856 10.2863 21.071 10.4351 20.9531C14.0551 22.5438 17.9881 22.5438 21.5649 20.9531C21.7154 21.071 21.8694 21.1856 22.0251 21.2951C21.4299 21.6322 20.8 21.9211 20.1442 22.1553C20.4885 22.8029 20.8865 23.4205 21.3364 24C23.1533 23.4687 25.0013 22.6567 26.9065 21.3184C27.3633 16.7738 26.1261 12.8335 23.6361 9.33998ZM12.3454 18.9075C11.2587 18.9075 10.3676 17.9543 10.3676 16.7937C10.3676 15.6331 11.2397 14.6783 12.3454 14.6783C13.4511 14.6783 14.3422 15.6314 14.3232 16.7937C14.325 17.9543 13.4511 18.9075 12.3454 18.9075ZM19.6545 18.9075C18.5678 18.9075 17.6767 17.9543 17.6767 16.7937C17.6767 15.6331 18.5488 14.6783 19.6545 14.6783C20.7602 14.6783 21.6514 15.6314 21.6323 16.7937C21.6323 17.9543 20.7602 18.9075 19.6545 18.9075Z"/></svg></div>
+        <h3>On your Discord status</h3>
+        <p>"Listening to Relay" with the song, its cover and a live progress bar.</p>
+      </div>
+      <div class="tarjeta aparece">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="currentColor"> <path d="M15.3222 10.383C15.3796 10.9457 15.4125 11.4903 15.4125 12C15.4125 12.9541 15.2972 14.0315 15.1208 15.1208C14.0315 15.2972 12.9541 15.4125 12 15.4125C11.0502 15.4125 9.97313 15.2975 8.87911 15.1205C8.70281 14.0312 8.5875 12.954 8.5875 12C8.5875 11.4905 8.62039 10.9458 8.67789 10.383C9.82608 10.5668 10.9715 10.6875 12 10.6875C13.0286 10.6875 14.174 10.5668 15.3222 10.383Z"></path> <path d="M16.8752 10.0994C16.9462 10.7579 16.9875 11.399 16.9875 12C16.9875 12.8769 16.8997 13.8389 16.7599 14.8153C18.7425 14.4016 20.575 13.8731 21.5567 13.5722C21.8739 13.475 21.9986 13.4363 22.1658 13.3694C22.2494 13.336 22.326 13.302 22.4259 13.2543C22.4748 12.843 22.5 12.4244 22.5 12C22.5 10.878 22.324 9.79714 21.9982 8.78346L21.9133 8.81017C20.8868 9.12245 18.9652 9.6745 16.8752 10.0994Z"></path> <path d="M21.4017 7.31948C20.3698 7.63221 18.579 8.14039 16.6599 8.53603C16.2178 5.84926 15.443 3.16951 15.0702 1.95598C17.8422 2.80227 20.1273 4.76467 21.4017 7.31948Z"></path> <path d="M15.1117 8.82229C14.0253 8.99781 12.9513 9.1125 12 9.1125C11.0487 9.1125 9.97477 8.99781 8.88843 8.8223C9.30471 6.28005 10.0478 3.68306 10.4278 2.44333C10.525 2.12606 10.5637 2.00144 10.6306 1.83418C10.664 1.75062 10.698 1.67398 10.7457 1.57414C11.157 1.52518 11.5756 1.5 12 1.5C12.4434 1.5 12.8803 1.52748 13.3093 1.58083C13.3184 1.61564 13.3268 1.64679 13.3351 1.67626C13.3597 1.76333 13.3982 1.8857 13.4628 2.09104L13.4696 2.11261C13.7935 3.14223 14.6519 6.01401 15.1117 8.82229Z"></path> <path d="M7.34004 8.536C7.7801 5.86107 8.54986 3.19576 8.92192 1.98181L8.92983 1.95597C6.15777 2.80225 3.8727 4.76465 2.59835 7.31946C3.63018 7.63219 5.42095 8.14036 7.34004 8.536Z"></path> <path d="M2.00184 8.78345C1.67598 9.79714 1.5 10.878 1.5 12C1.5 12.4389 1.52693 12.8715 1.57923 13.2963L1.74471 13.3515L1.74603 13.3519L1.74765 13.3525L1.74879 13.3528C1.80205 13.3705 3.36305 13.886 5.41878 14.3975C5.99886 14.5418 6.61307 14.6844 7.24006 14.8151C7.10025 13.8388 7.0125 12.8769 7.0125 12C7.0125 11.3988 7.05374 10.7577 7.12472 10.0994C5.03428 9.67436 3.11218 9.12212 2.08597 8.80989L2.07883 8.80771L2.00184 8.78345Z"></path> <path d="M12 16.9875C12.8769 16.9875 13.8389 16.8997 14.8153 16.7599C14.4016 18.7425 13.8731 20.575 13.5722 21.5566C13.475 21.8739 13.4363 21.9985 13.3694 22.1658C13.336 22.2494 13.302 22.326 13.2543 22.4259C12.843 22.4748 12.4244 22.5 12 22.5C11.5756 22.5 11.157 22.4748 10.7457 22.4259C10.698 22.326 10.664 22.2494 10.6306 22.1658C10.5637 21.9986 10.525 21.8739 10.4278 21.5567C10.1269 20.5751 9.59846 18.7427 9.18478 16.7603C10.1579 16.8996 11.1201 16.9875 12 16.9875Z"></path> <path d="M5.0385 15.9259C3.73853 15.6024 2.63135 15.2775 1.95597 15.0702C2.97258 18.4002 5.59982 21.0274 8.92983 22.044L8.92192 22.0182C8.59705 20.9582 7.96897 18.7917 7.52191 16.4784C6.6525 16.3103 5.80722 16.1171 5.0385 15.9259Z"></path> <path d="M22.0182 15.0781C20.9582 15.403 18.7915 16.0311 16.4781 16.4781C16.0311 18.7915 15.403 20.9581 15.0781 22.0182L15.0702 22.044C18.4002 21.0274 21.0274 18.4002 22.044 15.0702L22.0182 15.0781Z"></path> </svg></div>
+        <h3>Online</h3>
+        <p>Search the web for a song and add it to your library in a couple of clicks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="screens">
+    <div class="titulo aparece"><small>Screenshots</small><h2>Take a look</h2></div>
+    <div class="pestanas aparece" role="tablist">
+      <span class="pildora" aria-hidden="true"></span>
+      <button role="tab" aria-selected="true" data-img="library">Library</button>
+      <button role="tab" aria-selected="false" data-img="now-playing">Now playing</button>
+      <button role="tab" aria-selected="false" data-img="albums">Albums</button>
+      <button role="tab" aria-selected="false" data-img="artists">Artists</button>
+      <button role="tab" aria-selected="false" data-img="mixer">Mixer</button>
+      <button role="tab" aria-selected="false" data-img="themes">Themes</button>
+      <button role="tab" aria-selected="false" data-img="online">Online</button>
+    </div>
+    <div class="escena"><div class="ventana galeria aparece" style="margin-top:0"><img id="captura" src="shots/library.webp" alt="Relay: Library" width="1600" height="870" loading="lazy"></div></div>
+  </section>
+
+  <div class="final aparece">
+    <h2>Ready to try it?</h2>
+    <p>Free, no ads, and it updates itself.</p>
+    <a class="boton grande descarga" href="https://github.com/ElcocosYT/Relay/releases/latest/download/Relay-Setup.exe">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>
+      Download for Windows
+    </a>
+  </div>
+</main>
+
+<div class="visor" role="dialog" aria-modal="true" aria-label="Screenshot" aria-hidden="true">
+  <button class="cerrar" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="flecha atras" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button class="flecha alante" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+<footer>
+  <div class="pie">RELAY · FOR THE COMMUNITY · 2026</div>
+  © 2026 SupperDupper. All rights reserved.
+</footer>
+
+<script>
+// La version y el tamano de verdad, de la ultima publicada en GitHub. Si no
+// contesta, se queda lo de serie: el boton sirve igual.
+fetch("https://api.github.com/repos/ElcocosYT/Relay/releases/latest")
+  .then((r) => r.ok ? r.json() : null)
+  .then((d) => {
+    if (!d) { return; }
+    const v = String(d.tag_name || "").replace(/^v/, "");
+    const exe = (d.assets || []).find((a) => a.name === "Relay-Setup.exe");
+    const detalle = document.querySelector(".detalle");
+    if (v) { detalle.querySelector(".version").innerHTML = "Version <b>" + v + "</b>"; }
+    if (exe) { detalle.lastChild.textContent = " · Windows 10 & 11 · " + Math.round(exe.size / 1048576) + " MB"; }
+  })
+  .catch(() => {});
+
+// La galeria: cada pestana, su captura, con un fundido.
+const captura = document.getElementById("captura");
+document.querySelectorAll(".pestanas button").forEach((b) => {
+  b.addEventListener("click", () => {
+    if (b.getAttribute("aria-selected") === "true") { return; }
+    document.querySelectorAll(".pestanas button").forEach((o) => o.setAttribute("aria-selected", String(o === b)));
+    const nueva = new Image();
+    nueva.src = "shots/" + b.dataset.img + ".webp";
+    captura.classList.add("cambiando");
+    const poner = () => {
+      captura.src = nueva.src;
+      captura.alt = "Relay: " + b.textContent;
+      requestAnimationFrame(() => captura.classList.remove("cambiando"));
+    };
+    Promise.all([nueva.decode().catch(() => {}), new Promise((r) => setTimeout(r, 200))]).then(poner);
+  });
+});
+
+// El visor: la captura pulsada, entera y a toda resolucion. Sale ampliandose
+// desde donde estaba y vuelve alli al cerrar. Flechas para pasar de una a
+// otra, en el orden de la galeria.
+const CAPTURAS = [...document.querySelectorAll(".pestanas button")].map((b) => ({ clave: b.dataset.img, nombre: b.textContent }));
+const visor = document.querySelector(".visor");
+const grande = visor.querySelector("img");
+const pie = visor.querySelector("figcaption");
+let actual = -1;
+let origen = null;
+
+const claveDe = (img) => img.getAttribute("src").split("/").pop().replace(".webp", "");
+
+function mostrar(i) {
+  actual = (i + CAPTURAS.length) % CAPTURAS.length;
+  const c = CAPTURAS[actual];
+  // Primero la que ya esta cargada, al momento; la grande en cuanto llegue.
+  grande.src = "shots/" + c.clave + ".webp";
+  grande.alt = "Relay: " + c.nombre;
+  pie.innerHTML = "<b>" + (actual + 1) + "</b> / " + CAPTURAS.length + " · " + c.nombre;
+  const entera = new Image();
+  entera.src = "shots/full/" + c.clave + ".webp";
+  entera.decode().then(() => {
+    if (CAPTURAS[actual].clave === c.clave) { grande.src = entera.src; }
+  }).catch(() => {});
+}
+
+// De un rectangulo a otro: lo que hay que mover y escalar la grande.
+function desde(rect) {
+  const b = grande.getBoundingClientRect();
+  const dx = (rect.left + rect.width / 2) - (b.left + b.width / 2);
+  const dy = (rect.top + rect.height / 2) - (b.top + b.height / 2);
+  return "translate(" + dx + "px," + dy + "px) scale(" + (rect.width / b.width) + ")";
+}
+
+async function abrir(img) {
+  origen = img;
+  const i = CAPTURAS.findIndex((c) => c.clave === claveDe(img));
+  mostrar(i < 0 ? 0 : i);
+  await grande.decode().catch(() => {});
+  visor.classList.add("abierto");
+  visor.setAttribute("aria-hidden", "false");
+  document.documentElement.style.overflow = "hidden";
+  grande.style.transition = "none";
+  grande.style.transform = desde(img.getBoundingClientRect());
+  grande.getBoundingClientRect();
+  grande.style.transition = "transform .5s cubic-bezier(.22, 1, .36, 1)";
+  grande.style.transform = "none";
+}
+
+function cerrar() {
+  if (!visor.classList.contains("abierto")) { return; }
+  // Vuelve a su sitio si sigue siendo la misma; si se paso a otra, se funde.
+  if (origen && claveDe(origen) === CAPTURAS[actual].clave) {
+    grande.style.transition = "transform .38s cubic-bezier(.4, 0, .2, 1)";
+    grande.style.transform = desde(origen.getBoundingClientRect());
+  }
+  visor.classList.remove("abierto");
+  visor.setAttribute("aria-hidden", "true");
+  document.documentElement.style.overflow = "";
+  setTimeout(() => { grande.style.transition = "none"; grande.style.transform = "none"; }, 400);
+}
+
+function pasar(n) {
+  grande.style.transition = "none";
+  grande.style.transform = "none";
+  grande.classList.add("cambiando");
+  setTimeout(() => {
+    mostrar(actual + n);
+    grande.decode().catch(() => {}).then(() => grande.classList.remove("cambiando"));
+  }, 180);
+}
+
+document.querySelectorAll(".ventana img").forEach((img) => img.addEventListener("click", () => abrir(img)));
+visor.addEventListener("click", (e) => { if (!e.target.closest("button")) { cerrar(); } });
+visor.querySelector(".cerrar").addEventListener("click", cerrar);
+visor.querySelector(".atras").addEventListener("click", () => pasar(-1));
+visor.querySelector(".alante").addEventListener("click", () => pasar(1));
+document.addEventListener("keydown", (e) => {
+  if (!visor.classList.contains("abierto")) { return; }
+  if (e.key === "Escape") { cerrar(); }
+  if (e.key === "ArrowLeft") { pasar(-1); }
+  if (e.key === "ArrowRight") { pasar(1); }
+});
+
+// ── El movimiento ──
+// Quieto del todo si el sistema pide menos movimiento; lo que sigue al raton,
+// solo con un raton de verdad (en un movil no hay "encima").
+const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const conRaton = matchMedia("(hover: hover) and (pointer: fine)").matches;
+const raiz = document.documentElement;
+
+// El logo del titulo: entra girando, luego flota; pulsado, da una vuelta.
+const logoTitulo = document.querySelector("h1 img");
+logoTitulo.addEventListener("animationend", (e) => {
+  if (e.animationName === "logoEntra") { logoTitulo.classList.add("listo"); }
+  if (e.animationName === "vuelta") { logoTitulo.classList.remove("gira"); }
+});
+logoTitulo.addEventListener("click", () => {
+  logoTitulo.classList.remove("gira");
+  void logoTitulo.offsetWidth;
+  logoTitulo.classList.add("gira");
+});
+if (quieto) { logoTitulo.classList.add("listo"); }
+
+// Las letras de RELAY: al acabar de entrar se quedan quietas, y la ola al
+// pasar el raton va de una vez, sin volver a la entrada al irse.
+const titulo = document.querySelector("h1");
+const letras = titulo.querySelectorAll(".letra");
+letras[letras.length - 1].addEventListener("animationend", (e) => {
+  if (e.animationName === "letraEntra") { titulo.classList.add("entrado"); }
+  if (e.animationName === "ola") { titulo.classList.remove("ola"); }
+});
+titulo.addEventListener("pointerenter", () => {
+  if (titulo.classList.contains("entrado") && !titulo.classList.contains("ola")) { titulo.classList.add("ola"); }
+});
+if (quieto) { titulo.classList.add("entrado"); }
+
+// Al bajar: la raya de arriba, la barra mas oscura y la captura de la
+// portada que crece hasta su tamano al acercarse al centro.
+const barra = document.querySelector(".barra");
+const arriba = document.querySelector(".ventana.arriba");
+let pintandoScroll = false;
+function alBajar() {
+  pintandoScroll = false;
+  const alto = raiz.scrollHeight - innerHeight;
+  raiz.style.setProperty("--p", alto > 0 ? (scrollY / alto).toFixed(4) : 0);
+  barra.classList.toggle("bajada", scrollY > 8);
+  if (!quieto && arriba) {
+    const r = arriba.getBoundingClientRect();
+    const t = Math.min(1, Math.max(0, 1 - (r.top - innerHeight * .25) / (innerHeight * .75)));
+    arriba.style.setProperty("--s", (.93 + .07 * t).toFixed(4));
+  }
+}
+addEventListener("scroll", () => { if (!pintandoScroll) { pintandoScroll = true; requestAnimationFrame(alBajar); } }, { passive: true });
+addEventListener("resize", alBajar);
+alBajar();
+
+// La pildora de las pestanas: se desliza hasta la elegida.
+const pildora = document.querySelector(".pildora");
+function moverPildora() {
+  const b = document.querySelector('.pestanas button[aria-selected="true"]');
+  if (!b) { return; }
+  pildora.style.translate = b.offsetLeft + "px " + b.offsetTop + "px";
+  pildora.style.width = b.offsetWidth + "px";
+  pildora.style.height = b.offsetHeight + "px";
+}
+document.querySelectorAll(".pestanas button").forEach((b) => b.addEventListener("click", () => requestAnimationFrame(moverPildora)));
+addEventListener("resize", moverPildora);
+document.fonts?.ready.then(moverPildora);
+moverPildora();
+
+if (conRaton && !quieto) {
+  // Los botones se inclinan hacia el raton.
+  document.querySelectorAll(".boton").forEach((b) => {
+    b.addEventListener("pointermove", (e) => {
+      const r = b.getBoundingClientRect();
+      b.style.setProperty("--mx", ((e.clientX - r.left - r.width / 2) * .16).toFixed(1) + "px");
+      b.style.setProperty("--my", ((e.clientY - r.top - r.height / 2) * .22).toFixed(1) + "px");
+    });
+    b.addEventListener("pointerleave", () => { b.style.setProperty("--mx", "0px"); b.style.setProperty("--my", "0px"); });
+  });
+
+  // Las capturas se inclinan en 3D, con un reflejo donde esta el raton.
+  document.querySelectorAll(".ventana").forEach((v) => {
+    v.addEventListener("pointermove", (e) => {
+      const r = v.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      v.classList.add("sigue");
+      v.style.setProperty("--ry", ((x - .5) * 7).toFixed(2) + "deg");
+      v.style.setProperty("--rx", ((.5 - y) * 5).toFixed(2) + "deg");
+      v.style.setProperty("--gx", (x * 100).toFixed(1) + "%");
+      v.style.setProperty("--gy", (y * 100).toFixed(1) + "%");
+    });
+    v.addEventListener("pointerleave", () => {
+      v.classList.remove("sigue");
+      v.style.setProperty("--rx", "0deg");
+      v.style.setProperty("--ry", "0deg");
+    });
+  });
+
+  // Las tarjetas: el foco y el borde encendido siguen al raton.
+  document.querySelectorAll(".tarjeta").forEach((t) => {
+    t.addEventListener("pointermove", (e) => {
+      const r = t.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      t.style.setProperty("--cx", x + "px");
+      t.style.setProperty("--cy", y + "px");
+      t.style.setProperty("--ry", ((x / r.width - .5) * 6).toFixed(2) + "deg");
+      t.style.setProperty("--rx", ((.5 - y / r.height) * 6).toFixed(2) + "deg");
+    });
+    t.addEventListener("pointerleave", () => {
+      t.style.setProperty("--rx", "0deg");
+      t.style.setProperty("--ry", "0deg");
+      t.style.setProperty("--cy", "-40%");
+    });
+  });
+
+  // El foco rojo del fondo va detras del raton, con retraso.
+  const foco = document.querySelector(".cielo .foco");
+  let fx = innerWidth / 2, fy = innerHeight / 3, ax = fx, ay = fy, siguiendo = false;
+  addEventListener("pointermove", (e) => {
+    ax = e.clientX; ay = e.clientY;
+    foco.classList.add("vivo");
+    if (!siguiendo) { siguiendo = true; requestAnimationFrame(seguir); }
+  }, { passive: true });
+  document.addEventListener("pointerleave", () => foco.classList.remove("vivo"));
+  function seguir() {
+    fx += (ax - fx) * .08; fy += (ay - fy) * .08;
+    foco.style.setProperty("--fx", fx.toFixed(1) + "px");
+    foco.style.setProperty("--fy", fy.toFixed(1) + "px");
+    if (Math.abs(ax - fx) + Math.abs(ay - fy) > .5) { requestAnimationFrame(seguir); } else { siguiendo = false; }
+  }
+}
+
+// Las ascuas: chispas que suben despacio por el fondo, como las del cielo de
+// la firma en la aplicacion. Se paran con la pestana escondida.
+if (!quieto) {
+  const lienzo = document.getElementById("ascuas");
+  const ctx = lienzo.getContext("2d");
+  const COLORES = ["255,42,58", "255,143,152", "255,210,213", "255,76,87"];
+  let ancho = 0, alto = 0, escala = 1, chispas = [];
+  const azar = (a, b) => a + Math.random() * (b - a);
+  const nueva = (abajo) => ({
+    x: azar(0, ancho), y: abajo ? alto + azar(0, 60) : azar(0, alto),
+    r: azar(.6, 2.2), vy: azar(10, 30), fase: azar(0, 6.28), onda: azar(.4, 1.2),
+    brillo: azar(.35, .9), rgb: COLORES[Math.floor(Math.random() * COLORES.length)],
+  });
+  function medir() {
+    escala = Math.min(devicePixelRatio || 1, 1.5);
+    ancho = innerWidth; alto = innerHeight;
+    lienzo.width = ancho * escala; lienzo.height = alto * escala;
+    ctx.setTransform(escala, 0, 0, escala, 0, 0);
+    const cuantas = Math.round(Math.min(70, ancho * alto / 22000));
+    while (chispas.length < cuantas) { chispas.push(nueva(false)); }
+    chispas.length = cuantas;
+  }
+  medir();
+  addEventListener("resize", medir);
+  let antes = performance.now();
+  function pintar(ahora) {
+    const dt = Math.min(.05, (ahora - antes) / 1000);
+    antes = ahora;
+    ctx.clearRect(0, 0, ancho, alto);
+    ctx.globalCompositeOperation = "lighter";
+    for (const c of chispas) {
+      c.y -= c.vy * dt;
+      c.fase += dt * c.onda;
+      const x = c.x + Math.sin(c.fase) * 14;
+      if (c.y < -20) { Object.assign(c, nueva(true)); continue; }
+      // Mas tenues arriba: se apagan al subir.
+      const a = c.brillo * Math.min(1, c.y / (alto * .6)) * (.7 + .3 * Math.sin(c.fase * 3));
+      if (a <= 0) { continue; }
+      ctx.fillStyle = "rgba(" + c.rgb + "," + (a * .18).toFixed(3) + ")";
+      ctx.beginPath(); ctx.arc(x, c.y, c.r * 4, 0, 6.2832); ctx.fill();
+      ctx.fillStyle = "rgba(" + c.rgb + "," + a.toFixed(3) + ")";
+      ctx.beginPath(); ctx.arc(x, c.y, c.r, 0, 6.2832); ctx.fill();
+    }
+    if (!document.hidden) { requestAnimationFrame(pintar); }
+  }
+  requestAnimationFrame(pintar);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) { antes = performance.now(); requestAnimationFrame(pintar); }
+  });
+}
+
+// Lo que entra en pantalla aparece, una vez.
+const ojo = new IntersectionObserver((vistos) => {
+  vistos.forEach((v, i) => {
+    if (v.isIntersecting) {
+      v.target.style.transitionDelay = (i * 60) + "ms";
+      v.target.classList.add("visto");
+      ojo.unobserve(v.target);
+    }
+  });
+}, { threshold: .15 });
+document.querySelectorAll(".aparece").forEach((e) => ojo.observe(e));
+</script>
+</body>
+</html>
