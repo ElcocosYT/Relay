@@ -262,6 +262,208 @@ section { padding: 96px 0 0; }
 .tarjeta h3 { margin: 18px 0 6px; font: 700 18px/1.25 Sora, sans-serif; letter-spacing: -.02em; }
 .tarjeta p { margin: 0; color: var(--suave); font-size: 14.5px; }
 
+/*
+  Los servicios en los que busca Relay: los de Online, con su logo y su color
+  (los mismos de la aplicacion, ver COLOR en RelayOnline.dc.html). Cada uno
+  flota a su ritmo, y cada pocos segundos una luz los recorre de uno en uno,
+  como Relay preguntandoles, encendiendolos de su color.
+*/
+.servicios { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.servicio {
+  --c: 255, 255, 255;
+  position: relative; overflow: hidden; isolation: isolate;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 26px 14px 22px; border-radius: 20px;
+  background: linear-gradient(180deg, rgba(22, 16, 18, .94), rgba(15, 11, 13, .94));
+  border: 1px solid rgba(255, 255, 255, .08);
+  transition: translate .45s cubic-bezier(.34, 1.56, .64, 1), border-color .3s, box-shadow .4s;
+}
+/* El halo de su color, detras del logo; late con la luz que los recorre. */
+.servicio::before {
+  content: ""; position: absolute; left: 50%; top: 18px; z-index: -1;
+  width: 150px; height: 150px; translate: -50% 0; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(var(--c), .28), transparent);
+  opacity: .35; animation: pregunta 6s ease-in-out infinite; animation-delay: calc(var(--i) * .35s);
+}
+@keyframes pregunta {
+  0%, 12%, 100% { opacity: .35; scale: 1; }
+  5% { opacity: 1; scale: 1.25; }
+}
+.servicio .logoServicio {
+  width: 64px; height: 64px; flex: none;
+  background-position: center; background-size: contain; background-repeat: no-repeat;
+  filter: drop-shadow(0 8px 18px rgba(var(--c), .35));
+  animation: flotaServicio 5.2s ease-in-out infinite; animation-delay: calc(var(--i) * -.9s);
+  transition: scale .5s cubic-bezier(.34, 1.56, .64, 1), rotate .5s cubic-bezier(.34, 1.56, .64, 1), filter .3s;
+}
+/* De una tinta -Archive, yedits-: el dibujo como mascara, pintado de su color. */
+.servicio .logoServicio.tinta {
+  background: rgb(var(--c));
+  -webkit-mask: var(--logo) center/contain no-repeat; mask: var(--logo) center/contain no-repeat;
+}
+@keyframes flotaServicio { 50% { translate: 0 -7px; } }
+.servicio b { margin-top: 16px; font: 700 16px/1.2 Sora, sans-serif; letter-spacing: -.02em; color: #fff; }
+.servicio span { margin-top: 6px; font: 500 12.5px/1.4 Manrope, sans-serif; color: var(--suave); }
+.servicio.visto:hover {
+  translate: 0 -6px; border-color: rgba(var(--c), .6);
+  box-shadow: 0 18px 44px -18px rgba(var(--c), .7), inset 0 0 0 1px rgba(var(--c), .15);
+}
+.servicio:hover .logoServicio { scale: 1.14; rotate: -6deg; filter: drop-shadow(0 10px 26px rgba(var(--c), .75)); }
+.servicio:hover::before { opacity: 1; scale: 1.35; animation-play-state: paused; }
+.serviciosPie { margin-top: 22px; text-align: center; color: var(--suave); font-size: 14.5px; }
+.serviciosPie b { color: rgb(var(--rosa)); }
+
+/* ── Las tres muestras: letra, cola con cover flow, temas ── */
+.muestra { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
+.muestra.al-reves { grid-template-columns: 1.25fr 1fr; }
+.muestra .explica small { font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--claro)); }
+.muestra .explica h2 { margin: 14px 0 12px; font: 700 clamp(28px, 3.6vw, 40px)/1.1 Sora, sans-serif; letter-spacing: -.035em; }
+.muestra .explica p { margin: 0 0 16px; color: var(--suave); }
+.muestra .explica ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+.muestra .explica li { display: flex; gap: 10px; align-items: baseline; color: rgba(238, 238, 244, .82); font-size: 15px; }
+.muestra .explica li::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; translate: 0 -2px; background: rgb(var(--rojo)); box-shadow: 0 0 10px rgba(var(--rojo), .8); }
+.lienzo {
+  position: relative; overflow: hidden; border-radius: 22px;
+  background: linear-gradient(180deg, rgba(26, 16, 20, .96), rgba(14, 10, 12, .96));
+  border: 1px solid rgba(var(--rojo), .25);
+  box-shadow: 0 40px 100px -40px rgba(var(--rojo), .55), 0 20px 50px -30px rgba(0, 0, 0, .9);
+}
+
+/* Letra: como la de Now Playing. La linea que suena se llena palabra a
+   palabra; las de antes se apagan y las de despues esperan desenfocadas. */
+.letra-app { height: 420px; padding: 22px 28px; }
+.letra-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Sora, sans-serif; }
+.letra-app .cabeza i { font: 700 9px/1 "JetBrains Mono", monospace; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgb(var(--rosa)); background: rgba(var(--rojo), .15); border: 1px solid rgba(var(--rojo), .45); }
+.letra-app .ventanal { position: relative; height: 330px; margin-top: 16px; overflow: hidden;
+  -webkit-mask: linear-gradient(transparent, #000 22%, #000 78%, transparent); mask: linear-gradient(transparent, #000 22%, #000 78%, transparent); }
+.letra-app .rollo { position: absolute; left: 0; right: 0; top: 0; transition: translate .9s cubic-bezier(.22, 1, .36, 1); }
+.letra-app .verso {
+  height: 52px; display: flex; align-items: center; justify-content: center; text-align: center;
+  font: 700 clamp(17px, 2vw, 24px)/1.15 Manrope, sans-serif; letter-spacing: -.02em;
+  color: rgba(238, 238, 244, .3); filter: blur(1.4px); scale: .94;
+  transition: color .6s, filter .6s, scale .7s cubic-bezier(.22, 1, .36, 1);
+}
+.letra-app .verso.ya { color: rgba(238, 238, 244, .45); filter: none; }
+.letra-app .verso.ahora { filter: none; scale: 1.06; color: rgba(255, 255, 255, .35); }
+.letra-app .verso .pal { display: inline-block; margin: 0 .14em; }
+.letra-app .verso.ahora .pal {
+  background: linear-gradient(90deg, #fff 50%, rgba(255, 255, 255, .35) 50%) 100% 0 / 200% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: llena var(--d, .4s) linear both; animation-delay: var(--t, 0s);
+  text-shadow: 0 0 22px rgba(255, 255, 255, .0);
+}
+@keyframes llena { to { background-position: 0 0; translate: 0 -2px; } }
+
+/* Cola y cover flow: el carrusel grande de la cola, avanzando solo. */
+.cola-app { padding: 24px 22px 20px; }
+.cola-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Sora, sans-serif; }
+.cola-app .cabeza i { font: 700 9px/1 "JetBrains Mono", monospace; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgba(238, 238, 244, .6); background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .1); }
+/* El cover flow de Now Playing, con los numeros de la app (RING en
+   RelayNowPlaying.dc.html) escalados de 124 px de centro a 170: tres por
+   lado, cada una mas pequena, mas girada y mas apagada. Las de la derecha
+   giran en positivo, como en la app. Las cartas son siete sitios fijos y al
+   avanzar cada una viaja al de al lado en 460 ms (VIAJE en relay-host.js). */
+.flujo { position: relative; height: 262px; margin: 16px -22px 0; overflow: hidden; --viaje: 460ms; }
+.flujo .bruma {
+  position: absolute; left: 50%; top: 38px; width: 410px; height: 410px; margin-left: -205px; pointer-events: none;
+  background: radial-gradient(circle at center, rgba(var(--cc, 255, 42, 58), .28), transparent 68%); filter: blur(30px);
+  transition: background .6s ease;
+}
+.flujo .raya {
+  position: absolute; left: 50%; top: 196px; width: 274px; margin-left: -137px; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(var(--cc, 255, 42, 58), .5), transparent);
+}
+.carta {
+  position: absolute; left: 50%; cursor: pointer;
+  transition: margin-left var(--viaje) cubic-bezier(.22, .61, .36, 1), width var(--viaje) cubic-bezier(.22, .61, .36, 1),
+              height var(--viaje) cubic-bezier(.22, .61, .36, 1), top var(--viaje) cubic-bezier(.22, .61, .36, 1),
+              transform var(--viaje) cubic-bezier(.22, .61, .36, 1), opacity var(--viaje) cubic-bezier(.22, .61, .36, 1);
+}
+.carta.sin-viaje { transition: none; }
+.carta .arte {
+  position: relative; width: 100%; height: 100%; overflow: hidden; box-sizing: border-box;
+  border-radius: var(--r); border: 1px solid rgba(255, 255, 255, var(--bd)); box-shadow: var(--sombra);
+  transition: transform 200ms cubic-bezier(.22, .61, .36, 1), box-shadow 200ms ease, filter 200ms ease, border-radius var(--viaje);
+}
+/* El brillo de encima, como en la app: rayas finas y un lustre en diagonal. */
+.carta .arte::before, .carta .arte::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.carta .arte::before { background: repeating-linear-gradient(118deg, rgba(255, 255, 255, .14) 0 2px, transparent 2px 9px); }
+.carta .arte::after { background: linear-gradient(105deg, rgba(255, 255, 255, .18), transparent 42%); }
+.carta .velo { position: absolute; inset: 0; background: rgb(5, 5, 6); opacity: var(--dim, 0); transition: opacity var(--viaje); pointer-events: none; }
+/* El reflejo tumbado 50 grados hacia atras, con el mismo velo (REFLEJO_* en relay-host.js). */
+.carta .reflejo {
+  position: absolute; left: 0; right: 0; top: 100%; height: 65.34%; pointer-events: none;
+  border-radius: var(--r); background-size: 100% 153%; background-position: center bottom;
+  transform-origin: 50% 0; transform: rotateX(-50deg) translateY(100%) scaleY(-1);
+  opacity: var(--ro, .5);
+  -webkit-mask-image: linear-gradient(0deg, rgba(0, 0, 0, .85), rgba(0, 0, 0, .24) 40%, transparent 84%);
+  mask-image: linear-gradient(0deg, rgba(0, 0, 0, .85), rgba(0, 0, 0, .24) 40%, transparent 84%);
+}
+/* El nombre va DENTRO de la del centro, abajo, y sale cuando termina el viaje. */
+.carta .nombre {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 34px 14px 12px; text-align: center; pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(5, 5, 6, .72)); opacity: 0; transition: opacity 200ms ease;
+}
+.carta .nombre b { display: block; font: 700 15px/1.2 Sora, sans-serif; letter-spacing: -.01em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.carta .nombre span { display: block; margin-top: 3px; font: 500 12px/1.2 Manrope, sans-serif; color: rgba(255, 211, 214, .8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.carta.centro .nombre { opacity: 1; transition-delay: var(--viaje); }
+/* El raton: la cara crece un poco y se enciende con SU color. */
+.carta:hover .arte {
+  transform: scale(1.07); filter: brightness(1.1) saturate(1.06);
+  box-shadow: 0 24px 48px -14px rgba(var(--cc), .78), 0 0 0 2px rgba(var(--cc), .6), inset 0 1px 0 rgba(255, 255, 255, .34);
+}
+.cola-app .sigue { margin-top: 18px; border-top: 1px solid var(--linea); padding-top: 12px; }
+.lista-cola { position: relative; }
+.cola-app .sigue small { font: 700 10px/1 "JetBrains Mono", monospace; letter-spacing: .14em; color: var(--tenue); }
+/* Las filas se mueven con top/left y se descubren con un recorte, sin
+   opacidad, igual que en la app: asi el texto no cambia de grosor al animarse. */
+.fila-cola {
+  position: relative; left: 0; top: 0;
+  display: flex; align-items: center; gap: 11px; padding: 7px 6px; border-radius: 12px; margin-top: 4px;
+}
+.fila-cola::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; opacity: 0; transition: opacity 130ms ease;
+  background: linear-gradient(100deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .028)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .13);
+}
+.fila-cola:hover::after { opacity: 1; }
+.fila-cola .mini { width: 34px; height: 34px; border-radius: 9px; flex: none; overflow: hidden; position: relative; border: 1px solid rgba(255, 255, 255, .14); box-sizing: border-box; }
+.fila-cola b { display: block; font: 700 13px/1.2 Manrope, sans-serif; }
+.fila-cola span { font: 500 11.5px/1.2 Manrope, sans-serif; color: var(--suave); }
+.fila-cola em { margin-left: auto; font: 600 11px/1 "JetBrains Mono", monospace; font-style: normal; color: var(--tenue); }
+
+/* Temas: una Relay en pequeno cuyo color sigue al selector. */
+.temas-app { padding: 20px; --h: 355; --acc: hsl(var(--h) 95% 58%); --accA: hsl(var(--h) 95% 58% / .18); }
+.maqueta { display: grid; grid-template-columns: 120px 1fr; gap: 10px; height: 250px; }
+.maqueta .lado, .maqueta .centro2 { border-radius: 14px; background: rgba(255, 255, 255, .035); border: 1px solid rgba(255, 255, 255, .07); padding: 12px 10px; transition: background .2s; }
+.maqueta .lado { background: linear-gradient(180deg, var(--accA), rgba(255, 255, 255, .02)); }
+.maqueta .item { height: 12px; border-radius: 4px; background: rgba(255, 255, 255, .12); margin: 9px 4px; }
+.maqueta .item.activo { height: 22px; margin: 8px 0; border-radius: 8px; background: var(--accA); border: 1px solid var(--acc); box-shadow: 0 0 16px -4px var(--acc); }
+.maqueta .centro2 { display: flex; flex-direction: column; gap: 10px; }
+.maqueta .titulo2 { font: 800 26px/1 Sora, sans-serif; letter-spacing: -.04em; background: linear-gradient(100deg, #fff 10%, var(--acc)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.maqueta .tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; flex: 1; }
+.maqueta .tarjetas div { border-radius: 10px; background: linear-gradient(135deg, var(--acc), hsl(var(--h) 80% 20%)); opacity: .85; box-shadow: 0 10px 24px -12px var(--acc); }
+.maqueta .tarjetas div:nth-child(2) { opacity: .6; }
+.maqueta .tarjetas div:nth-child(3) { opacity: .4; }
+.maqueta .barra2 { height: 34px; border-radius: 10px; background: rgba(255, 255, 255, .05); display: flex; align-items: center; gap: 10px; padding: 0 10px; }
+.maqueta .barra2 i { width: 18px; height: 18px; border-radius: 50%; background: #fff; flex: none; }
+.maqueta .barra2 u { flex: 1; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .12); position: relative; overflow: hidden; }
+.maqueta .barra2 u::after { content: ""; position: absolute; inset: 0 40% 0 0; background: var(--acc); box-shadow: 0 0 10px var(--acc); animation: avanza 6s linear infinite; }
+@keyframes avanza { from { right: 100%; } to { right: 0; } }
+.selector { position: relative; margin-top: 16px; height: 16px; border-radius: 999px; cursor: pointer; touch-action: none;
+  background: linear-gradient(90deg, hsl(0 95% 58%), hsl(60 95% 58%), hsl(120 95% 58%), hsl(180 95% 58%), hsl(240 95% 58%), hsl(300 95% 58%), hsl(360 95% 58%)); }
+.selector .pomo {
+  position: absolute; top: 50%; left: calc(var(--p, .98) * 100%); width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%;
+  background: var(--acc); border: 3px solid #fff; box-shadow: 0 0 0 4px rgba(0, 0, 0, .35), 0 0 22px var(--acc);
+}
+.temas-app .muestras2 { display: flex; gap: 8px; margin-top: 14px; }
+.temas-app .muestras2 span { width: 22px; height: 22px; border-radius: 7px; cursor: pointer; border: 1px solid rgba(255, 255, 255, .15); transition: scale .3s cubic-bezier(.34, 1.56, .64, 1); }
+.temas-app .muestras2 span:hover { scale: 1.2; }
+
+@media (max-width: 860px) {
+  .muestra, .muestra.al-reves { grid-template-columns: 1fr; gap: 26px; }
+  .muestra.al-reves .explica { order: -1; }
+}
+
 /* La galeria: pestanas con una pildora que se desliza hasta la elegida, y una
    captura que cambia con un fundido. */
 .pestanas { position: relative; display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-bottom: 22px; }
@@ -382,8 +584,14 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
               transform .12s linear, box-shadow .4s ease;
 }
 
+@media (max-width: 1000px) {
+  .servicios { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 860px) {
   .rejilla { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .servicios { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
   .rejilla { grid-template-columns: 1fr; }
@@ -394,6 +602,8 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .aparece { opacity: 1; translate: none; filter: none; }
+  /* Sin movimiento la linea no se llena poco a poco: sale ya llena. */
+  .letra-app .verso.ahora .pal { background-position: 0 0; }
   #ascuas, .cielo .foco { display: none; }
 }
 </style>
@@ -465,6 +675,81 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
         <div class="icono"><svg viewBox="0 0 24 24" fill="currentColor"> <path d="M15.3222 10.383C15.3796 10.9457 15.4125 11.4903 15.4125 12C15.4125 12.9541 15.2972 14.0315 15.1208 15.1208C14.0315 15.2972 12.9541 15.4125 12 15.4125C11.0502 15.4125 9.97313 15.2975 8.87911 15.1205C8.70281 14.0312 8.5875 12.954 8.5875 12C8.5875 11.4905 8.62039 10.9458 8.67789 10.383C9.82608 10.5668 10.9715 10.6875 12 10.6875C13.0286 10.6875 14.174 10.5668 15.3222 10.383Z"></path> <path d="M16.8752 10.0994C16.9462 10.7579 16.9875 11.399 16.9875 12C16.9875 12.8769 16.8997 13.8389 16.7599 14.8153C18.7425 14.4016 20.575 13.8731 21.5567 13.5722C21.8739 13.475 21.9986 13.4363 22.1658 13.3694C22.2494 13.336 22.326 13.302 22.4259 13.2543C22.4748 12.843 22.5 12.4244 22.5 12C22.5 10.878 22.324 9.79714 21.9982 8.78346L21.9133 8.81017C20.8868 9.12245 18.9652 9.6745 16.8752 10.0994Z"></path> <path d="M21.4017 7.31948C20.3698 7.63221 18.579 8.14039 16.6599 8.53603C16.2178 5.84926 15.443 3.16951 15.0702 1.95598C17.8422 2.80227 20.1273 4.76467 21.4017 7.31948Z"></path> <path d="M15.1117 8.82229C14.0253 8.99781 12.9513 9.1125 12 9.1125C11.0487 9.1125 9.97477 8.99781 8.88843 8.8223C9.30471 6.28005 10.0478 3.68306 10.4278 2.44333C10.525 2.12606 10.5637 2.00144 10.6306 1.83418C10.664 1.75062 10.698 1.67398 10.7457 1.57414C11.157 1.52518 11.5756 1.5 12 1.5C12.4434 1.5 12.8803 1.52748 13.3093 1.58083C13.3184 1.61564 13.3268 1.64679 13.3351 1.67626C13.3597 1.76333 13.3982 1.8857 13.4628 2.09104L13.4696 2.11261C13.7935 3.14223 14.6519 6.01401 15.1117 8.82229Z"></path> <path d="M7.34004 8.536C7.7801 5.86107 8.54986 3.19576 8.92192 1.98181L8.92983 1.95597C6.15777 2.80225 3.8727 4.76465 2.59835 7.31946C3.63018 7.63219 5.42095 8.14036 7.34004 8.536Z"></path> <path d="M2.00184 8.78345C1.67598 9.79714 1.5 10.878 1.5 12C1.5 12.4389 1.52693 12.8715 1.57923 13.2963L1.74471 13.3515L1.74603 13.3519L1.74765 13.3525L1.74879 13.3528C1.80205 13.3705 3.36305 13.886 5.41878 14.3975C5.99886 14.5418 6.61307 14.6844 7.24006 14.8151C7.10025 13.8388 7.0125 12.8769 7.0125 12C7.0125 11.3988 7.05374 10.7577 7.12472 10.0994C5.03428 9.67436 3.11218 9.12212 2.08597 8.80989L2.07883 8.80771L2.00184 8.78345Z"></path> <path d="M12 16.9875C12.8769 16.9875 13.8389 16.8997 14.8153 16.7599C14.4016 18.7425 13.8731 20.575 13.5722 21.5566C13.475 21.8739 13.4363 21.9985 13.3694 22.1658C13.336 22.2494 13.302 22.326 13.2543 22.4259C12.843 22.4748 12.4244 22.5 12 22.5C11.5756 22.5 11.157 22.4748 10.7457 22.4259C10.698 22.326 10.664 22.2494 10.6306 22.1658C10.5637 21.9986 10.525 21.8739 10.4278 21.5567C10.1269 20.5751 9.59846 18.7427 9.18478 16.7603C10.1579 16.8996 11.1201 16.9875 12 16.9875Z"></path> <path d="M5.0385 15.9259C3.73853 15.6024 2.63135 15.2775 1.95597 15.0702C2.97258 18.4002 5.59982 21.0274 8.92983 22.044L8.92192 22.0182C8.59705 20.9582 7.96897 18.7917 7.52191 16.4784C6.6525 16.3103 5.80722 16.1171 5.0385 15.9259Z"></path> <path d="M22.0182 15.0781C20.9582 15.403 18.7915 16.0311 16.4781 16.4781C16.0311 18.7915 15.403 20.9581 15.0781 22.0182L15.0702 22.044C18.4002 21.0274 21.0274 18.4002 22.044 15.0702L22.0182 15.0781Z"></path> </svg></div>
         <h3>Online</h3>
         <p>Search the web for a song and add it to your library in a couple of clicks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="titulo aparece"><small>Online</small><h2>Search across six services at once</h2></div>
+    <div class="servicios">
+      <div class="servicio aparece" style="--i:0;--c:255,74,74"><div class="logoServicio" style="background-image:url(servicios/youtube.png)"></div><b>YouTube</b><span>Almost any song, mix or live set</span></div>
+      <div class="servicio aparece" style="--i:1;--c:162,56,255"><div class="logoServicio" style="background-image:url(servicios/deezer.svg)"></div><b>Deezer</b><span>Full label albums, like on Spotify</span></div>
+      <div class="servicio aparece" style="--i:2;--c:255,122,47"><div class="logoServicio" style="background-image:url(servicios/soundcloud.png)"></div><b>SoundCloud</b><span>Remixes, bootlegs and indie drops</span></div>
+      <div class="servicio aparece" style="--i:3;--c:193,59,255"><div class="logoServicio" style="background-image:url(servicios/audius.webp)"></div><b>Audius</b><span>Independent artists, free to stream</span></div>
+      <div class="servicio aparece" style="--i:4;--c:255,255,255"><div class="logoServicio tinta" style="--logo:url(servicios/yedits.png)"></div><b>yedits</b><span>Edits and reworks from the community</span></div>
+      <div class="servicio aparece" style="--i:5;--c:255,255,255"><div class="logoServicio tinta" style="--logo:url(servicios/archive.png)"></div><b>Internet Archive</b><span>Old recordings, live shows and rarities</span></div>
+    </div>
+    <p class="serviciosPie aparece">Type once and every service answers. <b>Play it straight away</b> or import it into your library.</p>
+  </section>
+
+  <section id="lyrics">
+    <div class="muestra">
+      <div class="explica aparece">
+        <small>Lyrics</small>
+        <h2>Lyrics that sing along</h2>
+        <p>Synced lyrics that move with the song, line by line, the way you'd expect from a streaming app.</p>
+        <ul>
+          <li>The playing line fills word by word</li>
+          <li>Found for you, or written and timed by hand</li>
+          <li>Precise timing with Whisper, right on your PC</li>
+        </ul>
+      </div>
+      <div class="lienzo letra-app aparece">
+        <div class="cabeza">Lyrics <i>SYNCED</i></div>
+        <div class="ventanal"><div class="rollo"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="queue">
+    <div class="muestra al-reves">
+      <div class="lienzo cola-app aparece">
+        <div class="cabeza">Queue <i>COVER FLOW</i></div>
+        <div class="flujo"></div>
+        <div class="sigue"><small>NEXT UP</small><div class="lista-cola"></div></div>
+      </div>
+      <div class="explica aparece">
+        <small>Queue</small>
+        <h2>Your queue, cover by cover</h2>
+        <p>Now Playing shows what's coming as a cover flow. Hover a cover to light it up, click it to jump there, drag songs to reorder.</p>
+        <ul>
+          <li>Each cover glows with its own colours</li>
+          <li>Versions of the same song stay together</li>
+          <li>Picks up where you left off when you open Relay</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="themes">
+    <div class="muestra">
+      <div class="explica aparece">
+        <small>Themes</small>
+        <h2>Any colour you like</h2>
+        <p>Pick a colour and all of Relay follows: the sidebar, the glows, the buttons and the waves. Try it here, drag the dot.</p>
+        <ul>
+          <li>Ready-made themes or your own colour</li>
+          <li>Turn each effect on or off</li>
+          <li>Changes live, while the music plays</li>
+        </ul>
+      </div>
+      <div class="lienzo temas-app aparece">
+        <div class="maqueta">
+          <div class="lado"><div class="item"></div><div class="item activo"></div><div class="item"></div><div class="item"></div><div class="item"></div><div class="item"></div></div>
+          <div class="centro2"><div class="titulo2">Library</div><div class="tarjetas"><div></div><div></div><div></div></div><div class="barra2"><i></i><u></u></div></div>
+        </div>
+        <div class="selector"><div class="pomo"></div></div>
+        <div class="muestras2"></div>
       </div>
     </div>
   </section>
@@ -803,6 +1088,258 @@ if (!quieto) {
     if (!document.hidden) { antes = performance.now(); requestAnimationFrame(pintar); }
   });
 }
+
+// ── Las muestras: solo se mueven mientras se ven ──
+const enVista = new Map();
+const vigia = new IntersectionObserver((es) => es.forEach((e) => enVista.set(e.target, e.isIntersecting)), { threshold: .2 });
+const seVe = (el) => enVista.get(el) !== false && !document.hidden;
+
+// La letra. Inventada para esta pagina: nada de letras de nadie.
+(() => {
+  const VERSOS = [
+    "Headlights fading on the interstate",
+    "I keep the volume where the silence breaks",
+    "Every song we saved is still in line",
+    "Press play and it's the summer every time",
+    "Turn it up and let the whole room know",
+    "Call me when the bass comes through the floor",
+    "We don't need a reason, just the beat",
+    "Radio static turning into heat",
+    "Say it once and sing it back to me",
+    "All the words are glowing, can't you see",
+    "Hold the note until the lights go down",
+    "This is how the night is meant to sound",
+  ];
+  const caja = document.querySelector(".letra-app");
+  const rollo = caja.querySelector(".rollo");
+  rollo.innerHTML = VERSOS.map((v) => '<div class="verso">' + v.split(" ").map((p) => '<span class="pal">' + p + "</span>").join(" ") + "</div>").join("");
+  const versos = [...rollo.children];
+  vigia.observe(caja);
+  let i = 0;
+  function poner() {
+    versos.forEach((v, k) => { v.classList.toggle("ahora", k === i); v.classList.toggle("ya", k < i); });
+    const pals = versos[i].querySelectorAll(".pal");
+    const dura = 2600;
+    pals.forEach((p, k) => { p.style.setProperty("--t", (k * dura / pals.length / 1000) + "s"); p.style.setProperty("--d", (dura / pals.length / 1000) + "s"); });
+    rollo.style.translate = "0 " + (165 - 26 - i * 52) + "px";
+  }
+  poner();
+  if (!quieto) {
+    setInterval(() => { if (seVe(caja)) { i = (i + 1) % versos.length; poner(); } }, 3000);
+  }
+})();
+
+// La cola: portadas generadas -degradados y formas, sin portadas de nadie-
+// en un cover flow que avanza solo, y la lista de lo siguiente.
+(() => {
+  const DISCOS = [
+    ["Night Drive", "Neon Harbor", [255, 42, 58], [60, 10, 90]],
+    ["Paper Moons", "Lucia Vale", [255, 176, 64], [120, 20, 60]],
+    ["Glasshouse", "The Northern Lines", [64, 200, 255], [20, 30, 110]],
+    ["Low Tide", "Marlo", [80, 230, 170], [10, 60, 70]],
+    ["Afterglow", "Rosa Keane", [255, 110, 180], [70, 10, 80]],
+    ["Static Hearts", "Kite Club", [170, 110, 255], [20, 10, 60]],
+    ["Golden Hour", "Ada Sol", [255, 214, 90], [140, 40, 10]],
+  ];
+  const arte = ([, , a, b], k) => {
+    const formas = [
+      `radial-gradient(circle at 70% 30%, rgba(255,255,255,.55) 0 12%, transparent 13%)`,
+      `repeating-linear-gradient(135deg, rgba(255,255,255,.14) 0 6px, transparent 6px 18px)`,
+      `radial-gradient(circle at 30% 75%, rgba(0,0,0,.35) 0 30%, transparent 31%)`,
+      `conic-gradient(from 45deg at 50% 50%, rgba(255,255,255,.18), transparent 25%, rgba(255,255,255,.12) 50%, transparent 75%)`,
+    ];
+    return formas[k % 4] + `, linear-gradient(135deg, rgb(${a}), rgb(${b}))`;
+  };
+  const caja = document.querySelector(".cola-app");
+  const flujo = caja.querySelector(".flujo");
+  const lista = caja.querySelector(".lista-cola");
+  vigia.observe(caja);
+
+  // Los sitios, calculados como en RelayNowPlaying.dc.html pero a 170 px.
+  const K = 170 / 124, CW = 170, rad = (g) => g * Math.PI / 180;
+  const RING = [
+    { w: 96, a: 40, sc: .97, op: .72, r: 12, bd: .16, dim: .2, lift: 3, z: 4, ov: 15 },
+    { w: 78, a: 62, sc: .92, op: .48, r: 10, bd: .12, dim: .36, lift: 9, z: 3, ov: 7 },
+    { w: 62, a: 76, sc: .86, op: .3, r: 9, bd: .09, dim: .5, lift: 16, z: 2, ov: 5 },
+  ].map((c) => ({ ...c, w: c.w * K, r: c.r * K, lift: c.lift * K, ov: c.ov * K }));
+  let borde = CW / 2;
+  for (const c of RING) {
+    const proj = c.w * Math.cos(rad(c.a)) * c.sc;
+    c.x = borde - c.ov + proj / 2;
+    borde = c.x + proj / 2;
+  }
+  const ARRIBA = 20;
+  // Del -3 al 3. El reflejo descuenta la opacidad de la carta, como ponerReflejo().
+  const sitio = (d) => {
+    if (d === 0) {
+      return { w: CW, ml: -CW / 2, top: ARRIBA, tr: "perspective(820px) rotateY(0deg) scale(1)", z: 5, op: 1, r: 14 * K, bd: .26, dim: 0,
+        sombra: "0 26px 54px -18px rgba(var(--cc),.6),0 0 0 1px rgba(var(--cc),.35),inset 0 1px 0 rgba(255,255,255,.3)" };
+    }
+    const lado = Math.sign(d), c = RING[Math.abs(d) - 1];
+    return { w: c.w, ml: lado * c.x - c.w / 2, top: ARRIBA + CW - c.w - c.lift,
+      tr: `perspective(820px) rotateY(${lado * c.a}deg) scale(${c.sc})`, z: c.z, op: c.op, r: c.r, bd: c.bd, dim: c.dim,
+      sombra: `0 ${14 + c.z * 2}px ${30 + c.z * 3}px -16px rgba(5,5,6,.9)` };
+  };
+  const colocar = (c, s, op) => {
+    c.style.width = c.style.height = s.w.toFixed(1) + "px";
+    c.style.marginLeft = s.ml.toFixed(1) + "px";
+    c.style.top = s.top.toFixed(1) + "px";
+    c.style.transform = s.tr;
+    c.style.zIndex = s.z;
+    c.style.opacity = op ?? s.op;
+    c.style.setProperty("--r", s.r.toFixed(1) + "px");
+    c.style.setProperty("--bd", s.bd);
+    c.style.setProperty("--dim", s.dim);
+    c.style.setProperty("--sombra", s.sombra);
+    c.style.setProperty("--ro", Math.min(.5, .36 / s.op).toFixed(3));
+  };
+
+  flujo.innerHTML = `<div class="bruma"></div><div class="raya"></div>`;
+  const cartas = DISCOS.map((d, k) => {
+    const c = document.createElement("div");
+    const fondo = arte(d, k);
+    c.className = "carta";
+    c.style.setProperty("--cc", d[2].join(","));
+    c.innerHTML = `<div class="arte" style="background:${fondo}"><div class="velo"></div>`
+      + `<div class="nombre"><b>${d[0]}</b><span>${d[1]}</span></div></div>`
+      + `<div class="reflejo" style="background-image:${fondo}"></div>`;
+    c.addEventListener("click", () => { ir(k); reiniciar(); });
+    flujo.appendChild(c);
+    return c;
+  });
+
+  const N = DISCOS.length;
+  const distancia = (k, a) => { let d = k - a; if (d > 3) { d -= N; } if (d < -3) { d += N; } return d; };
+  let actual = 2;
+
+  function ponerFlujo(paso) {
+    // Paso de una: 460 ms. Saltos largos: mas deprisa, con techo (PRISA).
+    const viaje = Math.abs(paso) <= 1 ? 460 : Math.min(360, 200 + Math.abs(paso) * 26);
+    flujo.style.setProperty("--viaje", (quieto ? 0 : viaje) + "ms");
+    flujo.style.setProperty("--cc", DISCOS[actual][2].join(","));
+    cartas.forEach((c, k) => {
+      const d = distancia(k, actual);
+      const antes = c._d;
+      c._d = d;
+      c.classList.toggle("centro", d === 0);
+      // La que da la vuelta por detras no cruza el carrusel: entra barriendo
+      // desde el borde por el que va el gesto, apagada, como en la app.
+      if (!quieto && antes !== undefined && paso && antes - paso !== d) {
+        c.classList.add("sin-viaje");
+        colocar(c, sitio(paso > 0 ? 3 : -3), 0);
+        void c.offsetWidth;
+        c.classList.remove("sin-viaje");
+      }
+      colocar(c, sitio(d));
+    });
+  }
+
+  // La lista: lo que se va sale por la derecha, lo que sigue sube a su
+  // sitio cuando lo otro ya se fue, y lo nuevo se descubre desde la derecha.
+  const suave = "cubic-bezier(.22,.61,.36,1)";
+  const filaDe = (k) => {
+    const d = DISCOS[k], f = document.createElement("div");
+    f.className = "fila-cola";
+    f.dataset.k = k;
+    f.innerHTML = `<div class="mini" style="background:${arte(d, k)}"></div><div><b>${d[0]}</b><span>${d[1]}</span></div><em>${2 + (k % 3)}:${String(10 + k * 7).slice(-2)}</em>`;
+    return f;
+  };
+  function ponerLista() {
+    const quiero = [1, 2, 3].map((n) => (actual + n) % N);
+    const viejas = new Map([...lista.children].filter((f) => !f.classList.contains("fantasma")).map((f) => [+f.dataset.k, f]));
+    const arriba = new Map([...viejas].map(([k, f]) => [k, f.offsetTop]));
+    const quitadas = [...viejas.keys()].filter((k) => !quiero.includes(k));
+    const anadidas = quiero.filter((k) => !viejas.has(k));
+    const seguidas = viejas.size - quitadas.length;
+    const reemplazo = quitadas.length > 0 && anadidas.length > 0 && seguidas <= Math.max(1, Math.floor(viejas.size * .25));
+
+    let orden = 0, finFantasmas = 0;
+    quitadas.forEach((k) => {
+      const f = viejas.get(k);
+      if (quieto || reemplazo || !viejas.size) { f.remove(); return; }
+      f.classList.add("fantasma");
+      Object.assign(f.style, { position: "absolute", left: "0", right: "0", top: arriba.get(k) + "px", marginTop: "0", zIndex: 4, pointerEvents: "none" });
+      const espera = Math.min(orden++, 12) * 38;
+      finFantasmas = Math.max(finFantasmas, espera + 340);
+      f.animate([{ opacity: 1, translate: "0 0" }, { opacity: 0, translate: "70px 0" }],
+        { duration: 340, delay: espera, easing: "cubic-bezier(.5,0,.75,.2)", fill: "both" })
+        .finished.then(() => f.remove(), () => f.remove());
+    });
+
+    const nuevas = quiero.map((k) => viejas.get(k) || filaDe(k));
+    const fantasmas = [...lista.querySelectorAll(".fantasma")];
+    lista.replaceChildren(...nuevas, ...fantasmas);
+    if (quieto || !arriba.size) { return; }
+
+    let n = 0;
+    nuevas.forEach((f) => {
+      const k = +f.dataset.k;
+      if (arriba.has(k)) {
+        const dy = arriba.get(k) - f.offsetTop;
+        if (Math.abs(dy) > .5) {
+          f.animate([{ top: dy + "px" }, { top: "0px" }],
+            { duration: 380, easing: suave, delay: Math.max(0, finFantasmas - 60), fill: "backwards" });
+        }
+        return;
+      }
+      f.animate(
+        [{ left: "44px", clipPath: "inset(0 0 0 100% round 12px)" }, { left: "0px", clipPath: "inset(0 0 0 0 round 12px)" }],
+        { duration: 440, delay: Math.max(0, finFantasmas - 60) + Math.min(n++, 14) * 34, easing: suave, fill: "backwards" });
+    });
+  }
+
+  function ir(k) {
+    const paso = distancia(k, actual);
+    if (!paso) { return; }
+    actual = k;
+    ponerFlujo(paso);
+    ponerLista();
+  }
+
+  ponerFlujo(0);
+  ponerLista();
+  let reloj = 0;
+  function reiniciar() {
+    clearInterval(reloj);
+    if (!quieto) { reloj = setInterval(() => { if (seVe(caja) && !caja.matches(":hover")) { ir((actual + 1) % N); } }, 2800); }
+  }
+  reiniciar();
+})();
+
+// Los temas: el selector se pasea solo por los colores y la Relay pequena lo
+// sigue; se puede arrastrar, y al soltarlo vuelve a pasearse al rato.
+(() => {
+  const caja = document.querySelector(".temas-app");
+  const sel = caja.querySelector(".selector");
+  const muestras = caja.querySelector(".muestras2");
+  vigia.observe(caja);
+  const poner = (p) => {
+    p = Math.min(1, Math.max(0, p));
+    caja.style.setProperty("--p", p.toFixed(4));
+    caja.style.setProperty("--h", Math.round(p * 360));
+  };
+  [355, 20, 45, 140, 190, 225, 270, 310].forEach((h) => {
+    const s = document.createElement("span");
+    s.style.background = `hsl(${h} 95% 58%)`;
+    s.addEventListener("click", () => { quieta = performance.now() + 5000; poner(h / 360); });
+    muestras.appendChild(s);
+  });
+  let quieta = 0, arrastrando = false;
+  const desdeRaton = (e) => { const r = sel.getBoundingClientRect(); poner((e.clientX - r.left) / r.width); };
+  sel.addEventListener("pointerdown", (e) => { arrastrando = true; sel.setPointerCapture(e.pointerId); desdeRaton(e); });
+  sel.addEventListener("pointermove", (e) => { if (arrastrando) { desdeRaton(e); } });
+  sel.addEventListener("pointerup", () => { arrastrando = false; quieta = performance.now() + 4000; });
+  poner(355 / 360);
+  if (quieto) { return; }
+  const inicio = performance.now();
+  const paso = (t) => {
+    if (!arrastrando && t > quieta && seVe(caja)) {
+      poner(.5 + .5 * Math.sin((t - inicio) / 3200 - Math.PI / 2 + 3.1));
+    }
+    requestAnimationFrame(paso);
+  };
+  requestAnimationFrame(paso);
+})();
 
 // Lo que entra en pantalla aparece, una vez.
 const ojo = new IntersectionObserver((vistos) => {
