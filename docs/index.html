@@ -459,6 +459,67 @@ section { padding: 96px 0 0; }
 .temas-app .muestras2 span { width: 22px; height: 22px; border-radius: 7px; cursor: pointer; border: 1px solid rgba(255, 255, 255, .15); transition: scale .3s cubic-bezier(.34, 1.56, .64, 1); }
 .temas-app .muestras2 span:hover { scale: 1.2; }
 
+/* Soundboard: pads como los de la app (.sbCara en relay-host.js). Suenan
+   solos, varios a la vez, o al pulsarlos; abajo, lo que llega al microfono. */
+.sb-app { padding: 22px 22px 18px; }
+.sb-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Sora, sans-serif; }
+.sb-app .cabeza i { font: 700 9px/1 "JetBrains Mono", monospace; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgb(var(--rosa)); background: rgba(var(--rojo), .15); border: 1px solid rgba(var(--rojo), .45); }
+.sb-app .parar { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; cursor: pointer; font: 700 11.5px/1 Manrope, sans-serif; color: #fff; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); transition: background .2s ease, border-color .2s ease; }
+.sb-app .parar:hover { background: rgba(var(--rojo), .2); border-color: rgba(var(--rojo), .6); }
+.sb-app .parar svg { width: 11px; height: 11px; }
+.pads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+.pad {
+  position: relative; aspect-ratio: 1; border-radius: 18px; overflow: hidden; cursor: pointer; user-select: none;
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .14);
+  transition: transform .26s cubic-bezier(.2, .9, .3, 1.5), border-color .22s ease;
+}
+.pad:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, .22); }
+.pad.hunde { transform: scale(.92) translateY(2px); transition: transform 90ms ease-out; }
+.pad .arte { position: absolute; inset: 0; transition: transform .52s cubic-bezier(.2, .9, .25, 1), filter .3s ease; }
+.pad:hover .arte { transform: scale(1.06); }
+.pad .velo { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 8, 9, .5) 0%, rgba(8, 8, 9, 0) 30%, rgba(8, 8, 9, 0) 45%, rgba(8, 8, 9, .55) 72%, rgba(8, 8, 9, .92) 100%); }
+.pad .info { position: absolute; left: 12px; right: 34px; bottom: 12px; min-width: 0; }
+.pad .info b { display: block; font: 700 13.5px/1.2 Sora, sans-serif; letter-spacing: -.01em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
+.pad .info span { display: block; margin-top: 3px; font: 500 11px/1.3 Manrope, sans-serif; color: rgba(238, 238, 244, .7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pad .chips { position: absolute; left: 10px; top: 10px; display: flex; gap: 5px; }
+.pad .chip { padding: 4px 6px 3px; border-radius: 7px; font: 700 9px/1 "JetBrains Mono", monospace; letter-spacing: .08em; color: rgba(255, 255, 255, .88); background: rgba(10, 10, 11, .55); border: 1px solid rgba(255, 255, 255, .14); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background .15s ease, border-color .15s ease; }
+.pad .chip.trozo { color: rgb(var(--rosa)); background: rgba(var(--rojo), .28); border-color: rgba(var(--rojo), .55); }
+.pad .chip.pulsada { color: #fff; background: rgba(var(--rojo), .8); border-color: rgb(var(--rojo)); }
+.pad .tiempo { position: absolute; right: 12px; bottom: 14px; font: 700 10px/1 "JetBrains Mono", monospace; color: rgba(238, 238, 244, .7); transition: opacity .2s ease; }
+.pad .eq { position: absolute; right: 12px; bottom: 15px; display: flex; align-items: flex-end; gap: 2px; height: 14px; opacity: 0; transition: opacity .2s ease; }
+.pad .eq i { width: 3px; height: 14px; border-radius: 2px; background: rgb(var(--claro)); transform-origin: bottom; animation: sbBarras .8s ease-in-out infinite; }
+.pad .eq i:nth-child(2) { animation-duration: .62s; animation-delay: .12s; }
+.pad .eq i:nth-child(3) { animation-duration: .95s; animation-delay: .25s; }
+.pad .progreso { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255, 255, 255, .08); opacity: 0; transition: opacity .2s ease; }
+.pad .progreso i { position: absolute; inset: 0; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, rgb(196, 18, 32), rgb(var(--rojo)), rgb(255, 154, 162)); }
+.pad .onda { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; border: 2px solid rgb(var(--rojo)); opacity: 0; }
+.pad.golpe .onda { animation: sbAnillo 560ms ease-out; }
+.pad.suena { animation: sbBrillo 1.6s ease-in-out infinite; border-color: rgba(var(--rojo), .9); }
+.pad.suena .arte { filter: saturate(130%) brightness(1.08); }
+.pad.suena .progreso, .pad.suena .eq { opacity: 1; }
+.pad.suena .tiempo { opacity: 0; }
+@keyframes sbBarras { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+@keyframes sbAnillo { 0% { opacity: .9; transform: scale(.96); } 100% { opacity: 0; transform: scale(1.14); } }
+@keyframes sbBrillo {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(var(--rojo), .95), 0 0 28px 2px rgba(var(--rojo), .55), 0 22px 50px -18px rgba(var(--rojo), .9); }
+  50% { box-shadow: 0 0 0 2px rgba(255, 90, 99, 1), 0 0 40px 6px rgba(var(--rojo), .7), 0 22px 60px -16px rgba(var(--rojo), 1); }
+}
+.al-mic { margin-top: 16px; border-top: 1px solid var(--linea); padding-top: 12px; }
+.al-mic small { font: 700 10px/1 "JetBrains Mono", monospace; letter-spacing: .14em; color: var(--tenue); }
+.canales { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 10px; }
+.canal span { font: 600 11.5px/1 Manrope, sans-serif; color: var(--suave); }
+.medidor { margin-top: 7px; height: 6px; border-radius: 99px; overflow: hidden; background: rgba(255, 255, 255, .07); }
+.medidor i { display: block; height: 100%; border-radius: inherit; transform-origin: left; transform: scaleX(var(--v, 0)); transition: transform .14s linear; background: linear-gradient(90deg, rgb(var(--rojo)), rgb(var(--claro))); }
+.rejilla.importa { margin-top: 26px; }
+@media (max-width: 560px) {
+  .pads { gap: 9px; }
+  .pad .info span, .pad .tiempo { display: none; }
+  .pad .info { left: 9px; right: 9px; bottom: 10px; }
+  .pad .info b { font-size: 12px; }
+  .pad .eq { display: none; }
+}
+
 @media (max-width: 860px) {
   .muestra, .muestra.al-reves { grid-template-columns: 1fr; gap: 26px; }
   .muestra.al-reves .explica { order: -1; }
@@ -664,7 +725,7 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
       <div class="tarjeta aparece">
         <div class="icono"><svg viewBox="0 0 512 512" fill="currentColor"> <rect x="424" y="24" width="48" height="52"></rect> <rect x="424" y="188" width="48" height="300"></rect> <path d="M484.79,100h-73.578C396.188,100,384,112.188,384,127.211v9.578c0,15.023,12.188,27.21,27.211,27.21h73.578c15.023,0,27.21-12.187,27.21-27.21v-9.578C512,112.188,499.813,100,484.79,100z"></path> <rect x="231.985" y="24" width="48" height="276.641"></rect> <rect x="231.985" y="412.641" width="48" height="75.359"></rect> <path d="M292.774,324.641h-73.578c-15.023,0-27.21,12.187-27.21,27.211v9.578c0,15.024,12.187,27.211,27.21,27.211h73.578c15.023,0,27.211-12.187,27.211-27.211v-9.578C319.985,336.828,307.797,324.641,292.774,324.641z"></path> <rect x="40" y="308" width="48" height="180"></rect> <rect x="40" y="24" width="48" height="172"></rect> <path d="M100.79,220H27.211C12.188,220,0,232.188,0,247.211v9.578C0,271.813,12.188,284,27.211,284h73.578c15.023,0,27.21-12.187,27.21-27.21v-9.578C128,232.188,115.813,220,100.79,220z"></path> </svg></div>
         <h3>Mixer</h3>
-        <p>Music, sounds and microphone on their own faders, each one to the device you pick.</p>
+        <p>Music, sounds and microphone on their own faders, each to the device you pick, with an equalizer.</p>
       </div>
       <div class="tarjeta aparece">
         <div class="icono"><svg viewBox="4 4 24 24" fill="currentColor"><path d="M23.6361 9.33998C22.212 8.71399 20.6892 8.25903 19.0973 8C18.9018 8.33209 18.6734 8.77875 18.5159 9.13408C16.8236 8.89498 15.1469 8.89498 13.4857 9.13408C13.3283 8.77875 13.0946 8.33209 12.8974 8C11.3037 8.25903 9.77927 8.71565 8.35518 9.3433C5.48276 13.4213 4.70409 17.3981 5.09342 21.3184C6.99856 22.6551 8.84487 23.467 10.66 23.9983C11.1082 23.4189 11.5079 22.8029 11.8523 22.1536C11.1964 21.9195 10.5683 21.6306 9.9748 21.2951C10.1323 21.1856 10.2863 21.071 10.4351 20.9531C14.0551 22.5438 17.9881 22.5438 21.5649 20.9531C21.7154 21.071 21.8694 21.1856 22.0251 21.2951C21.4299 21.6322 20.8 21.9211 20.1442 22.1553C20.4885 22.8029 20.8865 23.4205 21.3364 24C23.1533 23.4687 25.0013 22.6567 26.9065 21.3184C27.3633 16.7738 26.1261 12.8335 23.6361 9.33998ZM12.3454 18.9075C11.2587 18.9075 10.3676 17.9543 10.3676 16.7937C10.3676 15.6331 11.2397 14.6783 12.3454 14.6783C13.4511 14.6783 14.3422 15.6314 14.3232 16.7937C14.325 17.9543 13.4511 18.9075 12.3454 18.9075ZM19.6545 18.9075C18.5678 18.9075 17.6767 17.9543 17.6767 16.7937C17.6767 15.6331 18.5488 14.6783 19.6545 14.6783C20.7602 14.6783 21.6514 15.6314 21.6323 16.7937C21.6323 17.9543 20.7602 18.9075 19.6545 18.9075Z"/></svg></div>
@@ -674,7 +735,34 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
       <div class="tarjeta aparece">
         <div class="icono"><svg viewBox="0 0 24 24" fill="currentColor"> <path d="M15.3222 10.383C15.3796 10.9457 15.4125 11.4903 15.4125 12C15.4125 12.9541 15.2972 14.0315 15.1208 15.1208C14.0315 15.2972 12.9541 15.4125 12 15.4125C11.0502 15.4125 9.97313 15.2975 8.87911 15.1205C8.70281 14.0312 8.5875 12.954 8.5875 12C8.5875 11.4905 8.62039 10.9458 8.67789 10.383C9.82608 10.5668 10.9715 10.6875 12 10.6875C13.0286 10.6875 14.174 10.5668 15.3222 10.383Z"></path> <path d="M16.8752 10.0994C16.9462 10.7579 16.9875 11.399 16.9875 12C16.9875 12.8769 16.8997 13.8389 16.7599 14.8153C18.7425 14.4016 20.575 13.8731 21.5567 13.5722C21.8739 13.475 21.9986 13.4363 22.1658 13.3694C22.2494 13.336 22.326 13.302 22.4259 13.2543C22.4748 12.843 22.5 12.4244 22.5 12C22.5 10.878 22.324 9.79714 21.9982 8.78346L21.9133 8.81017C20.8868 9.12245 18.9652 9.6745 16.8752 10.0994Z"></path> <path d="M21.4017 7.31948C20.3698 7.63221 18.579 8.14039 16.6599 8.53603C16.2178 5.84926 15.443 3.16951 15.0702 1.95598C17.8422 2.80227 20.1273 4.76467 21.4017 7.31948Z"></path> <path d="M15.1117 8.82229C14.0253 8.99781 12.9513 9.1125 12 9.1125C11.0487 9.1125 9.97477 8.99781 8.88843 8.8223C9.30471 6.28005 10.0478 3.68306 10.4278 2.44333C10.525 2.12606 10.5637 2.00144 10.6306 1.83418C10.664 1.75062 10.698 1.67398 10.7457 1.57414C11.157 1.52518 11.5756 1.5 12 1.5C12.4434 1.5 12.8803 1.52748 13.3093 1.58083C13.3184 1.61564 13.3268 1.64679 13.3351 1.67626C13.3597 1.76333 13.3982 1.8857 13.4628 2.09104L13.4696 2.11261C13.7935 3.14223 14.6519 6.01401 15.1117 8.82229Z"></path> <path d="M7.34004 8.536C7.7801 5.86107 8.54986 3.19576 8.92192 1.98181L8.92983 1.95597C6.15777 2.80225 3.8727 4.76465 2.59835 7.31946C3.63018 7.63219 5.42095 8.14036 7.34004 8.536Z"></path> <path d="M2.00184 8.78345C1.67598 9.79714 1.5 10.878 1.5 12C1.5 12.4389 1.52693 12.8715 1.57923 13.2963L1.74471 13.3515L1.74603 13.3519L1.74765 13.3525L1.74879 13.3528C1.80205 13.3705 3.36305 13.886 5.41878 14.3975C5.99886 14.5418 6.61307 14.6844 7.24006 14.8151C7.10025 13.8388 7.0125 12.8769 7.0125 12C7.0125 11.3988 7.05374 10.7577 7.12472 10.0994C5.03428 9.67436 3.11218 9.12212 2.08597 8.80989L2.07883 8.80771L2.00184 8.78345Z"></path> <path d="M12 16.9875C12.8769 16.9875 13.8389 16.8997 14.8153 16.7599C14.4016 18.7425 13.8731 20.575 13.5722 21.5566C13.475 21.8739 13.4363 21.9985 13.3694 22.1658C13.336 22.2494 13.302 22.326 13.2543 22.4259C12.843 22.4748 12.4244 22.5 12 22.5C11.5756 22.5 11.157 22.4748 10.7457 22.4259C10.698 22.326 10.664 22.2494 10.6306 22.1658C10.5637 21.9986 10.525 21.8739 10.4278 21.5567C10.1269 20.5751 9.59846 18.7427 9.18478 16.7603C10.1579 16.8996 11.1201 16.9875 12 16.9875Z"></path> <path d="M5.0385 15.9259C3.73853 15.6024 2.63135 15.2775 1.95597 15.0702C2.97258 18.4002 5.59982 21.0274 8.92983 22.044L8.92192 22.0182C8.59705 20.9582 7.96897 18.7917 7.52191 16.4784C6.6525 16.3103 5.80722 16.1171 5.0385 15.9259Z"></path> <path d="M22.0182 15.0781C20.9582 15.403 18.7915 16.0311 16.4781 16.4781C16.0311 18.7915 15.403 20.9581 15.0781 22.0182L15.0702 22.044C18.4002 21.0274 21.0274 18.4002 22.044 15.0702L22.0182 15.0781Z"></path> </svg></div>
         <h3>Online</h3>
-        <p>Search the web for a song and add it to your library in a couple of clicks.</p>
+        <p>Search six services at once, play a song straight away or add it to your library.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="soundboard">
+    <div class="muestra al-reves">
+      <div class="lienzo sb-app aparece">
+        <div class="cabeza">Soundboard <i>ON YOUR MIC</i><button class="parar" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>Stop all</button></div>
+        <div class="pads"></div>
+        <div class="al-mic">
+          <small>INTO YOUR MIC</small>
+          <div class="canales">
+            <div class="canal" data-c="musica"><span>Music</span><div class="medidor"><i></i></div></div>
+            <div class="canal" data-c="pads"><span>Pads</span><div class="medidor"><i></i></div></div>
+            <div class="canal" data-c="voz"><span>Your voice</span><div class="medidor"><i></i></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="explica aparece">
+        <small>Soundboard</small>
+        <h2>Sounds on cue, over your music</h2>
+        <p>Put songs and sounds on pads and fire them in a call or a game. They play over whatever's on, several at once, and go out through your mic along with your voice. Click a pad to try it.</p>
+        <ul>
+          <li>Drag songs from your library straight onto a pad</li>
+          <li>Play the whole song or just a clip, cut on its real waveform</li>
+          <li>A hotkey for every pad, loop, and Stop all</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -690,6 +778,23 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
       <div class="servicio aparece" style="--i:5;--c:255,255,255"><div class="logoServicio tinta" style="--logo:url(servicios/archive.png)"></div><b>Internet Archive</b><span>Old recordings, live shows and rarities</span></div>
     </div>
     <p class="serviciosPie aparece">Type once and every service answers. <b>Play it straight away</b> or import it into your library.</p>
+    <div class="rejilla importa">
+      <div class="tarjeta aparece">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="4" rx="1.5"/><path d="M8 5H6.5A2.5 2.5 0 0 0 4 7.5v11A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 17.5 5H16M12 10v7M9 14l3 3 3-3"/></svg></div>
+        <h3>Copy a link, import it</h3>
+        <p>Copy a song, album or playlist from Spotify, YouTube or SoundCloud, and Relay offers to bring it in when you come back.</p>
+      </div>
+      <div class="tarjeta aparece">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h11M4 12h11M4 18h7M18 14v7M15 18l3 3 3-3"/></svg></div>
+        <h3>Whole playlists at once</h3>
+        <p>Paste a playlist or album link and every song comes in, with its cover, ready to play offline.</p>
+      </div>
+      <div class="tarjeta aparece">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg></div>
+        <h3>Full albums, not previews</h3>
+        <p>Label albums from Deezer play complete, and SoundCloud albums that only have 30-second previews say so up front.</p>
+      </div>
+    </div>
   </section>
 
   <section id="lyrics">
@@ -1304,6 +1409,84 @@ const seVe = (el) => enVista.get(el) !== false && !document.hidden;
     if (!quieto) { reloj = setInterval(() => { if (seVe(caja) && !caja.matches(":hover")) { ir((actual + 1) % N); } }, 2800); }
   }
   reiniciar();
+})();
+
+// La soundboard: pads inventados, como los de la app. Cada poco suena uno
+// por su atajo -a menudo encima de otro-; pulsados, suenan. Abajo, lo que
+// llega al microfono: la musica, los pads y tu voz.
+(() => {
+  const PADS = [
+    ["Air Horn", "Sound effect", "F1", 3, false, [255, 176, 64], [150, 30, 20]],
+    ["Drum Roll", "Sound effect", "F2", 4, false, [64, 200, 255], [20, 30, 110]],
+    ["Night Drive", "Neon Harbor", "F3", 6, true, [255, 42, 58], [60, 10, 90]],
+    ["Applause", "Sound effect", "F4", 5, false, [80, 230, 170], [10, 60, 70]],
+    ["Golden Hour", "Ada Sol", "F5", 6, true, [255, 214, 90], [140, 40, 10]],
+    ["Sad Trombone", "Sound effect", "F6", 3, false, [170, 110, 255], [20, 10, 60]],
+  ];
+  const FORMAS = [
+    "radial-gradient(circle at 30% 30%, rgba(255,255,255,.5) 0 14%, transparent 15%)",
+    "repeating-radial-gradient(circle at 50% 120%, rgba(255,255,255,.16) 0 4px, transparent 4px 14px)",
+    "linear-gradient(160deg, transparent 55%, rgba(0,0,0,.35) 56%)",
+    "conic-gradient(from 200deg at 70% 70%, rgba(255,255,255,.22), transparent 30%)",
+    "radial-gradient(circle at 75% 25%, rgba(255,255,255,.4) 0 20%, transparent 21%)",
+    "repeating-linear-gradient(45deg, rgba(255,255,255,.12) 0 5px, transparent 5px 15px)",
+  ];
+  const caja = document.querySelector(".sb-app");
+  const rejilla = caja.querySelector(".pads");
+  vigia.observe(caja);
+  const sonando = new Map();
+  const pads = PADS.map(([nom, quien, tecla, seg, trozo, a, b], k) => {
+    const p = document.createElement("div");
+    p.className = "pad";
+    p.innerHTML = `<div class="arte" style="background:${FORMAS[k]}, linear-gradient(135deg, rgb(${a}), rgb(${b}))"></div><div class="velo"></div>`
+      + `<div class="chips">${trozo ? '<span class="chip trozo">CLIP</span>' : ""}<span class="chip tecla">${tecla}</span></div>`
+      + `<div class="info"><b>${nom}</b><span>${quien}</span></div><div class="tiempo">0:0${seg}</div>`
+      + `<div class="eq"><i></i><i></i><i></i></div><div class="progreso"><i></i></div><div class="onda"></div>`;
+    p.addEventListener("click", () => tocar(k, false));
+    rejilla.appendChild(p);
+    return p;
+  });
+
+  function parar(k) {
+    sonando.get(k)?.cancel();
+    sonando.delete(k);
+    pads[k].classList.remove("suena");
+  }
+  function tocar(k, porTecla) {
+    const p = pads[k];
+    sonando.get(k)?.cancel();
+    p.classList.remove("golpe");
+    void p.offsetWidth;
+    p.classList.add("golpe", "suena", "hunde");
+    setTimeout(() => p.classList.remove("hunde"), 110);
+    if (porTecla) {
+      const t = p.querySelector(".tecla");
+      t.classList.add("pulsada");
+      setTimeout(() => t.classList.remove("pulsada"), 280);
+    }
+    const a = p.querySelector(".progreso i").animate([{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }], { duration: PADS[k][3] * 1000 });
+    sonando.set(k, a);
+    a.finished.then(() => { if (sonando.get(k) === a) { parar(k); } }, () => {});
+  }
+  caja.querySelector(".parar").addEventListener("click", () => [...sonando.keys()].forEach(parar));
+
+  const medidores = Object.fromEntries([...caja.querySelectorAll(".canal")].map((c) => [c.dataset.c, c.querySelector("i")]));
+  const poner = (c, v) => medidores[c].style.setProperty("--v", v.toFixed(2));
+  let habla = false;
+  function medir() {
+    poner("musica", .5 + Math.random() * .18);
+    poner("pads", sonando.size ? Math.min(.95, .4 + sonando.size * .18 + Math.random() * .14) : .02);
+    if (Math.random() < .09) { habla = !habla; }
+    poner("voz", habla ? .3 + Math.random() * .5 : .03 + Math.random() * .03);
+  }
+  medir();
+  if (quieto) { return; }
+  setInterval(() => { if (seVe(caja)) { medir(); } }, 140);
+  setInterval(() => {
+    if (!seVe(caja) || caja.matches(":hover")) { return; }
+    const libres = pads.map((_, k) => k).filter((k) => !sonando.has(k));
+    if (libres.length) { tocar(libres[Math.floor(Math.random() * libres.length)], true); }
+  }, 2300);
 })();
 
 // Los temas: el selector se pasea solo por los colores y la Relay pequena lo
