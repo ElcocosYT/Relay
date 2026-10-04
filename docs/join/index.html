@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join a listening party · Relay</title>
+<meta name="description" content="Someone invited you to listen together on Relay. Open the party in Relay, or get Relay for free.">
+<meta name="theme-color" content="#0B0809">
+<link rel="icon" href="../logo.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Relay">
+<meta property="og:title" content="Join my listening party on Relay">
+<meta property="og:description" content="Listen together, in sync. Open it in Relay, or get Relay for free.">
+<meta property="og:image" content="https://elcocosyt.github.io/Relay/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Manrope:wght@500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rojo: 255, 42, 58;
+  --rojoOscuro: 196, 18, 32;
+  --claro: 255, 143, 152;
+  --fondo: #0B0809;
+  --texto: #F2F2F4;
+  --suave: rgba(238, 238, 244, .64);
+  --tenue: rgba(238, 238, 244, .4);
+  --linea: rgba(255, 255, 255, .1);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px;
+  background: var(--fondo); color: var(--texto); font: 500 15px/1.55 Manrope, system-ui, sans-serif;
+  background-image:
+    radial-gradient(60vw 50vh at 20% 0%, rgba(var(--rojo), .22), transparent 70%),
+    radial-gradient(50vw 50vh at 90% 100%, rgba(var(--rojoOscuro), .2), transparent 70%);
+}
+.tarjeta {
+  width: min(460px, 100%); padding: 34px 30px 28px; border-radius: 28px; text-align: center;
+  background: rgba(20, 15, 18, .78); border: 1px solid var(--linea);
+  box-shadow: 0 40px 100px -40px rgba(0, 0, 0, .9), 0 0 0 1px rgba(var(--rojo), .12);
+  backdrop-filter: blur(24px);
+}
+.logo { width: 64px; height: 64px; }
+.que { margin-top: 18px; font: 700 11px/1 "JetBrains Mono", monospace; letter-spacing: .18em; color: rgb(var(--claro)); }
+h1 { margin: 10px 0 6px; font: 800 30px/1.15 Sora, sans-serif; letter-spacing: -.02em; }
+p { margin: 0 0 22px; color: var(--suave); }
+.codigo {
+  display: inline-block; margin-bottom: 22px; padding: 10px 16px; border-radius: 14px;
+  font: 700 20px/1 "JetBrains Mono", monospace; letter-spacing: .1em;
+  background: rgba(var(--rojo), .1); border: 1px solid rgba(var(--rojo), .32);
+}
+.boton {
+  display: flex; align-items: center; justify-content: center; gap: 10px; height: 50px; margin-top: 10px; border-radius: 15px;
+  font: 700 15px/1 Manrope, sans-serif; color: var(--texto); text-decoration: none;
+  background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14);
+  transition: transform .2s ease, filter .2s ease, background .2s ease;
+}
+.boton:hover { transform: translateY(-1px); background: rgba(255, 255, 255, .1); }
+.boton.principal {
+  color: #fff; border-color: transparent;
+  background: linear-gradient(100deg, rgb(var(--rojo)), rgb(var(--rojoOscuro)));
+  box-shadow: 0 14px 34px -14px rgba(var(--rojo), .9), inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+.boton.principal:hover { filter: brightness(1.1); }
+.nota { margin-top: 18px; font-size: 12.5px; color: var(--tenue); }
+.malo h1 { font-size: 24px; }
+</style>
+</head>
+<body>
+<main class="tarjeta" id="tarjeta">
+  <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+    <defs>
+      <mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+        <rect width="64" height="64" fill="black"/>
+        <path d="M8 56 L8,8 A48 48 0 0 1 56,56 Z" fill="white" stroke="white" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M14.81,42.63 L40.69,-8.15" stroke="black" stroke-width="6" stroke-linecap="round"/>
+        <path d="M21.37,49.19 L72.15,23.31" stroke="black" stroke-width="6" stroke-linecap="round"/>
+      </mask>
+      <linearGradient id="g" gradientUnits="userSpaceOnUse" x1="8" y1="56" x2="52" y2="10">
+        <stop offset="0" stop-color="#FF2A3A"/><stop offset="1" stop-color="#C41220"/>
+      </linearGradient>
+    </defs>
+    <rect width="64" height="64" fill="url(#g)" mask="url(#m)"/>
+  </svg>
+  <div class="que">LISTENING PARTY</div>
+  <h1>You're invited to listen together</h1>
+  <p>Everyone in the party hears the same song at the same moment, on their own Relay.</p>
+  <div class="codigo" id="codigo">RELAY-······</div>
+  <a class="boton principal" id="abrir" href="#">Open the party in Relay</a>
+  <a class="boton" href="https://github.com/ElcocosYT/Relay/releases/latest/download/Relay-Setup.exe">Don't have Relay? Get it free</a>
+  <div class="nota">Relay is a free music player for Windows. After installing it, come back to this page and press Open.</div>
+</main>
+<script>
+  // El codigo va detras de la almohadilla: #RELAY-7F3K9P. Asi no llega a
+  // ningun servidor, ni siquiera al de esta pagina.
+  (function () {
+    var ALFABETO = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+    var limpio = decodeURIComponent(location.hash.slice(1)).toUpperCase().replace(/[^A-Z0-9]/g, "");
+    var resto = limpio.indexOf("RELAY") === 0 ? limpio.slice(5) : limpio;
+    var bueno = resto.length === 6 && resto.split("").every(function (c) { return ALFABETO.indexOf(c) >= 0; });
+    if (!bueno) {
+      var t = document.getElementById("tarjeta");
+      t.classList.add("malo");
+      t.querySelector("h1").textContent = "This invite link is incomplete";
+      t.querySelector("p").textContent = "Ask your friend to copy the invite again from Relay, or type their party code in Relay → Listening party → Join.";
+      document.getElementById("codigo").remove();
+      document.getElementById("abrir").remove();
+      return;
+    }
+
+    var codigo = "RELAY-" + resto;
+    var enlace = "relay://join/" + codigo;
+    document.getElementById("codigo").textContent = codigo;
+    var abrir = document.getElementById("abrir");
+    abrir.href = enlace;
+
+    // Se intenta abrir solo una vez al llegar; si Relay no esta instalada,
+    // el navegador no hace nada y queda el boton de descargar.
+    setTimeout(function () { location.href = enlace; }, 350);
+  })();
+</script>
+</body>
+</html>
