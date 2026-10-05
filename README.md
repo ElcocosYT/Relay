@@ -17,14 +17,9 @@ Relay updates itself: when a new version comes out, it tells you when you open i
 
 Made with love by SupperDupper. Free to download and use, with no ads.
 
-## Screenshots
+## See it live
 
-<table>
-<tr><td width="50%" align="center"><img src="screenshots/now-playing.png" alt="Now Playing"><br><sub>Now Playing</sub></td><td width="50%" align="center"><img src="screenshots/library.png" alt="Library"><br><sub>Library</sub></td></tr>
-<tr><td width="50%" align="center"><img src="screenshots/albums.png" alt="Albums"><br><sub>Albums</sub></td><td width="50%" align="center"><img src="screenshots/artists.png" alt="Artists"><br><sub>Artists</sub></td></tr>
-<tr><td width="50%" align="center"><img src="screenshots/online.png" alt="Online"><br><sub>Online</sub></td><td width="50%" align="center"><img src="screenshots/mixer.png" alt="Mixer"><br><sub>Mixer</sub></td></tr>
-<tr><td width="50%" align="center"><img src="screenshots/themes.png" alt="Themes"><br><sub>Themes</sub></td></tr>
-</table>
+The [website](https://elcocosyt.github.io/Relay/) shows Relay itself, running in your browser: every screen, with its real design and animations.
 
 ## License
 
