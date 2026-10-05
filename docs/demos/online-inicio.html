@@ -1,0 +1,569 @@
+<!doctype html>
+<html data-buscando="1" data-cab="1 2 3" data-sinluz="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relay · Online</title>
+<!-- Generado por tools/demos-web/capturar.mjs desde la aplicacion. No editar a mano. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+@keyframes sc-shine { 
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@media print {#dc-root, #dc-root > .sc-host { height: auto; }
+*, ::before, ::after { print-color-adjust: exact; backdrop-filter: none !important; animation-delay: -99s !important; animation-duration: 0.001s !important; animation-iteration-count: 1 !important; animation-fill-mode: both !important; animation-play-state: running !important; transition-duration: 0s !important; }}
+html { font-variant-numeric: tabular-nums; }
+html, body { margin: 0px; padding: 0px; height: 100%; background: transparent; overflow: hidden; }
+@keyframes relayLatido { 
+  0% { opacity: 0.01; }
+  100% { opacity: 0.02; }
+}
+html::after { content: ""; position: fixed; left: 0px; top: 0px; width: 1px; height: 1px; pointer-events: none; background: rgb(0, 0, 0); animation: 1s linear 0s infinite alternate none running relayLatido; }
+:root { --relayCristal: linear-gradient(150deg,rgba(15,15,16,.6),rgba(9,9,10,.42)); }
+#dc-root, #dc-root > div, dc-root, dc-root > div { height: 100%; }
+#relayBuscador { position: fixed; border: 0px; outline: 0px; background: transparent; padding: 0px; margin: 0px; font: 500 12.5px / 1 Inter, system-ui, sans-serif; color: rgb(247, 247, 248); z-index: 50; }
+#relayBuscador::placeholder { color: rgba(238, 238, 244, 0.4); }
+#relayBuscador:focus { outline: 0px; }
+#libraryRoot, #sidebarRoot, #playerBarRoot, #nowPlayingRoot, #albumsRoot, #artistsRoot, #onlineRoot, #mixerRoot, #settingsRoot { background: transparent !important; }
+#libraryRoot > div[style*="rlbdrift"], #nowPlayingRoot > div[style*="rnpdrift"], #albumsRoot > div[style*="ralbdrift"], #artistsRoot > div[style*="rartdrift"], #onlineRoot > div[style*="ronldrift"], #mixerRoot > div[style*="rmxdrift"], #settingsRoot > div[style*="rstdrift"] { display: none !important; }
+@keyframes relayNpVerEntra { 
+  0% { opacity: 0; transform: translateX(8px) scale(0.9); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayNpVerNombre { 
+  0% { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayWebVa { 
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(290%); }
+}
+@keyframes relayWebSeRecoge { 
+  100% { transform: translate(calc(-50% - 42vw), -4%) scale(0.3); opacity: 0; }
+}
+@keyframes relayWebVeloSeVa { 
+  100% { opacity: 0; }
+}
+@keyframes relayRdLate { 
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+div:has(> div > #relayMasDer) { align-content: start; }
+div:has(> #relayMasDer) { align-self: stretch; }
+@keyframes relaySenala { 
+  0%, 100% { outline-color: rgba(var(--t0,255,42,58),0); }
+  25%, 75% { outline-color: rgba(var(--t0,255,42,58),.95); }
+}
+@keyframes relayMenuEntra { 
+  0% { opacity: 0; transform: translateY(-4px) scale(0.97); }
+  100% { opacity: 1; transform: none; }
+}
+html { user-select: none; }
+input, textarea, [contenteditable="true"] { user-select: text; }
+html[data-buscando] #searchLabel, html[data-buscando] #albumSearchLabel, html[data-buscando] #artistSearchLabel, html[data-buscando] #onlineSearchLabel { visibility: hidden; }
+@keyframes relayResorte { 
+  0% { transform: scale(1); }
+  35% { transform: scale(0.93); }
+  70% { transform: scale(1.045); }
+  100% { transform: scale(1); }
+}
+#onlineRoot [data-act="online-queue"]:hover, #onlineRoot [data-act="online-import"]:hover, #onlineRoot [data-act="toggle-service"]:hover { box-shadow: 0 0 18px -4px rgba(var(--t0,255,42,58),.55); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
+@property --relayFinal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --relayTope { syntax: "<length>"; inherits: false; initial-value: 0px; }
+#relayModoOnline { position: relative; display: inline-flex; flex: 0 0 auto; padding: 3px; margin-right: 10px; border-radius: 11px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
+#relayModoOnline span { position: relative; z-index: 1; padding: 6px 12px; border-radius: 8px; cursor: pointer; white-space: nowrap; font: 700 11.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.6); transition: color 200ms ease-out; }
+#relayModoOnline span:hover { color: rgb(242, 242, 244); }
+#relayModoOnline span.on { color: rgb(255, 255, 255); }
+.relayCorre { position: absolute; left: 0px; top: 3px; bottom: 3px; z-index: 0; border-radius: 8px; background: rgba(var(--t0,255,42,58),.85); box-shadow: 0 6px 16px -8px rgba(var(--t0,255,42,58),.9); transition: transform 440ms cubic-bezier(0.3, 1.25, 0.4, 1), width 440ms cubic-bezier(0.3, 1.25, 0.4, 1); pointer-events: none; }
+@keyframes relayListaEntra { 
+  0% { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayGira { 
+  100% { transform: rotate(360deg); }
+}
+#relayInicioOnline { flex: 1 1 auto; min-height: 0px; overflow: hidden auto; margin: 12px -32px 0px; padding: 8px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 30px; scrollbar-width: none; mask-image: linear-gradient(transparent, rgb(0, 0, 0) 12px, rgb(0, 0, 0) calc(100% - 56px), transparent); }
+#relayInicioOnline::-webkit-scrollbar { display: none; }
+#relayInicioOnline .rioArriba { display: flex; align-items: flex-start; gap: 20px; }
+#relayInicioOnline .rioRecientes { flex: 1 1 0%; min-width: 0px; }
+#relayInicioOnline .rioRotulo { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; min-height: 26px; font: 700 15.5px / 1.2 Inter, sans-serif; letter-spacing: -0.015em; color: rgb(242, 242, 244); }
+#relayInicioOnline .rioLimpiar { margin-left: auto; padding: 6px 10px; border-radius: 8px; cursor: pointer; font: 600 11.5px / 1 Inter, sans-serif; letter-spacing: 0px; color: rgba(238, 238, 244, 0.45); transition: color 0.15s ease-out, background 0.15s ease-out; }
+#relayInicioOnline .rioLimpiar:hover { color: rgb(242, 242, 244); background: rgba(255, 255, 255, 0.07); }
+#relayInicioOnline .rioRefrescar { width: 26px; height: 26px; border-radius: 8px; cursor: pointer; position: relative; flex: 0 0 auto; transition: background 0.15s ease-out; }
+#relayInicioOnline .rioRefrescar::after { content: ""; position: absolute; inset: 6px; background: rgba(238, 238, 244, 0.55); mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M20 11a8 8 0 1 0-2.3 5.7'/><path d='M20 5v6h-6'/></svg>") center center / contain no-repeat; transition: transform 0.5s cubic-bezier(0.3, 1.3, 0.5, 1), background 0.15s; }
+#relayInicioOnline .rioRefrescar:hover { background: rgba(255, 255, 255, 0.07); }
+#relayInicioOnline .rioRefrescar:hover::after { background: rgb(242, 242, 244); transform: rotate(90deg); }
+#relayInicioOnline .rioChips { display: flex; flex-wrap: wrap; gap: 8px; }
+#relayInicioOnline .rioChip { display: inline-flex; align-items: center; gap: 8px; height: 32px; max-width: 260px; box-sizing: border-box; padding: 0px 5px 0px 11px; border-radius: 999px; cursor: pointer; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); font: 600 12.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.82); transition: background 0.18s ease-out, border-color 0.18s ease-out, color 0.18s ease-out, transform 0.22s cubic-bezier(0.3, 1.4, 0.5, 1); animation-duration: 0.4s; animation-timing-function: cubic-bezier(0.2, 0.9, 0.3, 1); animation-iteration-count: 1; animation-direction: normal; animation-fill-mode: both; animation-play-state: running; animation-name: rioEntra; animation-timeline: auto; animation-range: normal; animation-delay: calc(var(--i,0) * 28ms); }
+#relayInicioOnline .rioChip::before { content: ""; width: 12px; height: 12px; flex: 0 0 auto; background: currentcolor; opacity: 0.5; mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M12 7v5l3 2'/></svg>") center center / contain no-repeat; }
+#relayInicioOnline .rioChip:hover { background: rgba(var(--t0,255,42,58),.14); border-color: rgba(var(--t0,255,42,58),.45); color: rgb(255, 255, 255); transform: translateY(-1px); }
+#relayInicioOnline .rioChipTexto { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; }
+#relayInicioOnline .rioQuitar { width: 22px; height: 22px; border-radius: 50%; flex: 0 0 auto; position: relative; opacity: 0.4; transition: opacity 0.15s ease-out, background 0.15s ease-out; }
+#relayInicioOnline .rioQuitar::before, #relayInicioOnline .rioQuitar::after { content: ""; position: absolute; left: 6px; right: 6px; top: 10px; height: 1.7px; border-radius: 2px; background: currentcolor; transform: rotate(45deg); }
+#relayInicioOnline .rioQuitar::after { transform: rotate(-45deg); }
+#relayInicioOnline .rioQuitar:hover { opacity: 1; background: rgba(255, 255, 255, 0.14); }
+#relayInicioOnline .rioSorpresa { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 9px; height: 40px; box-sizing: border-box; padding: 0px 17px 0px 13px; margin-top: 36px; border-radius: 13px; cursor: pointer; font: 700 12.5px / 1 Inter, sans-serif; color: rgb(255, 255, 255); background: linear-gradient(120deg,rgba(var(--t0,255,42,58),.92),rgba(var(--t1,196,18,32),.92)); box-shadow: 0 12px 30px -14px rgba(var(--t0,255,42,58),.95),inset 0 1px 0 rgba(255,255,255,.25); transition: transform 0.22s cubic-bezier(0.3, 1.4, 0.5, 1), box-shadow 0.22s ease-out; }
+#relayInicioOnline .rioSorpresa:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 18px 38px -14px rgba(var(--t0,255,42,58),1),inset 0 1px 0 rgba(255,255,255,.3); }
+#relayInicioOnline .rioSorpresa:active { transform: scale(0.96); }
+#relayInicioOnline .rioSorpresa svg { width: 17px; height: 17px; flex: 0 0 auto; transition: transform 0.5s cubic-bezier(0.3, 1.3, 0.5, 1); }
+#relayInicioOnline .rioSorpresa:hover svg { transform: rotate(-16deg); }
+@keyframes rioGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes rioEntra { 
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes rioLate { 
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+#relayInicioOnline .rioEstante { min-width: 0px; }
+#relayInicioOnline .rioMarco { position: relative; margin: 0px -32px; }
+#relayInicioOnline .rioCarril { display: flex; gap: 6px; overflow: auto hidden; scroll-behavior: smooth; scrollbar-width: none; padding: 4px 24px 6px; scroll-padding: 0px 24px; }
+#relayInicioOnline .rioCarril::-webkit-scrollbar { display: none; }
+#relayInicioOnline .rioTarjeta { flex: 0 0 auto; width: 152px; padding: 8px; border-radius: 16px; cursor: pointer; min-width: 0px; transition: background 0.2s ease-out; }
+#relayInicioOnline .rioTarjeta:hover { background: rgba(255, 255, 255, 0.05); }
+#relayInicioOnline .rioTapa { position: relative; width: 152px; height: 152px; border-radius: 12px; background: linear-gradient(140deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)) center center / cover no-repeat; box-shadow: rgba(0, 0, 0, 0.95) 0px 14px 30px -18px, rgba(255, 255, 255, 0.06) 0px 0px 0px 1px inset; transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2), box-shadow 0.35s ease-out; }
+#relayInicioOnline .rioTarjeta.artista .rioTapa { border-radius: 50%; }
+#relayInicioOnline .rioTarjeta:hover .rioTapa { transform: translateY(-3px); box-shadow: 0 22px 38px -18px rgba(var(--t0,255,42,58),.75),inset 0 0 0 1px rgba(255,255,255,.1); }
+#relayInicioOnline .rioPlay { position: absolute; right: 9px; bottom: 9px; width: 42px; height: 42px; border-radius: 50%; background: rgb(var(--t0,255,42,58)); box-shadow: 0 10px 22px -8px rgba(var(--t0,255,42,58),1); opacity: 0; transform: translateY(8px) scale(0.9); transition: opacity 0.2s ease-out, transform 0.28s cubic-bezier(0.3, 1.4, 0.5, 1); }
+#relayInicioOnline .rioPlay::after { content: ""; position: absolute; left: 16px; top: 13px; border-left: 13px solid rgb(255, 255, 255); border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+#relayInicioOnline .rioTarjeta.lista .rioPlay::after, #relayInicioOnline .rioTarjeta.artista .rioPlay::after { left: 12px; top: 12px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; width: 18px; height: 18px; background: rgb(255, 255, 255); mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'><path d='M9 6l6 6-6 6'/></svg>") center center / contain no-repeat; }
+#relayInicioOnline .rioTarjeta.artista .rioPlay { right: calc(50% - 21px); bottom: 6px; }
+#relayInicioOnline .rioTarjeta:hover .rioPlay { opacity: 1; transform: none; }
+#relayInicioOnline .rioMas { position: absolute; right: 8px; top: 8px; width: 26px; height: 26px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font: 600 17px / 1 Inter, sans-serif; color: rgb(255, 255, 255); background: rgba(10, 10, 11, 0.62); border: 1px solid rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.2s ease-out, background 0.15s ease-out, transform 0.2s cubic-bezier(0.3, 1.4, 0.5, 1); }
+#relayInicioOnline .rioTarjeta.artista .rioMas { right: 16px; top: 16px; }
+#relayInicioOnline .rioTarjeta:hover .rioMas { opacity: 1; }
+#relayInicioOnline .rioMas:hover { background: rgba(var(--t0,255,42,58),.88); transform: scale(1.08); }
+#relayInicioOnline .rioTitulo { margin-top: 10px; font: 700 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#relayInicioOnline .rioSub { margin-top: 5px; display: flex; align-items: center; gap: 6px; min-width: 0px; font: 500 11.5px / 1.2 Inter, sans-serif; color: rgba(238, 238, 244, 0.5); }
+#relayInicioOnline .rioSub span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; }
+#relayInicioOnline .rioTarjeta.artista .rioTitulo { text-align: center; }
+#relayInicioOnline .rioTarjeta.artista .rioSub { justify-content: center; }
+#relayInicioOnline .rioMarca { display: inline-block; flex: 0 0 auto; background-size: contain; background-position: center center; background-repeat: no-repeat; }
+#relayInicioOnline .rioFlecha { position: absolute; top: 64px; z-index: 2; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; background: rgba(15, 15, 16, 0.8); border: 1px solid rgba(255, 255, 255, 0.16); backdrop-filter: blur(12px); box-shadow: rgba(0, 0, 0, 0.95) 0px 10px 24px -10px; opacity: 0; transition: opacity 0.2s ease-out, background 0.15s ease-out, transform 0.2s ease-out; }
+#relayInicioOnline .rioFlecha.atras { left: 12px; }
+#relayInicioOnline .rioFlecha.alante { right: 12px; }
+#relayInicioOnline .rioFlecha::after { content: ""; position: absolute; inset: 11px; background: rgb(242, 242, 244); mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'><path d='M9 6l6 6-6 6'/></svg>") center center / contain no-repeat; }
+#relayInicioOnline .rioFlecha.atras::after { transform: scaleX(-1); }
+#relayInicioOnline .rioMarco:hover .rioFlecha { opacity: 1; }
+#relayInicioOnline .rioFlecha:hover { background: rgba(var(--t0,255,42,58),.88); transform: scale(1.06); }
+#relayInicioOnline .rioMarco.alPrincipio .rioFlecha.atras, #relayInicioOnline .rioMarco.alFinal .rioFlecha.alante { opacity: 0 !important; pointer-events: none; }
+@keyframes relayQvVelo { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes relayQvCaja { 
+  0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+  100% { opacity: 1; transform: none; }
+}
+html[data-cab~="1"] #onlineSearchField { width: 210px !important; min-width: 120px !important; }
+html[data-cab~="1"] [data-act="toggle-service"] { padding: 0px 8px !important; gap: 6px !important; }
+html[data-cab~="1"] [data-act="toggle-service"] span:last-child:not(:first-child) { display: none !important; }
+html[data-cab~="2"] [data-relay-cab] h3 { font-size: 20px !important; }
+html[data-cab~="2"] #relayModoOnline { margin-right: 6px; }
+html[data-cab~="2"] #relayModoOnline span { padding: 6px 9px; }
+html[data-cab~="3"] [data-act="toggle-service"] { font-size: 0px !important; gap: 0px !important; padding: 0px 9px !important; }
+@keyframes relayExtraEntra { 
+  0% { opacity: 0; scale: 0.3; filter: blur(3px); }
+  55% { opacity: 1; filter: none; }
+  100% { opacity: 1; scale: 1; }
+}
+@keyframes relayExtraSale { 
+  100% { opacity: 0; scale: 0.3; }
+}
+@keyframes relayGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes relayBarrido { 
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes relayMandoEntra { 
+  0% { transform: scale(0.35) rotate(-50deg); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes relayMandoGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes relayMandoLate { 
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0),inset 0 1px 0 rgba(255,255,255,.22); }
+  50% { box-shadow: 0 0 16px 1px rgba(var(--t0,255,42,58),.55),inset 0 1px 0 rgba(255,255,255,.22); }
+}
+@keyframes relayVersionLate { 
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0); transform: scale(1); }
+  16% { box-shadow: 0 0 0 4px rgba(var(--t0,255,42,58),.3),0 0 18px 2px rgba(var(--t0,255,42,58),.7); transform: scale(1.14); }
+  32% { transform: scale(1); }
+  48% { box-shadow: 0 0 0 8px rgba(var(--t0,255,42,58),0),0 0 22px 4px rgba(var(--t0,255,42,58),.45); transform: scale(1.07); }
+}
+@keyframes relayElegirEntra { 
+  0% { opacity: 0; transform: translateY(10px) scale(0.985); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayElegirLate { 
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+}
+@keyframes relayElegirSube { 
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayColaVacia { 
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayBarVagaUno { 
+  0% { transform: translate3d(-1px, -1px, 0px) scale(1); opacity: 0.72; }
+  35% { transform: translate3d(1px, -2px, 0px) scale(1.06); opacity: 0.95; }
+  70% { transform: translate3d(2px, 1px, 0px) scale(1.02); opacity: 0.78; }
+  100% { transform: translate3d(-1px, -1px, 0px) scale(1); opacity: 0.72; }
+}
+@keyframes relayBarVagaDos { 
+  0% { transform: translate3d(1px, 1px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.48; }
+  40% { transform: translate3d(-2px, 1px, 0px) scale(1) rotate(-1.4deg); opacity: 0.68; }
+  75% { transform: translate3d(1px, -2px, 0px) scale(1.06) rotate(0.8deg); opacity: 0.44; }
+  100% { transform: translate3d(1px, 1px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.48; }
+}
+@keyframes relayBarLustre { 
+  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+  8% { opacity: 0.85; }
+  40% { opacity: 0.85; }
+  52%, 100% { transform: rotate(16deg) translate3d(140px, 0px, 0px); opacity: 0; }
+}
+[data-act="toggle-mic-mute"], div:has(> #outputTrack) > div:first-child { position: relative; }
+[data-act="toggle-mic-mute"] > div:nth-child(-n+3), div:has(> #outputTrack) > div:first-child > div { display: none !important; }
+[data-act="toggle-mic-mute"]::before, div:has(> #outputTrack) > div:first-child::before { content: ""; position: absolute; inset: -25%; background-color: rgba(240, 240, 244, 0.8); mask-repeat: no-repeat; mask-position: center center; mask-size: contain; }
+div:has(> #outputTrack) > div:first-child::before { mask-image: url("activos/icono-cascos.svg"); }
+[data-act="toggle-mic-mute"], div:has(> #outputTrack) > div:first-child { filter: drop-shadow(rgba(255, 255, 255, 0) 0px 0px 0px); transition: filter 180ms; }
+[data-act="toggle-mic-mute"]::before, div:has(> #outputTrack) > div:first-child::before { transition: background-color 180ms; }
+[data-act="toggle-mic-mute"]:hover, div:has(> #outputTrack) > div:first-child:hover { filter: drop-shadow(rgba(255, 255, 255, 0.7) 0px 0px 6px); }
+[data-act="toggle-mic-mute"]:hover::before, div:has(> #outputTrack) > div:first-child:hover::before { background-color: rgb(252, 252, 253); }
+div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translateX(-6px); }
+@keyframes relayBarRebote { 
+  0% { scale: 0.84 0.76; }
+  100% { scale: 1; }
+}
+[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child { --resorte: cubic-bezier(.2,1.5,.3,1); transition: background 140ms ease-out, border-color 140ms ease-out !important; }
+#settingsGrid [data-act="reload-sources"], #settingsGrid [data-act="add-source"], #settingsGrid [data-act="import-playlist"], #settingsGrid [data-act="library-save"], #settingsGrid [data-act="backup-import"], #settingsGrid [data-act="backup-export"], #settingsGrid [data-act="import-files"], #settingsGrid [data-act="web-open"], [data-act="restore-source"], [data-act="remove-source"], .relayAjusteBoton, #searchField > span:nth-child(3), #relayWeb .boton, #relayDescargas .rdBoton, [data-act="online-queue"], [data-act="online-import"], [data-act="toggle-service"], [data-act="play-album"] { transition: background 160ms, border-color 160ms, color 160ms, box-shadow 220ms, opacity 160ms, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4) !important; }
+#settingsGrid [data-act="reload-sources"]:hover, #settingsGrid [data-act="add-source"]:hover, #settingsGrid [data-act="import-playlist"]:hover, #settingsGrid [data-act="library-save"]:hover, #settingsGrid [data-act="backup-import"]:hover, #settingsGrid [data-act="backup-export"]:hover, #settingsGrid [data-act="import-files"]:hover, #settingsGrid [data-act="web-open"]:hover, [data-act="restore-source"]:hover, [data-act="remove-source"]:hover, .relayAjusteBoton:hover, #searchField > span:nth-child(3):hover, #relayWeb .boton:hover, #relayDescargas .rdBoton:hover, [data-act="online-queue"]:hover, [data-act="online-import"]:hover, [data-act="toggle-service"]:hover, [data-act="play-album"]:hover { translate: 0px -1px; }
+#settingsGrid [data-act="reload-sources"]:active, #settingsGrid [data-act="add-source"]:active, #settingsGrid [data-act="import-playlist"]:active, #settingsGrid [data-act="library-save"]:active, #settingsGrid [data-act="backup-import"]:active, #settingsGrid [data-act="backup-export"]:active, #settingsGrid [data-act="import-files"]:active, #settingsGrid [data-act="web-open"]:active, [data-act="restore-source"]:active, [data-act="remove-source"]:active, .relayAjusteBoton:active, #searchField > span:nth-child(3):active, #relayWeb .boton:active, #relayDescargas .rdBoton:active, [data-act="online-queue"]:active, [data-act="online-import"]:active, [data-act="toggle-service"]:active, [data-act="play-album"]:active { translate: 0px; scale: var(--botaX,.88) var(--botaY,.82); transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+@keyframes relayFiltra { 
+  0% { opacity: 0.25; transform: translateY(8px); }
+  100% { opacity: 1; transform: none; }
+}
+#searchField, #albumSearchField, #artistSearchField, #onlineSearchField { cursor: text; transition: border-color 200ms, box-shadow 240ms, background 200ms !important; }
+#searchField:hover, #albumSearchField:hover, #artistSearchField:hover, #onlineSearchField:hover { border-color: rgba(255, 255, 255, 0.24) !important; }
+@keyframes relayMenuBaja { 
+  0% { clip-path: inset(0px 0px 100%); }
+  100% { clip-path: inset(0px); }
+}
+@keyframes relayMenuFila { 
+  0% { opacity: 0; transform: translateY(-7px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayMenuPunto { 
+  0%, 100% { box-shadow: 0 0 6px 0 rgba(var(--t0,255,42,58),.6); }
+  50% { box-shadow: 0 0 14px 2px rgba(var(--t0,255,42,58),.95); }
+}
+@keyframes relayMandoPulsa { 
+  0% { transform: none; }
+  40% { transform: scale(0.6) rotate(-35deg); }
+  100% { transform: none; }
+}
+@keyframes relayAutoEnciende { 
+  0% { transform: scale(0.35) rotate(-60deg); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes relayAutoApaga { 
+  0% { transform: scale(0.35) rotate(60deg); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+[data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { scale: 0.84 0.76; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+@supports (transition-timing-function:linear(0,1)) {[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child { --resorte: linear(
+          0,.0723,.2556,.4981,.7523,.9801,1.1565,1.2692,1.3179,1.311,
+          1.2628,1.1897,1.1078,1.0305,.9674,.9239,.9012,.8976,.909,
+          .9302,.9561,.9819,1.004,1.0203,1
+        ); }}
+@media (prefers-reduced-motion: reduce) {[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child, [data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { transition: background 140ms ease-out, border-color 140ms ease-out !important; }
+[data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { scale: 0.92; }}
+@keyframes relayArtLate { 
+  0%, 100% { scale: 1; opacity: 0.6; }
+  50% { scale: 1.12; opacity: 0.9; }
+}
+@keyframes relayArtBrillo { 
+  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: rotate(16deg) translate3d(420px, 0px, 0px); opacity: 0; }
+}
+@keyframes relayEstGira { 
+  100% { rotate: 360deg; }
+}
+@keyframes relayAlbRebote { 
+  0% { scale: 0.95; }
+  45% { scale: 1.035; }
+  72% { scale: 0.99; }
+  100% { scale: 1; }
+}
+@keyframes relayAlbAro { 
+  100% { opacity: 0; box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 14px inset; }
+}
+@keyframes relayDetEntra { 
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+@keyframes relayNpVaga { 
+  0% { transform: translate3d(-3px, -2px, 0px) scale(1); }
+  35% { transform: translate3d(3px, -4px, 0px) scale(1.05); }
+  70% { transform: translate3d(4px, 3px, 0px) scale(1.01); }
+  100% { transform: translate3d(-3px, -2px, 0px) scale(1); }
+}
+@keyframes relayAlbVagaUno { 
+  0% { transform: translate3d(-4px, -3px, 0px) scale(1); opacity: 0.74; }
+  35% { transform: translate3d(4px, -5px, 0px) scale(1.07); opacity: 0.98; }
+  70% { transform: translate3d(5px, 4px, 0px) scale(1.02); opacity: 0.8; }
+  100% { transform: translate3d(-4px, -3px, 0px) scale(1); opacity: 0.74; }
+}
+@keyframes relayAlbVagaDos { 
+  0% { transform: translate3d(3px, 4px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.5; }
+  40% { transform: translate3d(-5px, 2px, 0px) scale(1) rotate(-1.4deg); opacity: 0.72; }
+  75% { transform: translate3d(2px, -5px, 0px) scale(1.07) rotate(0.8deg); opacity: 0.46; }
+  100% { transform: translate3d(3px, 4px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.5; }
+}
+@keyframes relayAlbFilo { 
+  0%, 100% { opacity: 0.38; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.02); }
+}
+@keyframes relayAlbLustre { 
+  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+  8% { opacity: 0.85; }
+  40% { opacity: 0.85; }
+  52%, 100% { transform: rotate(16deg) translate3d(560px, 0px, 0px); opacity: 0; }
+}
+@keyframes relayAlbGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes relayAlbLatido { 
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.6; }
+}
+@keyframes relayFlotaEntra { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes relayFlotaSale { 
+  100% { opacity: 0; }
+}
+:root { --sinCaratula: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cg opacity='.93'%3E%3Cpath d='M20.4 34.6V18.9l13.2-2.8v15.7' fill='none' stroke='%23F7F7F8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cellipse cx='17.4' cy='34.9' rx='3.9' ry='3.2' fill='%23F7F7F8' transform='rotate(-14 17.4 34.9)'/%3E%3Cellipse cx='30.6' cy='31.9' rx='3.9' ry='3.2' fill='%23F7F7F8' transform='rotate(-14 30.6 31.9)'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat,
+        linear-gradient(135deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32)) 55%,rgb(var(--t10,94,8,16))); }
+@keyframes tmSube { 
+  0% { opacity: 0; transform: translateY(16px) scale(0.985); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes tmEntra { 
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes tmLate { 
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0); }
+  50% { box-shadow: 0 0 22px 2px rgba(var(--t0,255,42,58),.45); }
+}
+@property --tmGiro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes tmGiro { 
+  100% { --tmGiro: 360deg; }
+}
+@keyframes sbSube { 
+  0% { opacity: 0; transform: translateY(14px) scale(0.985); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sbAparece { 
+  0% { opacity: 0; transform: scale(0.72); }
+  60% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sbBarras { 
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+@keyframes sbAnillo { 
+  0% { opacity: 0.9; transform: scale(0.96); }
+  100% { opacity: 0; transform: scale(1.14); }
+}
+@keyframes sbBrillo { 
+  0%, 100% { box-shadow: 0 0 0 2px rgba(var(--t0,255,42,58),.95),0 0 28px 2px rgba(var(--t0,255,42,58),.55),0 22px 50px -18px rgba(var(--t0,255,42,58),.9); }
+  50% { box-shadow: 0 0 0 2px rgba(var(--t2,255,90,99),1),0 0 40px 6px rgba(var(--t0,255,42,58),.7),0 22px 60px -16px rgba(var(--t0,255,42,58),1); }
+}
+@keyframes sbAvance { 
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+@keyframes sbBarrido { 
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+@keyframes sbRespira { 
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.8; }
+}
+@keyframes sbDestella { 
+  0% { background: rgba(var(--t0,255,42,58),.32); }
+  100% { background: transparent; }
+}
+@keyframes sbSalta { 
+  0% { transform: scale(1); }
+  40% { transform: scale(1.35); background: rgb(var(--t0,255,42,58)); color: rgb(255, 255, 255); }
+  100% { transform: scale(1); }
+}
+.scp0:hover { border-color: rgba(255, 255, 255, 0.24) !important; }
+html, body { height: 100%; margin: 0px; }
+#dc-root, #dc-root > .sc-host { height: 100%; }
+@keyframes ronldrift { 
+  0% { transform: translate3d(0px, 0px, 0px) scale(1); opacity: 0.7; }
+  24% { transform: translate3d(120px, -60px, 0px) scale(1.18); opacity: 1; }
+  52% { transform: translate3d(-70px, -120px, 0px) scale(1.02); opacity: 0.55; }
+  78% { transform: translate3d(70px, 70px, 0px) scale(1.22); opacity: 0.92; }
+  100% { transform: translate3d(0px, 0px, 0px) scale(1); opacity: 0.7; }
+}
+@keyframes ronldrift2 { 
+  0% { transform: translate3d(0px, 0px, 0px) scale(1.06); opacity: 0.5; }
+  28% { transform: translate3d(-130px, 80px, 0px) scale(1.22); opacity: 1; }
+  56% { transform: translate3d(60px, 130px, 0px) scale(0.95); opacity: 0.68; }
+  84% { transform: translate3d(-80px, -50px, 0px) scale(1.14); opacity: 0.9; }
+  100% { transform: translate3d(0px, 0px, 0px) scale(1.06); opacity: 0.5; }
+}
+@keyframes ronlspin { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes ronlpulse { 
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.85; }
+}
+@keyframes ronlrise { 
+  0% { opacity: 0; transform: translateY(7px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+html,body{margin:0;overflow:hidden;background:transparent}
+
+</style>
+</head>
+<body >
+
+<div id="dc-root"><div class="sc-host" data-sc-name="RelayOnline"><div data-dc-tpl="3" id="onlineRoot" style="position: relative; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; background: linear-gradient(165deg, rgb(11, 11, 12), rgb(5, 5, 6) 60%, rgb(3, 3, 4)); font-family: Inter, system-ui, sans-serif; color: rgb(247, 247, 248);">
+
+  
+  <div data-dc-tpl="4" style="position: absolute; left: -260px; top: -320px; width: 880px; height: 880px; background: radial-gradient(circle at center,rgba(var(--t1,196,18,32),.45),rgba(var(--t1,196,18,32),0) 68%); filter: blur(60px); animation: 23s ease-in-out 0s infinite normal none running ronldrift; pointer-events: none;"></div>
+  <div data-dc-tpl="5" style="position: absolute; right: -220px; top: -180px; width: 780px; height: 780px; background: radial-gradient(circle at center,rgba(var(--t0,255,42,58),.26),rgba(var(--t0,255,42,58),0) 66%); filter: blur(70px); animation: 27s ease-in-out 3s infinite normal none running ronldrift2; pointer-events: none;"></div>
+  
+  <div data-dc-tpl="6" style="position: absolute; left: 8%; bottom: -420px; width: 920px; height: 820px; background: radial-gradient(circle at center,rgba(var(--t1,196,18,32),.32),rgba(var(--t1,196,18,32),0) 70%); filter: blur(80px); animation: 31s ease-in-out 6s infinite normal none running ronldrift; pointer-events: none;"></div>
+
+  <div data-dc-tpl="7" id="onlineCuerpo" style="position: relative; width: 100%; height: 100%; box-sizing: border-box; padding: 22px 32px 0px; display: flex; flex-direction: column; overflow: hidden;">
+
+    <div data-dc-tpl="8" data-relay-cab="" style="display: flex; align-items: flex-end; gap: 16px; flex: 0 0 auto; min-width: 0px;">
+      <div data-dc-tpl="9" style="min-width: 0px;">
+        <h3 data-dc-tpl="10" style="margin-top:-3px;margin-right:0px;margin-bottom:-0.22em;margin-left:0px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:none;font-language-override:normal;font-kerning:auto;font-optical-sizing:auto;font-feature-settings:normal;font-variation-settings:normal;font-variant-position:normal;font-variant-emoji:normal;font-weight:800;font-stretch:normal;font-size:26px;line-height:1;font-family:Inter, sans-serif;padding-top:3px;padding-right:0px;padding-bottom:0.22em;padding-left:0px;letter-spacing:-0.025em;background-image:linear-gradient(100deg, rgb(255, 255, 255) 10%, rgb(var(--t3,255,154,162)) 55%, rgb(var(--t0,255,42,58)));background-position-x:0%;background-position-y:0%;background-size:auto;background-repeat:repeat;background-attachment:scroll;background-origin:padding-box;background-clip:text;background-color:rgba(0, 0, 0, 0);color:transparent;width:fit-content;max-width:100%;white-space-collapse:collapse;text-wrap-mode:nowrap">Online</h3>
+        <div data-dc-tpl="11" style="margin: -3px 0px; font: 500 12px / 1 Inter, sans-serif; padding: 3px 0px; color: rgba(238, 238, 244, 0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">7 services switched on</span></div>
+      </div>
+
+      <div data-dc-tpl="12" style="margin-left: auto; display: flex; align-items: center; gap: 10px; flex: 0 0 auto;">
+        
+        <div data-dc-tpl="13" id="onlineSearchField" data-act="search" class="scp0" style="display: flex; align-items: center; gap: 9px; width: 300px; min-width: 150px; height: 38px; box-sizing: border-box; padding: 0px 11px 0px 13px; border-radius: 13px; background: rgba(15, 15, 16, 0.62); backdrop-filter: blur(30px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.14); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); cursor: text;">
+          <div data-dc-tpl="14" style="width: 11px; height: 11px; border: 1.6px solid rgba(238, 238, 244, 0.5); border-radius: 50%; flex: 0 0 auto;"></div>
+          <span data-dc-tpl="15" id="onlineSearchLabel" style="font: 500 12.5px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.4); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Search online</span></span>
+          
+        </div>
+
+        
+        <div data-dc-tpl="18" style="display: flex; align-items: center; gap: 3px; height: 38px; box-sizing: border-box; padding: 3px; border-radius: 13px; background: rgba(15, 15, 16, 0.62); backdrop-filter: blur(30px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); flex: 0 0 auto;">
+          
+            <div id="relayModoOnline"><i class="relayCorre" style="transform: translateX(3px); width: 53px;"></i><span data-modo="songs" class="on">Songs</span><span data-modo="playlists">Playlists</span><span data-modo="artists">Artists</span></div><span data-dc-tpl="20" data-act="toggle-service" data-id="audius" title="Click to put Audius first, double-click to switch it off" style="display: flex; align-items: center; gap: 7px; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; font: 600 11.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.62);">
+              <span data-dc-tpl="21" style="width: 13px; height: 13px; flex: 0 0 auto; background-image: url(&quot;activos/logo-audius.webp&quot;); background-size: contain; background-position: center center; background-repeat: no-repeat;"></span><span class="sc-interp">Audius</span>
+              
+                <span data-dc-tpl="23" style="font: 500 9.5px / 1 Inter, sans-serif; opacity: 0.6;"><span class="sc-interp">1</span></span>
+              
+            </span>
+          
+            <span data-dc-tpl="20" data-act="toggle-service" data-id="archive" title="Click to put Archive first, double-click to switch it off" style="display: flex; align-items: center; gap: 7px; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; font: 600 11.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.62);">
+              <span data-dc-tpl="21" style="width: 13px; height: 13px; flex: 0 0 auto; mask: url(&quot;activos/logo-archive.png&quot;) center center / contain no-repeat; background: rgb(255, 255, 255);"></span><span class="sc-interp">Archive</span>
+              
+                <span data-dc-tpl="23" style="font: 500 9.5px / 1 Inter, sans-serif; opacity: 0.6;"><span class="sc-interp">1</span></span>
+              
+            </span>
+          
+            <span data-dc-tpl="20" data-act="toggle-service" data-id="soundcloud" title="Click to put SoundCloud first, double-click to switch it off" style="display: flex; align-items: center; gap: 7px; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; font: 600 11.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.62);">
+              <span data-dc-tpl="21" style="width: 13px; height: 13px; flex: 0 0 auto; background-image: url(&quot;activos/logo-soundcloud.png&quot;); background-size: contain; background-position: center center; background-repeat: no-repeat;"></span><span class="sc-interp">SoundCloud</span>
+              
+                <span data-dc-tpl="23" style="font: 500 9.5px / 1 Inter, sans-serif; opacity: 0.6;"><span class="sc-interp">2</span></span>
+              
+            </span>
+          
+            <span data-dc-tpl="20" data-act="toggle-service" data-id="yedits" title="Click to put Yedits first, double-click to switch it off" style="display: flex; align-items: center; gap: 7px; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; font: 600 11.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.62);">
+              <span data-dc-tpl="21" style="width: 13px; height: 13px; flex: 0 0 auto; mask: url(&quot;activos/logo-yedits.png&quot;) center center / contain no-repeat; background: rgb(255, 255, 255);"></span><span class="sc-interp">Yedits</span>
+              
+            </span>
+          
+            <span data-dc-tpl="20" data-act="toggle-service" data-id="wavernrs" title="Click to put Wavernrs first, double-click to switch it off" style="display: flex; align-items: center; gap: 7px; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; font: 600 11.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.62);">
+              <span data-dc-tpl="21" style="width: 13px; height: 13px; flex: 0 0 auto; background-image: url(&quot;activos/logo-wavernrs.png&quot;); background-size: contain; background-position: center center; background-repeat: no-repeat;"></span><span class="sc-interp">Wavernrs</span>
+              
+            </span>
+          
+            <span data-dc-tpl="20" data-act="toggle-service" data-id="youtube" title="Click to put YouTube first, double-click to switch it off" style="display: flex; align-items: center; gap: 7px; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; font: 600 11.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.62);">
+              <span data-dc-tpl="21" style="width: 13px; height: 13px; flex: 0 0 auto; background-image: url(&quot;activos/logo-youtube.png&quot;); background-size: contain; background-position: center center; background-repeat: no-repeat;"></span><span class="sc-interp">YouTube</span>
+              
+                <span data-dc-tpl="23" style="font: 500 9.5px / 1 Inter, sans-serif; opacity: 0.6;"><span class="sc-interp">1</span></span>
+              
+            </span>
+          
+            <span data-dc-tpl="20" data-act="toggle-service" data-id="deezer" title="Click to put Deezer first, double-click to switch it off" style="display: flex; align-items: center; gap: 7px; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; font: 600 11.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.62);">
+              <span data-dc-tpl="21" style="width: 13px; height: 13px; flex: 0 0 auto; background-image: url(&quot;activos/logo-deezer.svg&quot;); background-size: contain; background-position: center center; background-repeat: no-repeat;"></span><span class="sc-interp">Deezer</span>
+              
+                <span data-dc-tpl="23" style="font: 500 9.5px / 1 Inter, sans-serif; opacity: 0.6;"><span class="sc-interp">1</span></span>
+              
+            </span>
+          
+        </div>
+      </div>
+    </div>
+
+    
+    
+
+    
+    <div data-dc-tpl="44" id="onlineDestinos" style="display: none;">
+      
+        <span data-dc-tpl="46" data-id="" data-depth="0" data-count="214" data-icon="" data-colour=""><span class="sc-interp">All music</span></span>
+      
+        <span data-dc-tpl="46" data-id="35" data-depth="1" data-count="64" data-icon="" data-colour="rgb(var(--t0,255,42,58))"><span class="sc-interp">Late night</span></span>
+      
+        <span data-dc-tpl="46" data-id="36" data-depth="1" data-count="38" data-icon="" data-colour="rgb(var(--t1,196,18,32))"><span class="sc-interp">Workout</span></span>
+      
+        <span data-dc-tpl="46" data-id="38" data-depth="1" data-count="51" data-icon="" data-colour="rgb(var(--t2,255,90,99))"><span class="sc-interp">Road trip</span></span>
+      
+        <span data-dc-tpl="46" data-id="37" data-depth="1" data-count="27" data-icon="" data-colour="rgb(var(--t6,142,14,28))"><span class="sc-interp">Throwbacks</span></span>
+      
+    </div>
+
+    
+    
+
+  <div id="relayInicioOnline"><div class="rioArriba"><div class="rioRecientes"><div class="rioRotulo"><span>Recent searches</span><span class="rioLimpiar" title="Forget all recent searches">Clear</span></div><div class="rioChips"><span class="rioChip" title="Search “northern lights” again" style="--i: 0;"><span class="rioChipTexto">northern lights</span><span class="rioQuitar" title="Remove it"></span></span><span class="rioChip" title="Search “vela monroe” again" style="--i: 1;"><span class="rioChipTexto">vela monroe</span><span class="rioQuitar" title="Remove it"></span></span><span class="rioChip" title="Search “lofi” again" style="--i: 2;"><span class="rioChipTexto">lofi</span><span class="rioQuitar" title="Remove it"></span></span></div></div><span class="rioSorpresa" title="Open a random comp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"></rect><circle cx="8.5" cy="8.5" r="1.2" fill="currentColor"></circle><circle cx="15.5" cy="8.5" r="1.2" fill="currentColor"></circle><circle cx="12" cy="12" r="1.2" fill="currentColor"></circle><circle cx="8.5" cy="15.5" r="1.2" fill="currentColor"></circle><circle cx="15.5" cy="15.5" r="1.2" fill="currentColor"></circle></svg><span>Surprise me</span></span></div><section class="rioEstante" data-clave="historial"><div class="rioRotulo"><span>Jump back in</span><span class="rioLimpiar" title="Forget what you played">Clear</span></div><div class="rioMarco alPrincipio"><span class="rioFlecha atras" title="Back"></span><div class="rioCarril"><div class="rioTarjeta cancion" title="Glass Hours — Odessa Wynn"><div class="rioTapa" style="background-image: url(&quot;arte/a2.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Glass Hours</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-deezer.svg&quot;);"></i><span>Odessa Wynn</span></div></div><div class="rioTarjeta lista" title="Late Night Drive — Playlist  ·  24 songs"><div class="rioTapa" style="background-image: url(&quot;arte/a0.jpg&quot;);"><span class="rioPlay" title="Open"></span><span class="rioMas" title="Add all to queue">+</span></div><div class="rioTitulo">Late Night Drive</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-soundcloud.png&quot;);"></i><span>Playlist  ·  24 songs</span></div></div><div class="rioTarjeta artista" title="Vela Monroe — Artist"><div class="rioTapa" style="background-image: url(&quot;arte/a17.jpg&quot;);"><span class="rioPlay" title="Open"></span><span class="rioMas" title="Add all to queue">+</span></div><div class="rioTitulo">Vela Monroe</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>Artist</span></div></div><div class="rioTarjeta cancion" title="Midnight Static — Rue Delmar"><div class="rioTapa" style="background-image: url(&quot;arte/a5.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Midnight Static</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>Rue Delmar</span></div></div><div class="rioTarjeta lista" title="Afterglow District — NOVA ARC  ·  Album"><div class="rioTapa" style="background-image: url(&quot;arte/a9.jpg&quot;);"><span class="rioPlay" title="Open"></span><span class="rioMas" title="Add all to queue">+</span></div><div class="rioTitulo">Afterglow District</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-deezer.svg&quot;);"></i><span>NOVA ARC  ·  Album</span></div></div><div class="rioTarjeta artista" title="KAITO — Artist"><div class="rioTapa" style="background-image: url(&quot;arte/a20.jpg&quot;);"><span class="rioPlay" title="Open"></span><span class="rioMas" title="Add all to queue">+</span></div><div class="rioTitulo">KAITO</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-audius.webp&quot;);"></i><span>Artist</span></div></div><div class="rioTarjeta cancion" title="Soft Machines — Tomás Ferrer"><div class="rioTapa" style="background-image: url(&quot;arte/a7.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Soft Machines</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; mask: url(&quot;activos/logo-archive.png&quot;) center center / contain no-repeat; background: rgb(255, 255, 255);"></i><span>Tomás Ferrer</span></div></div></div><span class="rioFlecha alante" title="More"></span></div></section><div class="rioRotulo" style="margin-bottom: -14px;"><span>Popular right now</span><span class="rioRefrescar" title="Refresh"></span></div><section class="rioEstante" data-clave="youtube"><div class="rioRotulo"><i class="rioMarca" style="height: 15px; width: 15px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>Trending on YouTube</span></div><div class="rioMarco alPrincipio"><span class="rioFlecha atras" title="Back"></span><div class="rioCarril"><div class="rioTarjeta cancion" title="Low Orbit — KAITO"><div class="rioTapa" style="background-image: url(&quot;arte/a3.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Low Orbit</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>KAITO</span></div></div><div class="rioTarjeta cancion" title="Cobalt — Isle Fever"><div class="rioTapa" style="background-image: url(&quot;arte/a6.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Cobalt</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>Isle Fever</span></div></div><div class="rioTarjeta cancion" title="Golden Hour Tapes — Marlowe"><div class="rioTapa" style="background-image: url(&quot;arte/a8.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Golden Hour Tapes</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>Marlowe</span></div></div><div class="rioTarjeta cancion" title="Velvet Weather — Lenka Hart"><div class="rioTapa" style="background-image: url(&quot;arte/a10.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Velvet Weather</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>Lenka Hart</span></div></div><div class="rioTarjeta cancion" title="Heavy Bloom — Saint Juniper"><div class="rioTapa" style="background-image: url(&quot;arte/a11.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Heavy Bloom</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>Saint Juniper</span></div></div><div class="rioTarjeta cancion" title="Daydream Freeway — Polar Youth"><div class="rioTapa" style="background-image: url(&quot;arte/a12.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Daydream Freeway</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>Polar Youth</span></div></div><div class="rioTarjeta cancion" title="Ritual — Amari Kaye"><div class="rioTapa" style="background-image: url(&quot;arte/a13.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Ritual</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>Amari Kaye</span></div></div><div class="rioTarjeta cancion" title="Echo Park Sessions — Wren &amp; Wolf"><div class="rioTapa" style="background-image: url(&quot;arte/a14.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Echo Park Sessions</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-youtube.png&quot;);"></i><span>Wren &amp; Wolf</span></div></div></div><span class="rioFlecha alante" title="More"></span></div></section><section class="rioEstante" data-clave="soundcloud"><div class="rioRotulo"><i class="rioMarca" style="height: 15px; width: 15px; background-image: url(&quot;activos/logo-soundcloud.png&quot;);"></i><span>Hot on SoundCloud</span></div><div class="rioMarco alPrincipio"><span class="rioFlecha atras" title="Back"></span><div class="rioCarril"><div class="rioTarjeta cancion" title="Second Sun — Halcyon Drive"><div class="rioTapa" style="background-image: url(&quot;arte/a15.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Second Sun</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-soundcloud.png&quot;);"></i><span>Halcyon Drive</span></div></div><div class="rioTarjeta cancion" title="Neon Prayer — Vela Monroe"><div class="rioTapa" style="background-image: url(&quot;arte/a0.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Neon Prayer</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-soundcloud.png&quot;);"></i><span>Vela Monroe</span></div></div><div class="rioTarjeta cancion" title="Glass Hours — Odessa Wynn"><div class="rioTapa" style="background-image: url(&quot;arte/a2.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Glass Hours</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-soundcloud.png&quot;);"></i><span>Odessa Wynn</span></div></div><div class="rioTarjeta cancion" title="Paper Summer — June Alvarez"><div class="rioTapa" style="background-image: url(&quot;arte/a4.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Paper Summer</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-soundcloud.png&quot;);"></i><span>June Alvarez</span></div></div><div class="rioTarjeta cancion" title="Cobalt — Isle Fever"><div class="rioTapa" style="background-image: url(&quot;arte/a6.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Cobalt</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-soundcloud.png&quot;);"></i><span>Isle Fever</span></div></div><div class="rioTarjeta cancion" title="Afterglow District — NOVA ARC"><div class="rioTapa" style="background-image: url(&quot;arte/a9.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Afterglow District</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-soundcloud.png&quot;);"></i><span>NOVA ARC</span></div></div><div class="rioTarjeta cancion" title="Salt &amp; Satellites — The Harbor Kids"><div class="rioTapa" style="background-image: url(&quot;arte/a1.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Salt &amp; Satellites</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-soundcloud.png&quot;);"></i><span>The Harbor Kids</span></div></div><div class="rioTarjeta cancion" title="Midnight Static — Rue Delmar"><div class="rioTapa" style="background-image: url(&quot;arte/a5.jpg&quot;);"><span class="rioPlay" title="Play"></span><span class="rioMas" title="Add to queue">+</span></div><div class="rioTitulo">Midnight Static</div><div class="rioSub"><i class="rioMarca" style="height: 11px; width: 11px; background-image: url(&quot;activos/logo-soundcloud.png&quot;);"></i><span>Rue Delmar</span></div></div></div><span class="rioFlecha alante" title="More"></span></div></section></div></div></div></div></div>
+
+
+
+<input id="relayBuscador" type="text" spellcheck="false" placeholder="Search online" style="display: block; left: 305.469px; top: 35px; width: 163px;">
+<script src="tema.js"></script>
+<script>
+/* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
+   al bajar por la web se quedaba uno atascado en una lista. */
+addEventListener("wheel", (e) => {
+  if (top !== window) { e.preventDefault(); try { top.scrollBy(0, e.deltaY); } catch (x) { } }
+}, { passive: false });
+</script>
+</body>
+</html>
