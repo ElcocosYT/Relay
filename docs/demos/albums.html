@@ -1,0 +1,845 @@
+<!doctype html>
+<html data-buscando="1" data-sinluz="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relay · Albums</title>
+<!-- Generado por tools/demos-web/capturar.mjs desde la aplicacion. No editar a mano. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+@keyframes sc-shine { 
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@media print {#dc-root, #dc-root > .sc-host { height: auto; }
+*, ::before, ::after { print-color-adjust: exact; backdrop-filter: none !important; animation-delay: -99s !important; animation-duration: 0.001s !important; animation-iteration-count: 1 !important; animation-fill-mode: both !important; animation-play-state: running !important; transition-duration: 0s !important; }}
+html { font-variant-numeric: tabular-nums; }
+html, body { margin: 0px; padding: 0px; height: 100%; background: transparent; overflow: hidden; }
+@keyframes relayLatido { 
+  0% { opacity: 0.01; }
+  100% { opacity: 0.02; }
+}
+html::after { content: ""; position: fixed; left: 0px; top: 0px; width: 1px; height: 1px; pointer-events: none; background: rgb(0, 0, 0); animation: 1s linear 0s infinite alternate none running relayLatido; }
+:root { --relayCristal: linear-gradient(150deg,rgba(15,15,16,.6),rgba(9,9,10,.42)); }
+#dc-root, #dc-root > div, dc-root, dc-root > div { height: 100%; }
+#relayBuscador { position: fixed; border: 0px; outline: 0px; background: transparent; padding: 0px; margin: 0px; font: 500 12.5px / 1 Inter, system-ui, sans-serif; color: rgb(247, 247, 248); z-index: 50; }
+#relayBuscador::placeholder { color: rgba(238, 238, 244, 0.4); }
+#relayBuscador:focus { outline: 0px; }
+body:has(#relayBuscador) #searchLabel, body:has(#relayBuscador) #albumSearchLabel, body:has(#relayBuscador) #artistSearchLabel { visibility: hidden; }
+#libraryRoot, #sidebarRoot, #playerBarRoot, #nowPlayingRoot, #albumsRoot, #artistsRoot, #onlineRoot, #mixerRoot, #settingsRoot { background: transparent !important; }
+#libraryRoot > div[style*="rlbdrift"], #nowPlayingRoot > div[style*="rnpdrift"], #albumsRoot > div[style*="ralbdrift"], #artistsRoot > div[style*="rartdrift"], #onlineRoot > div[style*="ronldrift"], #mixerRoot > div[style*="rmxdrift"], #settingsRoot > div[style*="rstdrift"] { display: none !important; }
+#albumScrollFade, #artistScrollFade, #artistListFade { display: none !important; }
+#albumGrid, #artistGrid, #artistList { mask-image: linear-gradient(rgb(0, 0, 0) calc(100% - 64px), transparent); }
+@keyframes relayNpVerEntra { 
+  0% { opacity: 0; transform: translateX(8px) scale(0.9); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayNpVerNombre { 
+  0% { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 1; transform: none; }
+}
+[data-act="play-album"] > div, .ronlPlay > div { display: none !important; }
+[data-act="play-album"]::before, .ronlPlay::before { content: ""; flex: 0 0 auto; width: 14px; height: 14px; margin-left: 1px; background-color: rgb(255, 244, 245); mask: url("activos/paused.svg") center center / contain no-repeat; }
+@keyframes relayWebVa { 
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(290%); }
+}
+@keyframes relayWebSeRecoge { 
+  100% { transform: translate(calc(-50% - 42vw), -4%) scale(0.3); opacity: 0; }
+}
+@keyframes relayWebVeloSeVa { 
+  100% { opacity: 0; }
+}
+@keyframes relayRdLate { 
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+div:has(> div > #relayMasDer) { align-content: start; }
+div:has(> #relayMasDer) { align-self: stretch; }
+@keyframes relaySenala { 
+  0%, 100% { outline-color: rgba(var(--t0,255,42,58),0); }
+  25%, 75% { outline-color: rgba(var(--t0,255,42,58),.95); }
+}
+@keyframes relayMenuEntra { 
+  0% { opacity: 0; transform: translateY(-4px) scale(0.97); }
+  100% { opacity: 1; transform: none; }
+}
+html { user-select: none; }
+input, textarea, [contenteditable="true"] { user-select: text; }
+html[data-buscando] #searchLabel, html[data-buscando] #albumSearchLabel, html[data-buscando] #artistSearchLabel, html[data-buscando] #onlineSearchLabel { visibility: hidden; }
+@keyframes relayResorte { 
+  0% { transform: scale(1); }
+  35% { transform: scale(0.93); }
+  70% { transform: scale(1.045); }
+  100% { transform: scale(1); }
+}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
+@property --relayFinal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --relayTope { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@keyframes relayListaEntra { 
+  0% { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes rioGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes rioEntra { 
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes rioLate { 
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@keyframes relayQvVelo { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes relayQvCaja { 
+  0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayExtraEntra { 
+  0% { opacity: 0; scale: 0.3; filter: blur(3px); }
+  55% { opacity: 1; filter: none; }
+  100% { opacity: 1; scale: 1; }
+}
+@keyframes relayExtraSale { 
+  100% { opacity: 0; scale: 0.3; }
+}
+@keyframes relayGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes relayBarrido { 
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes relayMandoEntra { 
+  0% { transform: scale(0.35) rotate(-50deg); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes relayMandoGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes relayMandoLate { 
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0),inset 0 1px 0 rgba(255,255,255,.22); }
+  50% { box-shadow: 0 0 16px 1px rgba(var(--t0,255,42,58),.55),inset 0 1px 0 rgba(255,255,255,.22); }
+}
+@keyframes relayVersionLate { 
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0); transform: scale(1); }
+  16% { box-shadow: 0 0 0 4px rgba(var(--t0,255,42,58),.3),0 0 18px 2px rgba(var(--t0,255,42,58),.7); transform: scale(1.14); }
+  32% { transform: scale(1); }
+  48% { box-shadow: 0 0 0 8px rgba(var(--t0,255,42,58),0),0 0 22px 4px rgba(var(--t0,255,42,58),.45); transform: scale(1.07); }
+}
+@keyframes relayElegirEntra { 
+  0% { opacity: 0; transform: translateY(10px) scale(0.985); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayElegirLate { 
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+}
+@keyframes relayElegirSube { 
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayColaVacia { 
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayBarVagaUno { 
+  0% { transform: translate3d(-1px, -1px, 0px) scale(1); opacity: 0.72; }
+  35% { transform: translate3d(1px, -2px, 0px) scale(1.06); opacity: 0.95; }
+  70% { transform: translate3d(2px, 1px, 0px) scale(1.02); opacity: 0.78; }
+  100% { transform: translate3d(-1px, -1px, 0px) scale(1); opacity: 0.72; }
+}
+@keyframes relayBarVagaDos { 
+  0% { transform: translate3d(1px, 1px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.48; }
+  40% { transform: translate3d(-2px, 1px, 0px) scale(1) rotate(-1.4deg); opacity: 0.68; }
+  75% { transform: translate3d(1px, -2px, 0px) scale(1.06) rotate(0.8deg); opacity: 0.44; }
+  100% { transform: translate3d(1px, 1px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.48; }
+}
+@keyframes relayBarLustre { 
+  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+  8% { opacity: 0.85; }
+  40% { opacity: 0.85; }
+  52%, 100% { transform: rotate(16deg) translate3d(140px, 0px, 0px); opacity: 0; }
+}
+[data-act="toggle-mic-mute"], div:has(> #outputTrack) > div:first-child { position: relative; }
+[data-act="toggle-mic-mute"] > div:nth-child(-n+3), div:has(> #outputTrack) > div:first-child > div { display: none !important; }
+[data-act="toggle-mic-mute"]::before, div:has(> #outputTrack) > div:first-child::before { content: ""; position: absolute; inset: -25%; background-color: rgba(240, 240, 244, 0.8); mask-repeat: no-repeat; mask-position: center center; mask-size: contain; }
+div:has(> #outputTrack) > div:first-child::before { mask-image: url("activos/icono-cascos.svg"); }
+[data-act="toggle-mic-mute"], div:has(> #outputTrack) > div:first-child { filter: drop-shadow(rgba(255, 255, 255, 0) 0px 0px 0px); transition: filter 180ms; }
+[data-act="toggle-mic-mute"]::before, div:has(> #outputTrack) > div:first-child::before { transition: background-color 180ms; }
+[data-act="toggle-mic-mute"]:hover, div:has(> #outputTrack) > div:first-child:hover { filter: drop-shadow(rgba(255, 255, 255, 0.7) 0px 0px 6px); }
+[data-act="toggle-mic-mute"]:hover::before, div:has(> #outputTrack) > div:first-child:hover::before { background-color: rgb(252, 252, 253); }
+div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translateX(-6px); }
+@keyframes relayBarRebote { 
+  0% { scale: 0.84 0.76; }
+  100% { scale: 1; }
+}
+[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child { --resorte: cubic-bezier(.2,1.5,.3,1); transition: background 140ms ease-out, border-color 140ms ease-out !important; }
+#settingsGrid [data-act="reload-sources"], #settingsGrid [data-act="add-source"], #settingsGrid [data-act="import-playlist"], #settingsGrid [data-act="library-save"], #settingsGrid [data-act="backup-import"], #settingsGrid [data-act="backup-export"], #settingsGrid [data-act="import-files"], #settingsGrid [data-act="web-open"], [data-act="restore-source"], [data-act="remove-source"], .relayAjusteBoton, #searchField > span:nth-child(3), #relayWeb .boton, #relayDescargas .rdBoton, [data-act="online-queue"], [data-act="online-import"], [data-act="toggle-service"], [data-act="play-album"] { transition: background 160ms, border-color 160ms, color 160ms, box-shadow 220ms, opacity 160ms, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4) !important; }
+#settingsGrid [data-act="reload-sources"]:hover, #settingsGrid [data-act="add-source"]:hover, #settingsGrid [data-act="import-playlist"]:hover, #settingsGrid [data-act="library-save"]:hover, #settingsGrid [data-act="backup-import"]:hover, #settingsGrid [data-act="backup-export"]:hover, #settingsGrid [data-act="import-files"]:hover, #settingsGrid [data-act="web-open"]:hover, [data-act="restore-source"]:hover, [data-act="remove-source"]:hover, .relayAjusteBoton:hover, #searchField > span:nth-child(3):hover, #relayWeb .boton:hover, #relayDescargas .rdBoton:hover, [data-act="online-queue"]:hover, [data-act="online-import"]:hover, [data-act="toggle-service"]:hover, [data-act="play-album"]:hover { translate: 0px -1px; }
+#settingsGrid [data-act="reload-sources"]:active, #settingsGrid [data-act="add-source"]:active, #settingsGrid [data-act="import-playlist"]:active, #settingsGrid [data-act="library-save"]:active, #settingsGrid [data-act="backup-import"]:active, #settingsGrid [data-act="backup-export"]:active, #settingsGrid [data-act="import-files"]:active, #settingsGrid [data-act="web-open"]:active, [data-act="restore-source"]:active, [data-act="remove-source"]:active, .relayAjusteBoton:active, #searchField > span:nth-child(3):active, #relayWeb .boton:active, #relayDescargas .rdBoton:active, [data-act="online-queue"]:active, [data-act="online-import"]:active, [data-act="toggle-service"]:active, [data-act="play-album"]:active { translate: 0px; scale: var(--botaX,.88) var(--botaY,.82); transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+[data-act="open-album"], [data-act="open-artist"] { --botaX: .96; --botaY: .96; }
+[data-act="open-album"]:not(.relayAlb):active:not(:has([data-act]:active)), [data-act="open-artist"]:active:not(:has([data-act]:active)) { scale: 0.96; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+#albumSearchScope, #artistSearchScope { position: relative; }
+#albumSearchScope > [data-act="set-search-field"], #artistSearchScope > [data-act="set-search-field"] { position: relative; z-index: 1; --botaX: .9; --botaY: .84; background: transparent !important; border-color: transparent !important; box-shadow: none !important; transition: color 240ms, scale 90ms !important; }
+#albumSearchScope > [data-act="set-search-field"]:hover, #artistSearchScope > [data-act="set-search-field"]:hover { color: rgb(242, 242, 244) !important; }
+#albumSearchScope > [data-act="set-search-field"]:active, #artistSearchScope > [data-act="set-search-field"]:active { scale: 0.9 0.84; }
+#albumSearchScope:has(> .relayChipYa) > [data-act="set-search-field"], #artistSearchScope:has(> .relayChipYa) > [data-act="set-search-field"] { color: rgba(238, 238, 244, 0.5) !important; font-weight: 500 !important; }
+.relayPildora { position: absolute; z-index: 0; top: 3px; bottom: 3px; left: 3px; width: 0px; box-sizing: border-box; border-radius: 10px; pointer-events: none; background: linear-gradient(100deg,rgba(var(--t0,255,42,58),.26),rgba(var(--t1,196,18,32),.16)); border: 1px solid rgba(var(--t0,255,42,58),.45); box-shadow: inset 0 1px 0 rgba(255,255,255,.14),0 0 18px -6px rgba(var(--t0,255,42,58),.65); transition: left 360ms cubic-bezier(0.3, 1.25, 0.4, 1), width 360ms cubic-bezier(0.3, 1.25, 0.4, 1), opacity 200ms; }
+@keyframes relayFiltra { 
+  0% { opacity: 0.25; transform: translateY(8px); }
+  100% { opacity: 1; transform: none; }
+}
+#searchField, #albumSearchField, #artistSearchField, #onlineSearchField { cursor: text; transition: border-color 200ms, box-shadow 240ms, background 200ms !important; }
+#searchField:hover, #albumSearchField:hover, #artistSearchField:hover, #onlineSearchField:hover { border-color: rgba(255, 255, 255, 0.24) !important; }
+@keyframes relayMenuBaja { 
+  0% { clip-path: inset(0px 0px 100%); }
+  100% { clip-path: inset(0px); }
+}
+@keyframes relayMenuFila { 
+  0% { opacity: 0; transform: translateY(-7px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayMenuPunto { 
+  0%, 100% { box-shadow: 0 0 6px 0 rgba(var(--t0,255,42,58),.6); }
+  50% { box-shadow: 0 0 14px 2px rgba(var(--t0,255,42,58),.95); }
+}
+@keyframes relayMandoPulsa { 
+  0% { transform: none; }
+  40% { transform: scale(0.6) rotate(-35deg); }
+  100% { transform: none; }
+}
+@keyframes relayAutoEnciende { 
+  0% { transform: scale(0.35) rotate(-60deg); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes relayAutoApaga { 
+  0% { transform: scale(0.35) rotate(60deg); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+[data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { scale: 0.84 0.76; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+@supports (transition-timing-function:linear(0,1)) {[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child { --resorte: linear(
+          0,.0723,.2556,.4981,.7523,.9801,1.1565,1.2692,1.3179,1.311,
+          1.2628,1.1897,1.1078,1.0305,.9674,.9239,.9012,.8976,.909,
+          .9302,.9561,.9819,1.004,1.0203,1
+        ); }}
+@media (prefers-reduced-motion: reduce) {[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child, [data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { transition: background 140ms ease-out, border-color 140ms ease-out !important; }
+[data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { scale: 0.92; }}
+#albumSearchField > span:nth-child(3), #artistSearchField > span:nth-child(3) { display: none !important; }
+@keyframes relayArtLate { 
+  0%, 100% { scale: 1; opacity: 0.6; }
+  50% { scale: 1.12; opacity: 0.9; }
+}
+@keyframes relayArtBrillo { 
+  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: rotate(16deg) translate3d(420px, 0px, 0px); opacity: 0; }
+}
+#albumGrid { padding: 22px 80px 96px 8px !important; }
+#albumsCuerpo div:has(> #albumSearchScope) { margin-right: 88px; }
+#albumGrid [data-act="open-album"], #artistGrid [data-act="open-artist"] { content-visibility: auto; contain-intrinsic-size: auto 320px; overflow-clip-margin: 90px; }
+#albumGrid .relayAlb { cursor: pointer; }
+#albumGrid .relayAlb:hover { z-index: 3; }
+#albumGrid .relayAlbHalo { position: absolute; z-index: 0; inset: 8% 6% -6%; border-radius: 20px; pointer-events: none; filter: blur(22px) saturate(1.5); opacity: 0.4; transform: scale(0.94); transition: opacity 0.4s, transform 0.5s cubic-bezier(0.34, 1.45, 0.64, 1), filter 0.4s; background-size: cover !important; background-position: center center !important; }
+#albumGrid .relayAlbDisco { position: absolute; z-index: 1; top: 5%; bottom: 5%; left: 5%; aspect-ratio: 1 / 1; border-radius: 50%; pointer-events: none; background-image: ; background-position-x: ; background-position-y: ; background-size: ; background-repeat: ; background-attachment: ; background-origin: ; background-clip: ; background-color: rgb(13, 13, 15); box-shadow: rgba(0, 0, 0, 0.95) 0px 18px 34px -16px, rgba(255, 255, 255, 0.14) 0px 0px 0px 1px, rgba(0, 0, 0, 0.55) 0px 0px 30px inset; transition: translate 0.55s cubic-bezier(0.34, 1.45, 0.64, 1), rotate 1.1s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s; }
+#albumGrid .relayAlbTapa { position: absolute; z-index: 2; inset: 0px; border-radius: 10px; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px, rgba(0, 0, 0, 0.9) 0px 12px 28px -16px; outline: transparent solid 2px; outline-offset: 3px; transition: transform 0.38s cubic-bezier(0.34, 1.45, 0.64, 1), box-shadow 0.3s, scale 0.12s, outline-color 0.25s; background-size: cover !important; background-position: center center !important; }
+#albumGrid .relayAlbTapa::before { content: ""; position: absolute; inset: 0px; z-index: 3; border-radius: inherit; pointer-events: none; box-shadow: rgba(255, 255, 255, 0.07) 0px 0px 0px 1px inset; }
+#albumGrid .relayAlb:hover .relayAlbTapa { transform: translateY(-5px); box-shadow: rgba(0, 0, 0, 0.9) 6px 0px 22px -8px, rgba(0, 0, 0, 0.95) 0px 24px 40px -18px; }
+#albumGrid .relayAlb:hover .relayAlbHalo { opacity: 0.95; transform: translateY(8px) scale(1.06); filter: blur(26px) saturate(1.8); }
+#albumGrid .relayAlb:hover .relayAlbDisco { translate: 34% -5px; rotate: 140deg; box-shadow: 0 22px 40px -16px rgba(0,0,0,.95),0 0 0 1px rgba(var(--estAcento,var(--t0,255,42,58)),.45),
+                 0 0 34px -10px rgba(var(--estAcento,var(--t0,255,42,58)),.8),inset 0 0 30px rgba(0,0,0,.55); }
+#albumGrid .relayAlbSonando:hover .relayAlbDisco { animation: 3.2s linear 0s infinite normal none running relayEstGira; }
+@keyframes relayEstGira { 
+  100% { rotate: 360deg; }
+}
+@keyframes relayAlbRebote { 
+  0% { scale: 0.95; }
+  45% { scale: 1.035; }
+  72% { scale: 0.99; }
+  100% { scale: 1; }
+}
+@keyframes relayAlbAro { 
+  100% { opacity: 0; box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 14px inset; }
+}
+#albumGrid .relayAlbPlay, #albumGrid .relayAlbMas { position: absolute; z-index: 4; bottom: 10px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; opacity: 0; transform: translateY(6px) scale(0.9); transition: opacity 0.2s, transform 0.3s cubic-bezier(0.34, 1.45, 0.64, 1), background 0.16s, box-shadow 0.2s, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4), scale 90ms !important; }
+#albumGrid .relayAlbPlay { left: 10px; width: 38px; height: 38px; background: linear-gradient(100deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32))); box-shadow: 0 8px 22px -8px rgba(var(--t0,255,42,58),1),inset 0 1px 0 rgba(255,255,255,.3); }
+#albumGrid .relayAlbPlay::before { width: 15px !important; height: 15px !important; margin: 0px 0px 0px 0.6px !important; }
+#albumGrid .relayAlbMas { right: 10px; width: 30px; height: 30px; color: rgb(255, 255, 255); background: rgba(20, 18, 24, 0.55); backdrop-filter: blur(12px); box-shadow: rgba(255, 255, 255, 0.12) 0px 0px 0px 1px inset; }
+#albumGrid .relayAlbMas::before { content: ""; width: 3.6px; height: 3.6px; border-radius: 50%; background: currentcolor; box-shadow: currentcolor -6px 0px 0px, currentcolor 6px 0px 0px; }
+#albumGrid .relayAlb:hover .relayAlbPlay, #albumGrid .relayAlb:hover .relayAlbMas { opacity: 1; transform: none; }
+#albumGrid .relayAlbPlay:hover { background: linear-gradient(100deg,rgb(var(--t2,255,90,99)),rgb(var(--t1,196,18,32))); box-shadow: 0 0 0 5px rgba(var(--t0,255,42,58),.18),0 10px 26px -6px rgba(var(--t0,255,42,58),1),inset 0 1px 0 rgba(255,255,255,.4); transform: scale(1.1) !important; }
+#albumGrid .relayAlbMas:hover { background: rgba(255, 255, 255, 0.22); transform: scale(1.1) !important; }
+#albumGrid .relayAlbPlay:active, #albumGrid .relayAlbMas:active { scale: 0.86; }
+#albumGrid .relayAlbSuena { padding: 5px 6px; border-radius: 7px; box-sizing: content-box; z-index: 4; background: rgba(10, 8, 12, 0.6); backdrop-filter: blur(10px); }
+#albumGrid .relayAlbPin { position: absolute; z-index: 4; left: 8px; top: 8px; width: 26px; height: 26px; border-radius: 8px; cursor: pointer; display: none; align-items: center; justify-content: center; color: rgb(var(--t0,255,42,58)); background: rgba(12, 10, 16, 0.62); backdrop-filter: blur(10px); box-shadow: 0 0 0 1px rgba(var(--t0,255,42,58),.45),0 4px 12px -4px rgba(0,0,0,.8); transition: transform 0.3s cubic-bezier(0.34, 1.45, 0.64, 1), background 0.18s, color 0.18s, box-shadow 0.2s, opacity 0.25s; }
+#albumGrid .relayAlbPin::before { content: ""; width: 14px; height: 14px; background: currentcolor; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15 4.5V9c0 1.6.9 3 2.3 3.6l.7.3V15h-5v5.5L12 22l-1-1.5V15H6v-2.1l.7-.3C8.1 12 9 10.6 9 9V4.5H8a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2z'/%3E%3C/svg%3E") center center / contain no-repeat; }
+#albumGrid .relayAlbPin:hover { color: rgb(255, 255, 255); background: rgb(var(--t0,255,42,58)); transform: scale(1.1); box-shadow: 0 0 0 1px rgba(255,255,255,.25),0 0 18px -2px rgba(var(--t0,255,42,58),1); }
+#albumGrid .relayAlbPin:active { transform: scale(0.9); }
+@keyframes relayDetEntra { 
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+@keyframes relayNpVaga { 
+  0% { transform: translate3d(-3px, -2px, 0px) scale(1); }
+  35% { transform: translate3d(3px, -4px, 0px) scale(1.05); }
+  70% { transform: translate3d(4px, 3px, 0px) scale(1.01); }
+  100% { transform: translate3d(-3px, -2px, 0px) scale(1); }
+}
+@keyframes relayAlbVagaUno { 
+  0% { transform: translate3d(-4px, -3px, 0px) scale(1); opacity: 0.74; }
+  35% { transform: translate3d(4px, -5px, 0px) scale(1.07); opacity: 0.98; }
+  70% { transform: translate3d(5px, 4px, 0px) scale(1.02); opacity: 0.8; }
+  100% { transform: translate3d(-4px, -3px, 0px) scale(1); opacity: 0.74; }
+}
+@keyframes relayAlbVagaDos { 
+  0% { transform: translate3d(3px, 4px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.5; }
+  40% { transform: translate3d(-5px, 2px, 0px) scale(1) rotate(-1.4deg); opacity: 0.72; }
+  75% { transform: translate3d(2px, -5px, 0px) scale(1.07) rotate(0.8deg); opacity: 0.46; }
+  100% { transform: translate3d(3px, 4px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.5; }
+}
+@keyframes relayAlbFilo { 
+  0%, 100% { opacity: 0.38; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.02); }
+}
+@keyframes relayAlbLustre { 
+  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+  8% { opacity: 0.85; }
+  40% { opacity: 0.85; }
+  52%, 100% { transform: rotate(16deg) translate3d(560px, 0px, 0px); opacity: 0; }
+}
+@keyframes relayAlbGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes relayAlbLatido { 
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.6; }
+}
+@keyframes relayFlotaEntra { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes relayFlotaSale { 
+  100% { opacity: 0; }
+}
+:root { --sinCaratula: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cg opacity='.93'%3E%3Cpath d='M20.4 34.6V18.9l13.2-2.8v15.7' fill='none' stroke='%23F7F7F8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cellipse cx='17.4' cy='34.9' rx='3.9' ry='3.2' fill='%23F7F7F8' transform='rotate(-14 17.4 34.9)'/%3E%3Cellipse cx='30.6' cy='31.9' rx='3.9' ry='3.2' fill='%23F7F7F8' transform='rotate(-14 30.6 31.9)'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat,
+        linear-gradient(135deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32)) 55%,rgb(var(--t10,94,8,16))); }
+@keyframes tmSube { 
+  0% { opacity: 0; transform: translateY(16px) scale(0.985); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes tmEntra { 
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes tmLate { 
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0); }
+  50% { box-shadow: 0 0 22px 2px rgba(var(--t0,255,42,58),.45); }
+}
+@property --tmGiro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes tmGiro { 
+  100% { --tmGiro: 360deg; }
+}
+@keyframes sbSube { 
+  0% { opacity: 0; transform: translateY(14px) scale(0.985); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sbAparece { 
+  0% { opacity: 0; transform: scale(0.72); }
+  60% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sbBarras { 
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+@keyframes sbAnillo { 
+  0% { opacity: 0.9; transform: scale(0.96); }
+  100% { opacity: 0; transform: scale(1.14); }
+}
+@keyframes sbBrillo { 
+  0%, 100% { box-shadow: 0 0 0 2px rgba(var(--t0,255,42,58),.95),0 0 28px 2px rgba(var(--t0,255,42,58),.55),0 22px 50px -18px rgba(var(--t0,255,42,58),.9); }
+  50% { box-shadow: 0 0 0 2px rgba(var(--t2,255,90,99),1),0 0 40px 6px rgba(var(--t0,255,42,58),.7),0 22px 60px -16px rgba(var(--t0,255,42,58),1); }
+}
+@keyframes sbAvance { 
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+@keyframes sbBarrido { 
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+@keyframes sbRespira { 
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.8; }
+}
+@keyframes sbDestella { 
+  0% { background: rgba(var(--t0,255,42,58),.32); }
+  100% { background: transparent; }
+}
+@keyframes sbSalta { 
+  0% { transform: scale(1); }
+  40% { transform: scale(1.35); background: rgb(var(--t0,255,42,58)); color: rgb(255, 255, 255); }
+  100% { transform: scale(1); }
+}
+.scp0:hover { border-color: rgba(255, 255, 255, 0.24) !important; }
+@keyframes ralbdrift { 
+  0% { transform: translate3d(0px, 0px, 0px) scale(1); opacity: 0.7; }
+  22% { transform: translate3d(110px, -70px, 0px) scale(1.2); opacity: 1; }
+  48% { transform: translate3d(-60px, -130px, 0px) scale(1.02); opacity: 0.55; }
+  72% { transform: translate3d(80px, 60px, 0px) scale(1.24); opacity: 0.95; }
+  100% { transform: translate3d(0px, 0px, 0px) scale(1); opacity: 0.7; }
+}
+@keyframes ralbdrift2 { 
+  0% { transform: translate3d(0px, 0px, 0px) scale(1.06); opacity: 0.5; }
+  26% { transform: translate3d(-140px, 90px, 0px) scale(1.24); opacity: 1; }
+  54% { transform: translate3d(70px, 140px, 0px) scale(0.94); opacity: 0.68; }
+  82% { transform: translate3d(-90px, -60px, 0px) scale(1.16); opacity: 0.92; }
+  100% { transform: translate3d(0px, 0px, 0px) scale(1.06); opacity: 0.5; }
+}
+@keyframes ralbeq { 
+  0%, 100% { transform: scaleY(0.26); }
+  50% { transform: scaleY(1); }
+}
+@keyframes ralbspin { 
+  100% { transform: rotate(360deg); }
+}
+#albumGrid .relayAlb[data-id="demo0"]:not(:hover):not(.relayAlbSoltando) .relayAlbTapa, #albumGrid .relayAlb[data-id="demo1"]:not(:hover):not(.relayAlbSoltando) .relayAlbTapa { outline-color: rgba(var(--t0,255,42,58),.75) !important; box-shadow: 0 0 22px -6px rgba(var(--t0,255,42,58),.8),0 12px 28px -16px rgba(0,0,0,.9) !important; }
+#albumGrid .relayAlb[data-id="demo0"] .relayAlbPin, #albumGrid .relayAlb[data-id="demo1"] .relayAlbPin { display: flex; }
+html,body{margin:0;overflow:hidden;background:transparent}
+
+</style>
+</head>
+<body >
+
+<div id="dc-root"><div class="sc-host" data-sc-name="RelayAlbums"><div data-dc-tpl="3" id="albumsRoot" style="position: relative; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; background: linear-gradient(165deg, rgb(11, 11, 12), rgb(5, 5, 6) 60%, rgb(3, 3, 4)); font-family: Inter, system-ui, sans-serif; color: rgb(247, 247, 248);">
+
+  <div data-dc-tpl="4" style="position: absolute; left: -280px; top: -340px; width: 900px; height: 900px; background: radial-gradient(circle at center,rgba(var(--t1,196,18,32),.5),rgba(var(--t1,196,18,32),0) 68%); filter: blur(60px); animation: 21s ease-in-out 0s infinite normal none running ralbdrift; pointer-events: none;"></div>
+  <div data-dc-tpl="5" style="position: absolute; right: -240px; top: -200px; width: 800px; height: 800px; background: radial-gradient(circle at center,rgba(var(--t0,255,42,58),.3),rgba(var(--t0,255,42,58),0) 66%); filter: blur(70px); animation: 25s ease-in-out 3s infinite normal none running ralbdrift2; pointer-events: none;"></div>
+
+  <div data-dc-tpl="6" id="albumsCuerpo" style="position: relative; width: 100%; height: 100%; box-sizing: border-box; padding: 22px 32px 0px; display: flex; flex-direction: column; overflow: hidden;">
+
+    <div data-dc-tpl="7" style="display: flex; align-items: flex-end; gap: 16px; flex: 0 0 auto; min-width: 0px;">
+      <div data-dc-tpl="8" style="min-width: 0px;">
+        <h3 data-dc-tpl="9" id="albumsTitle" style="margin-top:-3px;margin-right:0px;margin-bottom:-0.22em;margin-left:0px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variant-alternates:normal;font-size-adjust:none;font-language-override:normal;font-kerning:auto;font-optical-sizing:auto;font-feature-settings:normal;font-variation-settings:normal;font-variant-position:normal;font-variant-emoji:normal;font-weight:800;font-stretch:normal;font-size:26px;line-height:1;font-family:Inter, sans-serif;padding-top:3px;padding-right:0px;padding-bottom:0.22em;padding-left:0px;letter-spacing:-0.025em;background-image:linear-gradient(100deg, rgb(255, 255, 255) 10%, rgb(var(--t3,255,154,162)) 55%, rgb(var(--t0,255,42,58)));background-position-x:0%;background-position-y:0%;background-size:auto;background-repeat:repeat;background-attachment:scroll;background-origin:padding-box;background-clip:text;background-color:rgba(0, 0, 0, 0);color:transparent;width:fit-content;max-width:100%;white-space-collapse:collapse;text-wrap-mode:nowrap;overflow-x:hidden;overflow-y:hidden;text-overflow:ellipsis">Albums</h3>
+        <div data-dc-tpl="10" id="albumsSummary" style="margin: -3px 0px; font: 500 12px / 1 Inter, sans-serif; padding: 3px 0px; color: rgba(238, 238, 244, 0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">16 albums · 186 songs</span></div>
+      </div>
+
+      <div data-dc-tpl="11" style="margin-left: auto; display: flex; align-items: center; gap: 10px; flex: 0 0 auto;">
+        <div data-dc-tpl="12" id="albumSearchField" data-act="search" class="scp0" style="display: flex; align-items: center; gap: 9px; width: 274px; min-width: 150px; height: 38px; box-sizing: border-box; padding: 0px 11px 0px 13px; border-radius: 13px; background: rgba(15, 15, 16, 0.62); backdrop-filter: blur(30px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.14); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); cursor: text;">
+          <div data-dc-tpl="13" style="width: 11px; height: 11px; border: 1.6px solid rgba(238, 238, 244, 0.5); border-radius: 50%; flex: 0 0 auto;"></div>
+          <span data-dc-tpl="14" id="albumSearchLabel" style="font: 500 12.5px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.4); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Search albums</span></span>
+          <span data-dc-tpl="15" style="margin-left: auto; padding: 3px 6px; border-radius: 6px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); font: 500 9.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.45); flex: 0 0 auto;">Ctrl K</span>
+        </div>
+        <div data-dc-tpl="16" id="albumSearchScope" style="display: flex; align-items: center; gap: 3px; height: 38px; box-sizing: border-box; padding: 3px; border-radius: 13px; background: rgba(15, 15, 16, 0.62); backdrop-filter: blur(30px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); flex: 0 0 auto;">
+          
+            <span data-dc-tpl="18" data-act="set-search-field" data-id="all" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; background: linear-gradient(100deg,rgba(var(--t0,255,42,58),.24),rgba(var(--t1,196,18,32),.16)); border: 1px solid rgba(var(--t0,255,42,58),.42); box-shadow: rgba(255, 255, 255, 0.14) 0px 1px 0px inset; font: 600 11px / 1 Inter, sans-serif; color: rgb(var(--t3,255,154,162));"><span class="sc-interp">All</span></span>
+          
+            <span data-dc-tpl="18" data-act="set-search-field" data-id="album" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Album</span></span>
+          
+            <span data-dc-tpl="18" data-act="set-search-field" data-id="single" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Single</span></span>
+          
+            <span data-dc-tpl="18" data-act="set-search-field" data-id="artist" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Artist</span></span>
+          
+        <i class="relayPildora" style="left: 3px; width: 38px; opacity: 1;"></i></div>
+      </div>
+    </div>
+
+    <div data-dc-tpl="19" style="position: relative; margin-top: 18px; flex: 1 1 0%; min-height: 0px; display: flex; flex-direction: column;">
+
+      
+        <div data-dc-tpl="21" id="albumGrid" style="flex: 1 1 0%; min-height: 0px; display: grid; align-content: start; gap: 26px 30px; padding: 2px 4px 44px 0px; box-sizing: border-box; overflow: hidden auto; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));">
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo0" data-tinta="" data-acento="255,95,109" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,95,109;" data-tenido="demo0">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a0.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a0.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo0" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Neon Prayer</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Vela Monroe</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2023</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo1" data-tinta="" data-acento="0,198,255" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 0,198,255;" data-tenido="demo1">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a1.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a1.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo1" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Salt &amp; Satellites</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">The Harbor Kids</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2019</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo2" data-tinta="" data-acento="247,151,30" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 247,151,30;" data-tenido="demo2">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a2.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a2.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo2" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Glass Hours</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Odessa Wynn</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2021</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb relayAlbSonando" data-act="open-album" data-id="demo3" data-tinta="" data-acento="196,113,245" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 196,113,245;" data-tenido="demo3">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a3.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a3.jpg&quot;) center center / cover;">
+                  
+                    <div data-dc-tpl="29" class="relayAlbSuena" style="position: absolute; right: 9px; top: 9px; display: flex; align-items: flex-end; gap: 2.5px; height: 13px; pointer-events: none;">
+                      <div data-dc-tpl="30" style="width: 2.5px; height: 100%; border-radius: 1px; background: rgb(var(--t0,255,42,58)); transform-origin: center bottom; animation: 0.9s ease-in-out 0s infinite normal none running ralbeq;"></div>
+                      <div data-dc-tpl="31" style="width: 2.5px; height: 100%; border-radius: 1px; background: rgb(var(--t2,255,90,99)); transform-origin: center bottom; animation: 0.7s ease-in-out 0.15s infinite normal none running ralbeq;"></div>
+                      <div data-dc-tpl="32" style="width: 2.5px; height: 100%; border-radius: 1px; background: rgb(var(--t4,255,143,152)); transform-origin: center bottom; animation: 1.1s ease-in-out 0.3s infinite normal none running ralbeq;"></div>
+                    </div>
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo3" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(var(--t0,255,42,58));"><span class="sc-interp">Low Orbit</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">KAITO</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2024</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo4" data-tinta="" data-acento="67,233,123" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 67,233,123;" data-tenido="demo4">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a4.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a4.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo4" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Paper Summer</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">June Alvarez</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2018</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo5" data-tinta="" data-acento="238,9,121" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 238,9,121;" data-tenido="demo5">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a5.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a5.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo5" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Midnight Static</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Rue Delmar</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2020</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo6" data-tinta="" data-acento="168,237,234" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 168,237,234;" data-tenido="demo6">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a6.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a6.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo6" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Cobalt</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Isle Fever</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2022</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo7" data-tinta="" data-acento="252,70,107" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 252,70,107;" data-tenido="demo7">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a7.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a7.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo7" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Soft Machines</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Tomás Ferrer</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2017</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo8" data-tinta="" data-acento="248,181,0" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 248,181,0;" data-tenido="demo8">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a8.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a8.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo8" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Golden Hour Tapes</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Marlowe</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2016</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo9" data-tinta="" data-acento="17,153,142" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 17,153,142;" data-tenido="demo9">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a9.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a9.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo9" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Afterglow District</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">NOVA ARC</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2025</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo10" data-tinta="" data-acento="224,195,252" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 224,195,252;" data-tenido="demo10">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a10.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a10.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo10" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Velvet Weather</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Lenka Hart</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2021</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo11" data-tinta="" data-acento="255,154,158" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,154,158;" data-tenido="demo11">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a11.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a11.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo11" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Heavy Bloom</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Saint Juniper</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2019</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo12" data-tinta="" data-acento="255,95,109" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,95,109;" data-tenido="demo12">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a12.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a12.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo12" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Daydream Freeway</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Polar Youth</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2023</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo13" data-tinta="" data-acento="0,198,255" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 0,198,255;" data-tenido="demo13">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a13.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a13.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo13" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Ritual</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Amari Kaye</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2020</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo14" data-tinta="" data-acento="247,151,30" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 247,151,30;" data-tenido="demo14">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a14.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a14.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo14" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Echo Park Sessions</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Wren &amp; Wolf</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2015</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo15" data-tinta="" data-acento="196,113,245" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 196,113,245;" data-tenido="demo15">
+              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a15.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="26" class="relayAlbDisco"></div>
+                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a15.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo15" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
+                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Second Sun</span></span>
+                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Halcyon Drive</span></span>
+                  
+                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2024</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+        </div>
+        <div data-dc-tpl="43" id="albumScrollFade" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 44px; background: linear-gradient(rgba(6, 6, 7, 0), rgba(4, 4, 5, 0.9)); pointer-events: none; z-index: 2;"></div>
+      
+
+      
+
+      
+
+    </div>
+  </div></div></div></div>
+
+
+
+<input id="relayBuscador" type="text" spellcheck="false" placeholder="Search albums" style="display: block; left: 366.5px; top: 38px; width: 227px;">
+<script src="tema.js"></script>
+<script>
+/* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
+   al bajar por la web se quedaba uno atascado en una lista. */
+addEventListener("wheel", (e) => {
+  if (top !== window) { e.preventDefault(); try { top.scrollBy(0, e.deltaY); } catch (x) { } }
+}, { passive: false });
+</script>
+</body>
+</html>
