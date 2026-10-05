@@ -421,8 +421,11 @@ section { padding: 96px 0 0; }
 .letra-app .ventanal { position: relative; height: 330px; margin-top: 16px; overflow: hidden;
   -webkit-mask: linear-gradient(transparent, #000 22%, #000 78%, transparent); mask: linear-gradient(transparent, #000 22%, #000 78%, transparent); }
 .letra-app .rollo { position: absolute; left: 0; right: 0; top: 0; transition: translate .9s cubic-bezier(.22, 1, .36, 1); }
+/* Como en la app: un verso largo baja a otra linea en vez de salirse por los
+   lados; y deja aire a los lados para crecer al sonar sin cortarse. */
 .letra-app .verso {
-  height: 52px; display: flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 52px; box-sizing: border-box; padding: 6px 7%;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; align-content: center; text-align: center;
   font: 700 clamp(17px, 2vw, 24px)/1.15 Inter, sans-serif; letter-spacing: -.02em;
   color: rgba(238, 238, 244, .3); filter: blur(1.4px); scale: .94;
   transition: color .6s, filter .6s, scale .7s cubic-bezier(.22, 1, .36, 1);
@@ -1169,8 +1172,17 @@ const seVe = (el) => enVista.get(el) !== false && !document.hidden;
     const pals = versos[i].querySelectorAll(".pal");
     const dura = 2600;
     pals.forEach((p, k) => { p.style.setProperty("--t", (k * dura / pals.length / 1000) + "s"); p.style.setProperty("--d", (dura / pals.length / 1000) + "s"); });
-    rollo.style.translate = "0 " + (165 - 26 - i * 52) + "px";
+    centrar();
   }
+  // El verso que suena, en el centro del recuadro: midiendolo, porque los que
+  // bajan a dos lineas son mas altos.
+  const ventanal = caja.querySelector(".ventanal");
+  function centrar() {
+    const v = versos[i];
+    rollo.style.translate = "0 " + Math.round(ventanal.clientHeight / 2 - (v.offsetTop + v.offsetHeight / 2)) + "px";
+  }
+  new ResizeObserver(centrar).observe(ventanal);
+  document.fonts?.ready.then(centrar);
   poner();
   if (!quieto) {
     setInterval(() => { if (seVe(caja)) { i = (i + 1) % versos.length; poner(); } }, 3000);
