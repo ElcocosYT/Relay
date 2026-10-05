@@ -1,0 +1,887 @@
+<!doctype html>
+<html data-sinluz="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relay · Sidebar</title>
+<!-- Generado por tools/demos-web/capturar.mjs desde la aplicacion. No editar a mano. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+@keyframes sc-shine { 
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@media print {#dc-root, #dc-root > .sc-host { height: auto; }
+*, ::before, ::after { print-color-adjust: exact; backdrop-filter: none !important; animation-delay: -99s !important; animation-duration: 0.001s !important; animation-iteration-count: 1 !important; animation-fill-mode: both !important; animation-play-state: running !important; transition-duration: 0s !important; }}
+html { font-variant-numeric: tabular-nums; }
+html, body { margin: 0px; padding: 0px; height: 100%; background: transparent; overflow: hidden; }
+@keyframes relayLatido { 
+  0% { opacity: 0.01; }
+  100% { opacity: 0.02; }
+}
+html::after { content: ""; position: fixed; left: 0px; top: 0px; width: 1px; height: 1px; pointer-events: none; background: rgb(0, 0, 0); animation: 1s linear 0s infinite alternate none running relayLatido; }
+:root { --relayCristal: linear-gradient(150deg,rgba(15,15,16,.6),rgba(9,9,10,.42)); }
+#dc-root, #dc-root > div, dc-root, dc-root > div { height: 100%; }
+#playerBarRoot, #sidebarRoot, #libraryRoot { user-select: none; }
+#sidebarRoot { padding-bottom: 108px !important; }
+#sidebarRoot > div:nth-child(2) { margin-top: auto !important; }
+#libraryRoot, #sidebarRoot, #playerBarRoot, #nowPlayingRoot, #albumsRoot, #artistsRoot, #onlineRoot, #mixerRoot, #settingsRoot { background: transparent !important; }
+@keyframes relayNpVerEntra { 
+  0% { opacity: 0; transform: translateX(8px) scale(0.9); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayNpVerNombre { 
+  0% { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayWebVa { 
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(290%); }
+}
+@keyframes relayWebSeRecoge { 
+  100% { transform: translate(calc(-50% - 42vw), -4%) scale(0.3); opacity: 0; }
+}
+@keyframes relayWebVeloSeVa { 
+  100% { opacity: 0; }
+}
+#sidebarRoot > div:nth-child(2) { order: 2; }
+#sidebarRoot:has(> #relayDescargas:not(:empty)) > div:nth-child(2) { margin-top: 0px !important; }
+@keyframes relayRdLate { 
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+div:has(> div > #relayMasDer) { align-content: start; }
+div:has(> #relayMasDer) { align-self: stretch; }
+@keyframes relaySenala { 
+  0%, 100% { outline-color: rgba(var(--t0,255,42,58),0); }
+  25%, 75% { outline-color: rgba(var(--t0,255,42,58),.95); }
+}
+@keyframes relayMenuEntra { 
+  0% { opacity: 0; transform: translateY(-4px) scale(0.97); }
+  100% { opacity: 1; transform: none; }
+}
+html { user-select: none; }
+@keyframes relayResorte { 
+  0% { transform: scale(1); }
+  35% { transform: scale(0.93); }
+  70% { transform: scale(1.045); }
+  100% { transform: scale(1); }
+}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
+@property --relayFinal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --relayTope { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@keyframes relayListaEntra { 
+  0% { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes rioGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes rioEntra { 
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes rioLate { 
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@keyframes relayQvVelo { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes relayQvCaja { 
+  0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayExtraEntra { 
+  0% { opacity: 0; scale: 0.3; filter: blur(3px); }
+  55% { opacity: 1; filter: none; }
+  100% { opacity: 1; scale: 1; }
+}
+@keyframes relayExtraSale { 
+  100% { opacity: 0; scale: 0.3; }
+}
+@keyframes relayGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes relayBarrido { 
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes relayMandoEntra { 
+  0% { transform: scale(0.35) rotate(-50deg); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes relayMandoGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes relayMandoLate { 
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0),inset 0 1px 0 rgba(255,255,255,.22); }
+  50% { box-shadow: 0 0 16px 1px rgba(var(--t0,255,42,58),.55),inset 0 1px 0 rgba(255,255,255,.22); }
+}
+@keyframes relayVersionLate { 
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0); transform: scale(1); }
+  16% { box-shadow: 0 0 0 4px rgba(var(--t0,255,42,58),.3),0 0 18px 2px rgba(var(--t0,255,42,58),.7); transform: scale(1.14); }
+  32% { transform: scale(1); }
+  48% { box-shadow: 0 0 0 8px rgba(var(--t0,255,42,58),0),0 0 22px 4px rgba(var(--t0,255,42,58),.45); transform: scale(1.07); }
+}
+@keyframes relayElegirEntra { 
+  0% { opacity: 0; transform: translateY(10px) scale(0.985); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayElegirLate { 
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+}
+@keyframes relayElegirSube { 
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayColaVacia { 
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayBarVagaUno { 
+  0% { transform: translate3d(-1px, -1px, 0px) scale(1); opacity: 0.72; }
+  35% { transform: translate3d(1px, -2px, 0px) scale(1.06); opacity: 0.95; }
+  70% { transform: translate3d(2px, 1px, 0px) scale(1.02); opacity: 0.78; }
+  100% { transform: translate3d(-1px, -1px, 0px) scale(1); opacity: 0.72; }
+}
+@keyframes relayBarVagaDos { 
+  0% { transform: translate3d(1px, 1px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.48; }
+  40% { transform: translate3d(-2px, 1px, 0px) scale(1) rotate(-1.4deg); opacity: 0.68; }
+  75% { transform: translate3d(1px, -2px, 0px) scale(1.06) rotate(0.8deg); opacity: 0.44; }
+  100% { transform: translate3d(1px, 1px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.48; }
+}
+@keyframes relayBarLustre { 
+  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+  8% { opacity: 0.85; }
+  40% { opacity: 0.85; }
+  52%, 100% { transform: rotate(16deg) translate3d(140px, 0px, 0px); opacity: 0; }
+}
+[data-act="toggle-mic-mute"], div:has(> #outputTrack) > div:first-child { position: relative; }
+[data-act="toggle-mic-mute"] > div:nth-child(-n+3), div:has(> #outputTrack) > div:first-child > div { display: none !important; }
+[data-act="toggle-mic-mute"]::before, div:has(> #outputTrack) > div:first-child::before { content: ""; position: absolute; inset: -25%; background-color: rgba(240, 240, 244, 0.8); mask-repeat: no-repeat; mask-position: center center; mask-size: contain; }
+div:has(> #outputTrack) > div:first-child::before { mask-image: url("activos/icono-cascos.svg"); }
+[data-act="toggle-mic-mute"], div:has(> #outputTrack) > div:first-child { filter: drop-shadow(rgba(255, 255, 255, 0) 0px 0px 0px); transition: filter 180ms; }
+[data-act="toggle-mic-mute"]::before, div:has(> #outputTrack) > div:first-child::before { transition: background-color 180ms; }
+[data-act="toggle-mic-mute"]:hover, div:has(> #outputTrack) > div:first-child:hover { filter: drop-shadow(rgba(255, 255, 255, 0.7) 0px 0px 6px); }
+[data-act="toggle-mic-mute"]:hover::before, div:has(> #outputTrack) > div:first-child:hover::before { background-color: rgb(252, 252, 253); }
+div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translateX(-6px); }
+@keyframes relayBarRebote { 
+  0% { scale: 0.84 0.76; }
+  100% { scale: 1; }
+}
+[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child { --resorte: cubic-bezier(.2,1.5,.3,1); transition: background 140ms ease-out, border-color 140ms ease-out !important; }
+#reloadBtn, #footerActions > [data-act="navigate"] { transition: background 160ms, border-color 160ms, color 160ms, box-shadow 220ms, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4) !important; }
+#reloadBtn:hover, #footerActions > [data-act="navigate"]:hover { translate: 0px -1px; box-shadow: rgba(0, 0, 0, 0.9) 0px 8px 18px -10px; }
+#reloadBtn:active, #footerActions > [data-act="navigate"]:active { translate: 0px; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+#reloadBtn:active { scale: 0.95 0.82; }
+#footerActions > [data-act="navigate"]:active { scale: 0.84 0.78; }
+#reloadBtn { --botaX: .95; --botaY: .82; }
+#footerActions > [data-act="navigate"] { --botaX: .84; --botaY: .78; }
+#navList [data-act="navigate"], #navList [data-act="open-source"] { --botaX: .97; --botaY: .9; }
+#navList [data-act="navigate"]:active, #navList [data-act="open-source"]:active { scale: 0.97 0.9; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+#navList [data-act="navigate"], #navList [data-act="open-source"] { transform-origin: 12% 50%; transition: transform 260ms cubic-bezier(0.2, 0.9, 0.3, 1.25), background 180ms, border-color 180ms, color 180ms, box-shadow 220ms !important; }
+#navList [data-act="navigate"]:hover, #navList [data-act="open-source"]:hover { transform: scale(1.045); }
+#navList [data-act="navigate"], #navList [data-act="open-source"] { border-color: transparent; }
+@keyframes relayFiltra { 
+  0% { opacity: 0.25; transform: translateY(8px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayMenuBaja { 
+  0% { clip-path: inset(0px 0px 100%); }
+  100% { clip-path: inset(0px); }
+}
+@keyframes relayMenuFila { 
+  0% { opacity: 0; transform: translateY(-7px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes relayMenuPunto { 
+  0%, 100% { box-shadow: 0 0 6px 0 rgba(var(--t0,255,42,58),.6); }
+  50% { box-shadow: 0 0 14px 2px rgba(var(--t0,255,42,58),.95); }
+}
+@keyframes relayMandoPulsa { 
+  0% { transform: none; }
+  40% { transform: scale(0.6) rotate(-35deg); }
+  100% { transform: none; }
+}
+#footerActions > [data-act="navigate"] > span { transition: transform 320ms cubic-bezier(0.2, 0.9, 0.3, 1.3); }
+#footerActions > [data-act="navigate"]:hover > span { transform: rotate(90deg); }
+@keyframes relayAutoEnciende { 
+  0% { transform: scale(0.35) rotate(-60deg); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes relayAutoApaga { 
+  0% { transform: scale(0.35) rotate(60deg); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+[data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { scale: 0.84 0.76; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+@supports (transition-timing-function:linear(0,1)) {[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child { --resorte: linear(
+          0,.0723,.2556,.4981,.7523,.9801,1.1565,1.2692,1.3179,1.311,
+          1.2628,1.1897,1.1078,1.0305,.9674,.9239,.9012,.8976,.909,
+          .9302,.9561,.9819,1.004,1.0203,1
+        ); }}
+@media (prefers-reduced-motion: reduce) {[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child, [data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { transition: background 140ms ease-out, border-color 140ms ease-out !important; }
+[data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { scale: 0.92; }}
+@keyframes relayArtLate { 
+  0%, 100% { scale: 1; opacity: 0.6; }
+  50% { scale: 1.12; opacity: 0.9; }
+}
+@keyframes relayArtBrillo { 
+  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: rotate(16deg) translate3d(420px, 0px, 0px); opacity: 0; }
+}
+@keyframes relayEstGira { 
+  100% { rotate: 360deg; }
+}
+@keyframes relayAlbRebote { 
+  0% { scale: 0.95; }
+  45% { scale: 1.035; }
+  72% { scale: 0.99; }
+  100% { scale: 1; }
+}
+@keyframes relayAlbAro { 
+  100% { opacity: 0; box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 14px inset; }
+}
+@keyframes relayDetEntra { 
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+#footerActions [data-act="navigate"][data-id="settings"] { position: relative; }
+#footerActions [data-act="navigate"][data-id="settings"] > span { display: none !important; }
+#footerActions [data-act="navigate"][data-id="settings"]::before { content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; margin: -8px 0px 0px -8px; background-color: rgba(238, 238, 244, 0.62); mask: url("activos/icono-biblioteca.svg") center center / contain no-repeat; transition: background-color 140ms ease-out; }
+#footerActions [data-act="navigate"][data-id="settings"]:hover::before { background-color: rgb(255, 255, 255); }
+@keyframes relayNpVaga { 
+  0% { transform: translate3d(-3px, -2px, 0px) scale(1); }
+  35% { transform: translate3d(3px, -4px, 0px) scale(1.05); }
+  70% { transform: translate3d(4px, 3px, 0px) scale(1.01); }
+  100% { transform: translate3d(-3px, -2px, 0px) scale(1); }
+}
+@keyframes relayAlbVagaUno { 
+  0% { transform: translate3d(-4px, -3px, 0px) scale(1); opacity: 0.74; }
+  35% { transform: translate3d(4px, -5px, 0px) scale(1.07); opacity: 0.98; }
+  70% { transform: translate3d(5px, 4px, 0px) scale(1.02); opacity: 0.8; }
+  100% { transform: translate3d(-4px, -3px, 0px) scale(1); opacity: 0.74; }
+}
+@keyframes relayAlbVagaDos { 
+  0% { transform: translate3d(3px, 4px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.5; }
+  40% { transform: translate3d(-5px, 2px, 0px) scale(1) rotate(-1.4deg); opacity: 0.72; }
+  75% { transform: translate3d(2px, -5px, 0px) scale(1.07) rotate(0.8deg); opacity: 0.46; }
+  100% { transform: translate3d(3px, 4px, 0px) scale(1.03) rotate(1.4deg); opacity: 0.5; }
+}
+@keyframes relayAlbFilo { 
+  0%, 100% { opacity: 0.38; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.02); }
+}
+@keyframes relayAlbLustre { 
+  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+  8% { opacity: 0.85; }
+  40% { opacity: 0.85; }
+  52%, 100% { transform: rotate(16deg) translate3d(560px, 0px, 0px); opacity: 0; }
+}
+@keyframes relayAlbGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes relayAlbLatido { 
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.6; }
+}
+@keyframes relayFlotaEntra { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes relayFlotaSale { 
+  100% { opacity: 0; }
+}
+:root { --sinCaratula: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cg opacity='.93'%3E%3Cpath d='M20.4 34.6V18.9l13.2-2.8v15.7' fill='none' stroke='%23F7F7F8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cellipse cx='17.4' cy='34.9' rx='3.9' ry='3.2' fill='%23F7F7F8' transform='rotate(-14 17.4 34.9)'/%3E%3Cellipse cx='30.6' cy='31.9' rx='3.9' ry='3.2' fill='%23F7F7F8' transform='rotate(-14 30.6 31.9)'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat,
+        linear-gradient(135deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32)) 55%,rgb(var(--t10,94,8,16))); }
+@keyframes tmSube { 
+  0% { opacity: 0; transform: translateY(16px) scale(0.985); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes tmEntra { 
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes tmLate { 
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0); }
+  50% { box-shadow: 0 0 22px 2px rgba(var(--t0,255,42,58),.45); }
+}
+@property --tmGiro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes tmGiro { 
+  100% { --tmGiro: 360deg; }
+}
+@keyframes sbSube { 
+  0% { opacity: 0; transform: translateY(14px) scale(0.985); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sbAparece { 
+  0% { opacity: 0; transform: scale(0.72); }
+  60% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sbBarras { 
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+@keyframes sbAnillo { 
+  0% { opacity: 0.9; transform: scale(0.96); }
+  100% { opacity: 0; transform: scale(1.14); }
+}
+@keyframes sbBrillo { 
+  0%, 100% { box-shadow: 0 0 0 2px rgba(var(--t0,255,42,58),.95),0 0 28px 2px rgba(var(--t0,255,42,58),.55),0 22px 50px -18px rgba(var(--t0,255,42,58),.9); }
+  50% { box-shadow: 0 0 0 2px rgba(var(--t2,255,90,99),1),0 0 40px 6px rgba(var(--t0,255,42,58),.7),0 22px 60px -16px rgba(var(--t0,255,42,58),1); }
+}
+@keyframes sbAvance { 
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+@keyframes sbBarrido { 
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+@keyframes sbRespira { 
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.8; }
+}
+@keyframes sbDestella { 
+  0% { background: rgba(var(--t0,255,42,58),.32); }
+  100% { background: transparent; }
+}
+@keyframes sbSalta { 
+  0% { transform: scale(1); }
+  40% { transform: scale(1.35); background: rgb(var(--t0,255,42,58)); color: rgb(255, 255, 255); }
+  100% { transform: scale(1); }
+}
+.scp0:hover { background: linear-gradient(100deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)) !important; }
+.scp1:hover { background: linear-gradient(100deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)) !important; }
+.scp2:hover { border-color: rgba(var(--t0,255,42,58),.45) !important; }
+.scp3:hover { background: rgba(255, 255, 255, 0.09) !important; color: rgb(240, 240, 244) !important; }
+.scp4:hover { background: rgba(255, 255, 255, 0.09) !important; color: rgb(255, 255, 255) !important; }
+.scp5:hover { background: rgba(var(--t0,255,42,58),.22) !important; color: rgb(255, 255, 255) !important; }
+.scp6:hover { background: rgba(255, 255, 255, 0.09) !important; }
+@keyframes rsglow { 
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@keyframes rseq { 
+  0%, 100% { transform: scaleY(0.26); }
+  50% { transform: scaleY(1); }
+}
+@keyframes rlspin { 
+  100% { transform: rotate(360deg); }
+}
+html,body{margin:0;overflow:hidden;background:transparent}
+
+</style>
+</head>
+<body >
+
+<div id="dc-root"><div class="sc-host" data-sc-name="RelaySidebar"><div data-dc-tpl="3" id="sidebarRoot" style="width: 100%; height: 100%; box-sizing: border-box; padding: 22px 14px 16px; background: linear-gradient(rgba(14, 14, 15, 0.62), rgba(8, 8, 9, 0.52)); backdrop-filter: blur(36px) saturate(160%); border-right: 1px solid rgba(255, 255, 255, 0.07); display: flex; flex-direction: column; gap: 20px; font-family: Inter, system-ui, sans-serif; overflow: hidden;" data-reordenable="1">
+
+  <div data-dc-tpl="4" id="navList" style="flex: 1 1 0%; min-height: 0px; display: flex; flex-direction: column; gap: 20px; overflow: hidden auto;">
+    
+      <div data-dc-tpl="6" style="padding: 0px 10px; flex: 0 0 auto;">
+        <div data-dc-tpl="7" style="font: 700 9px / 1 Inter, sans-serif; letter-spacing: 0.16em; color: rgba(238, 238, 244, 0.34); margin-bottom: 12px; white-space: nowrap;"><span class="sc-interp">BROWSE</span></div>
+        <div data-dc-tpl="8" style="display: flex; flex-direction: column; gap: 3px;">
+          
+
+            
+              <div data-dc-tpl="11" data-act="navigate" data-id="library" class="scp0" style="position: relative; display: flex; align-items: center; gap: 12px; padding: 9px 12px; box-sizing: border-box; border-radius: 12px; min-height: 33.5px; min-width: 0px; cursor: pointer; overflow: hidden; color: rgba(238, 238, 244, 0.6);">
+                
+
+                
+                  <div data-dc-tpl="16" style="width: 14px; height: 12px; background: repeating-linear-gradient(currentcolor 0px, currentcolor 2px, transparent 2px, transparent 5px); border-radius: 1px; flex: 0 0 auto;"></div>
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                
+
+                <span data-dc-tpl="71" style="font: 500 13.5px / 1 Inter, sans-serif; padding: 4px 0px; margin: -4px 0px; position: relative; min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Library</span></span>
+
+                
+                  <span data-dc-tpl="73" id="libraryCount" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; position: relative; flex: 0 0 auto; color: rgba(238, 238, 244, 0.36);"><span class="sc-interp">214</span></span>
+                
+                
+                
+
+                
+                  <div data-dc-tpl="82" data-act="toggle-expand" data-id="library" style="margin-left: 8px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; cursor: pointer; position: relative;">
+                    <div data-dc-tpl="83" style="width: 0px; height: 0px; border-left: 4.5px solid rgba(238, 238, 244, 0.5); border-top: 3.5px solid transparent; border-bottom: 3.5px solid transparent; transition: transform 160ms ease-out; transform: rotate(90deg);"></div>
+                  </div>
+                
+              </div>
+            
+
+            
+
+            
+
+            
+
+          
+
+            
+
+            
+
+            
+              <div data-dc-tpl="90" data-act="open-source" data-id="35" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="91" style="flex: 0 0 auto; width: 17px; height: 17px; background-image: url(&quot;arte/a1.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px;"></div>
+                <span data-dc-tpl="92" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Late night</span></span>
+                <span data-dc-tpl="93" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">64</span></span>
+              </div>
+            
+
+            
+
+          
+
+            
+
+            
+
+            
+              <div data-dc-tpl="90" data-act="open-source" data-id="36" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="91" style="flex: 0 0 auto; background-image: url(&quot;arte/a4.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px; width: 17px; height: 17px;"></div>
+                <span data-dc-tpl="92" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Workout</span></span>
+                <span data-dc-tpl="93" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">38</span></span>
+              </div>
+            
+
+            
+
+          
+
+            
+
+            
+
+            
+              <div data-dc-tpl="90" data-act="open-source" data-id="38" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="91" style="flex: 0 0 auto; background-image: url(&quot;arte/a7.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px; width: 17px; height: 17px;"></div>
+                <span data-dc-tpl="92" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Road trip</span></span>
+                <span data-dc-tpl="93" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">51</span></span>
+              </div>
+            
+
+            
+
+          
+
+            
+
+            
+
+            
+              <div data-dc-tpl="90" data-act="open-source" data-id="37" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="91" style="flex: 0 0 auto; background-image: url(&quot;arte/a10.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px; width: 17px; height: 17px;"></div>
+                <span data-dc-tpl="92" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Throwbacks</span></span>
+                <span data-dc-tpl="93" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">27</span></span>
+              </div>
+            
+
+            
+
+          
+
+            
+
+            
+
+            
+
+            
+              <div data-dc-tpl="95" data-act="new-list" class="scp2" style="display: flex; align-items: center; gap: 11px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; margin-top: 7px; margin-left: 24px; border-radius: 11px; border: 1px dashed rgba(255, 255, 255, 0.14); min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="96" style="position: relative; width: 12px; height: 12px; flex: 0 0 auto;"><div data-dc-tpl="97" style="position: absolute; left: 0px; top: 5.2px; width: 12px; height: 1.6px; background: rgba(238, 238, 244, 0.5);"></div><div data-dc-tpl="98" style="position: absolute; left: 5.2px; top: 0px; width: 1.6px; height: 12px; background: rgba(238, 238, 244, 0.5);"></div></div>
+                <span data-dc-tpl="99" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.5); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">New list</span></span>
+              </div>
+            
+
+          
+
+            
+              <div data-dc-tpl="11" data-act="navigate" data-id="albums" class="scp0" style="position: relative; display: flex; align-items: center; gap: 12px; padding: 9px 12px; box-sizing: border-box; border-radius: 12px; min-height: 33.5px; min-width: 0px; cursor: pointer; overflow: hidden; color: rgba(238, 238, 244, 0.6);">
+                
+
+                
+                
+                  <div data-dc-tpl="18" style="width: 14px; height: 14px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center;">
+                    <svg data-dc-tpl="19" viewBox="0 0 24 24" fill="currentColor" style="width: 19px; height: 19px; flex: 0 0 auto; display: block;">
+                    <path data-dc-tpl="20" d="M10 12a2 2 0 1 1 4 0 2 2 0 0 1-4 0Z"></path>
+                    <path data-dc-tpl="21" fill-rule="evenodd" clip-rule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm0-6a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"></path>
+                  </svg>
+                  </div>
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                
+
+                <span data-dc-tpl="71" style="font: 500 13.5px / 1 Inter, sans-serif; padding: 4px 0px; margin: -4px 0px; position: relative; min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Albums</span></span>
+
+                
+                
+                
+
+                
+              </div>
+            
+
+            
+
+            
+
+            
+
+          
+
+            
+              <div data-dc-tpl="11" data-act="navigate" data-id="artists" class="scp0" style="position: relative; display: flex; align-items: center; gap: 12px; padding: 9px 12px; box-sizing: border-box; border-radius: 12px; min-height: 33.5px; min-width: 0px; cursor: pointer; overflow: hidden; color: rgba(238, 238, 244, 0.6);">
+                
+
+                
+                
+                
+                  <div data-dc-tpl="23" style="width: 14px; height: 14px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center;">
+                    <svg data-dc-tpl="24" viewBox="0 0 24 24" fill="currentColor" style="width: 19px; height: 19px; flex: 0 0 auto; display: block;">
+                    <path data-dc-tpl="25" fill-rule="evenodd" clip-rule="evenodd" d="M5 9.5C5 7.01472 7.01472 5 9.5 5C11.9853 5 14 7.01472 14 9.5C14 11.9853 11.9853 14 9.5 14C7.01472 14 5 11.9853 5 9.5Z"></path>
+                    <path data-dc-tpl="26" d="M14.3675 12.0632C14.322 12.1494 14.3413 12.2569 14.4196 12.3149C15.0012 12.7454 15.7209 13 16.5 13C18.433 13 20 11.433 20 9.5C20 7.567 18.433 6 16.5 6C15.7209 6 15.0012 6.2546 14.4196 6.68513C14.3413 6.74313 14.322 6.85058 14.3675 6.93679C14.7714 7.70219 15 8.5744 15 9.5C15 10.4256 14.7714 11.2978 14.3675 12.0632Z"></path>
+                    <path data-dc-tpl="27" fill-rule="evenodd" clip-rule="evenodd" d="M4.64115 15.6993C5.87351 15.1644 7.49045 15 9.49995 15C11.5112 15 13.1293 15.1647 14.3621 15.7008C15.705 16.2847 16.5212 17.2793 16.949 18.6836C17.1495 19.3418 16.6551 20 15.9738 20H3.02801C2.34589 20 1.85045 19.3408 2.05157 18.6814C2.47994 17.2769 3.29738 16.2826 4.64115 15.6993Z"></path>
+                    <path data-dc-tpl="28" d="M14.8185 14.0364C14.4045 14.0621 14.3802 14.6183 14.7606 14.7837C15.803 15.237 16.5879 15.9043 17.1508 16.756C17.6127 17.4549 18.33 18 19.1677 18H20.9483C21.6555 18 22.1715 17.2973 21.9227 16.6108C21.9084 16.5713 21.8935 16.5321 21.8781 16.4932C21.5357 15.6286 20.9488 14.9921 20.0798 14.5864C19.2639 14.2055 18.2425 14.0483 17.0392 14.0008L17.0194 14H16.9997C16.2909 14 15.5506 13.9909 14.8185 14.0364Z"></path>
+                  </svg>
+                  </div>
+                
+                
+                
+                
+                
+
+                
+                
+
+                
+
+                <span data-dc-tpl="71" style="font: 500 13.5px / 1 Inter, sans-serif; padding: 4px 0px; margin: -4px 0px; position: relative; min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Artists</span></span>
+
+                
+                
+                
+
+                
+              </div>
+            
+
+            
+
+            
+
+            
+
+          
+
+            
+              <div data-dc-tpl="11" data-act="navigate" data-id="soundboard" class="scp0" style="position: relative; display: flex; align-items: center; gap: 12px; padding: 9px 12px; box-sizing: border-box; border-radius: 12px; min-height: 33.5px; min-width: 0px; cursor: pointer; overflow: hidden; color: rgba(238, 238, 244, 0.6);">
+                
+
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+                  <div data-dc-tpl="60" style="width: 14px; height: 14px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center;">
+                    <svg data-dc-tpl="61" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" style="width: 17px; height: 17px; flex: 0 0 auto; display: block;">
+                    <rect data-dc-tpl="62" x="2.5" y="2.5" width="8.5" height="8.5" rx="2.4"></rect>
+                    <rect data-dc-tpl="63" x="13" y="2.5" width="8.5" height="8.5" rx="2.4"></rect>
+                    <rect data-dc-tpl="64" x="2.5" y="13" width="8.5" height="8.5" rx="2.4"></rect>
+                    <path data-dc-tpl="65" d="M15.4,13h3.7a2.4,2.4 0 0 1 2.4,2.4v3.7a2.4,2.4 0 0 1 -2.4,2.4h-3.7a2.4,2.4 0 0 1 -2.4,-2.4v-3.7a2.4,2.4 0 0 1 2.4,-2.4z M14.8,16.4h1.3v2.9h-1.3z M16.6,14.9h1.3v5.8h-1.3z M18.4,16.9h1.3v1.9h-1.3z"></path>
+                  </svg>
+                  </div>
+                
+
+                
+
+                <span data-dc-tpl="71" style="font: 500 13.5px / 1 Inter, sans-serif; padding: 4px 0px; margin: -4px 0px; position: relative; min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Soundboard</span></span>
+
+                
+                
+                
+
+                
+              </div>
+            
+
+            
+
+            
+
+            
+
+          
+
+            
+              <div data-dc-tpl="11" data-act="navigate" data-id="online" class="scp0" style="position: relative; display: flex; align-items: center; gap: 12px; padding: 9px 12px; box-sizing: border-box; border-radius: 12px; min-height: 33.5px; min-width: 0px; cursor: pointer; overflow: hidden; color: rgb(252, 252, 253); background: linear-gradient(100deg,rgba(var(--t1,196,18,32),.3),rgba(var(--t0,255,42,58),.09)); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: inset 0 1px 0 rgba(255,255,255,.16),0 8px 22px -10px rgba(var(--t1,196,18,32),.6);">
+                
+                  
+                  <div data-dc-tpl="13" style="position: absolute; left: -30px; top: -20px; width: 120px; height: 80px; filter: blur(18px); animation: 3.4s ease-in-out 0s infinite normal none running rsglow; pointer-events: none; background: radial-gradient(circle at center,rgba(var(--t1,196,18,32),.7),transparent 70%);"></div>
+                  <div data-dc-tpl="14" style="position: absolute; left: 0px; top: 9px; bottom: 9px; width: 3px; border-radius: 0px 3px 3px 0px; pointer-events: none; background: linear-gradient(180deg,rgb(var(--t1,196,18,32)),rgb(var(--t0,255,42,58)));"></div>
+                
+
+                
+                
+                
+                
+                  <div data-dc-tpl="30" style="width: 14px; height: 14px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center;">
+                    <svg data-dc-tpl="31" viewBox="0 0 24 24" fill="currentColor" style="width: 19px; height: 19px; flex: 0 0 auto; display: block;">
+                    <path data-dc-tpl="32" d="M15.3222 10.383C15.3796 10.9457 15.4125 11.4903 15.4125 12C15.4125 12.9541 15.2972 14.0315 15.1208 15.1208C14.0315 15.2972 12.9541 15.4125 12 15.4125C11.0502 15.4125 9.97313 15.2975 8.87911 15.1205C8.70281 14.0312 8.5875 12.954 8.5875 12C8.5875 11.4905 8.62039 10.9458 8.67789 10.383C9.82608 10.5668 10.9715 10.6875 12 10.6875C13.0286 10.6875 14.174 10.5668 15.3222 10.383Z"></path>
+                    <path data-dc-tpl="33" d="M16.8752 10.0994C16.9462 10.7579 16.9875 11.399 16.9875 12C16.9875 12.8769 16.8997 13.8389 16.7599 14.8153C18.7425 14.4016 20.575 13.8731 21.5567 13.5722C21.8739 13.475 21.9986 13.4363 22.1658 13.3694C22.2494 13.336 22.326 13.302 22.4259 13.2543C22.4748 12.843 22.5 12.4244 22.5 12C22.5 10.878 22.324 9.79714 21.9982 8.78346L21.9133 8.81017C20.8868 9.12245 18.9652 9.6745 16.8752 10.0994Z"></path>
+                    <path data-dc-tpl="34" d="M21.4017 7.31948C20.3698 7.63221 18.579 8.14039 16.6599 8.53603C16.2178 5.84926 15.443 3.16951 15.0702 1.95598C17.8422 2.80227 20.1273 4.76467 21.4017 7.31948Z"></path>
+                    <path data-dc-tpl="35" d="M15.1117 8.82229C14.0253 8.99781 12.9513 9.1125 12 9.1125C11.0487 9.1125 9.97477 8.99781 8.88843 8.8223C9.30471 6.28005 10.0478 3.68306 10.4278 2.44333C10.525 2.12606 10.5637 2.00144 10.6306 1.83418C10.664 1.75062 10.698 1.67398 10.7457 1.57414C11.157 1.52518 11.5756 1.5 12 1.5C12.4434 1.5 12.8803 1.52748 13.3093 1.58083C13.3184 1.61564 13.3268 1.64679 13.3351 1.67626C13.3597 1.76333 13.3982 1.8857 13.4628 2.09104L13.4696 2.11261C13.7935 3.14223 14.6519 6.01401 15.1117 8.82229Z"></path>
+                    <path data-dc-tpl="36" d="M7.34004 8.536C7.7801 5.86107 8.54986 3.19576 8.92192 1.98181L8.92983 1.95597C6.15777 2.80225 3.8727 4.76465 2.59835 7.31946C3.63018 7.63219 5.42095 8.14036 7.34004 8.536Z"></path>
+                    <path data-dc-tpl="37" d="M2.00184 8.78345C1.67598 9.79714 1.5 10.878 1.5 12C1.5 12.4389 1.52693 12.8715 1.57923 13.2963L1.74471 13.3515L1.74603 13.3519L1.74765 13.3525L1.74879 13.3528C1.80205 13.3705 3.36305 13.886 5.41878 14.3975C5.99886 14.5418 6.61307 14.6844 7.24006 14.8151C7.10025 13.8388 7.0125 12.8769 7.0125 12C7.0125 11.3988 7.05374 10.7577 7.12472 10.0994C5.03428 9.67436 3.11218 9.12212 2.08597 8.80989L2.07883 8.80771L2.00184 8.78345Z"></path>
+                    <path data-dc-tpl="38" d="M12 16.9875C12.8769 16.9875 13.8389 16.8997 14.8153 16.7599C14.4016 18.7425 13.8731 20.575 13.5722 21.5566C13.475 21.8739 13.4363 21.9985 13.3694 22.1658C13.336 22.2494 13.302 22.326 13.2543 22.4259C12.843 22.4748 12.4244 22.5 12 22.5C11.5756 22.5 11.157 22.4748 10.7457 22.4259C10.698 22.326 10.664 22.2494 10.6306 22.1658C10.5637 21.9986 10.525 21.8739 10.4278 21.5567C10.1269 20.5751 9.59846 18.7427 9.18478 16.7603C10.1579 16.8996 11.1201 16.9875 12 16.9875Z"></path>
+                    <path data-dc-tpl="39" d="M5.0385 15.9259C3.73853 15.6024 2.63135 15.2775 1.95597 15.0702C2.97258 18.4002 5.59982 21.0274 8.92983 22.044L8.92192 22.0182C8.59705 20.9582 7.96897 18.7917 7.52191 16.4784C6.6525 16.3103 5.80722 16.1171 5.0385 15.9259Z"></path>
+                    <path data-dc-tpl="40" d="M22.0182 15.0781C20.9582 15.403 18.7915 16.0311 16.4781 16.4781C16.0311 18.7915 15.403 20.9581 15.0781 22.0182L15.0702 22.044C18.4002 21.0274 21.0274 18.4002 22.044 15.0702L22.0182 15.0781Z"></path>
+                  </svg>
+                  </div>
+                
+                
+                
+                
+
+                
+                
+
+                
+
+                <span data-dc-tpl="71" style="font: 600 13.5px / 1 Inter, sans-serif; padding: 4px 0px; margin: -4px 0px; position: relative; min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Online</span></span>
+
+                
+                
+                
+
+                
+              </div>
+            
+
+            
+
+            
+
+            
+
+          
+        </div>
+      </div>
+    
+      <div data-dc-tpl="6" style="padding: 0px 10px; flex: 0 0 auto;">
+        <div data-dc-tpl="7" style="font: 700 9px / 1 Inter, sans-serif; letter-spacing: 0.16em; color: rgba(238, 238, 244, 0.34); margin-bottom: 12px; white-space: nowrap;"><span class="sc-interp">PLAYBACK</span></div>
+        <div data-dc-tpl="8" style="display: flex; flex-direction: column; gap: 3px;">
+          
+
+            
+              <div data-dc-tpl="11" data-act="navigate" data-id="mixer" class="scp0" style="position: relative; display: flex; align-items: center; gap: 12px; padding: 9px 12px; box-sizing: border-box; border-radius: 12px; min-height: 33.5px; min-width: 0px; cursor: pointer; overflow: hidden; color: rgba(238, 238, 244, 0.6);">
+                
+
+                
+                
+                
+                
+                
+                
+                  <div data-dc-tpl="44" style="width: 14px; height: 14px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center;">
+                    <svg data-dc-tpl="45" viewBox="0 0 512 512" fill="currentColor" style="width: 17px; height: 17px; flex: 0 0 auto; display: block;">
+                    <rect data-dc-tpl="46" x="424" y="24" width="48" height="52"></rect>
+                    <rect data-dc-tpl="47" x="424" y="188" width="48" height="300"></rect>
+                    <path data-dc-tpl="48" d="M484.79,100h-73.578C396.188,100,384,112.188,384,127.211v9.578c0,15.023,12.188,27.21,27.211,27.21h73.578c15.023,0,27.21-12.187,27.21-27.21v-9.578C512,112.188,499.813,100,484.79,100z"></path>
+                    <rect data-dc-tpl="49" x="231.985" y="24" width="48" height="276.641"></rect>
+                    <rect data-dc-tpl="50" x="231.985" y="412.641" width="48" height="75.359"></rect>
+                    <path data-dc-tpl="51" d="M292.774,324.641h-73.578c-15.023,0-27.21,12.187-27.21,27.211v9.578c0,15.024,12.187,27.211,27.21,27.211h73.578c15.023,0,27.211-12.187,27.211-27.211v-9.578C319.985,336.828,307.797,324.641,292.774,324.641z"></path>
+                    <rect data-dc-tpl="52" x="40" y="308" width="48" height="180"></rect>
+                    <rect data-dc-tpl="53" x="40" y="24" width="48" height="172"></rect>
+                    <path data-dc-tpl="54" d="M100.79,220H27.211C12.188,220,0,232.188,0,247.211v9.578C0,271.813,12.188,284,27.211,284h73.578c15.023,0,27.21-12.187,27.21-27.21v-9.578C128,232.188,115.813,220,100.79,220z"></path>
+                  </svg>
+                  </div>
+                
+                
+
+                
+                
+
+                
+
+                <span data-dc-tpl="71" style="font: 500 13.5px / 1 Inter, sans-serif; padding: 4px 0px; margin: -4px 0px; position: relative; min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Mixer</span></span>
+
+                
+                
+                  <div data-dc-tpl="75" style="margin-left: auto; width: 7px; height: 7px; border-radius: 50%; position: relative; flex: 0 0 auto; background: rgb(53, 208, 127); box-shadow: rgb(53, 208, 127) 0px 0px 10px;"></div>
+                
+                
+
+                
+              </div>
+            
+
+            
+
+            
+
+            
+
+          
+
+            
+              <div data-dc-tpl="11" data-act="navigate" data-id="settings" class="scp0" style="position: relative; display: flex; align-items: center; gap: 12px; padding: 9px 12px; box-sizing: border-box; border-radius: 12px; min-height: 33.5px; min-width: 0px; cursor: pointer; overflow: hidden; color: rgba(238, 238, 244, 0.6);">
+                
+
+                
+                
+                
+                
+                
+                
+                
+                  <div data-dc-tpl="56" style="width: 14px; height: 14px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center;">
+                    <svg data-dc-tpl="57" viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px; flex: 0 0 auto; display: block;">
+                    <path data-dc-tpl="58" d="M18.9401 5.42141L13.7701 2.43141C12.7801 1.86141 11.2301 1.86141 10.2401 2.43141L5.02008 5.44141C2.95008 6.84141 2.83008 7.05141 2.83008 9.28141V14.7114C2.83008 16.9414 2.95008 17.1614 5.06008 18.5814L10.2301 21.5714C10.7301 21.8614 11.3701 22.0014 12.0001 22.0014C12.6301 22.0014 13.2701 21.8614 13.7601 21.5714L18.9801 18.5614C21.0501 17.1614 21.1701 16.9514 21.1701 14.7214V9.28141C21.1701 7.05141 21.0501 6.84141 18.9401 5.42141ZM12.0001 15.2514C10.2101 15.2514 8.75008 13.7914 8.75008 12.0014C8.75008 10.2114 10.2101 8.75141 12.0001 8.75141C13.7901 8.75141 15.2501 10.2114 15.2501 12.0014C15.2501 13.7914 13.7901 15.2514 12.0001 15.2514Z"></path>
+                  </svg>
+                  </div>
+                
+
+                
+                
+
+                
+
+                <span data-dc-tpl="71" style="font: 500 13.5px / 1 Inter, sans-serif; padding: 4px 0px; margin: -4px 0px; position: relative; min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Settings</span></span>
+
+                
+                
+                
+
+                
+              </div>
+            
+
+            
+
+            
+
+            
+
+          
+
+            
+              <div data-dc-tpl="11" data-act="navigate" data-id="themes" class="scp0" style="position: relative; display: flex; align-items: center; gap: 12px; padding: 9px 12px; box-sizing: border-box; border-radius: 12px; min-height: 33.5px; min-width: 0px; cursor: pointer; overflow: hidden; color: rgba(238, 238, 244, 0.6);">
+                
+
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                
+                  <div data-dc-tpl="67" style="width: 14px; height: 14px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center;">
+                    <svg data-dc-tpl="68" viewBox="0 0 800 800" fill="currentColor" style="width: 16px; height: 16px; flex: 0 0 auto; display: block;">
+                    <path data-dc-tpl="69" d="m327.78 577.78l-147.37 184.2c-19.22 24.03-48.32 38.02-79.1 38.02-55.95 0-101.31-45.36-101.31-101.31 0-30.77 13.99-59.88 38.02-79.11l184.2-147.36-34.49-34.49c-24.16-24.16-37.73-56.92-37.73-91.09 0-30.14 10.57-59.320 29.86-82.47l28.91-34.69 361.75 361.75-34.69 28.91c-23.15 19.29-52.33 29.86-82.47 29.86-34.17 0-66.93-13.57-91.09-37.730z"></path>
+                    <path data-dc-tpl="70" d="m800 400l-152.34 126.95-374.61-374.61 126.95-152.34z"></path>
+                  </svg>
+                  </div>
+                
+
+                <span data-dc-tpl="71" style="font: 500 13.5px / 1 Inter, sans-serif; padding: 4px 0px; margin: -4px 0px; position: relative; min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Themes</span></span>
+
+                
+                
+                
+
+                
+              </div>
+            
+
+            
+
+            
+
+            
+
+          
+        </div>
+      </div>
+    
+  </div>
+
+  <div data-dc-tpl="100" style="flex: 0 0 auto; padding: 14px; box-sizing: border-box; border-radius: 14px; background: linear-gradient(120deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)); border: 1px solid rgba(255, 255, 255, 0.08); min-width: 0px;">
+    <div data-dc-tpl="101" style="display: flex; justify-content: space-between; gap: 10px; font: 700 9px / 1 Inter, sans-serif; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4);">
+      <span data-dc-tpl="102" style="white-space: nowrap;">LIBRARY</span>
+      <span data-dc-tpl="103" id="footerTotal" style="white-space: nowrap;"><span class="sc-interp">214 SONGS</span></span>
+    </div>
+    <div data-dc-tpl="104" style="margin-top: 10px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.1); overflow: hidden;">
+      <div data-dc-tpl="105" id="scanProgress" style="height: 100%; background: linear-gradient(90deg,rgb(var(--t1,196,18,32)),rgb(var(--t0,255,42,58))); width: 100%;"></div>
+    </div>
+    <div data-dc-tpl="106" id="footerCaption" style="margin-top: 9px; font: 500 11px / 1.4 Inter, sans-serif; color: rgba(238, 238, 244, 0.45); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">4 sources · Checked seconds ago</span></div>
+    <div data-dc-tpl="107" id="footerActions" style="margin-top: 11px; display: flex; gap: 6px;">
+      <div data-dc-tpl="108" id="reloadBtn" data-act="reload" title="Reload albums" class="scp3" style="flex: 1 1 0%; min-width: 0px; display: flex; align-items: center; justify-content: center; gap: 6px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); font: 700 9px / 1 Inter, sans-serif; letter-spacing: 0.1em; color: rgba(238, 238, 244, 0.62); cursor: pointer; user-select: none;">
+        <span data-dc-tpl="109" id="reloadSpin" style="width:10px;height:10px;border-top-left-radius:50%;border-top-right-radius:50%;border-bottom-right-radius:50%;border-bottom-left-radius:50%;border-top-color:rgb(var(--t0,255,42,58));border-top-style:solid;border-top-width:2px;border-right-color:rgba(var(--t0,255,42,58),0.25);border-right-style:solid;border-right-width:2px;border-bottom-color:rgba(var(--t0,255,42,58),0.25);border-bottom-style:solid;border-bottom-width:2px;border-left-color:rgba(var(--t0,255,42,58),0.25);border-left-style:solid;border-left-width:2px;border-image-source:none;border-image-slice:100%;border-image-width:1;border-image-outset:0;border-image-repeat:stretch;flex-grow:0;flex-shrink:0;flex-basis:auto;display:none"></span>
+        <span data-dc-tpl="110" id="reloadText" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">RELOAD</span></span>
+      </div>
+      <div data-dc-tpl="111" data-act="open-party" title="Listening party: listen together with friends, in sync" class="scp4" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(238, 238, 244, 0.7);">
+        <svg data-dc-tpl="112" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle data-dc-tpl="113" cx="9" cy="8" r="3.5"></circle><path data-dc-tpl="114" d="M2.5 20c1-3.6 3.6-5.5 6.5-5.5s5.5 1.9 6.5 5.5"></path><path data-dc-tpl="115" d="M16 4.8a3.5 3.5 0 0 1 0 6.4M18.5 14.8c1.5.8 2.5 2.5 3 5.2"></path></svg>
+      </div>
+      <div data-dc-tpl="116" data-act="open-recap" title="Your Relay Recap: your top songs and artists, as an image to share" class="scp5" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 8px; background: rgba(var(--t0,255,42,58),.12); border: 1px solid rgba(var(--t0,255,42,58),.32); display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgb(var(--t4,255,143,152));">
+        <svg data-dc-tpl="117" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path data-dc-tpl="118" d="M5 20V13M12 20V5M19 20v-9"></path></svg>
+      </div>
+      <div data-dc-tpl="119" data-act="navigate" data-id="settings" title="Library sources" class="scp6" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+        <span data-dc-tpl="120" style="width: 11px; height: 11px; border-radius: 3px; border: 1.6px solid rgba(238, 238, 244, 0.62); box-sizing: border-box;"></span>
+      </div>
+    </div>
+  </div></div></div></div>
+
+
+
+
+<script src="tema.js"></script>
+<script>
+/* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
+   al bajar por la web se quedaba uno atascado en una lista. */
+addEventListener("wheel", (e) => {
+  if (top !== window) { e.preventDefault(); try { top.scrollBy(0, e.deltaY); } catch (x) { } }
+}, { passive: false });
+</script>
+</body>
+</html>
