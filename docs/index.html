@@ -22,14 +22,20 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* La marca RELAY: Inter Display ExtraBold estatica, la misma que la app
+   (InterDisplay-ExtraBold.woff2, OFL en Inter-OFL.txt). */
+@font-face { font-family: "Relay Marca"; src: url("InterDisplay-ExtraBold.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+html { font-variant-numeric: tabular-nums; }
+
 :root {
-  --rojo: 255, 42, 58;
-  --rojoOscuro: 196, 18, 32;
-  --rosa: 255, 210, 213;
-  --claro: 255, 143, 152;
+  /* Los colores de la app (--tN), que cambia la paleta de demos/tema.js. */
+  --rojo: var(--t0, 255, 42, 58);
+  --rojoOscuro: var(--t1, 196, 18, 32);
+  --rosa: var(--t13, 255, 211, 214);
+  --claro: var(--t4, 255, 143, 152);
   --fondo: #0B0809;
   --texto: #F2F2F4;
   --suave: rgba(238, 238, 244, .64);
@@ -43,7 +49,7 @@ html { scroll-behavior: smooth; scrollbar-width: none; }
 html::-webkit-scrollbar { display: none; }
 body {
   margin: 0; background: var(--fondo); color: var(--texto);
-  font: 500 16px/1.6 Manrope, system-ui, sans-serif;
+  font: 500 16px/1.6 Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
@@ -76,7 +82,7 @@ img { display: block; max-width: 100%; }
 .barra .marco { display: flex; align-items: center; justify-content: space-between; height: 64px; }
 /* La marca, como la de la barra de titulo de Relay: el abanico a la
    izquierda y RELAY en mayusculas, 28 px de logo por 22 de letra. */
-.marca { display: flex; align-items: center; gap: 9px; font: 700 22px/28px Sora, sans-serif; letter-spacing: -.035em; color: #FCFCFD; }
+.marca { display: flex; align-items: center; gap: 9px; font: 800 22px/28px "Relay Marca", Inter, sans-serif; letter-spacing: -.022em; color: #FCFCFD; }
 .marca span { position: relative; top: 1px; }
 .marca img { width: 28px; height: 28px; transition: transform .56s cubic-bezier(.34, 1.56, .64, 1), filter .32s ease; }
 .marca:hover img { transform: rotate(-14deg) scale(1.13); filter: drop-shadow(0 0 7px rgba(var(--rojo), .85)); }
@@ -94,7 +100,7 @@ img { display: block; max-width: 100%; }
   position: relative; overflow: hidden; isolation: isolate;
   display: inline-flex; align-items: center; gap: 10px;
   padding: 12px 18px; border-radius: 12px;
-  font: 700 14.5px/1 Manrope, sans-serif; color: #fff;
+  font: 700 14.5px/1 Inter, sans-serif; color: #fff;
   background: linear-gradient(180deg, rgb(var(--rojo)), rgb(var(--rojoOscuro)));
   box-shadow: 0 10px 30px -10px rgba(var(--rojo), .8), inset 0 1px 0 rgba(255, 255, 255, .25);
   translate: var(--mx, 0px) calc(var(--my, 0px) + var(--sube, 0px));
@@ -127,7 +133,7 @@ img { display: block; max-width: 100%; }
    proporciones (logo 28/22 de la letra, hueco 9/22). */
 h1 {
   margin: 0; display: inline-flex; align-items: center; gap: .41em;
-  font: 700 clamp(56px, 10vw, 112px)/1 Sora, sans-serif; letter-spacing: -.035em; color: #FCFCFD;
+  font: 800 clamp(56px, 10vw, 112px)/1 "Relay Marca", Inter, sans-serif; letter-spacing: -.022em; color: #FCFCFD;
   text-shadow: 0 0 60px rgba(var(--rojo), .35);
 }
 h1 > span { position: relative; top: .045em; display: inline-flex; perspective: 600px; }
@@ -169,11 +175,11 @@ h1.entrado.ola .letra { animation: ola .7s ease-in-out both; animation-delay: ca
 @keyframes cae { from { opacity: 0; translate: 0 16px; filter: blur(6px); } }
 .lema { margin: 18px auto 0; max-width: 620px; font-size: clamp(17px, 2.3vw, 21px); color: var(--suave); }
 .acciones { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-.detalle { font: 600 12.5px/1 "JetBrains Mono", monospace; letter-spacing: .04em; color: var(--tenue); }
+.detalle { font: 600 12.5px/1 Inter, sans-serif; letter-spacing: .04em; color: var(--tenue); }
 .detalle b { color: rgb(var(--rosa)); font-weight: 700; }
 .pildoras { display: flex; justify-content: center; gap: 8px; margin-top: 26px; flex-wrap: wrap; }
 .pildoras span {
-  font: 700 13px/1 Manrope, sans-serif; color: rgba(255, 236, 238, .9);
+  font: 700 13px/1 Inter, sans-serif; color: rgba(255, 236, 238, .9);
   padding: 9px 14px; border-radius: 999px;
   background: rgba(var(--rojo), .1); border: 1px solid rgba(var(--rojo), .35);
   transition: background .2s, border-color .2s, translate .35s cubic-bezier(.34, 1.56, .64, 1);
@@ -207,13 +213,87 @@ h1.entrado.ola .letra { animation: ola .7s ease-in-out both; animation-delay: ca
 .ventana:hover { box-shadow: 0 60px 140px -40px rgba(var(--rojo), .7), 0 30px 60px -30px rgba(0, 0, 0, .9); }
 /* height:auto: el height="870" del img fijaba la altura y, con menos ancho,
    la captura salia ampliada y recortada por los lados. */
-.ventana img { border-radius: 12px; width: 100%; height: auto; aspect-ratio: 1600 / 870; background: #120c0e; }
+.ventana img { border-radius: 12px; width: 100%; height: auto; }
+
+/*
+  Las demos: la aplicacion de verdad -el diseño y todo lo que la app le pone
+  encima-, copiada con datos inventados por tools/demos-web/capturar.mjs. Cada
+  una se pinta a su tamaño real (data-w x data-h) y se encoge a lo que haya.
+  Detras, el fondo de la ventana de Relay, con su luz del color del tema.
+*/
+.demo {
+  position: relative; width: 100%; max-width: 100%; aspect-ratio: var(--w) / var(--h);
+  overflow: hidden; border-radius: 12px; isolation: isolate;
+  background:
+    radial-gradient(55% 60% at 8% 0%, rgba(var(--t1, 196, 18, 32), .38), transparent 70%),
+    radial-gradient(45% 50% at 100% 0%, rgba(var(--t0, 255, 42, 58), .16), transparent 70%),
+    linear-gradient(165deg, #0B0B0C, #050506 60%, #030304);
+}
+.demo iframe {
+  position: absolute; left: 0; top: 0; border: 0; display: block;
+  width: calc(var(--w) * 1px); height: calc(var(--h) * 1px);
+  transform: scale(var(--k, .5)); transform-origin: 0 0;
+  opacity: 1; transition: opacity .25s ease;
+}
+.demo iframe.cambiando { opacity: 0; }
+/* Sueltas: la sala, el chat, el Recap y Themes, como ventanas flotantes, sin
+   marco ni fondo: lo que se ve es el propio panel de la app, con su sombra. */
+.demo.suelta { background: none; border-radius: 0; overflow: visible; }
+.demo.suelta.ancha { max-width: 1036px; margin: 22px auto 0; }
+.demo { transition: aspect-ratio .35s ease; }
+/* Themes es alta: el texto se queda a la vista mientras se baja por ella. */
+.muestra.temas { align-items: start; }
+.muestra.temas .explica { position: sticky; top: 110px; }
+@media (max-width: 860px) { .muestra.temas .explica { position: static; } }
+.nota { margin: 18px auto 0; max-width: 560px; font-size: 14px; color: var(--tenue); }
+.muestra .ventana, .doble .ventana { margin: 0; max-width: none; width: 100%; }
+.ventana.ancha { max-width: 1000px; margin: 26px auto 0; }
+.entradilla { margin: -24px auto 30px; max-width: 640px; text-align: center; color: var(--suave); }
+
+/* Dos demos juntas: la sala y su chat. */
+.doble { display: grid; grid-template-columns: 540fr 420fr; gap: 26px; align-items: center; max-width: 1000px; margin: 0 auto; }
+.puntos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1000px; margin: 26px auto 0; }
+.punto { padding: 18px; border-radius: 16px; background: linear-gradient(180deg, #161012, #100b0d); border: 1px solid var(--linea); }
+.punto b, .cosa b { display: block; font: 700 15px/1.25 Inter, sans-serif; letter-spacing: -.01em; color: #fff; }
+.punto span, .cosa span { display: block; margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--suave); }
+
+/* Pestañas pequeñas para cambiar de demo: Home o Search, Recap o una cancion. */
+.cambia { display: inline-flex; gap: 4px; margin-top: 20px; padding: 4px; border-radius: 12px; background: rgba(255, 255, 255, .04); border: 1px solid var(--linea); }
+.cambia.centro { display: flex; width: max-content; margin: 0 auto; }
+.cambia button {
+  font: 700 13px/1 Inter, sans-serif; color: var(--suave); cursor: pointer; border: 1px solid transparent;
+  padding: 9px 14px; border-radius: 9px; background: none; transition: color .2s, background .25s, border-color .25s;
+}
+.cambia button:hover { color: #fff; }
+.cambia button[aria-selected="true"] { color: #fff; background: rgba(var(--rojo), .22); border-color: rgba(var(--rojo), .55); }
+
+/* Los colores de los temas: los mismos de la aplicacion. */
+.colores { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 18px; }
+.colores button {
+  width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; padding: 0;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, .45), transparent 45%), var(--c);
+  box-shadow: 0 6px 16px -6px var(--c); transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), border-color .2s;
+}
+.colores button:hover { transform: scale(1.15); }
+.colores button[aria-pressed="true"] { border-color: #fff; transform: scale(1.12); }
+
+/* El resto, como lista. */
+.mas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 28px; }
+.cosa { padding: 16px 0 16px 18px; border-left: 2px solid rgba(var(--rojo), .45); }
+@media (max-width: 860px) {
+  .doble { grid-template-columns: 1fr; }
+  .puntos { grid-template-columns: 1fr 1fr; }
+  .mas { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .puntos, .mas { grid-template-columns: 1fr; }
+}
 
 /* ── Secciones ── */
 section { padding: 96px 0 0; }
 .titulo { text-align: center; margin-bottom: 44px; }
-.titulo small { font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--claro)); }
-.titulo h2 { margin: 14px 0 0; font: 700 clamp(30px, 4.4vw, 44px)/1.1 Sora, sans-serif; letter-spacing: -.035em; }
+.titulo small { font: 700 12px/1 Inter, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--claro)); }
+.titulo h2 { margin: 14px 0 0; font: 800 clamp(30px, 4.4vw, 44px)/1.1 Inter, sans-serif; letter-spacing: -.035em; }
 
 .rejilla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 /*
@@ -259,7 +339,7 @@ section { padding: 96px 0 0; }
 .icono svg[viewBox="0 0 14 12"] { width: 17px; height: 14px; }
 .icono svg[viewBox="0 0 512 512"], .icono svg[fill-rule] { width: 19px; height: 19px; }
 .icono svg[viewBox="-3 0 19 19"] { width: 22px; height: 22px; }
-.tarjeta h3 { margin: 18px 0 6px; font: 700 18px/1.25 Sora, sans-serif; letter-spacing: -.02em; }
+.tarjeta h3 { margin: 18px 0 6px; font: 700 18px/1.25 Inter, sans-serif; letter-spacing: -.02em; }
 .tarjeta p { margin: 0; color: var(--suave); font-size: 14.5px; }
 
 /*
@@ -306,8 +386,8 @@ section { padding: 96px 0 0; }
 /* wavernrs es una foto: con las esquinas redondas, como su icono. */
 .servicio .logoServicio.wv { border-radius: 16px; }
 @keyframes flotaServicio { 50% { translate: 0 -7px; } }
-.servicio b { margin-top: 16px; font: 700 16px/1.2 Sora, sans-serif; letter-spacing: -.02em; color: #fff; }
-.servicio span { margin-top: 6px; font: 500 12.5px/1.4 Manrope, sans-serif; color: var(--suave); }
+.servicio b { margin-top: 16px; font: 700 16px/1.2 Inter, sans-serif; letter-spacing: -.02em; color: #fff; }
+.servicio span { margin-top: 6px; font: 500 12.5px/1.4 Inter, sans-serif; color: var(--suave); }
 .servicio.visto:hover {
   translate: 0 -6px; border-color: rgba(var(--c), .6);
   box-shadow: 0 18px 44px -18px rgba(var(--c), .7), inset 0 0 0 1px rgba(var(--c), .15);
@@ -320,8 +400,8 @@ section { padding: 96px 0 0; }
 /* ── Las tres muestras: letra, cola con cover flow, temas ── */
 .muestra { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
 .muestra.al-reves { grid-template-columns: 1.25fr 1fr; }
-.muestra .explica small { font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--claro)); }
-.muestra .explica h2 { margin: 14px 0 12px; font: 700 clamp(28px, 3.6vw, 40px)/1.1 Sora, sans-serif; letter-spacing: -.035em; }
+.muestra .explica small { font: 700 12px/1 Inter, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--claro)); }
+.muestra .explica h2 { margin: 14px 0 12px; font: 800 clamp(28px, 3.6vw, 40px)/1.1 Inter, sans-serif; letter-spacing: -.035em; }
 .muestra .explica p { margin: 0 0 16px; color: var(--suave); }
 .muestra .explica ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
 .muestra .explica li { display: flex; gap: 10px; align-items: baseline; color: rgba(238, 238, 244, .82); font-size: 15px; }
@@ -336,14 +416,14 @@ section { padding: 96px 0 0; }
 /* Letra: como la de Now Playing. La linea que suena se llena palabra a
    palabra; las de antes se apagan y las de despues esperan desenfocadas. */
 .letra-app { height: 420px; padding: 22px 28px; }
-.letra-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Sora, sans-serif; }
-.letra-app .cabeza i { font: 700 9px/1 "JetBrains Mono", monospace; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgb(var(--rosa)); background: rgba(var(--rojo), .15); border: 1px solid rgba(var(--rojo), .45); }
+.letra-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Inter, sans-serif; }
+.letra-app .cabeza i { font: 700 9px/1 Inter, sans-serif; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgb(var(--rosa)); background: rgba(var(--rojo), .15); border: 1px solid rgba(var(--rojo), .45); }
 .letra-app .ventanal { position: relative; height: 330px; margin-top: 16px; overflow: hidden;
   -webkit-mask: linear-gradient(transparent, #000 22%, #000 78%, transparent); mask: linear-gradient(transparent, #000 22%, #000 78%, transparent); }
 .letra-app .rollo { position: absolute; left: 0; right: 0; top: 0; transition: translate .9s cubic-bezier(.22, 1, .36, 1); }
 .letra-app .verso {
   height: 52px; display: flex; align-items: center; justify-content: center; text-align: center;
-  font: 700 clamp(17px, 2vw, 24px)/1.15 Manrope, sans-serif; letter-spacing: -.02em;
+  font: 700 clamp(17px, 2vw, 24px)/1.15 Inter, sans-serif; letter-spacing: -.02em;
   color: rgba(238, 238, 244, .3); filter: blur(1.4px); scale: .94;
   transition: color .6s, filter .6s, scale .7s cubic-bezier(.22, 1, .36, 1);
 }
@@ -360,8 +440,8 @@ section { padding: 96px 0 0; }
 
 /* Cola y cover flow: el carrusel grande de la cola, avanzando solo. */
 .cola-app { padding: 24px 22px 20px; }
-.cola-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Sora, sans-serif; }
-.cola-app .cabeza i { font: 700 9px/1 "JetBrains Mono", monospace; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgba(238, 238, 244, .6); background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .1); }
+.cola-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Inter, sans-serif; }
+.cola-app .cabeza i { font: 700 9px/1 Inter, sans-serif; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgba(238, 238, 244, .6); background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .1); }
 /* El cover flow de Now Playing, con los numeros de la app (RING en
    RelayNowPlaying.dc.html) escalados de 124 px de centro a 170: tres por
    lado, cada una mas pequena, mas girada y mas apagada. Las de la derecha
@@ -408,8 +488,8 @@ section { padding: 96px 0 0; }
   position: absolute; left: 0; right: 0; bottom: 0; padding: 34px 14px 12px; text-align: center; pointer-events: none;
   background: linear-gradient(180deg, transparent, rgba(5, 5, 6, .72)); opacity: 0; transition: opacity 200ms ease;
 }
-.carta .nombre b { display: block; font: 700 15px/1.2 Sora, sans-serif; letter-spacing: -.01em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.carta .nombre span { display: block; margin-top: 3px; font: 500 12px/1.2 Manrope, sans-serif; color: rgba(255, 211, 214, .8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.carta .nombre b { display: block; font: 700 15px/1.2 Inter, sans-serif; letter-spacing: -.01em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.carta .nombre span { display: block; margin-top: 3px; font: 500 12px/1.2 Inter, sans-serif; color: rgba(255, 211, 214, .8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .carta.centro .nombre { opacity: 1; transition-delay: var(--viaje); }
 /* El raton: la cara crece un poco y se enciende con SU color. */
 .carta:hover .arte {
@@ -418,7 +498,7 @@ section { padding: 96px 0 0; }
 }
 .cola-app .sigue { margin-top: 18px; border-top: 1px solid var(--linea); padding-top: 12px; }
 .lista-cola { position: relative; }
-.cola-app .sigue small { font: 700 10px/1 "JetBrains Mono", monospace; letter-spacing: .14em; color: var(--tenue); }
+.cola-app .sigue small { font: 700 10px/1 Inter, sans-serif; letter-spacing: .14em; color: var(--tenue); }
 /* Las filas se mueven con top/left y se descubren con un recorte, sin
    opacidad, igual que en la app: asi el texto no cambia de grosor al animarse. */
 .fila-cola {
@@ -431,44 +511,16 @@ section { padding: 96px 0 0; }
 }
 .fila-cola:hover::after { opacity: 1; }
 .fila-cola .mini { width: 34px; height: 34px; border-radius: 9px; flex: none; overflow: hidden; position: relative; border: 1px solid rgba(255, 255, 255, .14); box-sizing: border-box; }
-.fila-cola b { display: block; font: 700 13px/1.2 Manrope, sans-serif; }
-.fila-cola span { font: 500 11.5px/1.2 Manrope, sans-serif; color: var(--suave); }
-.fila-cola em { margin-left: auto; font: 600 11px/1 "JetBrains Mono", monospace; font-style: normal; color: var(--tenue); }
-
-/* Temas: una Relay en pequeno cuyo color sigue al selector. */
-.temas-app { padding: 20px; --h: 355; --acc: hsl(var(--h) 95% 58%); --accA: hsl(var(--h) 95% 58% / .18); }
-.maqueta { display: grid; grid-template-columns: 120px 1fr; gap: 10px; height: 250px; }
-.maqueta .lado, .maqueta .centro2 { border-radius: 14px; background: rgba(255, 255, 255, .035); border: 1px solid rgba(255, 255, 255, .07); padding: 12px 10px; transition: background .2s; }
-.maqueta .lado { background: linear-gradient(180deg, var(--accA), rgba(255, 255, 255, .02)); }
-.maqueta .item { height: 12px; border-radius: 4px; background: rgba(255, 255, 255, .12); margin: 9px 4px; }
-.maqueta .item.activo { height: 22px; margin: 8px 0; border-radius: 8px; background: var(--accA); border: 1px solid var(--acc); box-shadow: 0 0 16px -4px var(--acc); }
-.maqueta .centro2 { display: flex; flex-direction: column; gap: 10px; }
-.maqueta .titulo2 { font: 800 26px/1 Sora, sans-serif; letter-spacing: -.04em; background: linear-gradient(100deg, #fff 10%, var(--acc)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.maqueta .tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; flex: 1; }
-.maqueta .tarjetas div { border-radius: 10px; background: linear-gradient(135deg, var(--acc), hsl(var(--h) 80% 20%)); opacity: .85; box-shadow: 0 10px 24px -12px var(--acc); }
-.maqueta .tarjetas div:nth-child(2) { opacity: .6; }
-.maqueta .tarjetas div:nth-child(3) { opacity: .4; }
-.maqueta .barra2 { height: 34px; border-radius: 10px; background: rgba(255, 255, 255, .05); display: flex; align-items: center; gap: 10px; padding: 0 10px; }
-.maqueta .barra2 i { width: 18px; height: 18px; border-radius: 50%; background: #fff; flex: none; }
-.maqueta .barra2 u { flex: 1; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .12); position: relative; overflow: hidden; }
-.maqueta .barra2 u::after { content: ""; position: absolute; inset: 0 40% 0 0; background: var(--acc); box-shadow: 0 0 10px var(--acc); animation: avanza 6s linear infinite; }
-@keyframes avanza { from { right: 100%; } to { right: 0; } }
-.selector { position: relative; margin-top: 16px; height: 16px; border-radius: 999px; cursor: pointer; touch-action: none;
-  background: linear-gradient(90deg, hsl(0 95% 58%), hsl(60 95% 58%), hsl(120 95% 58%), hsl(180 95% 58%), hsl(240 95% 58%), hsl(300 95% 58%), hsl(360 95% 58%)); }
-.selector .pomo {
-  position: absolute; top: 50%; left: calc(var(--p, .98) * 100%); width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%;
-  background: var(--acc); border: 3px solid #fff; box-shadow: 0 0 0 4px rgba(0, 0, 0, .35), 0 0 22px var(--acc);
-}
-.temas-app .muestras2 { display: flex; gap: 8px; margin-top: 14px; }
-.temas-app .muestras2 span { width: 22px; height: 22px; border-radius: 7px; cursor: pointer; border: 1px solid rgba(255, 255, 255, .15); transition: scale .3s cubic-bezier(.34, 1.56, .64, 1); }
-.temas-app .muestras2 span:hover { scale: 1.2; }
+.fila-cola b { display: block; font: 700 13px/1.2 Inter, sans-serif; }
+.fila-cola span { font: 500 11.5px/1.2 Inter, sans-serif; color: var(--suave); }
+.fila-cola em { margin-left: auto; font: 600 11px/1 Inter, sans-serif; font-style: normal; color: var(--tenue); }
 
 /* Soundboard: pads como los de la app (.sbCara en relay-host.js). Suenan
    solos, varios a la vez, o al pulsarlos; abajo, lo que llega al microfono. */
 .sb-app { padding: 22px 22px 18px; }
-.sb-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Sora, sans-serif; }
-.sb-app .cabeza i { font: 700 9px/1 "JetBrains Mono", monospace; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgb(var(--rosa)); background: rgba(var(--rojo), .15); border: 1px solid rgba(var(--rojo), .45); }
-.sb-app .parar { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; cursor: pointer; font: 700 11.5px/1 Manrope, sans-serif; color: #fff; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); transition: background .2s ease, border-color .2s ease; }
+.sb-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Inter, sans-serif; }
+.sb-app .cabeza i { font: 700 9px/1 Inter, sans-serif; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgb(var(--rosa)); background: rgba(var(--rojo), .15); border: 1px solid rgba(var(--rojo), .45); }
+.sb-app .parar { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; cursor: pointer; font: 700 11.5px/1 Inter, sans-serif; color: #fff; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); transition: background .2s ease, border-color .2s ease; }
 .sb-app .parar:hover { background: rgba(var(--rojo), .2); border-color: rgba(var(--rojo), .6); }
 .sb-app .parar svg { width: 11px; height: 11px; }
 .pads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
@@ -484,13 +536,13 @@ section { padding: 96px 0 0; }
 .pad:hover .arte { transform: scale(1.06); }
 .pad .velo { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 8, 9, .5) 0%, rgba(8, 8, 9, 0) 30%, rgba(8, 8, 9, 0) 45%, rgba(8, 8, 9, .55) 72%, rgba(8, 8, 9, .92) 100%); }
 .pad .info { position: absolute; left: 12px; right: 34px; bottom: 12px; min-width: 0; }
-.pad .info b { display: block; font: 700 13.5px/1.2 Sora, sans-serif; letter-spacing: -.01em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
-.pad .info span { display: block; margin-top: 3px; font: 500 11px/1.3 Manrope, sans-serif; color: rgba(238, 238, 244, .7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pad .info b { display: block; font: 700 13.5px/1.2 Inter, sans-serif; letter-spacing: -.01em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
+.pad .info span { display: block; margin-top: 3px; font: 500 11px/1.3 Inter, sans-serif; color: rgba(238, 238, 244, .7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pad .chips { position: absolute; left: 10px; top: 10px; display: flex; gap: 5px; }
-.pad .chip { padding: 4px 6px 3px; border-radius: 7px; font: 700 9px/1 "JetBrains Mono", monospace; letter-spacing: .08em; color: rgba(255, 255, 255, .88); background: rgba(10, 10, 11, .55); border: 1px solid rgba(255, 255, 255, .14); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background .15s ease, border-color .15s ease; }
+.pad .chip { padding: 4px 6px 3px; border-radius: 7px; font: 700 9px/1 Inter, sans-serif; letter-spacing: .08em; color: rgba(255, 255, 255, .88); background: rgba(10, 10, 11, .55); border: 1px solid rgba(255, 255, 255, .14); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background .15s ease, border-color .15s ease; }
 .pad .chip.trozo { color: rgb(var(--rosa)); background: rgba(var(--rojo), .28); border-color: rgba(var(--rojo), .55); }
 .pad .chip.pulsada { color: #fff; background: rgba(var(--rojo), .8); border-color: rgb(var(--rojo)); }
-.pad .tiempo { position: absolute; right: 12px; bottom: 14px; font: 700 10px/1 "JetBrains Mono", monospace; color: rgba(238, 238, 244, .7); transition: opacity .2s ease; }
+.pad .tiempo { position: absolute; right: 12px; bottom: 14px; font: 700 10px/1 Inter, sans-serif; color: rgba(238, 238, 244, .7); transition: opacity .2s ease; }
 .pad .eq { position: absolute; right: 12px; bottom: 15px; display: flex; align-items: flex-end; gap: 2px; height: 14px; opacity: 0; transition: opacity .2s ease; }
 .pad .eq i { width: 3px; height: 14px; border-radius: 2px; background: rgb(var(--claro)); transform-origin: bottom; animation: sbBarras .8s ease-in-out infinite; }
 .pad .eq i:nth-child(2) { animation-duration: .62s; animation-delay: .12s; }
@@ -510,9 +562,9 @@ section { padding: 96px 0 0; }
   50% { box-shadow: 0 0 0 2px rgba(255, 90, 99, 1), 0 0 40px 6px rgba(var(--rojo), .7), 0 22px 60px -16px rgba(var(--rojo), 1); }
 }
 .al-mic { margin-top: 16px; border-top: 1px solid var(--linea); padding-top: 12px; }
-.al-mic small { font: 700 10px/1 "JetBrains Mono", monospace; letter-spacing: .14em; color: var(--tenue); }
+.al-mic small { font: 700 10px/1 Inter, sans-serif; letter-spacing: .14em; color: var(--tenue); }
 .canales { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 10px; }
-.canal span { font: 600 11.5px/1 Manrope, sans-serif; color: var(--suave); }
+.canal span { font: 600 11.5px/1 Inter, sans-serif; color: var(--suave); }
 .medidor { margin-top: 7px; height: 6px; border-radius: 99px; overflow: hidden; background: rgba(255, 255, 255, .07); }
 .medidor i { display: block; height: 100%; border-radius: inherit; transform-origin: left; transform: scaleX(var(--v, 0)); transition: transform .14s linear; background: linear-gradient(90deg, rgb(var(--rojo)), rgb(var(--claro))); }
 .rejilla.importa { margin-top: 26px; }
@@ -527,67 +579,6 @@ section { padding: 96px 0 0; }
 @media (max-width: 860px) {
   .muestra, .muestra.al-reves { grid-template-columns: 1fr; gap: 26px; }
   .muestra.al-reves .explica { order: -1; }
-}
-
-/* La galeria: pestanas con una pildora que se desliza hasta la elegida, y una
-   captura que cambia con un fundido. */
-.pestanas { position: relative; display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-bottom: 22px; }
-.pestanas button {
-  position: relative; z-index: 1;
-  font: 700 13.5px/1 Manrope, sans-serif; color: var(--suave); cursor: pointer;
-  padding: 10px 15px; border-radius: 999px; border: 1px solid var(--linea); background: rgba(255, 255, 255, .03);
-  transition: color .25s, background .25s, border-color .25s;
-}
-.pestanas button:hover { color: #fff; }
-.pestanas button[aria-selected="true"] { color: #fff; background: transparent; border-color: transparent; }
-.pildora {
-  position: absolute; left: 0; top: 0; z-index: 0; border-radius: 999px; pointer-events: none;
-  background: rgba(var(--rojo), .22); border: 1px solid rgba(var(--rojo), .6);
-  box-shadow: 0 0 22px -4px rgba(var(--rojo), .6);
-  transition: translate .5s cubic-bezier(.34, 1.3, .64, 1), width .5s cubic-bezier(.34, 1.3, .64, 1), height .3s;
-}
-.galeria { position: relative; }
-.galeria img { transition: opacity .35s ease; }
-.galeria img.cambiando { opacity: 0; }
-
-/* ── El visor: la captura entera, encima de todo ── */
-.ventana img { cursor: zoom-in; }
-.visor {
-  position: fixed; inset: 0; z-index: 50;
-  display: grid; place-items: center; padding: 64px 72px;
-  background: rgba(6, 4, 5, .82);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  opacity: 0; pointer-events: none; transition: opacity .3s ease;
-}
-.visor.abierto { opacity: 1; pointer-events: auto; }
-.visor figure { margin: 0; max-width: 100%; max-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-.visor img {
-  max-width: 100%; max-height: calc(100vh - 170px); width: auto; height: auto;
-  border-radius: 12px; cursor: zoom-out;
-  box-shadow: 0 40px 120px -30px rgba(var(--rojo), .6), 0 20px 60px rgba(0, 0, 0, .7);
-  border: 1px solid rgba(var(--rojo), .3);
-  transform-origin: center; will-change: transform;
-}
-.visor figcaption { font: 700 12px/1 "JetBrains Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
-.visor figcaption b { color: rgb(var(--rosa)); font-weight: 700; }
-.visor .cerrar, .visor .flecha {
-  position: absolute; display: grid; place-items: center; cursor: pointer;
-  width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--linea);
-  color: #fff; background: rgba(255, 255, 255, .06);
-  transition: background .2s, border-color .2s, transform .3s cubic-bezier(.34, 1.56, .64, 1);
-}
-.visor .cerrar:hover, .visor .flecha:hover { background: rgba(var(--rojo), .3); border-color: rgba(var(--rojo), .6); }
-.visor .cerrar { top: 16px; right: 16px; }
-.visor .flecha { top: 50%; margin-top: -22px; }
-.visor .flecha.atras { left: 16px; }
-.visor .flecha.alante { right: 16px; }
-.visor .flecha.atras:hover { transform: translateX(-2px); }
-.visor .flecha.alante:hover { transform: translateX(2px); }
-.visor svg { width: 20px; height: 20px; }
-.visor img.cambiando { opacity: 0; transition: opacity .2s ease; }
-@media (max-width: 560px) {
-  .visor { padding: 64px 12px; }
-  .visor .flecha { top: auto; bottom: 16px; margin-top: 0; }
 }
 
 /* ── El final: un halo que gira despacio detras ── */
@@ -630,11 +621,11 @@ section { padding: 96px 0 0; }
   translate: var(--fx, 50vw) var(--fy, 30vh); opacity: 0; transition: opacity .6s ease;
 }
 .cielo .foco.vivo { opacity: 1; }
-.final h2 { margin: 0 0 10px; font: 700 clamp(28px, 4vw, 40px)/1.1 Sora, sans-serif; letter-spacing: -.035em; }
+.final h2 { margin: 0 0 10px; font: 800 clamp(28px, 4vw, 40px)/1.1 Inter, sans-serif; letter-spacing: -.035em; }
 .final p { margin: 0 0 28px; color: var(--suave); }
 
 footer { padding: 48px 0 40px; text-align: center; color: var(--tenue); font-size: 13px; }
-footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12em; margin-bottom: 10px; }
+footer .pie { font: 600 11px/1 Inter, sans-serif; letter-spacing: .12em; margin-bottom: 10px; }
 
 /* Aparecen al llegar: suben, se enfocan y se encienden. Con translate y no
    transform, que es de la inclinacion de las ventanas y las tarjetas. */
@@ -682,8 +673,8 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
   <div class="marco">
     <a class="marca" href="#"><img src="logo.svg" alt=""><span>RELAY</span></a>
     <nav class="enlaces">
-      <a class="suave" href="#features">Features</a>
-      <a class="suave" href="#screens">Screenshots</a>
+      <a class="suave" href="#tour">Tour</a>
+      <a class="suave" href="#more">Features</a>
       <a class="suave" href="https://github.com/ElcocosYT/Relay" target="_blank" rel="noopener">GitHub</a>
       <a class="boton descarga" href="https://github.com/ElcocosYT/Relay/releases/latest/download/Relay-Setup.exe">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Download
@@ -705,41 +696,92 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
     </div>
     <div class="pildoras cae" style="--t:2"><span>No ads</span><span>Free</span><span>Forever</span></div>
 
-    <div class="escena"><div class="ventana aparece arriba"><img src="shots/now-playing.webp" alt="Relay playing a song, with its synced lyrics and the queue" width="1600" height="870"></div></div>
+    <div class="escena"><div class="ventana aparece arriba"><div class="demo" data-w="1217" data-h="791"><iframe id="ventanaDemo" src="demos/ventana.html" title="Relay, live: the Albums screen"></iframe></div></div></div>
+    <p class="nota aparece">This is Relay itself, not a picture. Hover around and click the sidebar to switch screens.</p>
   </div>
 
-  <section id="features">
-    <div class="titulo aparece"><small>What it does</small><h2>Everything you play, in one app</h2></div>
-    <div class="rejilla">
-      <div class="tarjeta aparece">
-        <div class="icono"><svg viewBox="0 0 14 12" fill="currentColor"><rect x="0" y="0" width="14" height="2" rx="1"/><rect x="0" y="5" width="14" height="2" rx="1"/><rect x="0" y="10" width="14" height="2" rx="1"/></svg></div>
-        <h3>Your library</h3>
-        <p>Albums, artists and playlists from your own files, with synced lyrics and themes in any colour.</p>
+  <section id="tour">
+    <div class="titulo aparece"><small>Take the tour</small><h2>Everything you play, in one app</h2></div>
+
+    <div class="muestra">
+      <div class="explica aparece">
+        <small>Library</small>
+        <h2>Your files, your way</h2>
+        <p>Point Relay at your music folders and it reads everything in them: tags, covers and lyrics. Sort it how you like and keep it tidy.</p>
+        <ul>
+          <li>Pick, reorder and resize the columns</li>
+          <li>Colour tags and a hotkey for any song</li>
+          <li>Versions of the same song grouped in one row</li>
+          <li>Drag songs and folders straight in, or import playlists</li>
+        </ul>
       </div>
-      <div class="tarjeta aparece">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"> <rect x="2.5" y="2.5" width="8.5" height="8.5" rx="2.4"></rect> <rect x="13" y="2.5" width="8.5" height="8.5" rx="2.4"></rect> <rect x="2.5" y="13" width="8.5" height="8.5" rx="2.4"></rect> <path d="M15.4,13h3.7a2.4,2.4 0 0 1 2.4,2.4v3.7a2.4,2.4 0 0 1 -2.4,2.4h-3.7a2.4,2.4 0 0 1 -2.4,-2.4v-3.7a2.4,2.4 0 0 1 2.4,-2.4z M14.8,16.4h1.3v2.9h-1.3z M16.6,14.9h1.3v5.8h-1.3z M18.4,16.9h1.3v1.9h-1.3z"></path> </svg></div>
-        <h3>Soundboard</h3>
-        <p>Drop songs on pads, cut them to the exact moment and fire them with a hotkey, over your music.</p>
+      <div class="ventana aparece"><div class="demo" data-w="960" data-h="640"><iframe loading="lazy" src="demos/main.html" title="Relay: Library"></iframe></div></div>
+    </div>
+
+    <div class="muestra al-reves">
+      <div class="ventana aparece"><div class="demo" data-w="960" data-h="640"><iframe loading="lazy" src="demos/albums.html" title="Relay: Albums"></iframe></div></div>
+      <div class="explica aparece">
+        <small>Albums</small>
+        <h2>Covers first</h2>
+        <p>Big covers and nothing in the way. Hover one and its record slides out, painted in the colours of the cover. The album playing now keeps its record spinning.</p>
+        <ul>
+          <li>Pin your favourites so they're always first</li>
+          <li>Play it or open its menu right on the cover</li>
+          <li>Filter by album, single or artist as you type</li>
+        </ul>
       </div>
-      <div class="tarjeta aparece">
-        <div class="icono"><svg fill="currentColor" viewBox="-3 0 19 19"><path d="M11.665 7.915v1.31a5.257 5.257 0 0 1-1.514 3.694 5.174 5.174 0 0 1-1.641 1.126 5.04 5.04 0 0 1-1.456.384v1.899h2.312a.554.554 0 0 1 0 1.108H3.634a.554.554 0 0 1 0-1.108h2.312v-1.899a5.045 5.045 0 0 1-1.456-.384 5.174 5.174 0 0 1-1.641-1.126 5.257 5.257 0 0 1-1.514-3.695v-1.31a.554.554 0 1 1 1.109 0v1.31a4.131 4.131 0 0 0 1.195 2.917 3.989 3.989 0 0 0 5.722 0 4.133 4.133 0 0 0 1.195-2.917v-1.31a.554.554 0 1 1 1.109 0zM3.77 10.37a2.875 2.875 0 0 1-.233-1.146V4.738A2.905 2.905 0 0 1 3.77 3.58a3 3 0 0 1 1.59-1.59 2.902 2.902 0 0 1 1.158-.233 2.865 2.865 0 0 1 1.152.233 2.977 2.977 0 0 1 1.793 2.748l-.012 4.487a2.958 2.958 0 0 1-.856 2.09 3.025 3.025 0 0 1-.937.634 2.865 2.865 0 0 1-1.152.233 2.905 2.905 0 0 1-1.158-.233A2.957 2.957 0 0 1 3.77 10.37z"/></svg></div>
-        <h3>Through your mic</h3>
-        <p>Send your music and sounds into Discord calls and games, mixed with your own voice.</p>
+    </div>
+
+    <div class="muestra">
+      <div class="explica aparece">
+        <small>Artists</small>
+        <h2>Everyone you listen to</h2>
+        <p>Every artist with their own glow, taken from their picture. Open one and you get their albums, their singles, the albums they appear in and every song.</p>
+        <ul>
+          <li>Collaborations counted for everyone on the track</li>
+          <li>Set your own picture for any artist</li>
+          <li>Play everything by them in one click</li>
+        </ul>
       </div>
-      <div class="tarjeta aparece">
-        <div class="icono"><svg viewBox="0 0 512 512" fill="currentColor"> <rect x="424" y="24" width="48" height="52"></rect> <rect x="424" y="188" width="48" height="300"></rect> <path d="M484.79,100h-73.578C396.188,100,384,112.188,384,127.211v9.578c0,15.023,12.188,27.21,27.211,27.21h73.578c15.023,0,27.21-12.187,27.21-27.21v-9.578C512,112.188,499.813,100,484.79,100z"></path> <rect x="231.985" y="24" width="48" height="276.641"></rect> <rect x="231.985" y="412.641" width="48" height="75.359"></rect> <path d="M292.774,324.641h-73.578c-15.023,0-27.21,12.187-27.21,27.211v9.578c0,15.024,12.187,27.211,27.21,27.211h73.578c15.023,0,27.211-12.187,27.211-27.211v-9.578C319.985,336.828,307.797,324.641,292.774,324.641z"></path> <rect x="40" y="308" width="48" height="180"></rect> <rect x="40" y="24" width="48" height="172"></rect> <path d="M100.79,220H27.211C12.188,220,0,232.188,0,247.211v9.578C0,271.813,12.188,284,27.211,284h73.578c15.023,0,27.21-12.187,27.21-27.21v-9.578C128,232.188,115.813,220,100.79,220z"></path> </svg></div>
-        <h3>Mixer</h3>
-        <p>Music, sounds and microphone on their own faders, each to the device you pick, with an equalizer.</p>
+      <div class="ventana aparece"><div class="demo" data-w="960" data-h="640"><iframe loading="lazy" src="demos/artists.html" title="Relay: Artists"></iframe></div></div>
+    </div>
+  </section>
+
+  <section id="lyrics">
+    <div class="muestra">
+      <div class="explica aparece">
+        <small>Now Playing · Lyrics</small>
+        <h2>Lyrics that sing along</h2>
+        <p>Synced lyrics that move with the song, line by line, the way you'd expect from a streaming app. Click a line to jump there.</p>
+        <ul>
+          <li>The playing line fills word by word</li>
+          <li>Found for you, or written and timed by hand</li>
+          <li>Precise timing with Whisper, right on your PC</li>
+        </ul>
       </div>
-      <div class="tarjeta aparece">
-        <div class="icono"><svg viewBox="4 4 24 24" fill="currentColor"><path d="M23.6361 9.33998C22.212 8.71399 20.6892 8.25903 19.0973 8C18.9018 8.33209 18.6734 8.77875 18.5159 9.13408C16.8236 8.89498 15.1469 8.89498 13.4857 9.13408C13.3283 8.77875 13.0946 8.33209 12.8974 8C11.3037 8.25903 9.77927 8.71565 8.35518 9.3433C5.48276 13.4213 4.70409 17.3981 5.09342 21.3184C6.99856 22.6551 8.84487 23.467 10.66 23.9983C11.1082 23.4189 11.5079 22.8029 11.8523 22.1536C11.1964 21.9195 10.5683 21.6306 9.9748 21.2951C10.1323 21.1856 10.2863 21.071 10.4351 20.9531C14.0551 22.5438 17.9881 22.5438 21.5649 20.9531C21.7154 21.071 21.8694 21.1856 22.0251 21.2951C21.4299 21.6322 20.8 21.9211 20.1442 22.1553C20.4885 22.8029 20.8865 23.4205 21.3364 24C23.1533 23.4687 25.0013 22.6567 26.9065 21.3184C27.3633 16.7738 26.1261 12.8335 23.6361 9.33998ZM12.3454 18.9075C11.2587 18.9075 10.3676 17.9543 10.3676 16.7937C10.3676 15.6331 11.2397 14.6783 12.3454 14.6783C13.4511 14.6783 14.3422 15.6314 14.3232 16.7937C14.325 17.9543 13.4511 18.9075 12.3454 18.9075ZM19.6545 18.9075C18.5678 18.9075 17.6767 17.9543 17.6767 16.7937C17.6767 15.6331 18.5488 14.6783 19.6545 14.6783C20.7602 14.6783 21.6514 15.6314 21.6323 16.7937C21.6323 17.9543 20.7602 18.9075 19.6545 18.9075Z"/></svg></div>
-        <h3>On your Discord status</h3>
-        <p>"Listening to Relay" with the song, its cover and a live progress bar.</p>
+      <div class="lienzo letra-app aparece">
+        <div class="cabeza">Lyrics <i>SYNCED</i></div>
+        <div class="ventanal"><div class="rollo"></div></div>
       </div>
-      <div class="tarjeta aparece">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="currentColor"> <path d="M15.3222 10.383C15.3796 10.9457 15.4125 11.4903 15.4125 12C15.4125 12.9541 15.2972 14.0315 15.1208 15.1208C14.0315 15.2972 12.9541 15.4125 12 15.4125C11.0502 15.4125 9.97313 15.2975 8.87911 15.1205C8.70281 14.0312 8.5875 12.954 8.5875 12C8.5875 11.4905 8.62039 10.9458 8.67789 10.383C9.82608 10.5668 10.9715 10.6875 12 10.6875C13.0286 10.6875 14.174 10.5668 15.3222 10.383Z"></path> <path d="M16.8752 10.0994C16.9462 10.7579 16.9875 11.399 16.9875 12C16.9875 12.8769 16.8997 13.8389 16.7599 14.8153C18.7425 14.4016 20.575 13.8731 21.5567 13.5722C21.8739 13.475 21.9986 13.4363 22.1658 13.3694C22.2494 13.336 22.326 13.302 22.4259 13.2543C22.4748 12.843 22.5 12.4244 22.5 12C22.5 10.878 22.324 9.79714 21.9982 8.78346L21.9133 8.81017C20.8868 9.12245 18.9652 9.6745 16.8752 10.0994Z"></path> <path d="M21.4017 7.31948C20.3698 7.63221 18.579 8.14039 16.6599 8.53603C16.2178 5.84926 15.443 3.16951 15.0702 1.95598C17.8422 2.80227 20.1273 4.76467 21.4017 7.31948Z"></path> <path d="M15.1117 8.82229C14.0253 8.99781 12.9513 9.1125 12 9.1125C11.0487 9.1125 9.97477 8.99781 8.88843 8.8223C9.30471 6.28005 10.0478 3.68306 10.4278 2.44333C10.525 2.12606 10.5637 2.00144 10.6306 1.83418C10.664 1.75062 10.698 1.67398 10.7457 1.57414C11.157 1.52518 11.5756 1.5 12 1.5C12.4434 1.5 12.8803 1.52748 13.3093 1.58083C13.3184 1.61564 13.3268 1.64679 13.3351 1.67626C13.3597 1.76333 13.3982 1.8857 13.4628 2.09104L13.4696 2.11261C13.7935 3.14223 14.6519 6.01401 15.1117 8.82229Z"></path> <path d="M7.34004 8.536C7.7801 5.86107 8.54986 3.19576 8.92192 1.98181L8.92983 1.95597C6.15777 2.80225 3.8727 4.76465 2.59835 7.31946C3.63018 7.63219 5.42095 8.14036 7.34004 8.536Z"></path> <path d="M2.00184 8.78345C1.67598 9.79714 1.5 10.878 1.5 12C1.5 12.4389 1.52693 12.8715 1.57923 13.2963L1.74471 13.3515L1.74603 13.3519L1.74765 13.3525L1.74879 13.3528C1.80205 13.3705 3.36305 13.886 5.41878 14.3975C5.99886 14.5418 6.61307 14.6844 7.24006 14.8151C7.10025 13.8388 7.0125 12.8769 7.0125 12C7.0125 11.3988 7.05374 10.7577 7.12472 10.0994C5.03428 9.67436 3.11218 9.12212 2.08597 8.80989L2.07883 8.80771L2.00184 8.78345Z"></path> <path d="M12 16.9875C12.8769 16.9875 13.8389 16.8997 14.8153 16.7599C14.4016 18.7425 13.8731 20.575 13.5722 21.5566C13.475 21.8739 13.4363 21.9985 13.3694 22.1658C13.336 22.2494 13.302 22.326 13.2543 22.4259C12.843 22.4748 12.4244 22.5 12 22.5C11.5756 22.5 11.157 22.4748 10.7457 22.4259C10.698 22.326 10.664 22.2494 10.6306 22.1658C10.5637 21.9986 10.525 21.8739 10.4278 21.5567C10.1269 20.5751 9.59846 18.7427 9.18478 16.7603C10.1579 16.8996 11.1201 16.9875 12 16.9875Z"></path> <path d="M5.0385 15.9259C3.73853 15.6024 2.63135 15.2775 1.95597 15.0702C2.97258 18.4002 5.59982 21.0274 8.92983 22.044L8.92192 22.0182C8.59705 20.9582 7.96897 18.7917 7.52191 16.4784C6.6525 16.3103 5.80722 16.1171 5.0385 15.9259Z"></path> <path d="M22.0182 15.0781C20.9582 15.403 18.7915 16.0311 16.4781 16.4781C16.0311 18.7915 15.403 20.9581 15.0781 22.0182L15.0702 22.044C18.4002 21.0274 21.0274 18.4002 22.044 15.0702L22.0182 15.0781Z"></path> </svg></div>
-        <h3>Online</h3>
-        <p>Search seven services at once, play a song straight away or add it to your library.</p>
+    </div>
+  </section>
+
+  <section id="queue">
+    <div class="muestra al-reves">
+      <div class="lienzo cola-app aparece">
+        <div class="cabeza">Queue <i>COVER FLOW</i></div>
+        <div class="flujo"></div>
+        <div class="sigue"><small>NEXT UP</small><div class="lista-cola"></div></div>
+      </div>
+      <div class="explica aparece">
+        <small>Now Playing · Queue</small>
+        <h2>Your queue, cover by cover</h2>
+        <p>Now Playing shows what's coming as a cover flow. Hover a cover to light it up, click it to jump there, drag songs to reorder.</p>
+        <ul>
+          <li>Each cover glows with its own colours</li>
+          <li>Versions of the same song stay together</li>
+          <li>Picks up where you left off when you open Relay</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -771,8 +813,23 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
     </div>
   </section>
 
-  <section id="services">
-    <div class="titulo aparece"><small>Online</small><h2>Search across seven services at once</h2></div>
+  <section id="online">
+    <div class="titulo aparece"><small>Online</small><h2>Search seven services at once</h2></div>
+    <div class="muestra">
+      <div class="explica aparece">
+        <p>Type once and every service answers. Play a song straight away, or import it into your library with its cover, ready to play offline.</p>
+        <ul>
+          <li>A home page with your recent searches, what you played and what's trending</li>
+          <li>Albums, playlists and artists, not just songs</li>
+          <li>Put a service first, or switch it off</li>
+        </ul>
+        <div class="cambia" role="tablist" aria-label="Online">
+          <button role="tab" aria-selected="true" data-demo="online-inicio">Home</button>
+          <button role="tab" aria-selected="false" data-demo="online">Search</button>
+        </div>
+      </div>
+      <div class="ventana aparece"><div class="demo" data-w="960" data-h="640"><iframe id="onlineDemo" loading="lazy" src="demos/online-inicio.html" title="Relay: Online"></iframe></div></div>
+    </div>
     <div class="servicios">
       <div class="servicio aparece" style="--i:0;--c:255,74,74"><div class="logoServicio" style="background-image:url(servicios/youtube.png)"></div><b>YouTube</b><span>Almost any song, mix or live set</span></div>
       <div class="servicio aparece" style="--i:1;--c:162,56,255"><div class="logoServicio" style="background-image:url(servicios/deezer.svg)"></div><b>Deezer</b><span>Full label albums, like on Spotify</span></div>
@@ -782,7 +839,6 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
       <div class="servicio aparece" style="--i:5;--c:92,214,160"><div class="logoServicio wv" style="background-image:url(servicios/wavernrs.png)"></div><b>wavernrs</b><span>Ye comps, edits and a huge archive</span></div>
       <div class="servicio aparece" style="--i:6;--c:255,255,255"><div class="logoServicio tinta" style="--logo:url(servicios/archive.png)"></div><b>Internet Archive</b><span>Old recordings, live shows and rarities</span></div>
     </div>
-    <p class="serviciosPie aparece">Type once and every service answers. <b>Play it straight away</b> or import it into your library.</p>
     <div class="rejilla importa">
       <div class="tarjeta aparece">
         <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="4" rx="1.5"/><path d="M8 5H6.5A2.5 2.5 0 0 0 4 7.5v11A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 17.5 5H16M12 10v7M9 14l3 3 3-3"/></svg></div>
@@ -800,83 +856,83 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
         <p>Label albums from Deezer play complete, and SoundCloud albums that only have 30-second previews say so up front.</p>
       </div>
     </div>
+
   </section>
 
-  <section id="lyrics">
-    <div class="muestra">
-      <div class="explica aparece">
-        <small>Lyrics</small>
-        <h2>Lyrics that sing along</h2>
-        <p>Synced lyrics that move with the song, line by line, the way you'd expect from a streaming app.</p>
-        <ul>
-          <li>The playing line fills word by word</li>
-          <li>Found for you, or written and timed by hand</li>
-          <li>Precise timing with Whisper, right on your PC</li>
-        </ul>
-      </div>
-      <div class="lienzo letra-app aparece">
-        <div class="cabeza">Lyrics <i>SYNCED</i></div>
-        <div class="ventanal"><div class="rollo"></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="queue">
+  <section id="mixer">
     <div class="muestra al-reves">
-      <div class="lienzo cola-app aparece">
-        <div class="cabeza">Queue <i>COVER FLOW</i></div>
-        <div class="flujo"></div>
-        <div class="sigue"><small>NEXT UP</small><div class="lista-cola"></div></div>
-      </div>
+      <div class="ventana aparece"><div class="demo" data-w="960" data-h="640"><iframe loading="lazy" src="demos/mixer.html" title="Relay: Mixer"></iframe></div></div>
       <div class="explica aparece">
-        <small>Queue</small>
-        <h2>Your queue, cover by cover</h2>
-        <p>Now Playing shows what's coming as a cover flow. Hover a cover to light it up, click it to jump there, drag songs to reorder.</p>
+        <small>Mixer</small>
+        <h2>Your music, through your mic</h2>
+        <p>Relay sets up a virtual microphone. Pick it in Discord or a game and your friends hear your music and your sounds, mixed with your own voice.</p>
         <ul>
-          <li>Each cover glows with its own colours</li>
-          <li>Versions of the same song stay together</li>
-          <li>Picks up where you left off when you open Relay</li>
+          <li>Music, mic, sounds and master, each on its own fader</li>
+          <li>Ducking: the music dips while you talk</li>
+          <li>An equalizer, and each channel to the device you pick</li>
         </ul>
       </div>
     </div>
+  </section>
+
+  <section id="party">
+    <div class="titulo aparece"><small>Listening parties</small><h2>Listen together, in sync</h2></div>
+    <p class="entradilla aparece">Start a party and your friends hear exactly what you play, at the same moment, with your names, covers and lyrics. Songs they don't have are sent to them directly.</p>
+    <div class="doble">
+      <div class="demo suelta aparece" data-w="540" data-h="513"><iframe loading="lazy" src="demos/sala.html" title="Relay: your listening party"></iframe></div>
+      <div class="demo suelta aparece" data-w="420" data-h="564"><iframe loading="lazy" src="demos/chat.html" title="Relay: party chat"></iframe></div>
+    </div>
+    <div class="puntos">
+      <div class="punto aparece"><b>Guests and editors</b><span>Guests listen along. Editors can add songs and fix the lyrics live.</span></div>
+      <div class="punto aparece"><b>Live chat</b><span>With Discord emoji. Messages pop up over the party button.</span></div>
+      <div class="punto aparece"><b>Kick and ban</b><span>Remove someone, or keep them out of that party for good.</span></div>
+      <div class="punto aparece"><b>Join from Discord</b><span>Your status shows a Join button while you host.</span></div>
+    </div>
+  </section>
+
+  <section id="recap">
+    <div class="titulo aparece"><small>Share</small><h2>Your Relay Recap</h2></div>
+    <p class="entradilla aparece">Your top songs, artists and minutes as an image, ready to paste into Discord, X or Instagram. Or share any song as a card of its own.</p>
+    <div class="cambia centro aparece" role="tablist" aria-label="Share">
+      <button role="tab" aria-selected="true" data-demo="recap" data-alto="831">Recap</button>
+      <button role="tab" aria-selected="false" data-demo="compartir" data-alto="748">A song</button>
+    </div>
+    <div class="demo suelta ancha aparece" data-w="1036" data-h="831"><iframe id="recapDemo" loading="lazy" src="demos/recap.html" title="Relay: Relay Recap"></iframe></div>
   </section>
 
   <section id="themes">
-    <div class="muestra">
+    <div class="muestra temas">
       <div class="explica aparece">
         <small>Themes</small>
         <h2>Any colour you like</h2>
-        <p>Pick a colour and all of Relay follows: the sidebar, the glows, the buttons and the waves. Try it here, drag the dot.</p>
+        <p>Pick a colour and all of Relay follows: the sidebar, the glows, the buttons and the waves. Try it here: this whole page changes with it.</p>
+        <div class="colores" role="group" aria-label="Theme colour"></div>
         <ul>
-          <li>Ready-made themes or your own colour</li>
+          <li>Ready-made themes or any colour you pick</li>
+          <li>Save your own looks</li>
           <li>Turn each effect on or off</li>
-          <li>Changes live, while the music plays</li>
         </ul>
       </div>
-      <div class="lienzo temas-app aparece">
-        <div class="maqueta">
-          <div class="lado"><div class="item"></div><div class="item activo"></div><div class="item"></div><div class="item"></div><div class="item"></div><div class="item"></div></div>
-          <div class="centro2"><div class="titulo2">Library</div><div class="tarjetas"><div></div><div></div><div></div></div><div class="barra2"><i></i><u></u></div></div>
-        </div>
-        <div class="selector"><div class="pomo"></div></div>
-        <div class="muestras2"></div>
-      </div>
+      <div class="demo suelta aparece" data-w="959" data-h="1713"><iframe loading="lazy" src="demos/themes.html" title="Relay: Themes"></iframe></div>
     </div>
   </section>
 
-  <section id="screens">
-    <div class="titulo aparece"><small>Screenshots</small><h2>Take a look</h2></div>
-    <div class="pestanas aparece" role="tablist">
-      <span class="pildora" aria-hidden="true"></span>
-      <button role="tab" aria-selected="true" data-img="library">Library</button>
-      <button role="tab" aria-selected="false" data-img="now-playing">Now playing</button>
-      <button role="tab" aria-selected="false" data-img="albums">Albums</button>
-      <button role="tab" aria-selected="false" data-img="artists">Artists</button>
-      <button role="tab" aria-selected="false" data-img="mixer">Mixer</button>
-      <button role="tab" aria-selected="false" data-img="themes">Themes</button>
-      <button role="tab" aria-selected="false" data-img="online">Online</button>
+  <section id="more">
+    <div class="titulo aparece"><small>And more</small><h2>The little things</h2></div>
+    <div class="mas">
+      <div class="cosa aparece"><b>On your Discord status</b><span>"Listening to Relay" with the song, its cover and a live progress bar.</span></div>
+      <div class="cosa aparece"><b>Global hotkeys</b><span>Play, skip and fire pads from any app, even in a game.</span></div>
+      <div class="cosa aparece"><b>Copy a link, import it</b><span>Copy a song, album or playlist from Spotify, YouTube or SoundCloud and Relay offers to bring it in.</span></div>
+      <div class="cosa aparece"><b>Whole playlists at once</b><span>Paste a playlist link and every song comes in with its cover.</span></div>
+      <div class="cosa aparece"><b>Crossfade and gapless</b><span>Songs run into each other, or play back to back without a gap.</span></div>
+      <div class="cosa aparece"><b>Normalisation</b><span>Every song at the same loudness, without touching your files.</span></div>
+      <div class="cosa aparece"><b>Move to folder</b><span>Move song files anywhere. Lyrics, versions and the queue follow them.</span></div>
+      <div class="cosa aparece"><b>Backups</b><span>Save your whole library, lists and settings, and bring it all back.</span></div>
+      <div class="cosa aparece"><b>Your party profile</b><span>Your own name and picture, or your Discord one.</span></div>
+      <div class="cosa aparece"><b>Full screen</b><span>F11, or the maximise button on a maximised window.</span></div>
+      <div class="cosa aparece"><b>Keeps playing in the tray</b><span>Close the window and the music keeps going.</span></div>
+      <div class="cosa aparece"><b>Updates itself</b><span>New versions download in the background, with notes on what changed.</span></div>
     </div>
-    <div class="escena"><div class="ventana galeria aparece" style="margin-top:0"><img id="captura" src="shots/library.webp" alt="Relay: Library" width="1600" height="870" loading="lazy"></div></div>
   </section>
 
   <div class="final aparece">
@@ -889,18 +945,9 @@ footer .pie { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .12e
   </div>
 </main>
 
-<div class="visor" role="dialog" aria-modal="true" aria-label="Screenshot" aria-hidden="true">
-  <button class="cerrar" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <button class="flecha atras" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-  <figure><img alt=""><figcaption></figcaption></figure>
-  <button class="flecha alante" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
-</div>
-
-<footer>
-  <div class="pie">RELAY · FOR THE COMMUNITY · 2026</div>
-  © 2026 SupperDupper. All rights reserved.
 </footer>
 
+<script src="demos/tema.js"></script>
 <script>
 // La version y el tamano de verdad, de la ultima publicada en GitHub. Si no
 // contesta, se queda lo de serie: el boton sirve igual.
@@ -915,108 +962,6 @@ fetch("https://api.github.com/repos/ElcocosYT/Relay/releases/latest")
     if (exe) { detalle.lastChild.textContent = " · Windows 10 & 11 · " + Math.round(exe.size / 1048576) + " MB"; }
   })
   .catch(() => {});
-
-// La galeria: cada pestana, su captura, con un fundido.
-const captura = document.getElementById("captura");
-document.querySelectorAll(".pestanas button").forEach((b) => {
-  b.addEventListener("click", () => {
-    if (b.getAttribute("aria-selected") === "true") { return; }
-    document.querySelectorAll(".pestanas button").forEach((o) => o.setAttribute("aria-selected", String(o === b)));
-    const nueva = new Image();
-    nueva.src = "shots/" + b.dataset.img + ".webp";
-    captura.classList.add("cambiando");
-    const poner = () => {
-      captura.src = nueva.src;
-      captura.alt = "Relay: " + b.textContent;
-      requestAnimationFrame(() => captura.classList.remove("cambiando"));
-    };
-    Promise.all([nueva.decode().catch(() => {}), new Promise((r) => setTimeout(r, 200))]).then(poner);
-  });
-});
-
-// El visor: la captura pulsada, entera y a toda resolucion. Sale ampliandose
-// desde donde estaba y vuelve alli al cerrar. Flechas para pasar de una a
-// otra, en el orden de la galeria.
-const CAPTURAS = [...document.querySelectorAll(".pestanas button")].map((b) => ({ clave: b.dataset.img, nombre: b.textContent }));
-const visor = document.querySelector(".visor");
-const grande = visor.querySelector("img");
-const pie = visor.querySelector("figcaption");
-let actual = -1;
-let origen = null;
-
-const claveDe = (img) => img.getAttribute("src").split("/").pop().replace(".webp", "");
-
-function mostrar(i) {
-  actual = (i + CAPTURAS.length) % CAPTURAS.length;
-  const c = CAPTURAS[actual];
-  // Primero la que ya esta cargada, al momento; la grande en cuanto llegue.
-  grande.src = "shots/" + c.clave + ".webp";
-  grande.alt = "Relay: " + c.nombre;
-  pie.innerHTML = "<b>" + (actual + 1) + "</b> / " + CAPTURAS.length + " · " + c.nombre;
-  const entera = new Image();
-  entera.src = "shots/full/" + c.clave + ".webp";
-  entera.decode().then(() => {
-    if (CAPTURAS[actual].clave === c.clave) { grande.src = entera.src; }
-  }).catch(() => {});
-}
-
-// De un rectangulo a otro: lo que hay que mover y escalar la grande.
-function desde(rect) {
-  const b = grande.getBoundingClientRect();
-  const dx = (rect.left + rect.width / 2) - (b.left + b.width / 2);
-  const dy = (rect.top + rect.height / 2) - (b.top + b.height / 2);
-  return "translate(" + dx + "px," + dy + "px) scale(" + (rect.width / b.width) + ")";
-}
-
-async function abrir(img) {
-  origen = img;
-  const i = CAPTURAS.findIndex((c) => c.clave === claveDe(img));
-  mostrar(i < 0 ? 0 : i);
-  await grande.decode().catch(() => {});
-  visor.classList.add("abierto");
-  visor.setAttribute("aria-hidden", "false");
-  document.documentElement.style.overflow = "hidden";
-  grande.style.transition = "none";
-  grande.style.transform = desde(img.getBoundingClientRect());
-  grande.getBoundingClientRect();
-  grande.style.transition = "transform .5s cubic-bezier(.22, 1, .36, 1)";
-  grande.style.transform = "none";
-}
-
-function cerrar() {
-  if (!visor.classList.contains("abierto")) { return; }
-  // Vuelve a su sitio si sigue siendo la misma; si se paso a otra, se funde.
-  if (origen && claveDe(origen) === CAPTURAS[actual].clave) {
-    grande.style.transition = "transform .38s cubic-bezier(.4, 0, .2, 1)";
-    grande.style.transform = desde(origen.getBoundingClientRect());
-  }
-  visor.classList.remove("abierto");
-  visor.setAttribute("aria-hidden", "true");
-  document.documentElement.style.overflow = "";
-  setTimeout(() => { grande.style.transition = "none"; grande.style.transform = "none"; }, 400);
-}
-
-function pasar(n) {
-  grande.style.transition = "none";
-  grande.style.transform = "none";
-  grande.classList.add("cambiando");
-  setTimeout(() => {
-    mostrar(actual + n);
-    grande.decode().catch(() => {}).then(() => grande.classList.remove("cambiando"));
-  }, 180);
-}
-
-document.querySelectorAll(".ventana img").forEach((img) => img.addEventListener("click", () => abrir(img)));
-visor.addEventListener("click", (e) => { if (!e.target.closest("button")) { cerrar(); } });
-visor.querySelector(".cerrar").addEventListener("click", cerrar);
-visor.querySelector(".atras").addEventListener("click", () => pasar(-1));
-visor.querySelector(".alante").addEventListener("click", () => pasar(1));
-document.addEventListener("keydown", (e) => {
-  if (!visor.classList.contains("abierto")) { return; }
-  if (e.key === "Escape") { cerrar(); }
-  if (e.key === "ArrowLeft") { pasar(-1); }
-  if (e.key === "ArrowRight") { pasar(1); }
-});
 
 // ── El movimiento ──
 // Quieto del todo si el sistema pide menos movimiento; lo que sigue al raton,
@@ -1070,20 +1015,6 @@ function alBajar() {
 addEventListener("scroll", () => { if (!pintandoScroll) { pintandoScroll = true; requestAnimationFrame(alBajar); } }, { passive: true });
 addEventListener("resize", alBajar);
 alBajar();
-
-// La pildora de las pestanas: se desliza hasta la elegida.
-const pildora = document.querySelector(".pildora");
-function moverPildora() {
-  const b = document.querySelector('.pestanas button[aria-selected="true"]');
-  if (!b) { return; }
-  pildora.style.translate = b.offsetLeft + "px " + b.offsetTop + "px";
-  pildora.style.width = b.offsetWidth + "px";
-  pildora.style.height = b.offsetHeight + "px";
-}
-document.querySelectorAll(".pestanas button").forEach((b) => b.addEventListener("click", () => requestAnimationFrame(moverPildora)));
-addEventListener("resize", moverPildora);
-document.fonts?.ready.then(moverPildora);
-moverPildora();
 
 if (conRaton && !quieto) {
   // Los botones se inclinan hacia el raton.
@@ -1153,7 +1084,14 @@ if (conRaton && !quieto) {
 if (!quieto) {
   const lienzo = document.getElementById("ascuas");
   const ctx = lienzo.getContext("2d");
-  const COLORES = ["255,42,58", "255,143,152", "255,210,213", "255,76,87"];
+  let COLORES = ["255,42,58", "255,143,152", "255,210,213", "255,76,87"];
+  const leerColores = () => {
+    const cs = getComputedStyle(document.documentElement);
+    const v = (n, d) => (cs.getPropertyValue("--t" + n).trim() || d).replace(/\s/g, "");
+    COLORES = [v(0, "255,42,58"), v(4, "255,143,152"), v(13, "255,211,214"), v(26, "255,76,87")];
+    chispas.forEach((c) => { c.rgb = COLORES[Math.floor(Math.random() * COLORES.length)]; });
+  };
+  document.addEventListener("relaytema", () => leerColores());
   let ancho = 0, alto = 0, escala = 1, chispas = [];
   const azar = (a, b) => a + Math.random() * (b - a);
   const nueva = (abajo) => ({
@@ -1494,39 +1432,65 @@ const seVe = (el) => enVista.get(el) !== false && !document.hidden;
   }, 2300);
 })();
 
-// Los temas: el selector se pasea solo por los colores y la Relay pequena lo
-// sigue; se puede arrastrar, y al soltarlo vuelve a pasearse al rato.
+// ── Las demos: cada una a su tamaño real, encogida a lo que haya ──
+const demos = document.querySelectorAll(".demo");
+const medirDemo = new ResizeObserver((es) => es.forEach((e) => {
+  const d = e.target;
+  d.style.setProperty("--k", (d.clientWidth / Number(d.dataset.w)).toFixed(5));
+}));
+demos.forEach((d) => {
+  d.style.setProperty("--w", d.dataset.w);
+  d.style.setProperty("--h", d.dataset.h);
+  medirDemo.observe(d);
+});
+
+// Las pestañas que cambian de demo (Online: Home o Search; compartir).
+document.querySelectorAll(".cambia").forEach((grupo) => {
+  const marco = grupo.closest("section").querySelector(".demo iframe");
+  grupo.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
+    if (b.getAttribute("aria-selected") === "true") { return; }
+    grupo.querySelectorAll("button").forEach((o) => o.setAttribute("aria-selected", String(o === b)));
+    marco.classList.add("cambiando");
+    setTimeout(() => {
+      // Cada demo a su tamaño: la tarjeta de una cancion es mas baja que el Recap.
+      const caja = marco.closest(".demo");
+      if (b.dataset.alto) {
+        caja.dataset.h = b.dataset.alto;
+        caja.style.setProperty("--h", b.dataset.alto);
+      }
+      marco.src = "demos/" + b.dataset.demo + ".html";
+      marco.addEventListener("load", () => marco.classList.remove("cambiando"), { once: true });
+    }, 220);
+  }));
+});
+
+// Los temas: los colores de la aplicacion, y la misma paleta (demos/tema.js).
+// Cambian la pagina entera y todas las demos, y se recuerda el elegido.
 (() => {
-  const caja = document.querySelector(".temas-app");
-  const sel = caja.querySelector(".selector");
-  const muestras = caja.querySelector(".muestras2");
-  vigia.observe(caja);
-  const poner = (p) => {
-    p = Math.min(1, Math.max(0, p));
-    caja.style.setProperty("--p", p.toFixed(4));
-    caja.style.setProperty("--h", Math.round(p * 360));
+  const caja = document.querySelector(".colores");
+  if (!caja || !window.relayTemas) { return; }
+  let elegido = null;
+  try { elegido = localStorage.getItem("relay.web.tema"); } catch (e) { }
+  const poner = (hex) => {
+    window.relayTema(hex);
+    caja.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.hex === hex)));
+    try { localStorage.setItem("relay.web.tema", hex); } catch (e) { }
+    document.dispatchEvent(new CustomEvent("relaytema"));
   };
-  [355, 20, 45, 140, 190, 225, 270, 310].forEach((h) => {
-    const s = document.createElement("span");
-    s.style.background = `hsl(${h} 95% 58%)`;
-    s.addEventListener("click", () => { quieta = performance.now() + 5000; poner(h / 360); });
-    muestras.appendChild(s);
+  window.relayTemas.forEach((t) => {
+    const b = document.createElement("button");
+    b.dataset.hex = t.hex;
+    b.style.setProperty("--c", t.hex);
+    b.title = t.nombre;
+    b.setAttribute("aria-label", t.nombre);
+    b.addEventListener("click", () => poner(t.hex));
+    caja.appendChild(b);
   });
-  let quieta = 0, arrastrando = false;
-  const desdeRaton = (e) => { const r = sel.getBoundingClientRect(); poner((e.clientX - r.left) / r.width); };
-  sel.addEventListener("pointerdown", (e) => { arrastrando = true; sel.setPointerCapture(e.pointerId); desdeRaton(e); });
-  sel.addEventListener("pointermove", (e) => { if (arrastrando) { desdeRaton(e); } });
-  sel.addEventListener("pointerup", () => { arrastrando = false; quieta = performance.now() + 4000; });
-  poner(355 / 360);
-  if (quieto) { return; }
-  const inicio = performance.now();
-  const paso = (t) => {
-    if (!arrastrando && t > quieta && seVe(caja)) {
-      poner(.5 + .5 * Math.sin((t - inicio) / 3200 - Math.PI / 2 + 3.1));
-    }
-    requestAnimationFrame(paso);
-  };
-  requestAnimationFrame(paso);
+  poner(elegido && window.relayTemas.some((t) => t.hex === elegido) ? elegido : window.relayTemas[0].hex);
+  // Las demos perezosas, al cargar, toman el elegido.
+  document.querySelectorAll(".demo iframe").forEach((f) => f.addEventListener("load", () => {
+    try { f.contentWindow.relayTema && f.contentWindow.relayTema(window.__relayTemaHex); } catch (e) { }
+  }));
 })();
 
 // Lo que entra en pantalla aparece, una vez.
