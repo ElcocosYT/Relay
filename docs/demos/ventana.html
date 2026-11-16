@@ -27,6 +27,9 @@ body[data-vista="settings"] #bgSettings, body[data-vista="themes"] #bgSettings {
 #bgNowCover { left: var(--npX, 380px); top: var(--npY, 50%); width: var(--npTam, 760px); height: var(--npTam, 760px); margin: calc(var(--npTam, 760px) / -2) 0 0 calc(var(--npTam, 760px) / -2); background: radial-gradient(circle at center,
     rgba(var(--npAcento, var(--t0,255,42,58)), .36),
     rgba(var(--npAcento, var(--t0,255,42,58)), 0) 68%); filter: blur(66px); opacity: 0; transition: opacity 520ms; }
+#bgNowFondo { position: absolute; inset: 0px; z-index: 1; pointer-events: none; background: var(--npFondo, none) center/cover no-repeat; opacity: 0; transition: opacity 520ms, background-image 0.9s; }
+#bgNowFondo::after { content: ""; position: absolute; inset: 0px; background: radial-gradient(120% 90% at 50% 40%, rgba(20, 4, 10, 0.1), rgba(12, 3, 7, 0.72)), linear-gradient(rgba(60, 6, 20, 0.3), rgba(10, 2, 6, 0.5)); }
+html[data-sinluz] #bgNowFondo { opacity: 0 !important; }
 @keyframes albdrift { 
   0% { transform: translate3d(0px, 0px, 0px) scale(1); }
   33% { transform: translate3d(38px, -30px, 0px) scale(1.08); }
@@ -72,7 +75,7 @@ body[data-vista="settings"] #bgSettings, body[data-vista="themes"] #bgSettings {
 #rail { width: 258px; min-width: 258px; transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1), visibility; }
 iframe { border: 0px; display: block; width: 100%; height: 100%; background: transparent; color-scheme: normal; }
 #rail { grid-area: 2 / 1 / span 2; }
-#lienzo { grid-area: 2 / 2; position: relative; overflow: hidden; }
+#lienzo { grid-area: 2 / 2 / span 2; position: relative; overflow: hidden; }
 #lienzo > iframe { position: absolute; inset: 0px; width: 100%; height: 100%; transition: transform 460ms cubic-bezier(0.22, 0.61, 0.36, 1); will-change: transform; }
 #lienzo > iframe.vista { visibility: hidden; }
 body[data-vista="library"] #main, body[data-vista="albums"] #albums, body[data-vista="soundboard"] #soundboard, body[data-vista="artists"] #artists, body[data-vista="online"] #online { visibility: visible; }
@@ -105,14 +108,34 @@ body[data-vista="mixer"] #lienzo > iframe.vista, body[data-vista="settings"] #li
 }
 #tbNombre { position: relative; top: 1px; font: 800 22px / 28px "Relay Marca", Inter, sans-serif; letter-spacing: -0.022em; color: rgb(252, 252, 253); }
 #tbRail { position: relative; flex: 0 0 auto; width: 34px; height: 30px; margin-left: 14px; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(238, 238, 244, 0.6); border: 1px solid transparent; transition: background 160ms, border-color 160ms, color 160ms, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4), scale 90ms; }
-#tbRail:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.14); color: rgb(255, 255, 255); translate: 0px -1px; }
+#tbRail:hover { color: rgb(255, 255, 255); translate: 0px -1px; }
 #tbRail:active { scale: 0.88; translate: 0px; }
 #tbRail svg { width: 19px; height: 19px; display: block; overflow: visible; }
 #tbRail .tbRailRelleno { transform-box: fill-box; transform-origin: left center; transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 300ms; }
 #tbRail .tbRailFlecha { transform-box: fill-box; transform-origin: center center; transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1.3); }
+#tbHistoria { display: flex; align-items: center; gap: 1px; margin-left: 8px; flex: 0 0 auto; }
+.tbPaso { position: relative; flex: 0 0 auto; width: 28px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(238, 238, 244, 0.6); border: 1px solid transparent; transition: background 160ms, border-color 160ms, color 160ms, opacity 160ms, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4), scale 90ms; }
+.tbPaso svg { width: 17px; height: 17px; display: block; }
+.tbPaso svg path { transform-box: fill-box; transform-origin: center center; transition: transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1.4); }
+.tbPaso:not(.apagado):hover { color: rgb(255, 255, 255); translate: 0px -1px; }
+#tbAtras:not(.apagado):hover svg path { transform: translateX(-1.6px); }
+#tbDelante:not(.apagado):hover svg path { transform: translateX(1.6px); }
+.tbPaso:not(.apagado):active { scale: 0.86; translate: 0px; }
+.tbPaso.apagado { opacity: 0.28; cursor: default; pointer-events: none; }
 #tbArrastre { flex: 1 1 auto; align-self: stretch; }
 #tbBotones { display: flex; align-items: center; gap: 2px; }
 .tbBoton { position: relative; width: 40px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 7px; transition: background 160ms, box-shadow 160ms, translate 200ms cubic-bezier(0.2, 0.9, 0.3, 1.4); }
+#tbZen { display: flex; color: rgba(238, 238, 244, 0.6); }
+#tbZen svg { width: 15px; height: 15px; }
+#tbZen:hover { color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.1); }
+#tbZen:active { scale: 0.9; }
+#tbZen svg * { transition: transform 340ms cubic-bezier(0.2, 1.3, 0.3, 1), opacity 240ms; transform-origin: center center; }
+#tbZen:hover .tbZenDisco { transform: scale(1.18); }
+#tbZen:hover .tbZenMarco { transform: scale(1.08); opacity: 0.55; }
+@keyframes tbZenGira { 
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 #tbCerrar { background: rgba(var(--t0,255,42,58),.16); }
 .tbGlifo { background: rgba(238, 238, 244, 0.6); }
 #tbMin .tbGlifo { width: 12px; height: 1.5px; }
@@ -124,7 +147,7 @@ body[data-vista="mixer"] #lienzo > iframe.vista, body[data-vista="settings"] #li
 #tbMax { position: relative; }
 #tbMax svg { position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; margin: -6px 0px 0px -6px; fill: none; stroke: rgba(238, 238, 244, 0.6); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transform: scale(0.6) rotate(-45deg); transition: opacity 220ms, transform 380ms cubic-bezier(0.2, 1.5, 0.3, 1), stroke 160ms; }
 #tbMax .tbGlifo { transition: transform 380ms cubic-bezier(0.2, 1.5, 0.3, 1), opacity 220ms, border-color 160ms; }
-#barWrap { grid-area: 3 / 1 / auto / span 2; height: 84px; margin: 0px 24px 16px; position: relative; z-index: 2; }
+#barWrap { grid-area: 3 / 1 / auto / span 2; height: 84px; margin: 0px 24px 16px; transition: height 420ms cubic-bezier(0.22, 0.61, 0.36, 1), margin 420ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 220ms; position: relative; z-index: 2; }
 #bienvenida { position: absolute; inset: 54px 0px 0px; z-index: 40; display: flex; align-items: center; justify-content: center; padding: 28px; box-sizing: border-box; background: rgba(4, 4, 5, 0.58); backdrop-filter: blur(16px) saturate(120%); animation: 320ms ease-out 0s 1 normal none running bvVelo; }
 #bienvenida[hidden] { display: none; }
 @keyframes bvVelo { 
@@ -174,17 +197,6 @@ body[data-vista="mixer"] #lienzo > iframe.vista, body[data-vista="settings"] #li
 }
 @keyframes firmaAurora { 
   100% { transform: rotate(360deg); }
-}
-@keyframes firmaFlota { 
-  0%, 100% { translate: 0px; }
-  50% { translate: 0px -4px; }
-}
-@keyframes firmaLatido { 
-  0%, 100% { transform: scale(1); }
-  14% { transform: scale(1.32); }
-  28% { transform: scale(1); }
-  42% { transform: scale(1.22); }
-  70% { transform: scale(1); }
 }
 @keyframes firmaBrillo { 
   100% { background-position: -220% 0px; }
@@ -327,6 +339,7 @@ body[data-vista="mixer"] #lienzo > iframe.vista, body[data-vista="settings"] #li
 }
 html { font-variant-numeric: tabular-nums; }
 html, body { margin: 0px; padding: 0px; height: 100%; background: transparent; overflow: hidden; }
+html[data-pie][data-barcristal]:has(#libraryRoot, #albumsRoot, #artistsRoot, #settingsRoot, #mixerRoot, #themesRoot) { padding-bottom: 0px !important; }
 @keyframes relayLatido { 
   0% { opacity: 0.01; }
   100% { opacity: 0.02; }
@@ -356,7 +369,20 @@ html::after { content: ""; position: fixed; left: 0px; top: 0px; width: 1px; hei
   50% { opacity: 1; }
 }
 div:has(> div > #relayMasDer) { align-content: start; }
-div:has(> #relayMasDer) { align-self: stretch; }
+@keyframes zEntra { 
+  0% { opacity: 0; transform: scale(1.03); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes zderiva { 
+  0% { transform: scale(1.5) rotate(0deg) translate3d(0px, 0px, 0px); }
+  33% { transform: scale(1.72) rotate(42deg) translate3d(3%, -4%, 0px); }
+  66% { transform: scale(1.46) rotate(-28deg) translate3d(-4%, 3%, 0px); }
+  100% { transform: scale(1.5) rotate(0deg) translate3d(0px, 0px, 0px); }
+}
+@keyframes zFichaEntra { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 @keyframes relaySenala { 
   0%, 100% { outline-color: rgba(var(--t0,255,42,58),0); }
   25%, 75% { outline-color: rgba(var(--t0,255,42,58),.95); }
@@ -377,6 +403,7 @@ html { user-select: none; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
 @property --relayFinal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #onlineList, #relayInicioOnline, #relayDetCuerpo, #settingsGrid, #themesCuerpo, .sbResultados, .relayVelada, #queueList) { --relayFinal: 18px; }
 @property --relayTope { syntax: "<length>"; inherits: false; initial-value: 0px; }
 @keyframes relayListaEntra { 
   0% { opacity: 0; transform: translateY(-6px); }
@@ -385,6 +412,37 @@ html { user-select: none; }
 @keyframes relayGira { 
   100% { transform: rotate(360deg); }
 }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] { --npTapa: 340px; grid-template: "flujo letra cabeza" "flujo letra sigue" "flujo letra lista" minmax(0px, 1fr) "flujo letra lista" / 700px minmax(0px, 1fr) 340px !important; gap: 0px 44px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(1), html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) { display: contents !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2) { grid-area: letra; position: relative; z-index: 1; background: none !important; border-color: transparent !important; box-shadow: none !important; backdrop-filter: none !important; padding: 22px 6px 8px !important; overflow: visible !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #artworkWrap { grid-area: flujo; place-self: center; visibility: hidden; pointer-events: none; width: var(--npTapa) !important; max-width: none !important; margin: 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [style*="blur(30px)"] { filter: blur(82px) !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div:last-child { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div > [style*="rgba(5, 5, 6, 0.72)"], #relayEspejo [style*="rgba(5, 5, 6, 0.72)"] { display: none !important; }
+#relayEspejo > :not([style*="z-index: 5"]):not([style*="z-index:5"]):not(.encima) > div { box-shadow: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) { --cf: 2.742; grid-area: flujo; place-self: center stretch; min-height: 0px; pointer-events: none; margin: -56px 0px 0px !important; overflow: visible !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] { pointer-events: auto; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 4;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:4;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 3;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:3;"] { opacity: 1 !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 4;"]:not(:hover) > div:first-child, html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:4;"]:not(:hover) > div:first-child { filter: brightness(0.78); }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 3;"]:not(:hover) > div:first-child, html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:3;"]:not(:hover) > div:first-child { filter: brightness(0.52); }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 2;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:2;"] { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) > div:nth-child(3), html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) > div:nth-child(4) { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna { grid-area: flujo; align-self: center; z-index: 1; align-items: center; text-align: center; min-width: 0px; position: static !important; margin: 391px 0px 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(2) { position: relative; z-index: 1; max-width: 100%; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npRotulo { justify-content: center; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npTitle { font-size: 52px !important; text-align: center; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npArtist { text-align: center; font-size: 17px !important; margin-top: 12px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(3) { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 30px; margin-top: 20px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(3) > div { flex-direction: column; align-items: center; display: flex !important; gap: 7px !important; padding: 0px !important; border: 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(1) { grid-area: cabeza; position: relative; z-index: 1; padding-top: 22px; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) { grid-area: sigue; position: relative; z-index: 1; margin-top: 26px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) > span:nth-child(2) { visibility: hidden; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) { contain-intrinsic-size: auto 56px; grid-template-columns: 18px 44px minmax(0px, 1fr) 38px 14px !important; gap: 11px !important; height: 56px !important; min-height: 56px !important; padding: 0px 8px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta)[data-mano=""][data-sugerida=""]:not(.relaySel) { background: none !important; border-color: transparent !important; box-shadow: none !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(2) { width: 44px !important; height: 44px !important; border-radius: 10px !important; box-shadow: rgba(0, 0, 0, 0.85) 0px 8px 18px -10px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(3) span:last-child:not(.relayVerCola) { font-size: 13.5px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(3) > div:last-child { font-size: 12px !important; margin-top: 2px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #queueList { grid-area: lista; z-index: 1; min-height: 0px; margin-bottom: -32px !important; }
 @keyframes rioGira { 
   100% { transform: rotate(360deg); }
 }
@@ -654,12 +712,13 @@ html,body{margin:0;overflow:hidden;background:transparent}
 
 </style>
 </head>
-<body data-vista="albums">
+<body data-vista="albums" class="">
 <div id="bg">
     <div id="bgMain"><i class="a"></i><i class="b"></i><i class="c"></i><i id="bgAlbum"></i></div>
     <div id="bgNow">
-      <i id="bgNowCover"></i>
+      <i id="bgNowCover" style="--npAcento: 247,183,12; --npX: 620px; --npY: 443px; --npTam: 1266px;" class="encendido"></i>
       <i class="d"></i><i class="e"></i><i class="f"></i><i class="g"></i>
+      <div id="bgNowFondo" style="--npFondo: url(&quot;arte/a30.jpg&quot;);" class="encendido"></div>
     </div>
     <div id="bgMixer"><i class="h"></i><i class="i2"></i><i class="j"></i></div>
     <div id="bgSettings"><i class="k"></i><i class="l"></i><i class="m"></i></div>
@@ -709,8 +768,45 @@ html,body{margin:0;overflow:hidden;background:transparent}
           <path class="tbRailFlecha" d="M16.2 9.6l-2.4 2.4 2.4 2.4"></path>
         </svg>
       </div>
+
+      <!--
+        Atras y adelante.
+
+        Aqui y no en cada pantalla: cada una traia el suyo y cada uno estaba
+        en un sitio -arriba a la derecha en la ficha de un disco, a la
+        izquierda en la de una comp-, asi que para volver habia que buscar
+        el boton antes de pulsarlo. Dos, siempre en el mismo sitio y al lado
+        del que pliega la barra lateral, que es lo otro que mueve la vista.
+
+        La punta va mas abierta que la de un "<" de texto: a este tamano una
+        muy cerrada se lee como una raya. Ver montarHistoria().
+      -->
+      <div id="tbHistoria">
+        <div class="tbPaso" id="tbAtras" role="button" title="Back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15.2 5.4L8.4 12l6.8 6.6"></path>
+          </svg>
+        </div>
+        <div class="tbPaso apagado" id="tbDelante" role="button" title="Forward">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8.8 5.4L15.6 12l-6.8 6.6"></path>
+          </svg>
+        </div>
+      </div>
+
       <div id="tbArrastre"></div>
       <div id="tbBotones">
+        <!--
+          Inmersion: solo sale con Now Playing arriba, porque es lo unico
+          que ensena. A la izquierda de minimizar.
+        -->
+        <div class="tbBoton" id="tbZen" role="button" title="Immersive view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect class="tbZenMarco" x="3.2" y="3.2" width="17.6" height="17.6" rx="5"></rect>
+            <circle class="tbZenDisco" cx="12" cy="12" r="4.4"></circle>
+            <circle class="tbZenEje" cx="12" cy="12" r="1.05" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </div>
         <div class="tbBoton" id="tbMin"><i class="tbGlifo"></i></div>
         <div class="tbBoton" id="tbMax"><i class="tbGlifo"></i><svg class="tbCompleta" viewBox="0 0 12 12"><path d="M1 4.2V1h3.2M7.8 1H11v3.2M11 7.8V11H7.8M4.2 11H1V7.8"></path></svg><svg class="tbSalir" viewBox="0 0 12 12"><path d="M4.2 1v3.2H1M7.8 1v3.2H11M11 7.8H7.8V11M4.2 11V7.8H1"></path></svg></div>
         <div class="tbBoton" id="tbCerrar"><i class="tbGlifo a"></i><i class="tbGlifo b"></i></div>
@@ -770,10 +866,20 @@ html,body{margin:0;overflow:hidden;background:transparent}
 <script src="tema.js"></script>
 <script>
 /* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
-   al bajar por la web se quedaba uno atascado en una lista. */
-addEventListener("wheel", (e) => {
-  if (top !== window) { e.preventDefault(); try { top.scrollBy(0, e.deltaY); } catch (x) { } }
-}, { passive: false });
+   al bajar por la web se quedaba uno atascado en una lista.
+
+   Sin interceptar la rueda: antes se pasaba a mano con scrollBy, y con el
+   desplazamiento suave de la pagina cada muesca reiniciaba el viaje desde
+   donde iba -la pagina bajaba a tirones, como queriendo volver-. Ahora las
+   listas de dentro no se desplazan con la rueda (overflow hidden: siguen
+   pudiendo moverse por guion), asi que el navegador pasa la rueda a la
+   pagina el solo, igual de suave que en el resto. */
+if (top !== window) {
+  for (const el of document.querySelectorAll("*")) {
+    const cs = getComputedStyle(el);
+    if (/(auto|scroll)/.test(cs.overflowY + cs.overflowX)) { el.style.setProperty("overflow", "hidden", "important"); }
+  }
+}
 </script>
 <script>
 /* Las vistas de la ventana, como en la aplicacion: pulsar en la barra
