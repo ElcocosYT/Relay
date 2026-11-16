@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-buscando="1" data-sinluz="">
+<html data-pie="" data-buscando="1" data-sinluz="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +17,9 @@
 *, ::before, ::after { print-color-adjust: exact; backdrop-filter: none !important; animation-delay: -99s !important; animation-duration: 0.001s !important; animation-iteration-count: 1 !important; animation-fill-mode: both !important; animation-play-state: running !important; transition-duration: 0s !important; }}
 html { font-variant-numeric: tabular-nums; }
 html, body { margin: 0px; padding: 0px; height: 100%; background: transparent; overflow: hidden; }
+html[data-pie] { box-sizing: border-box; --pie: 100px; padding-bottom: 100px !important; }
+html[data-pie]:has(#onlineRoot) { padding-bottom: 0px !important; }
+html[data-pie][data-barcristal]:has(#libraryRoot, #albumsRoot, #artistsRoot, #settingsRoot, #mixerRoot, #themesRoot) { padding-bottom: 0px !important; }
 @keyframes relayLatido { 
   0% { opacity: 0.01; }
   100% { opacity: 0.02; }
@@ -31,7 +34,6 @@ body:has(#relayBuscador) #searchLabel, body:has(#relayBuscador) #albumSearchLabe
 #libraryRoot, #sidebarRoot, #playerBarRoot, #nowPlayingRoot, #albumsRoot, #artistsRoot, #onlineRoot, #mixerRoot, #settingsRoot { background: transparent !important; }
 #libraryRoot > div[style*="rlbdrift"], #nowPlayingRoot > div[style*="rnpdrift"], #albumsRoot > div[style*="ralbdrift"], #artistsRoot > div[style*="rartdrift"], #onlineRoot > div[style*="ronldrift"], #mixerRoot > div[style*="rmxdrift"], #settingsRoot > div[style*="rstdrift"] { display: none !important; }
 #albumScrollFade, #artistScrollFade, #artistListFade { display: none !important; }
-#albumGrid, #artistGrid, #artistList { mask-image: linear-gradient(rgb(0, 0, 0) calc(100% - 64px), transparent); }
 @keyframes relayNpVerEntra { 
   0% { opacity: 0; transform: translateX(8px) scale(0.9); }
   100% { opacity: 1; transform: none; }
@@ -57,7 +59,20 @@ body:has(#relayBuscador) #searchLabel, body:has(#relayBuscador) #albumSearchLabe
   50% { opacity: 1; }
 }
 div:has(> div > #relayMasDer) { align-content: start; }
-div:has(> #relayMasDer) { align-self: stretch; }
+@keyframes zEntra { 
+  0% { opacity: 0; transform: scale(1.03); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes zderiva { 
+  0% { transform: scale(1.5) rotate(0deg) translate3d(0px, 0px, 0px); }
+  33% { transform: scale(1.72) rotate(42deg) translate3d(3%, -4%, 0px); }
+  66% { transform: scale(1.46) rotate(-28deg) translate3d(-4%, 3%, 0px); }
+  100% { transform: scale(1.5) rotate(0deg) translate3d(0px, 0px, 0px); }
+}
+@keyframes zFichaEntra { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 @keyframes relaySenala { 
   0%, 100% { outline-color: rgba(var(--t0,255,42,58),0); }
   25%, 75% { outline-color: rgba(var(--t0,255,42,58),.95); }
@@ -80,6 +95,21 @@ html[data-buscando] #searchLabel, html[data-buscando] #albumSearchLabel, html[da
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
 @property --relayFinal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+#trackList, #albumGrid, #artistGrid, #artistList, #onlineList, #relayDetCuerpo, #settingsGrid, #themesCuerpo, .sbResultados, .relayVelada { mask-image: linear-gradient(180deg,#000 calc(100% - 18px + var(--relayFinal)),transparent calc(100% + var(--relayFinal))); transition: --relayFinal 320ms cubic-bezier(0.3, 0.7, 0.2, 1); }
+.relayVelo { position: absolute; z-index: 20; pointer-events: none; }
+.relayVelo > i:not(:last-child) { bottom: var(--extra,0px); }
+.relayVelo > i { position: absolute; inset: 0px; border-radius: 0 0 var(--radio,0) var(--radio,0); transition: opacity 320ms cubic-bezier(0.3, 0.7, 0.2, 1); }
+html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #onlineList, #relayInicioOnline, #relayDetCuerpo, #settingsGrid, #themesCuerpo, .sbResultados, .relayVelada, #queueList) { --relayFinal: 18px; }
+.relayVelo.suave > i:nth-child(1) { backdrop-filter: blur(0.5px); }
+.relayVelo.suave > i:nth-child(2) { backdrop-filter: blur(1.2px); }
+.relayVelo.suave > i:nth-child(3) { backdrop-filter: blur(2.5px); }
+.relayVelo.suave > i:nth-child(4) { backdrop-filter: blur(5px); }
+.relayVelo.suave > i:nth-child(5) { backdrop-filter: blur(8px); }
+.relayVelo > i:nth-child(1) { backdrop-filter: blur(0.8px); mask-image: linear-gradient(transparent 0%, rgb(0, 0, 0) 16%, rgb(0, 0, 0) 36%, transparent 56%); }
+.relayVelo > i:nth-child(2) { backdrop-filter: blur(2px); mask-image: linear-gradient(transparent 16%, rgb(0, 0, 0) 36%, rgb(0, 0, 0) 56%, transparent 76%); }
+.relayVelo > i:nth-child(3) { backdrop-filter: blur(4px); mask-image: linear-gradient(transparent 36%, rgb(0, 0, 0) 56%, rgb(0, 0, 0) 76%, transparent 96%); }
+.relayVelo > i:nth-child(4) { backdrop-filter: blur(8px); mask-image: linear-gradient(transparent 56%, rgb(0, 0, 0) 76%); }
+.relayVelo > i:nth-child(5) { backdrop-filter: blur(14px); mask-image: linear-gradient(180deg,transparent calc((100% - var(--extra,0px)) * .76),#000 calc(100% - var(--extra,0px))); }
 @property --relayTope { syntax: "<length>"; inherits: false; initial-value: 0px; }
 @keyframes relayListaEntra { 
   0% { opacity: 0; transform: translateY(-6px); }
@@ -88,6 +118,37 @@ html[data-buscando] #searchLabel, html[data-buscando] #albumSearchLabel, html[da
 @keyframes relayGira { 
   100% { transform: rotate(360deg); }
 }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] { --npTapa: 340px; grid-template: "flujo letra cabeza" "flujo letra sigue" "flujo letra lista" minmax(0px, 1fr) "flujo letra lista" / 700px minmax(0px, 1fr) 340px !important; gap: 0px 44px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(1), html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) { display: contents !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2) { grid-area: letra; position: relative; z-index: 1; background: none !important; border-color: transparent !important; box-shadow: none !important; backdrop-filter: none !important; padding: 22px 6px 8px !important; overflow: visible !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #artworkWrap { grid-area: flujo; place-self: center; visibility: hidden; pointer-events: none; width: var(--npTapa) !important; max-width: none !important; margin: 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [style*="blur(30px)"] { filter: blur(82px) !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div:last-child { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div > [style*="rgba(5, 5, 6, 0.72)"], #relayEspejo [style*="rgba(5, 5, 6, 0.72)"] { display: none !important; }
+#relayEspejo > :not([style*="z-index: 5"]):not([style*="z-index:5"]):not(.encima) > div { box-shadow: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) { --cf: 2.742; grid-area: flujo; place-self: center stretch; min-height: 0px; pointer-events: none; margin: -56px 0px 0px !important; overflow: visible !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] { pointer-events: auto; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 4;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:4;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 3;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:3;"] { opacity: 1 !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 4;"]:not(:hover) > div:first-child, html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:4;"]:not(:hover) > div:first-child { filter: brightness(0.78); }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 3;"]:not(:hover) > div:first-child, html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:3;"]:not(:hover) > div:first-child { filter: brightness(0.52); }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 2;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:2;"] { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) > div:nth-child(3), html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) > div:nth-child(4) { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna { grid-area: flujo; align-self: center; z-index: 1; align-items: center; text-align: center; min-width: 0px; position: static !important; margin: 391px 0px 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(2) { position: relative; z-index: 1; max-width: 100%; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npRotulo { justify-content: center; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npTitle { font-size: 52px !important; text-align: center; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npArtist { text-align: center; font-size: 17px !important; margin-top: 12px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(3) { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 30px; margin-top: 20px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(3) > div { flex-direction: column; align-items: center; display: flex !important; gap: 7px !important; padding: 0px !important; border: 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(1) { grid-area: cabeza; position: relative; z-index: 1; padding-top: 22px; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) { grid-area: sigue; position: relative; z-index: 1; margin-top: 26px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) > span:nth-child(2) { visibility: hidden; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) { contain-intrinsic-size: auto 56px; grid-template-columns: 18px 44px minmax(0px, 1fr) 38px 14px !important; gap: 11px !important; height: 56px !important; min-height: 56px !important; padding: 0px 8px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta)[data-mano=""][data-sugerida=""]:not(.relaySel) { background: none !important; border-color: transparent !important; box-shadow: none !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(2) { width: 44px !important; height: 44px !important; border-radius: 10px !important; box-shadow: rgba(0, 0, 0, 0.85) 0px 8px 18px -10px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(3) span:last-child:not(.relayVerCola) { font-size: 13.5px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(3) > div:last-child { font-size: 12px !important; margin-top: 2px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #queueList { grid-area: lista; z-index: 1; min-height: 0px; margin-bottom: -32px !important; }
 @keyframes rioGira { 
   100% { transform: rotate(360deg); }
 }
@@ -173,6 +234,10 @@ html[data-buscando] #searchLabel, html[data-buscando] #albumSearchLabel, html[da
   40% { opacity: 0.85; }
   52%, 100% { transform: rotate(16deg) translate3d(140px, 0px, 0px); opacity: 0; }
 }
+#albumGrid [data-act="open-album"] .relayAlbTexto > div > span:first-child.relayPartido { position: relative; color: transparent !important; }
+#albumGrid [data-act="open-album"] .relayAlbTexto > div > span:first-child > .relayArtistas { position: absolute; inset: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.6); }
+#albumGrid [data-act="open-album"] .relayAlbTexto > div > span:first-child > .relayArtistas > [data-nombre] { cursor: pointer; transition: color 120ms ease-out; }
+#albumGrid [data-act="open-album"] .relayAlbTexto > div > span:first-child > .relayArtistas > [data-nombre]:hover { color: rgb(var(--t4,255,143,152)); text-decoration: underline; text-underline-offset: 2px; }
 [data-act="toggle-mic-mute"], div:has(> #outputTrack) > div:first-child { position: relative; }
 [data-act="toggle-mic-mute"] > div:nth-child(-n+3), div:has(> #outputTrack) > div:first-child > div { display: none !important; }
 [data-act="toggle-mic-mute"]::before, div:has(> #outputTrack) > div:first-child::before { content: ""; position: absolute; inset: -25%; background-color: rgba(240, 240, 244, 0.8); mask-repeat: no-repeat; mask-position: center center; mask-size: contain; }
@@ -187,9 +252,9 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   100% { scale: 1; }
 }
 [data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child { --resorte: cubic-bezier(.2,1.5,.3,1); transition: background 140ms ease-out, border-color 140ms ease-out !important; }
-#settingsGrid [data-act="reload-sources"], #settingsGrid [data-act="add-source"], #settingsGrid [data-act="import-playlist"], #settingsGrid [data-act="library-save"], #settingsGrid [data-act="backup-import"], #settingsGrid [data-act="backup-export"], #settingsGrid [data-act="import-files"], #settingsGrid [data-act="web-open"], [data-act="restore-source"], [data-act="remove-source"], .relayAjusteBoton, #searchField > span:nth-child(3), #relayWeb .boton, #relayDescargas .rdBoton, [data-act="online-queue"], [data-act="online-import"], [data-act="toggle-service"], [data-act="play-album"] { transition: background 160ms, border-color 160ms, color 160ms, box-shadow 220ms, opacity 160ms, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4) !important; }
-#settingsGrid [data-act="reload-sources"]:hover, #settingsGrid [data-act="add-source"]:hover, #settingsGrid [data-act="import-playlist"]:hover, #settingsGrid [data-act="library-save"]:hover, #settingsGrid [data-act="backup-import"]:hover, #settingsGrid [data-act="backup-export"]:hover, #settingsGrid [data-act="import-files"]:hover, #settingsGrid [data-act="web-open"]:hover, [data-act="restore-source"]:hover, [data-act="remove-source"]:hover, .relayAjusteBoton:hover, #searchField > span:nth-child(3):hover, #relayWeb .boton:hover, #relayDescargas .rdBoton:hover, [data-act="online-queue"]:hover, [data-act="online-import"]:hover, [data-act="toggle-service"]:hover, [data-act="play-album"]:hover { translate: 0px -1px; }
-#settingsGrid [data-act="reload-sources"]:active, #settingsGrid [data-act="add-source"]:active, #settingsGrid [data-act="import-playlist"]:active, #settingsGrid [data-act="library-save"]:active, #settingsGrid [data-act="backup-import"]:active, #settingsGrid [data-act="backup-export"]:active, #settingsGrid [data-act="import-files"]:active, #settingsGrid [data-act="web-open"]:active, [data-act="restore-source"]:active, [data-act="remove-source"]:active, .relayAjusteBoton:active, #searchField > span:nth-child(3):active, #relayWeb .boton:active, #relayDescargas .rdBoton:active, [data-act="online-queue"]:active, [data-act="online-import"]:active, [data-act="toggle-service"]:active, [data-act="play-album"]:active { translate: 0px; scale: var(--botaX,.88) var(--botaY,.82); transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+#settingsGrid [data-act="reload-sources"], #settingsGrid [data-act="add-source"], #settingsGrid [data-act="import-playlist"], #settingsGrid [data-act="library-save"], #settingsGrid [data-act="backup-import"], #settingsGrid [data-act="backup-export"], #settingsGrid [data-act="import-files"], #settingsGrid [data-act="web-open"], [data-act="restore-source"], [data-act="remove-source"], .relayAjusteBoton, #searchField > span:nth-child(3), #relayWeb .boton, #relayDescargas .rdBoton, [data-act="online-queue"], [data-act="online-import"], [data-act="online-share"], [data-act="toggle-service"], [data-act="play-album"] { transition: background 160ms, border-color 160ms, color 160ms, box-shadow 220ms, opacity 160ms, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4) !important; }
+#settingsGrid [data-act="reload-sources"]:hover, #settingsGrid [data-act="add-source"]:hover, #settingsGrid [data-act="import-playlist"]:hover, #settingsGrid [data-act="library-save"]:hover, #settingsGrid [data-act="backup-import"]:hover, #settingsGrid [data-act="backup-export"]:hover, #settingsGrid [data-act="import-files"]:hover, #settingsGrid [data-act="web-open"]:hover, [data-act="restore-source"]:hover, [data-act="remove-source"]:hover, .relayAjusteBoton:hover, #searchField > span:nth-child(3):hover, #relayWeb .boton:hover, #relayDescargas .rdBoton:hover, [data-act="online-queue"]:hover, [data-act="online-import"]:hover, [data-act="online-share"]:hover, [data-act="toggle-service"]:hover, [data-act="play-album"]:hover { translate: 0px -1px; }
+#settingsGrid [data-act="reload-sources"]:active, #settingsGrid [data-act="add-source"]:active, #settingsGrid [data-act="import-playlist"]:active, #settingsGrid [data-act="library-save"]:active, #settingsGrid [data-act="backup-import"]:active, #settingsGrid [data-act="backup-export"]:active, #settingsGrid [data-act="import-files"]:active, #settingsGrid [data-act="web-open"]:active, [data-act="restore-source"]:active, [data-act="remove-source"]:active, .relayAjusteBoton:active, #searchField > span:nth-child(3):active, #relayWeb .boton:active, #relayDescargas .rdBoton:active, [data-act="online-queue"]:active, [data-act="online-import"]:active, [data-act="online-share"]:active, [data-act="toggle-service"]:active, [data-act="play-album"]:active { translate: 0px; scale: var(--botaX,.88) var(--botaY,.82); transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
 [data-act="open-album"], [data-act="open-artist"] { --botaX: .96; --botaY: .96; }
 [data-act="open-album"]:not(.relayAlb):active:not(:has([data-act]:active)), [data-act="open-artist"]:active:not(:has([data-act]:active)) { scale: 0.96; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
 #albumSearchScope, #artistSearchScope { position: relative; }
@@ -247,7 +312,7 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   15% { opacity: 0.9; }
   100% { transform: rotate(16deg) translate3d(420px, 0px, 0px); opacity: 0; }
 }
-#albumGrid { padding: 22px 80px 96px 8px !important; }
+#albumGrid { padding: 22px 80px 96px 40px !important; margin-left: -32px !important; }
 #albumsCuerpo div:has(> #albumSearchScope) { margin-right: 88px; }
 #albumGrid [data-act="open-album"], #artistGrid [data-act="open-artist"] { content-visibility: auto; contain-intrinsic-size: auto 320px; overflow-clip-margin: 90px; }
 #albumGrid .relayAlb { cursor: pointer; }
@@ -394,6 +459,8 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   100% { transform: scale(1); }
 }
 .scp0:hover { border-color: rgba(255, 255, 255, 0.24) !important; }
+.scp1:hover { background: rgba(255, 255, 255, 0.1) !important; border-color: rgba(255, 255, 255, 0.2) !important; }
+.scp2:active { background: rgba(255, 255, 255, 0.035) !important; }
 @keyframes ralbdrift { 
   0% { transform: translate3d(0px, 0px, 0px) scale(1); opacity: 0.7; }
   22% { transform: translate3d(110px, -70px, 0px) scale(1.2); opacity: 1; }
@@ -442,385 +509,399 @@ html,body{margin:0;overflow:hidden;background:transparent}
           <span data-dc-tpl="14" id="albumSearchLabel" style="font: 500 12.5px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.4); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Search albums</span></span>
           <span data-dc-tpl="15" style="margin-left: auto; padding: 3px 6px; border-radius: 6px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); font: 500 9.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.45); flex: 0 0 auto;">Ctrl K</span>
         </div>
-        <div data-dc-tpl="16" id="albumSearchScope" style="display: flex; align-items: center; gap: 3px; height: 38px; box-sizing: border-box; padding: 3px; border-radius: 13px; background: rgba(15, 15, 16, 0.62); backdrop-filter: blur(30px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); flex: 0 0 auto;">
+        
+        <div data-dc-tpl="16" id="albumSortButton" style="display: flex; align-items: center; gap: 5px; height: 38px; box-sizing: border-box; padding: 0px 5px 0px 11px; border-radius: 13px; background: rgba(15, 15, 16, 0.62); backdrop-filter: blur(30px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); flex: 0 0 auto;">
+          <span data-dc-tpl="17" style="font: 500 11px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.38); white-space: nowrap; flex: 0 0 auto; pointer-events: none;">Sort</span>
+          <div data-dc-tpl="18" id="albumSortField" data-act="open-sort-menu" role="button" tabindex="0" aria-expanded="false" class="scp1 scp2" style="display: flex; align-items: center; height: 28px; padding: 0px 9px; border-radius: 9px; cursor: pointer; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); flex: 0 0 auto; transition: background 0.12s, border-color 0.12s;">
+            <span data-dc-tpl="19" id="albumSortLabel" style="font: 600 12px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgb(var(--t3,255,154,162)); white-space: nowrap; pointer-events: none;"><span class="sc-interp">Artist</span></span>
+          </div>
+          <div data-dc-tpl="20" id="albumSortDir" data-act="flip-album-sort" role="button" tabindex="0" aria-pressed="true" class="scp1 scp2" style="display: flex; align-items: center; gap: 7px; height: 28px; padding: 0px 9px; border-radius: 9px; cursor: pointer; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); flex: 0 0 auto; transition: background 0.12s, border-color 0.12s;">
+            <span data-dc-tpl="21" id="albumSortDirLabel" style="font: 600 11.5px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.8); white-space: nowrap; pointer-events: none;"><span class="sc-interp">Z-A</span></span>
+            
+            <svg data-dc-tpl="22" id="albumSortCaret" width="9" height="6" viewBox="0 0 9 6" fill="none" style="flex: 0 0 auto; pointer-events: none; transition: transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1.4); transform: rotate(180deg);">
+              <path data-dc-tpl="23" d="M1.5 4.25 L4.5 1.4 L7.5 4.25" stroke="rgb(var(--t3,255,154,162))" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+        <div data-dc-tpl="24" id="albumSearchScope" style="display: flex; align-items: center; gap: 3px; height: 38px; box-sizing: border-box; padding: 3px; border-radius: 13px; background: rgba(15, 15, 16, 0.62); backdrop-filter: blur(30px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); flex: 0 0 auto;">
           
-            <span data-dc-tpl="18" data-act="set-search-field" data-id="all" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; background: linear-gradient(100deg,rgba(var(--t0,255,42,58),.24),rgba(var(--t1,196,18,32),.16)); border: 1px solid rgba(var(--t0,255,42,58),.42); box-shadow: rgba(255, 255, 255, 0.14) 0px 1px 0px inset; font: 600 11px / 1 Inter, sans-serif; color: rgb(var(--t3,255,154,162));"><span class="sc-interp">All</span></span>
+            <span data-dc-tpl="26" data-act="set-search-field" data-id="all" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; background: linear-gradient(100deg,rgba(var(--t0,255,42,58),.24),rgba(var(--t1,196,18,32),.16)); border: 1px solid rgba(var(--t0,255,42,58),.42); box-shadow: rgba(255, 255, 255, 0.14) 0px 1px 0px inset; font: 600 11px / 1 Inter, sans-serif; color: rgb(var(--t3,255,154,162));"><span class="sc-interp">All</span></span>
           
-            <span data-dc-tpl="18" data-act="set-search-field" data-id="album" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Album</span></span>
+            <span data-dc-tpl="26" data-act="set-search-field" data-id="album" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Album</span></span>
           
-            <span data-dc-tpl="18" data-act="set-search-field" data-id="single" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Single</span></span>
+            <span data-dc-tpl="26" data-act="set-search-field" data-id="single" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Single</span></span>
           
-            <span data-dc-tpl="18" data-act="set-search-field" data-id="artist" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Artist</span></span>
+            <span data-dc-tpl="26" data-act="set-search-field" data-id="artist" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Artist</span></span>
           
         <i class="relayPildora" style="left: 3px; width: 38px; opacity: 1;"></i></div>
       </div>
     </div>
 
-    <div data-dc-tpl="19" style="position: relative; margin-top: 18px; flex: 1 1 0%; min-height: 0px; display: flex; flex-direction: column;">
+    <div data-dc-tpl="27" style="position: relative; margin-top: 18px; flex: 1 1 0%; min-height: 0px; display: flex; flex-direction: column;">
 
       
-        <div data-dc-tpl="21" id="albumGrid" style="flex: 1 1 0%; min-height: 0px; display: grid; align-content: start; gap: 26px 30px; padding: 2px 4px 44px 0px; box-sizing: border-box; overflow: hidden auto; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));">
+        <div data-dc-tpl="29" id="albumGrid" style="flex: 1 1 0%; min-height: 0px; display: grid; align-content: start; gap: 26px 30px; padding: 2px 4px 44px 0px; box-sizing: border-box; overflow: hidden auto; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));" class="relayVelada">
           
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo0" data-tinta="" data-acento="255,95,109" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,95,109;" data-tenido="demo0">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a0.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a0.jpg&quot;) center center / cover;">
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo0" data-tinta="" data-acento="255,95,109" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,95,109;" data-tenido="demo0">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a0.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a0.jpg&quot;) center center / cover;">
                   
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo0" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo0" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
                 </div>
               </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Neon Prayer</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Vela Monroe</span></span>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Neon Prayer</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">Vela Monroe</span><span class="relayArtistas" data-texto="Vela Monroe"><span data-nombre="Vela Monroe">Vela Monroe</span></span></span>
                   
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2023</span></span>
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2023</span></span>
                   
                 </div>
               </div>
             </div>
           
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo1" data-tinta="" data-acento="0,198,255" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 0,198,255;" data-tenido="demo1">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a1.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a1.jpg&quot;) center center / cover;">
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo1" data-tinta="" data-acento="0,198,255" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 0,198,255;" data-tenido="demo1">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a1.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a1.jpg&quot;) center center / cover;">
                   
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo1" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo1" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
                 </div>
               </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Salt &amp; Satellites</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">The Harbor Kids</span></span>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Salt &amp; Satellites</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">The Harbor Kids</span><span class="relayArtistas" data-texto="The Harbor Kids"><span data-nombre="The Harbor Kids">The Harbor Kids</span></span></span>
                   
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2019</span></span>
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo2" data-tinta="" data-acento="247,151,30" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 247,151,30;" data-tenido="demo2">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a2.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a2.jpg&quot;) center center / cover;">
-                  
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo2" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
-                </div>
-              </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Glass Hours</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Odessa Wynn</span></span>
-                  
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2021</span></span>
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2019</span></span>
                   
                 </div>
               </div>
             </div>
           
-            <div data-dc-tpl="23" class="relayAlb relayAlbSonando" data-act="open-album" data-id="demo3" data-tinta="" data-acento="196,113,245" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 196,113,245;" data-tenido="demo3">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a3.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a3.jpg&quot;) center center / cover;">
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo2" data-tinta="" data-acento="247,151,30" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 247,151,30;" data-tenido="demo2">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a2.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a2.jpg&quot;) center center / cover;">
                   
-                    <div data-dc-tpl="29" class="relayAlbSuena" style="position: absolute; right: 9px; top: 9px; display: flex; align-items: flex-end; gap: 2.5px; height: 13px; pointer-events: none;">
-                      <div data-dc-tpl="30" style="width: 2.5px; height: 100%; border-radius: 1px; background: rgb(var(--t0,255,42,58)); transform-origin: center bottom; animation: 0.9s ease-in-out 0s infinite normal none running ralbeq;"></div>
-                      <div data-dc-tpl="31" style="width: 2.5px; height: 100%; border-radius: 1px; background: rgb(var(--t2,255,90,99)); transform-origin: center bottom; animation: 0.7s ease-in-out 0.15s infinite normal none running ralbeq;"></div>
-                      <div data-dc-tpl="32" style="width: 2.5px; height: 100%; border-radius: 1px; background: rgb(var(--t4,255,143,152)); transform-origin: center bottom; animation: 1.1s ease-in-out 0.3s infinite normal none running ralbeq;"></div>
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo2" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Glass Hours</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">Odessa Wynn</span><span class="relayArtistas" data-texto="Odessa Wynn"><span data-nombre="Odessa Wynn">Odessa Wynn</span></span></span>
+                  
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2021</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="31" class="relayAlb relayAlbSonando" data-act="open-album" data-id="demo3" data-tinta="" data-acento="196,113,245" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 196,113,245;" data-tenido="demo3">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a3.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a3.jpg&quot;) center center / cover;">
+                  
+                    <div data-dc-tpl="37" class="relayAlbSuena" style="position: absolute; right: 9px; top: 9px; display: flex; align-items: flex-end; gap: 2.5px; height: 13px; pointer-events: none;">
+                      <div data-dc-tpl="38" style="width: 2.5px; height: 100%; border-radius: 1px; background: rgb(var(--t0,255,42,58)); transform-origin: center bottom; animation: 0.9s ease-in-out 0s infinite normal none running ralbeq;"></div>
+                      <div data-dc-tpl="39" style="width: 2.5px; height: 100%; border-radius: 1px; background: rgb(var(--t2,255,90,99)); transform-origin: center bottom; animation: 0.7s ease-in-out 0.15s infinite normal none running ralbeq;"></div>
+                      <div data-dc-tpl="40" style="width: 2.5px; height: 100%; border-radius: 1px; background: rgb(var(--t4,255,143,152)); transform-origin: center bottom; animation: 1.1s ease-in-out 0.3s infinite normal none running ralbeq;"></div>
                     </div>
                   
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo3" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo3" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
                 </div>
               </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(var(--t0,255,42,58));"><span class="sc-interp">Low Orbit</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">KAITO</span></span>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(var(--t0,255,42,58));"><span class="sc-interp">Low Orbit</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">KAITO</span><span class="relayArtistas" data-texto="KAITO"><span data-nombre="KAITO">KAITO</span></span></span>
                   
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2024</span></span>
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo4" data-tinta="" data-acento="67,233,123" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 67,233,123;" data-tenido="demo4">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a4.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a4.jpg&quot;) center center / cover;">
-                  
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo4" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
-                </div>
-              </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Paper Summer</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">June Alvarez</span></span>
-                  
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2018</span></span>
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2024</span></span>
                   
                 </div>
               </div>
             </div>
           
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo5" data-tinta="" data-acento="238,9,121" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 238,9,121;" data-tenido="demo5">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a5.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a5.jpg&quot;) center center / cover;">
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo4" data-tinta="" data-acento="67,233,123" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 67,233,123;" data-tenido="demo4">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a4.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a4.jpg&quot;) center center / cover;">
                   
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo5" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo4" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
                 </div>
               </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Midnight Static</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Rue Delmar</span></span>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Paper Summer</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">June Alvarez</span><span class="relayArtistas" data-texto="June Alvarez"><span data-nombre="June Alvarez">June Alvarez</span></span></span>
                   
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2020</span></span>
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo6" data-tinta="" data-acento="168,237,234" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 168,237,234;" data-tenido="demo6">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a6.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a6.jpg&quot;) center center / cover;">
-                  
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo6" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
-                </div>
-              </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Cobalt</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Isle Fever</span></span>
-                  
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2022</span></span>
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2018</span></span>
                   
                 </div>
               </div>
             </div>
           
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo7" data-tinta="" data-acento="252,70,107" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 252,70,107;" data-tenido="demo7">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a7.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a7.jpg&quot;) center center / cover;">
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo5" data-tinta="" data-acento="238,9,121" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 238,9,121;" data-tenido="demo5">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a5.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a5.jpg&quot;) center center / cover;">
                   
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo7" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo5" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
                 </div>
               </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Soft Machines</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Tomás Ferrer</span></span>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Midnight Static</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">Rue Delmar</span><span class="relayArtistas" data-texto="Rue Delmar"><span data-nombre="Rue Delmar">Rue Delmar</span></span></span>
                   
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2017</span></span>
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo8" data-tinta="" data-acento="248,181,0" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 248,181,0;" data-tenido="demo8">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a8.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a8.jpg&quot;) center center / cover;">
-                  
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo8" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
-                </div>
-              </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Golden Hour Tapes</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Marlowe</span></span>
-                  
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2016</span></span>
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2020</span></span>
                   
                 </div>
               </div>
             </div>
           
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo9" data-tinta="" data-acento="17,153,142" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 17,153,142;" data-tenido="demo9">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a9.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a9.jpg&quot;) center center / cover;">
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo6" data-tinta="" data-acento="168,237,234" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 168,237,234;" data-tenido="demo6">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a6.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a6.jpg&quot;) center center / cover;">
                   
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo9" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo6" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
                 </div>
               </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Afterglow District</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">NOVA ARC</span></span>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Cobalt</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">Isle Fever</span><span class="relayArtistas" data-texto="Isle Fever"><span data-nombre="Isle Fever">Isle Fever</span></span></span>
                   
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2025</span></span>
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo10" data-tinta="" data-acento="224,195,252" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 224,195,252;" data-tenido="demo10">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a10.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a10.jpg&quot;) center center / cover;">
-                  
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo10" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
-                </div>
-              </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Velvet Weather</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Lenka Hart</span></span>
-                  
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2021</span></span>
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2022</span></span>
                   
                 </div>
               </div>
             </div>
           
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo11" data-tinta="" data-acento="255,154,158" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,154,158;" data-tenido="demo11">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a11.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a11.jpg&quot;) center center / cover;">
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo7" data-tinta="" data-acento="252,70,107" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 252,70,107;" data-tenido="demo7">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a7.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a7.jpg&quot;) center center / cover;">
                   
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo11" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo7" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
                 </div>
               </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Heavy Bloom</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Saint Juniper</span></span>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Soft Machines</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">Tomás Ferrer</span><span class="relayArtistas" data-texto="Tomás Ferrer"><span data-nombre="Tomás Ferrer">Tomás Ferrer</span></span></span>
                   
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2019</span></span>
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo12" data-tinta="" data-acento="255,95,109" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,95,109;" data-tenido="demo12">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a12.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a12.jpg&quot;) center center / cover;">
-                  
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo12" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
-                </div>
-              </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Daydream Freeway</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Polar Youth</span></span>
-                  
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2023</span></span>
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2017</span></span>
                   
                 </div>
               </div>
             </div>
           
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo13" data-tinta="" data-acento="0,198,255" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 0,198,255;" data-tenido="demo13">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a13.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a13.jpg&quot;) center center / cover;">
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo8" data-tinta="" data-acento="248,181,0" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 248,181,0;" data-tenido="demo8">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a8.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a8.jpg&quot;) center center / cover;">
                   
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo13" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo8" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
                 </div>
               </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Ritual</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Amari Kaye</span></span>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Golden Hour Tapes</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">Marlowe</span><span class="relayArtistas" data-texto="Marlowe"><span data-nombre="Marlowe">Marlowe</span></span></span>
                   
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2020</span></span>
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo14" data-tinta="" data-acento="247,151,30" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 247,151,30;" data-tenido="demo14">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a14.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a14.jpg&quot;) center center / cover;">
-                  
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo14" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
-                </div>
-              </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Echo Park Sessions</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Wren &amp; Wolf</span></span>
-                  
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2015</span></span>
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2016</span></span>
                   
                 </div>
               </div>
             </div>
           
-            <div data-dc-tpl="23" class="relayAlb" data-act="open-album" data-id="demo15" data-tinta="" data-acento="196,113,245" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 196,113,245;" data-tenido="demo15">
-              <div data-dc-tpl="24" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="25" class="relayAlbHalo" style="background: url(&quot;arte/a15.jpg&quot;) center center / cover;"></div>
-                <div data-dc-tpl="26" class="relayAlbDisco"></div>
-                <div data-dc-tpl="27" class="relayAlbTapa" style="background: url(&quot;arte/a15.jpg&quot;) center center / cover;">
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo9" data-tinta="" data-acento="17,153,142" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 17,153,142;" data-tenido="demo9">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a9.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a9.jpg&quot;) center center / cover;">
                   
-                  <div data-dc-tpl="33" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
-                  <div data-dc-tpl="34" class="relayAlbPlay" data-act="play-album" data-id="demo15" title="Play" aria-label="Play"><div data-dc-tpl="35"></div></div>
-                  <div data-dc-tpl="36" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo9" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
                 </div>
               </div>
-              <div data-dc-tpl="37" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
-                <span data-dc-tpl="38" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Second Sun</span></span>
-                <div data-dc-tpl="39" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
-                  <span data-dc-tpl="40" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Halcyon Drive</span></span>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Afterglow District</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">NOVA ARC</span><span class="relayArtistas" data-texto="NOVA ARC"><span data-nombre="NOVA ARC">NOVA ARC</span></span></span>
                   
-                    <span data-dc-tpl="42" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2024</span></span>
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2025</span></span>
                   
                 </div>
               </div>
             </div>
           
-        </div>
-        <div data-dc-tpl="43" id="albumScrollFade" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 44px; background: linear-gradient(rgba(6, 6, 7, 0), rgba(4, 4, 5, 0.9)); pointer-events: none; z-index: 2;"></div>
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo10" data-tinta="" data-acento="224,195,252" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 224,195,252;" data-tenido="demo10">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a10.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a10.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo10" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Velvet Weather</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">Lenka Hart</span><span class="relayArtistas" data-texto="Lenka Hart"><span data-nombre="Lenka Hart">Lenka Hart</span></span></span>
+                  
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2021</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo11" data-tinta="" data-acento="255,154,158" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,154,158;" data-tenido="demo11">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a11.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a11.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo11" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Heavy Bloom</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">Saint Juniper</span><span class="relayArtistas" data-texto="Saint Juniper"><span data-nombre="Saint Juniper">Saint Juniper</span></span></span>
+                  
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2019</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo12" data-tinta="" data-acento="255,95,109" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,95,109;" data-tenido="demo12">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a12.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a12.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo12" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Daydream Freeway</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">Polar Youth</span><span class="relayArtistas" data-texto="Polar Youth"><span data-nombre="Polar Youth">Polar Youth</span></span></span>
+                  
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2023</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo13" data-tinta="" data-acento="0,198,255" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 0,198,255;" data-tenido="demo13">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a13.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a13.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo13" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Ritual</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;" class="relayPartido"><span class="sc-interp">Amari Kaye</span><span class="relayArtistas" data-texto="Amari Kaye"><span data-nombre="Amari Kaye">Amari Kaye</span></span></span>
+                  
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2020</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo14" data-tinta="" data-acento="247,151,30" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 247,151,30;" data-tenido="demo14">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a14.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a14.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo14" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Echo Park Sessions</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" class="relayPartido" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Wren &amp; Wolf</span><span class="relayArtistas" data-texto="Wren &amp; Wolf"><span data-nombre="Wren">Wren</span> &amp; <span data-nombre="Wolf">Wolf</span></span></span>
+                  
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2015</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo15" data-tinta="" data-acento="196,113,245" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 196,113,245;" data-tenido="demo15">
+              <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a15.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="34" class="relayAlbDisco"></div>
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a15.jpg&quot;) center center / cover;">
+                  
+                  <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Unpin" aria-label="Unpin"></div>
+                  <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo15" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
+                  <div data-dc-tpl="44" class="relayAlbMas" role="button" title="More" aria-label="More"></div>
+                </div>
+              </div>
+              <div data-dc-tpl="45" class="relayAlbTexto" style="display: flex; flex-direction: column; gap: 3px; min-width: 0px; padding: 0px 2px;">
+                <span data-dc-tpl="46" class="relayAlbTitulo" style="font: 600 13.5px / 1.25 Inter, sans-serif; letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; color: rgb(244, 242, 248);"><span class="sc-interp">Second Sun</span></span>
+                <div data-dc-tpl="47" style="display: flex; align-items: baseline; gap: 6px; min-width: 0px; font: 400 12.5px / 1.25 Inter, sans-serif; color: rgba(238, 238, 244, 0.6);">
+                  <span data-dc-tpl="48" class="relayPartido" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Halcyon Drive</span><span class="relayArtistas" data-texto="Halcyon Drive"><span data-nombre="Halcyon Drive">Halcyon Drive</span></span></span>
+                  
+                    <span data-dc-tpl="50" style="flex: 0 0 auto; color: rgba(238, 238, 244, 0.4);"><span class="sc-interp">· 2024</span></span>
+                  
+                </div>
+              </div>
+            </div>
+          
+        </div><div class="relayVelo suave" data-forma="-32,492,919,64,0,100" style="left: -32px; top: 492px; width: 919px; height: 164px; --extra: 100px;"><i></i><i></i><i></i><i></i><i></i></div>
+        <div data-dc-tpl="51" id="albumScrollFade" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 44px; background: linear-gradient(rgba(6, 6, 7, 0), rgba(4, 4, 5, 0.9)); pointer-events: none; z-index: 2;"></div>
       
 
       
@@ -832,14 +913,24 @@ html,body{margin:0;overflow:hidden;background:transparent}
 
 
 
-<input id="relayBuscador" type="text" spellcheck="false" placeholder="Search albums" style="display: block; left: 366.5px; top: 38px; width: 227px;">
+<input id="relayBuscador" type="text" spellcheck="false" placeholder="Search albums" style="display: block; left: 198.234px; top: 38px; width: 227px;">
 <script src="tema.js"></script>
 <script>
 /* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
-   al bajar por la web se quedaba uno atascado en una lista. */
-addEventListener("wheel", (e) => {
-  if (top !== window) { e.preventDefault(); try { top.scrollBy(0, e.deltaY); } catch (x) { } }
-}, { passive: false });
+   al bajar por la web se quedaba uno atascado en una lista.
+
+   Sin interceptar la rueda: antes se pasaba a mano con scrollBy, y con el
+   desplazamiento suave de la pagina cada muesca reiniciaba el viaje desde
+   donde iba -la pagina bajaba a tirones, como queriendo volver-. Ahora las
+   listas de dentro no se desplazan con la rueda (overflow hidden: siguen
+   pudiendo moverse por guion), asi que el navegador pasa la rueda a la
+   pagina el solo, igual de suave que en el resto. */
+if (top !== window) {
+  for (const el of document.querySelectorAll("*")) {
+    const cs = getComputedStyle(el);
+    if (/(auto|scroll)/.test(cs.overflowY + cs.overflowX)) { el.style.setProperty("overflow", "hidden", "important"); }
+  }
+}
 </script>
 </body>
 </html>
