@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-buscando="1" data-sinluz="">
+<html data-pie="" data-buscando="1" data-sinluz="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +17,9 @@
 *, ::before, ::after { print-color-adjust: exact; backdrop-filter: none !important; animation-delay: -99s !important; animation-duration: 0.001s !important; animation-iteration-count: 1 !important; animation-fill-mode: both !important; animation-play-state: running !important; transition-duration: 0s !important; }}
 html { font-variant-numeric: tabular-nums; }
 html, body { margin: 0px; padding: 0px; height: 100%; background: transparent; overflow: hidden; }
+html[data-pie] { box-sizing: border-box; --pie: 100px; padding-bottom: 100px !important; }
+html[data-pie]:has(#onlineRoot) { padding-bottom: 0px !important; }
+html[data-pie][data-barcristal]:has(#libraryRoot, #albumsRoot, #artistsRoot, #settingsRoot, #mixerRoot, #themesRoot) { padding-bottom: 0px !important; }
 @keyframes relayLatido { 
   0% { opacity: 0.01; }
   100% { opacity: 0.02; }
@@ -31,7 +34,6 @@ body:has(#relayBuscador) #searchLabel, body:has(#relayBuscador) #albumSearchLabe
 #libraryRoot, #sidebarRoot, #playerBarRoot, #nowPlayingRoot, #albumsRoot, #artistsRoot, #onlineRoot, #mixerRoot, #settingsRoot { background: transparent !important; }
 #libraryRoot > div[style*="rlbdrift"], #nowPlayingRoot > div[style*="rnpdrift"], #albumsRoot > div[style*="ralbdrift"], #artistsRoot > div[style*="rartdrift"], #onlineRoot > div[style*="ronldrift"], #mixerRoot > div[style*="rmxdrift"], #settingsRoot > div[style*="rstdrift"] { display: none !important; }
 #albumScrollFade, #artistScrollFade, #artistListFade { display: none !important; }
-#albumGrid, #artistGrid, #artistList { mask-image: linear-gradient(rgb(0, 0, 0) calc(100% - 64px), transparent); }
 @keyframes relayNpVerEntra { 
   0% { opacity: 0; transform: translateX(8px) scale(0.9); }
   100% { opacity: 1; transform: none; }
@@ -55,7 +57,20 @@ body:has(#relayBuscador) #searchLabel, body:has(#relayBuscador) #albumSearchLabe
   50% { opacity: 1; }
 }
 div:has(> div > #relayMasDer) { align-content: start; }
-div:has(> #relayMasDer) { align-self: stretch; }
+@keyframes zEntra { 
+  0% { opacity: 0; transform: scale(1.03); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes zderiva { 
+  0% { transform: scale(1.5) rotate(0deg) translate3d(0px, 0px, 0px); }
+  33% { transform: scale(1.72) rotate(42deg) translate3d(3%, -4%, 0px); }
+  66% { transform: scale(1.46) rotate(-28deg) translate3d(-4%, 3%, 0px); }
+  100% { transform: scale(1.5) rotate(0deg) translate3d(0px, 0px, 0px); }
+}
+@keyframes zFichaEntra { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 @keyframes relaySenala { 
   0%, 100% { outline-color: rgba(var(--t0,255,42,58),0); }
   25%, 75% { outline-color: rgba(var(--t0,255,42,58),.95); }
@@ -78,6 +93,16 @@ html[data-buscando] #searchLabel, html[data-buscando] #albumSearchLabel, html[da
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
 @property --relayFinal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+#trackList, #albumGrid, #artistGrid, #artistList, #onlineList, #relayDetCuerpo, #settingsGrid, #themesCuerpo, .sbResultados, .relayVelada { mask-image: linear-gradient(180deg,#000 calc(100% - 18px + var(--relayFinal)),transparent calc(100% + var(--relayFinal))); transition: --relayFinal 320ms cubic-bezier(0.3, 0.7, 0.2, 1); }
+.relayVelo { position: absolute; z-index: 20; pointer-events: none; }
+.relayVelo > i:not(:last-child) { bottom: var(--extra,0px); }
+.relayVelo > i { position: absolute; inset: 0px; border-radius: 0 0 var(--radio,0) var(--radio,0); transition: opacity 320ms cubic-bezier(0.3, 0.7, 0.2, 1); }
+html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #onlineList, #relayInicioOnline, #relayDetCuerpo, #settingsGrid, #themesCuerpo, .sbResultados, .relayVelada, #queueList) { --relayFinal: 18px; }
+.relayVelo > i:nth-child(1) { backdrop-filter: blur(0.8px); mask-image: linear-gradient(transparent 0%, rgb(0, 0, 0) 16%, rgb(0, 0, 0) 36%, transparent 56%); }
+.relayVelo > i:nth-child(2) { backdrop-filter: blur(2px); mask-image: linear-gradient(transparent 16%, rgb(0, 0, 0) 36%, rgb(0, 0, 0) 56%, transparent 76%); }
+.relayVelo > i:nth-child(3) { backdrop-filter: blur(4px); mask-image: linear-gradient(transparent 36%, rgb(0, 0, 0) 56%, rgb(0, 0, 0) 76%, transparent 96%); }
+.relayVelo > i:nth-child(4) { backdrop-filter: blur(8px); mask-image: linear-gradient(transparent 56%, rgb(0, 0, 0) 76%); }
+.relayVelo > i:nth-child(5) { backdrop-filter: blur(14px); mask-image: linear-gradient(180deg,transparent calc((100% - var(--extra,0px)) * .76),#000 calc(100% - var(--extra,0px))); }
 @property --relayTope { syntax: "<length>"; inherits: false; initial-value: 0px; }
 @keyframes relayListaEntra { 
   0% { opacity: 0; transform: translateY(-6px); }
@@ -86,6 +111,37 @@ html[data-buscando] #searchLabel, html[data-buscando] #albumSearchLabel, html[da
 @keyframes relayGira { 
   100% { transform: rotate(360deg); }
 }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] { --npTapa: 340px; grid-template: "flujo letra cabeza" "flujo letra sigue" "flujo letra lista" minmax(0px, 1fr) "flujo letra lista" / 700px minmax(0px, 1fr) 340px !important; gap: 0px 44px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(1), html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) { display: contents !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2) { grid-area: letra; position: relative; z-index: 1; background: none !important; border-color: transparent !important; box-shadow: none !important; backdrop-filter: none !important; padding: 22px 6px 8px !important; overflow: visible !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #artworkWrap { grid-area: flujo; place-self: center; visibility: hidden; pointer-events: none; width: var(--npTapa) !important; max-width: none !important; margin: 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [style*="blur(30px)"] { filter: blur(82px) !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div:last-child { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div > [style*="rgba(5, 5, 6, 0.72)"], #relayEspejo [style*="rgba(5, 5, 6, 0.72)"] { display: none !important; }
+#relayEspejo > :not([style*="z-index: 5"]):not([style*="z-index:5"]):not(.encima) > div { box-shadow: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) { --cf: 2.742; grid-area: flujo; place-self: center stretch; min-height: 0px; pointer-events: none; margin: -56px 0px 0px !important; overflow: visible !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] { pointer-events: auto; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 4;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:4;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 3;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:3;"] { opacity: 1 !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 4;"]:not(:hover) > div:first-child, html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:4;"]:not(:hover) > div:first-child { filter: brightness(0.78); }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 3;"]:not(:hover) > div:first-child, html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:3;"]:not(:hover) > div:first-child { filter: brightness(0.52); }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 2;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:2;"] { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) > div:nth-child(3), html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) > div:nth-child(4) { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna { grid-area: flujo; align-self: center; z-index: 1; align-items: center; text-align: center; min-width: 0px; position: static !important; margin: 391px 0px 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(2) { position: relative; z-index: 1; max-width: 100%; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npRotulo { justify-content: center; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npTitle { font-size: 52px !important; text-align: center; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npArtist { text-align: center; font-size: 17px !important; margin-top: 12px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(3) { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 30px; margin-top: 20px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(3) > div { flex-direction: column; align-items: center; display: flex !important; gap: 7px !important; padding: 0px !important; border: 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(1) { grid-area: cabeza; position: relative; z-index: 1; padding-top: 22px; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) { grid-area: sigue; position: relative; z-index: 1; margin-top: 26px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) > span:nth-child(2) { visibility: hidden; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) { contain-intrinsic-size: auto 56px; grid-template-columns: 18px 44px minmax(0px, 1fr) 38px 14px !important; gap: 11px !important; height: 56px !important; min-height: 56px !important; padding: 0px 8px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta)[data-mano=""][data-sugerida=""]:not(.relaySel) { background: none !important; border-color: transparent !important; box-shadow: none !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(2) { width: 44px !important; height: 44px !important; border-radius: 10px !important; box-shadow: rgba(0, 0, 0, 0.85) 0px 8px 18px -10px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(3) span:last-child:not(.relayVerCola) { font-size: 13.5px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(3) > div:last-child { font-size: 12px !important; margin-top: 2px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #queueList { grid-area: lista; z-index: 1; min-height: 0px; margin-bottom: -32px !important; }
 @keyframes rioGira { 
   100% { transform: rotate(360deg); }
 }
@@ -387,7 +443,9 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   100% { transform: scale(1); }
 }
 .scp0:hover { border-color: rgba(255, 255, 255, 0.24) !important; }
-.scp1:hover { transform: translateY(-2px) !important; border-color: rgba(255, 255, 255, 0.22) !important; }
+.scp1:hover { background: rgba(255, 255, 255, 0.1) !important; border-color: rgba(255, 255, 255, 0.2) !important; }
+.scp2:active { background: rgba(255, 255, 255, 0.035) !important; }
+.scp3:hover { transform: translateY(-2px) !important; border-color: rgba(255, 255, 255, 0.22) !important; }
 @keyframes rartdrift { 
   0% { transform: translate3d(0px, 0px, 0px) scale(1); opacity: 0.7; }
   22% { transform: translate3d(110px, -70px, 0px) scale(1.2); opacity: 1; }
@@ -430,161 +488,174 @@ html,body{margin:0;overflow:hidden;background:transparent}
           <span data-dc-tpl="14" id="artistSearchLabel" style="font: 500 12.5px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.4); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">Search artists</span></span>
           <span data-dc-tpl="15" style="margin-left: auto; padding: 3px 6px; border-radius: 6px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); font: 500 9.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.45); flex: 0 0 auto;">Ctrl K</span>
         </div>
-        <div data-dc-tpl="16" id="artistSearchScope" style="display: flex; align-items: center; gap: 3px; height: 38px; box-sizing: border-box; padding: 3px; border-radius: 13px; background: rgba(15, 15, 16, 0.62); backdrop-filter: blur(30px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); flex: 0 0 auto;">
+        
+        <div data-dc-tpl="16" id="artistSortButton" style="display: flex; align-items: center; gap: 5px; height: 38px; box-sizing: border-box; padding: 0px 5px 0px 11px; border-radius: 13px; background: rgba(15, 15, 16, 0.62); backdrop-filter: blur(30px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); flex: 0 0 auto;">
+          <span data-dc-tpl="17" style="font: 500 11px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.38); white-space: nowrap; flex: 0 0 auto; pointer-events: none;">Sort</span>
+          <div data-dc-tpl="18" id="artistSortField" data-act="open-sort-menu" role="button" tabindex="0" aria-expanded="false" class="scp1 scp2" style="display: flex; align-items: center; height: 28px; padding: 0px 9px; border-radius: 9px; cursor: pointer; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); flex: 0 0 auto; transition: background 0.12s, border-color 0.12s;">
+            <span data-dc-tpl="19" id="artistSortLabel" style="font: 600 12px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgb(var(--t3,255,154,162)); white-space: nowrap; pointer-events: none;"><span class="sc-interp">Name</span></span>
+          </div>
+          <div data-dc-tpl="20" id="artistSortDir" data-act="flip-artist-sort" role="button" tabindex="0" aria-pressed="false" class="scp1 scp2" style="display: flex; align-items: center; gap: 7px; height: 28px; padding: 0px 9px; border-radius: 9px; cursor: pointer; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); flex: 0 0 auto; transition: background 0.12s, border-color 0.12s;">
+            <span data-dc-tpl="21" id="artistSortDirLabel" style="font: 600 11.5px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.8); white-space: nowrap; pointer-events: none;"><span class="sc-interp">A-Z</span></span>
+            <svg data-dc-tpl="22" id="artistSortCaret" width="9" height="6" viewBox="0 0 9 6" fill="none" style="flex: 0 0 auto; pointer-events: none; transition: transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1.4); transform: rotate(0deg);">
+              <path data-dc-tpl="23" d="M1.5 4.25 L4.5 1.4 L7.5 4.25" stroke="rgb(var(--t3,255,154,162))" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+        <div data-dc-tpl="24" id="artistSearchScope" style="display: flex; align-items: center; gap: 3px; height: 38px; box-sizing: border-box; padding: 3px; border-radius: 13px; background: rgba(15, 15, 16, 0.62); backdrop-filter: blur(30px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); flex: 0 0 auto;">
           
-            <span data-dc-tpl="18" data-act="set-search-field" data-id="all" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; background: linear-gradient(100deg,rgba(var(--t0,255,42,58),.24),rgba(var(--t1,196,18,32),.16)); border: 1px solid rgba(var(--t0,255,42,58),.42); box-shadow: rgba(255, 255, 255, 0.14) 0px 1px 0px inset; font: 600 11px / 1 Inter, sans-serif; color: rgb(var(--t3,255,154,162));"><span class="sc-interp">All</span></span>
+            <span data-dc-tpl="26" data-act="set-search-field" data-id="all" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; background: linear-gradient(100deg,rgba(var(--t0,255,42,58),.24),rgba(var(--t1,196,18,32),.16)); border: 1px solid rgba(var(--t0,255,42,58),.42); box-shadow: rgba(255, 255, 255, 0.14) 0px 1px 0px inset; font: 600 11px / 1 Inter, sans-serif; color: rgb(var(--t3,255,154,162));"><span class="sc-interp">All</span></span>
           
-            <span data-dc-tpl="18" data-act="set-search-field" data-id="artist" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Artist</span></span>
+            <span data-dc-tpl="26" data-act="set-search-field" data-id="artist" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Artist</span></span>
           
-            <span data-dc-tpl="18" data-act="set-search-field" data-id="album" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Album</span></span>
+            <span data-dc-tpl="26" data-act="set-search-field" data-id="album" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Album</span></span>
           
-            <span data-dc-tpl="18" data-act="set-search-field" data-id="single" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Single</span></span>
+            <span data-dc-tpl="26" data-act="set-search-field" data-id="single" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Single</span></span>
           
-            <span data-dc-tpl="18" data-act="set-search-field" data-id="song" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Song</span></span>
+            <span data-dc-tpl="26" data-act="set-search-field" data-id="song" style="display: flex; align-items: center; height: 100%; padding: 0px 11px; border-radius: 10px; white-space: nowrap; cursor: pointer; border: 1px solid transparent; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.5);"><span class="sc-interp">Song</span></span>
           
         <i class="relayPildora" style="left: 3px; width: 38px; opacity: 1;"></i></div>
       </div>
     </div>
 
-    <div data-dc-tpl="19" style="position: relative; margin-top: 18px; flex: 1 1 0%; min-height: 0px; display: flex; flex-direction: column;">
+    <div data-dc-tpl="27" style="position: relative; margin-top: 18px; flex: 1 1 0%; min-height: 0px; display: flex; flex-direction: column;">
 
       
-        <div data-dc-tpl="21" id="artistGrid" style="flex: 1 1 0%; min-height: 0px; display: grid; align-content: start; gap: 16px; padding: 2px 4px 44px 0px; box-sizing: border-box; overflow: hidden auto; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));">
+        <div data-dc-tpl="29" id="artistGrid" style="flex: 1 1 0%; min-height: 0px; display: grid; align-content: start; gap: 16px; padding: 2px 4px 44px 0px; box-sizing: border-box; overflow: hidden auto; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));" class="relayVelada">
           
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art0" data-tinta="" data-acento="250,113,205" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 250,113,205;" data-tenido="art0">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a16.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art0" data-tinta="" data-acento="250,113,205" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 250,113,205;" data-tenido="art0">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a16.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
               </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Vela Monroe</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">1 ALBUM</span></span>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Vela Monroe</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">1 ALBUM</span></span>
               </div>
             </div>
           
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art1" data-tinta="" data-acento="56,249,215" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 56,249,215;" data-tenido="art1">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a17.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art1" data-tinta="" data-acento="56,249,215" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 56,249,215;" data-tenido="art1">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a17.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
               </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Odessa Wynn</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">3 ALBUMS</span></span>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art2" data-tinta="" data-acento="255,106,0" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 255,106,0;" data-tenido="art2">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a18.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
-              </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">KAITO</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">5 ALBUMS</span></span>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Odessa Wynn</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">3 ALBUMS</span></span>
               </div>
             </div>
           
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art3" data-tinta="" data-acento="254,214,227" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 254,214,227;" data-tenido="art3">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a19.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art2" data-tinta="" data-acento="255,106,0" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 255,106,0;" data-tenido="art2">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a18.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
               </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">June Alvarez</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">2 ALBUMS</span></span>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art4" data-tinta="" data-acento="63,94,251" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 63,94,251;" data-tenido="art4">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a20.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
-              </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Rue Delmar</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">4 ALBUMS</span></span>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">KAITO</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">5 ALBUMS</span></span>
               </div>
             </div>
           
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art5" data-tinta="" data-acento="252,234,187" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 252,234,187;" data-tenido="art5">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a21.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art3" data-tinta="" data-acento="254,214,227" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 254,214,227;" data-tenido="art3">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a19.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
               </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Isle Fever</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">1 ALBUM</span></span>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art6" data-tinta="" data-acento="56,239,125" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 56,239,125;" data-tenido="art6">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a22.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
-              </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Marlowe</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">3 ALBUMS</span></span>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">June Alvarez</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">2 ALBUMS</span></span>
               </div>
             </div>
           
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art7" data-tinta="" data-acento="142,197,252" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 142,197,252;" data-tenido="art7">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a23.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art4" data-tinta="" data-acento="63,94,251" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 63,94,251;" data-tenido="art4">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a20.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
               </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">NOVA ARC</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">5 ALBUMS</span></span>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art8" data-tinta="" data-acento="250,208,196" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 250,208,196;" data-tenido="art8">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a24.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
-              </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Lenka Hart</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">2 ALBUMS</span></span>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Rue Delmar</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">4 ALBUMS</span></span>
               </div>
             </div>
           
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art9" data-tinta="" data-acento="255,195,113" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 255,195,113;" data-tenido="art9">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a25.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art5" data-tinta="" data-acento="252,234,187" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 252,234,187;" data-tenido="art5">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a21.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
               </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Saint Juniper</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">4 ALBUMS</span></span>
-              </div>
-            </div>
-          
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art10" data-tinta="" data-acento="0,114,255" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 0,114,255;" data-tenido="art10">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a26.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
-              </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Polar Youth</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">1 ALBUM</span></span>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Isle Fever</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">1 ALBUM</span></span>
               </div>
             </div>
           
-            <div data-dc-tpl="23" data-act="open-artist" data-id="art11" data-tinta="" data-acento="255,210,0" class="scp1" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 255,210,0;" data-tenido="art11">
-              <div data-dc-tpl="24" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a27.jpg&quot;) center center / cover;">
-                <div data-dc-tpl="25" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
-                <div data-dc-tpl="26" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art6" data-tinta="" data-acento="56,239,125" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 56,239,125;" data-tenido="art6">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a22.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
               </div>
-              <div data-dc-tpl="27" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
-                <span data-dc-tpl="28" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Amari Kaye</span></span>
-                <span data-dc-tpl="29" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">3 ALBUMS</span></span>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Marlowe</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">3 ALBUMS</span></span>
               </div>
             </div>
           
-        </div>
-        <div data-dc-tpl="30" id="artistScrollFade" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 44px; background: linear-gradient(rgba(6, 6, 7, 0), rgba(4, 4, 5, 0.9)); pointer-events: none; z-index: 2;"></div>
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art7" data-tinta="" data-acento="142,197,252" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 142,197,252;" data-tenido="art7">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a23.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+              </div>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">NOVA ARC</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">5 ALBUMS</span></span>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art8" data-tinta="" data-acento="250,208,196" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 250,208,196;" data-tenido="art8">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a24.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+              </div>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Lenka Hart</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">2 ALBUMS</span></span>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art9" data-tinta="" data-acento="255,195,113" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 255,195,113;" data-tenido="art9">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a25.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+              </div>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Saint Juniper</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">4 ALBUMS</span></span>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art10" data-tinta="" data-acento="0,114,255" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 0,114,255;" data-tenido="art10">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a26.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+              </div>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Polar Youth</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">1 ALBUM</span></span>
+              </div>
+            </div>
+          
+            <div data-dc-tpl="31" data-act="open-artist" data-id="art11" data-tinta="" data-acento="255,210,0" class="scp3" style="position: relative; display: flex; flex-direction: column; gap: 11px; padding: 11px 11px 14px; box-sizing: border-box; border-radius: 16px; cursor: default; background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); border: 1px solid rgba(255, 255, 255, 0.09); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.16s, border-color 0.16s; --estAcento: 255,210,0;" data-tenido="art11">
+              <div data-dc-tpl="32" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 11px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9); background: url(&quot;arte/a27.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="33" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 1px, transparent 1px, transparent 5px); pointer-events: none;"></div>
+                <div data-dc-tpl="34" style="position: absolute; inset: 0px; background: linear-gradient(rgba(3, 3, 4, 0) 48%, rgba(3, 3, 4, 0.6)); pointer-events: none;"></div>
+              </div>
+              <div data-dc-tpl="35" style="display: flex; flex-direction: column; gap: 6px; min-width: 0px;">
+                <span data-dc-tpl="36" style="font: 600 13px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px;"><span class="sc-interp">Amari Kaye</span></span>
+                <span data-dc-tpl="37" style="font: 500 10px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">3 ALBUMS</span></span>
+              </div>
+            </div>
+          
+        </div><div class="relayVelo" data-forma="-32,460,919,96,0,100" style="left: -32px; top: 460px; width: 919px; height: 196px; --extra: 100px;"><i></i><i></i><i></i><i></i><i></i></div>
+        <div data-dc-tpl="38" id="artistScrollFade" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 44px; background: linear-gradient(rgba(6, 6, 7, 0), rgba(4, 4, 5, 0.9)); pointer-events: none; z-index: 2;"></div>
       
 
       
@@ -598,14 +669,24 @@ html,body{margin:0;overflow:hidden;background:transparent}
 
 
 
-<input id="relayBuscador" type="text" spellcheck="false" placeholder="Search artists" style="display: block; left: 280.312px; top: 38px; width: 243px;">
+<input id="relayBuscador" type="text" spellcheck="false" placeholder="Search artists" style="display: block; left: 109.625px; top: 38px; width: 243px;">
 <script src="tema.js"></script>
 <script>
 /* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
-   al bajar por la web se quedaba uno atascado en una lista. */
-addEventListener("wheel", (e) => {
-  if (top !== window) { e.preventDefault(); try { top.scrollBy(0, e.deltaY); } catch (x) { } }
-}, { passive: false });
+   al bajar por la web se quedaba uno atascado en una lista.
+
+   Sin interceptar la rueda: antes se pasaba a mano con scrollBy, y con el
+   desplazamiento suave de la pagina cada muesca reiniciaba el viaje desde
+   donde iba -la pagina bajaba a tirones, como queriendo volver-. Ahora las
+   listas de dentro no se desplazan con la rueda (overflow hidden: siguen
+   pudiendo moverse por guion), asi que el navegador pasa la rueda a la
+   pagina el solo, igual de suave que en el resto. */
+if (top !== window) {
+  for (const el of document.querySelectorAll("*")) {
+    const cs = getComputedStyle(el);
+    if (/(auto|scroll)/.test(cs.overflowY + cs.overflowX)) { el.style.setProperty("overflow", "hidden", "important"); }
+  }
+}
 </script>
 </body>
 </html>
