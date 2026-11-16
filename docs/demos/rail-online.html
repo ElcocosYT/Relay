@@ -17,6 +17,7 @@
 *, ::before, ::after { print-color-adjust: exact; backdrop-filter: none !important; animation-delay: -99s !important; animation-duration: 0.001s !important; animation-iteration-count: 1 !important; animation-fill-mode: both !important; animation-play-state: running !important; transition-duration: 0s !important; }}
 html { font-variant-numeric: tabular-nums; }
 html, body { margin: 0px; padding: 0px; height: 100%; background: transparent; overflow: hidden; }
+html[data-pie][data-barcristal]:has(#libraryRoot, #albumsRoot, #artistsRoot, #settingsRoot, #mixerRoot, #themesRoot) { padding-bottom: 0px !important; }
 @keyframes relayLatido { 
   0% { opacity: 0.01; }
   100% { opacity: 0.02; }
@@ -53,7 +54,20 @@ html::after { content: ""; position: fixed; left: 0px; top: 0px; width: 1px; hei
   50% { opacity: 1; }
 }
 div:has(> div > #relayMasDer) { align-content: start; }
-div:has(> #relayMasDer) { align-self: stretch; }
+@keyframes zEntra { 
+  0% { opacity: 0; transform: scale(1.03); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes zderiva { 
+  0% { transform: scale(1.5) rotate(0deg) translate3d(0px, 0px, 0px); }
+  33% { transform: scale(1.72) rotate(42deg) translate3d(3%, -4%, 0px); }
+  66% { transform: scale(1.46) rotate(-28deg) translate3d(-4%, 3%, 0px); }
+  100% { transform: scale(1.5) rotate(0deg) translate3d(0px, 0px, 0px); }
+}
+@keyframes zFichaEntra { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 @keyframes relaySenala { 
   0%, 100% { outline-color: rgba(var(--t0,255,42,58),0); }
   25%, 75% { outline-color: rgba(var(--t0,255,42,58),.95); }
@@ -74,6 +88,7 @@ html { user-select: none; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
 @property --relayFinal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #onlineList, #relayInicioOnline, #relayDetCuerpo, #settingsGrid, #themesCuerpo, .sbResultados, .relayVelada, #queueList) { --relayFinal: 18px; }
 @property --relayTope { syntax: "<length>"; inherits: false; initial-value: 0px; }
 @keyframes relayListaEntra { 
   0% { opacity: 0; transform: translateY(-6px); }
@@ -82,6 +97,37 @@ html { user-select: none; }
 @keyframes relayGira { 
   100% { transform: rotate(360deg); }
 }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] { --npTapa: 340px; grid-template: "flujo letra cabeza" "flujo letra sigue" "flujo letra lista" minmax(0px, 1fr) "flujo letra lista" / 700px minmax(0px, 1fr) 340px !important; gap: 0px 44px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(1), html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) { display: contents !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2) { grid-area: letra; position: relative; z-index: 1; background: none !important; border-color: transparent !important; box-shadow: none !important; backdrop-filter: none !important; padding: 22px 6px 8px !important; overflow: visible !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #artworkWrap { grid-area: flujo; place-self: center; visibility: hidden; pointer-events: none; width: var(--npTapa) !important; max-width: none !important; margin: 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [style*="blur(30px)"] { filter: blur(82px) !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div:last-child { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div > [style*="rgba(5, 5, 6, 0.72)"], #relayEspejo [style*="rgba(5, 5, 6, 0.72)"] { display: none !important; }
+#relayEspejo > :not([style*="z-index: 5"]):not([style*="z-index:5"]):not(.encima) > div { box-shadow: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) { --cf: 2.742; grid-area: flujo; place-self: center stretch; min-height: 0px; pointer-events: none; margin: -56px 0px 0px !important; overflow: visible !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] { pointer-events: auto; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 4;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:4;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 3;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:3;"] { opacity: 1 !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 4;"]:not(:hover) > div:first-child, html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:4;"]:not(:hover) > div:first-child { filter: brightness(0.78); }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 3;"]:not(:hover) > div:first-child, html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:3;"]:not(:hover) > div:first-child { filter: brightness(0.52); }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 2;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:2;"] { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) > div:nth-child(3), html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) > div:nth-child(4) { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna { grid-area: flujo; align-self: center; z-index: 1; align-items: center; text-align: center; min-width: 0px; position: static !important; margin: 391px 0px 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(2) { position: relative; z-index: 1; max-width: 100%; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npRotulo { justify-content: center; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npTitle { font-size: 52px !important; text-align: center; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npArtist { text-align: center; font-size: 17px !important; margin-top: 12px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(3) { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 30px; margin-top: 20px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(3) > div { flex-direction: column; align-items: center; display: flex !important; gap: 7px !important; padding: 0px !important; border: 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(1) { grid-area: cabeza; position: relative; z-index: 1; padding-top: 22px; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) { grid-area: sigue; position: relative; z-index: 1; margin-top: 26px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) > span:nth-child(2) { visibility: hidden; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) { contain-intrinsic-size: auto 56px; grid-template-columns: 18px 44px minmax(0px, 1fr) 38px 14px !important; gap: 11px !important; height: 56px !important; min-height: 56px !important; padding: 0px 8px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta)[data-mano=""][data-sugerida=""]:not(.relaySel) { background: none !important; border-color: transparent !important; box-shadow: none !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(2) { width: 44px !important; height: 44px !important; border-radius: 10px !important; box-shadow: rgba(0, 0, 0, 0.85) 0px 8px 18px -10px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(3) span:last-child:not(.relayVerCola) { font-size: 13.5px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(3) > div:last-child { font-size: 12px !important; margin-top: 2px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #queueList { grid-area: lista; z-index: 1; min-height: 0px; margin-bottom: -32px !important; }
 @keyframes rioGira { 
   100% { transform: rotate(360deg); }
 }
@@ -854,9 +900,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
     <div data-dc-tpl="104" style="margin-top: 10px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.1); overflow: hidden;">
       <div data-dc-tpl="105" id="scanProgress" style="height: 100%; background: linear-gradient(90deg,rgb(var(--t1,196,18,32)),rgb(var(--t0,255,42,58))); width: 100%;"></div>
     </div>
-    <div data-dc-tpl="106" id="footerCaption" style="margin-top: 9px; font: 500 11px / 1.4 Inter, sans-serif; color: rgba(238, 238, 244, 0.45); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">4 sources · Checked seconds ago</span></div>
+    <div data-dc-tpl="106" id="footerCaption" style="margin-top: 9px; font: 500 11px / 1.4 Inter, sans-serif; color: rgba(238, 238, 244, 0.45); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">5 sources · Checked seconds ago</span></div>
     <div data-dc-tpl="107" id="footerActions" style="margin-top: 11px; display: flex; gap: 6px;">
-      <div data-dc-tpl="108" id="reloadBtn" data-act="reload" title="Reload albums" class="scp3" style="flex: 1 1 0%; min-width: 0px; display: flex; align-items: center; justify-content: center; gap: 6px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); font: 700 9px / 1 Inter, sans-serif; letter-spacing: 0.1em; color: rgba(238, 238, 244, 0.62); cursor: pointer; user-select: none;">
+      <div data-dc-tpl="108" id="reloadBtn" data-act="reload" title="Reload Library" class="scp3" style="flex: 1 1 0%; min-width: 0px; display: flex; align-items: center; justify-content: center; gap: 6px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); font: 700 9px / 1 Inter, sans-serif; letter-spacing: 0.1em; color: rgba(238, 238, 244, 0.62); cursor: pointer; user-select: none;">
         <span data-dc-tpl="109" id="reloadSpin" style="width:10px;height:10px;border-top-left-radius:50%;border-top-right-radius:50%;border-bottom-right-radius:50%;border-bottom-left-radius:50%;border-top-color:rgb(var(--t0,255,42,58));border-top-style:solid;border-top-width:2px;border-right-color:rgba(var(--t0,255,42,58),0.25);border-right-style:solid;border-right-width:2px;border-bottom-color:rgba(var(--t0,255,42,58),0.25);border-bottom-style:solid;border-bottom-width:2px;border-left-color:rgba(var(--t0,255,42,58),0.25);border-left-style:solid;border-left-width:2px;border-image-source:none;border-image-slice:100%;border-image-width:1;border-image-outset:0;border-image-repeat:stretch;flex-grow:0;flex-shrink:0;flex-basis:auto;display:none"></span>
         <span data-dc-tpl="110" id="reloadText" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">RELOAD</span></span>
       </div>
@@ -878,10 +924,20 @@ html,body{margin:0;overflow:hidden;background:transparent}
 <script src="tema.js"></script>
 <script>
 /* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
-   al bajar por la web se quedaba uno atascado en una lista. */
-addEventListener("wheel", (e) => {
-  if (top !== window) { e.preventDefault(); try { top.scrollBy(0, e.deltaY); } catch (x) { } }
-}, { passive: false });
+   al bajar por la web se quedaba uno atascado en una lista.
+
+   Sin interceptar la rueda: antes se pasaba a mano con scrollBy, y con el
+   desplazamiento suave de la pagina cada muesca reiniciaba el viaje desde
+   donde iba -la pagina bajaba a tirones, como queriendo volver-. Ahora las
+   listas de dentro no se desplazan con la rueda (overflow hidden: siguen
+   pudiendo moverse por guion), asi que el navegador pasa la rueda a la
+   pagina el solo, igual de suave que en el resto. */
+if (top !== window) {
+  for (const el of document.querySelectorAll("*")) {
+    const cs = getComputedStyle(el);
+    if (/(auto|scroll)/.test(cs.overflowY + cs.overflowX)) { el.style.setProperty("overflow", "hidden", "important"); }
+  }
+}
 </script>
 </body>
 </html>
