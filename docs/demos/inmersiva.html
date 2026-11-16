@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-pie="" data-np="3" data-np-tab="lyrics" data-espectro="" data-autoavance="" data-sinluz="" data-sonando="" data-zen="">
+<html data-pie="" data-np="2" data-np-tab="queue" data-npfondo="" data-espectro="" data-autoavance="" data-cantar="" data-sinluz="" data-sonando="" data-zen="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,6 +68,7 @@ div:has(> div > #relayMasDer) { align-content: start; }
   0% { opacity: 0; transform: scale(1.03); }
   100% { opacity: 1; transform: none; }
 }
+#relayZen::after { content: ""; position: absolute; inset: 0px; z-index: 0; pointer-events: none; opacity: 0.03; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23g)'/></svg>"); background-repeat: repeat; }
 #relayZen .zFondos { position: absolute; inset: 0px; z-index: 0; opacity: 1; transition: opacity 760ms; will-change: opacity; isolation: isolate; }
 #relayZen .zFondos.apagado { opacity: 0; }
 #relayZen .zFondo { backface-visibility: hidden; background-color: rgb(20, 16, 15); position: absolute; inset: -14%; background-position: center center; background-size: cover; filter: blur(94px) saturate(210%); transform: scale(1.3); opacity: 0.92; }
@@ -78,20 +79,11 @@ div:has(> div > #relayMasDer) { align-content: start; }
   66% { transform: scale(1.46) rotate(-28deg) translate3d(-4%, 3%, 0px); }
   100% { transform: scale(1.5) rotate(0deg) translate3d(0px, 0px, 0px); }
 }
-#relayZen .zVelo { position: absolute; inset: 0px; background: radial-gradient(120% 90% at 50% 40%, rgba(4, 4, 5, 0.3), rgba(4, 4, 5, 0.8) 80%), linear-gradient(rgba(4, 4, 5, 0.6), rgba(4, 4, 5, 0.42) 40%, rgba(4, 4, 5, 0.78)); }
-#relayZen .zBrillos { position: absolute; inset: 0px; pointer-events: none; overflow: hidden; }
-#relayZen .zBrillos i { position: absolute; display: block; border-radius: 50%; filter: blur(80px); }
-#relayZen .zBrillos i.a { left: -16%; top: -24%; width: 64vw; height: 64vw; background: radial-gradient(circle at center,rgba(var(--t0,255,42,58),.07),rgba(var(--t0,255,42,58),0) 66%); animation: 34s ease-in-out 0s infinite normal none running zflota; }
-#relayZen .zBrillos i.b { right: -18%; bottom: -28%; width: 60vw; height: 60vw; background: radial-gradient(circle at center,rgba(var(--t1,196,18,32),.06),rgba(var(--t1,196,18,32),0) 66%); animation: 41s ease-in-out 4s infinite reverse none running zflota; }
-@keyframes zflota { 
-  0% { transform: translate3d(0px, 0px, 0px) scale(1); }
-  33% { transform: translate3d(40px, -34px, 0px) scale(1.08); }
-  66% { transform: translate3d(-30px, 28px, 0px) scale(0.96); }
-  100% { transform: translate3d(0px, 0px, 0px) scale(1); }
-}
+#relayZen .zVelo { position: absolute; inset: 0px; opacity: calc(1 - var(--zLatido,0) * .34); will-change: opacity; background: radial-gradient(120% 90% at 50% 40%, rgba(4, 4, 5, 0.3), rgba(4, 4, 5, 0.8) 80%), linear-gradient(rgba(4, 4, 5, 0.6), rgba(4, 4, 5, 0.42) 40%, rgba(4, 4, 5, 0.78)); }
 #relayZen .zEscena { position: relative; z-index: 1; box-sizing: border-box; width: 100%; height: 100%; padding: min(5vh, 54px) min(33vh, 308px) min(5vh, 54px) min(6vw, 80px); display: flex; align-items: center; justify-content: center; gap: min(7vw, 90px); min-height: 0px; }
 #relayZen .zIzq { display: flex; flex-direction: column; align-items: center; gap: min(3.4vh, 30px); min-width: 0px; flex: 0 0 auto; }
-#relayZen .zTapa { width: min(42vh, 420px); flex: 0 0 auto; }
+#relayZen { --zAncho: min(42vh,420px); }
+#relayZen .zTapa { width: var(--zAncho); flex: 0 0 auto; }
 #relayZen .zTapa #artworkWrap { max-width: none; width: 100%; }
 html[data-zen] #artworkFrame > div[style*="repeating-linear-gradient"] { display: none; }
 html[data-zen] #artworkFrame { border-radius: min(2.4vh, 22px); box-shadow: rgba(0, 0, 0, 0.8) 0px 60px 110px -30px, rgba(255, 255, 255, 0.14) 0px 0px 0px 1px, rgba(255, 255, 255, 0.22) 0px 1px 0px inset; }
@@ -100,22 +92,42 @@ html[data-zen] #npTitle { letter-spacing: -0.03em; color: rgb(255, 255, 255); te
 html[data-zen] #npArtist { text-align: center; margin: 0px !important; padding: 0px !important; font: 600 min(2vh, 17px) / 1.3 Inter, sans-serif !important; color: rgba(255, 255, 255, 0.82) !important; white-space: normal !important; }
 html[data-zen] #npAlbum { letter-spacing: 0.02em; text-align: center; margin: 0px !important; padding: 0px !important; font: 500 min(1.65vh, 13px) / 1.3 Inter, sans-serif !important; color: rgba(255, 255, 255, 0.5) !important; white-space: normal !important; }
 html[data-zen] #npTitle, html[data-zen] #npArtist, html[data-zen] #npAlbum { pointer-events: none; cursor: default; background: none !important; border: 0px !important; }
+html[data-zen] #npArtist, html[data-zen] #npAlbum { pointer-events: auto; cursor: pointer; transition: color 120ms ease-out; }
+html[data-zen] #npAlbum:hover { text-decoration: underline; text-underline-offset: 3px; color: rgb(var(--t4,255,143,152)) !important; }
+html[data-zen] #npArtist.relayPartido { position: relative; cursor: default; color: transparent !important; }
+html[data-zen] #npArtist > .relayArtistas { position: absolute; inset: 0px; white-space: normal; text-align: center; color: rgba(255, 255, 255, 0.82); }
+html[data-zen] #npArtist > .relayArtistas > [data-nombre] { cursor: pointer; transition: color 120ms ease-out; }
+html[data-zen] #npArtist > .relayArtistas > [data-nombre]:hover { color: rgb(var(--t4,255,143,152)); text-decoration: underline; text-underline-offset: 3px; }
+#relayZen .zBarra { width: var(--zAncho,100%); max-width: 100%; display: flex; flex-direction: column; gap: 7px; }
+#relayZen .zVia { position: relative; height: 16px; display: flex; align-items: center; cursor: pointer; touch-action: none; }
+#relayZen .zVia::before { content: ""; position: absolute; left: 0px; right: 0px; height: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.16); }
+#relayZen .zIda { position: absolute; left: 0px; height: 4px; border-radius: 999px; width: calc(var(--zIda,0) * 100%); background: rgba(255, 255, 255, 0.92); }
+#relayZen .zTiro { position: absolute; top: 50%; left: calc(var(--zIda,0) * 100%); width: 11px; height: 11px; margin: -5.5px 0px 0px -5.5px; border-radius: 50%; background: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 8px; opacity: 0; transform: scale(0.4); transition: opacity 160ms, transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1.4); }
+#relayZen .zVia:hover .zTiro, #relayZen .zBarra.agarrada .zTiro { opacity: 1; transform: none; }
+#relayZen .zRelojes { display: flex; justify-content: space-between; font: 600 11px / 1 Inter, sans-serif; letter-spacing: 0.04em; color: rgba(238, 238, 244, 0.5); }
+@media (max-width: 980px) and (min-aspect-ratio: 3 / 4) and (max-aspect-ratio: 4 / 3) {#relayZen .zBarra { width: auto; align-self: stretch; position: relative; z-index: 2; }}
 #relayZen .zMandos { display: flex; align-items: center; gap: min(2.6vw, 26px); }
 #relayZen .zMando { width: min(7vh, 62px); height: min(7vh, 62px); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex: 0 0 auto; color: rgba(255, 255, 255, 0.88); background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(26px) saturate(170%); transition: background 180ms, border-color 180ms, color 180ms, transform 240ms cubic-bezier(0.2, 0.9, 0.3, 1.4); }
 #relayZen .zMando svg { width: 56%; height: 56%; display: block; }
 #relayZen .zMando:hover { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.3); color: rgb(255, 255, 255); transform: translateY(-2px); }
-#relayZen .zMando:active { transform: scale(0.9); transition-duration: 90ms; }
+#relayZen .zMando:active { scale: 0.84 0.76; animation: auto ease 0s 1 normal none running none !important; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
 #relayZen .zMando.zPlay { width: min(9.4vh, 84px); height: min(9.4vh, 84px); color: rgb(255, 255, 255); background: linear-gradient(140deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32))); border-color: rgba(255, 255, 255, 0.22); box-shadow: 0 22px 54px -16px rgba(var(--t0,255,42,58),.75); }
 #relayZen .zMando.zPlay:hover { filter: brightness(1.08); }
 #relayZen .zMando.zPlay svg { width: 48%; height: 48%; }
+#relayZen .zMando.zSuelto { width: min(5.6vh, 48px); height: min(5.6vh, 48px); background: none; border-color: transparent; backdrop-filter: none; color: rgba(255, 255, 255, 0.62); }
+#relayZen .zMando.zSuelto:hover { background: none; border-color: transparent; color: rgb(255, 255, 255); }
+#relayZen .zMando.zSuelto svg { width: 52%; height: 52%; }
+#relayZen .zAzar .zAzarListo { display: none; }
+#relayZen .zDibujoBucle { display: block; width: 56%; height: 56%; background-color: currentcolor; mask: url("activos/loop.svg") center center / contain no-repeat; translate: 0px 3.6%; }
 #relayZen .zMando.zPlay .zIrPausa { display: none; }
 html[data-sonando] #relayZen .zMando.zPlay .zIrPlay { display: none; }
 html[data-sonando] #relayZen .zMando.zPlay .zIrPausa { display: block; }
-@keyframes zrebota { 
-  0% { transform: scale(1); }
-  40% { transform: scale(0.88); }
-  100% { transform: scale(1); }
-}
+#relayZen .zMando { --resorte: cubic-bezier(.2,1.5,.3,1); }
+@supports (transition-timing-function:linear(0,1)) {#relayZen .zMando { --resorte: linear(
+          0,.0723,.2556,.4981,.7523,.9801,1.1565,1.2692,1.3179,1.311,
+          1.2628,1.1897,1.1078,1.0305,.9674,.9239,.9012,.8976,.909,
+          .9302,.9561,.9819,1.004,1.0203,1
+        ); }}
 #relayZen .zLetra { flex: 1 1 auto; max-width: max(min(52vw, 840px), -318px + 60vw); height: 100%; min-height: 0px; min-width: 0px; display: flex; flex-direction: column; opacity: 1; transition: max-width 620ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 420ms 160ms, transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1); }
 #relayZen .zEscena { gap: 0px; }
 #relayZen .zLetra { margin-left: min(7vw, 90px); }
@@ -147,9 +159,21 @@ html[data-zen] #relaySincro:active { transform: scale(0.92); transition: transfo
                 scale(1.06); transition-duration: 120ms; }
 @media (max-width: 1240px) {#relayZen .zCola { display: none; }
 #relayZen .zEscena { padding-right: min(6vw, 80px); }}
+#relayZen .zEscena { transition: padding-right 620ms cubic-bezier(0.22, 0.61, 0.36, 1); }
+#relayZen .zTapa { transition: width 620ms cubic-bezier(0.22, 0.61, 0.36, 1); }
 @media (max-width: 980px) {#relayZen .zLetra { display: none; }
-#relayZen .zTapa { width: min(54vh, 520px); }
+#relayZen { --zAncho: min(54vh,520px); }
 #relayZen .zTextos { max-width: min(78vw, 620px); }}
+@media (max-width: 980px) and (min-aspect-ratio: 3 / 4) and (max-aspect-ratio: 4 / 3) {#relayZen .zEscena { padding: min(3.4vmin, 24px); }
+#relayZen .zIzq { position: relative; width: min(100%, 100vh - min(6.8vmin, 48px)); aspect-ratio: 1 / 1; box-sizing: border-box; justify-content: flex-end; gap: min(2.2vmin, 16px); padding: 0px min(6%, 34px) min(6%, 34px); }
+html[data-nohaletra] #relayZen .zTapa, html[data-sincola] #relayZen .zTapa, #relayZen .zTapa { position: absolute; inset: 0px; width: auto; z-index: 0; }
+#relayZen .zIzq::before { content: ""; position: absolute; z-index: 1; left: 0px; right: 0px; bottom: 0px; height: 52%; border-radius: 0px 0px min(2.4vh, 22px) min(2.4vh, 22px); background: linear-gradient(rgba(5, 5, 7, 0), rgba(5, 5, 7, 0.55) 44%, rgba(5, 5, 7, 0.88)); pointer-events: none; }
+#relayZen .zTextos { position: relative; z-index: 2; max-width: 100%; }
+#relayZen .zMandos { position: relative; z-index: 2; gap: min(4vmin, 24px); }
+#relayZen .zMando { width: min(11vmin, 64px); height: min(11vmin, 64px); }
+#relayZen .zMando { backdrop-filter: none; background: rgba(255, 255, 255, 0.12); }
+html[data-zen] #npTitle { font-size: min(5.4vmin, 30px) !important; }
+html[data-zen] #npArtist { font-size: min(3.6vmin, 17px) !important; }}
 html[data-zen] #relayZen .zTapa #artworkWrap { width: 100% !important; max-width: none !important; flex: 0 0 auto !important; margin: 0px !important; }
 html[data-zen] #relayZen #npTitle { font: 800 min(3.6vh, 34px) / 1.15 Inter, sans-serif !important; white-space: normal !important; }
 @keyframes relaySenala { 
@@ -188,10 +212,17 @@ html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #
 .relayVelo > i:nth-child(5) { backdrop-filter: blur(14px); mask-image: linear-gradient(180deg,transparent calc((100% - var(--extra,0px)) * .76),#000 calc(100% - var(--extra,0px))); }
 @property --relayTope { syntax: "<length>"; inherits: false; initial-value: 0px; }
 #queueList { transition: --relayTope 320ms cubic-bezier(0.3, 0.7, 0.2, 1), --relayFinal 320ms cubic-bezier(0.3, 0.7, 0.2, 1); mask-image: linear-gradient(180deg,transparent calc(0px - var(--relayTope)),
-        #000 calc(34px - var(--relayTope)),#000 calc(100% - 18px + var(--relayFinal)),
+        #000 calc(var(--relayLargo,34px) - var(--relayTope)),#000 calc(100% - 18px + var(--relayFinal)),
         transparent calc(100% + var(--relayFinal))) !important; }
 #queueList[data-tope] { --relayTope: 34px; }
 #queueList[data-fondo] { --relayFinal: 18px; }
+.relayVelo.arriba { transform: scaleY(-1); }
+.relayVelo.arriba > i { border-radius: 0px; bottom: 0px !important; }
+.relayVelo.arriba > i:nth-child(4) { mask-image: linear-gradient(transparent 56%, rgb(0, 0, 0) 76%, rgb(0, 0, 0) calc(100% - 36px), transparent); }
+.relayVelo.arriba > i:nth-child(5) { mask-image: linear-gradient(180deg,transparent calc((100% - var(--extra,0px)) * .76),#000 calc(100% - var(--extra,0px)),#000 calc(100% - 36px),transparent); }
+html[data-np][data-npfondo] .relayVelo.arriba > i:nth-child(4) { mask-image: linear-gradient(transparent 56%, rgb(0, 0, 0) 76%, rgb(0, 0, 0) calc(100% - 36px), transparent), linear-gradient(90deg, transparent, rgb(0, 0, 0) 60px, rgb(0, 0, 0) calc(100% - 60px), transparent); mask-composite: intersect; }
+html[data-np][data-npfondo] .relayVelo.arriba > i:nth-child(5) { mask-image: linear-gradient(180deg,transparent calc((100% - var(--extra,0px)) * .76),#000 calc(100% - var(--extra,0px)),#000 calc(100% - 36px),transparent),linear-gradient(90deg,transparent,#000 60px,#000 calc(100% - 60px),transparent); mask-composite: intersect; }
+html:not([data-sinvelo]) #queueList { --relayLargo: 18px; }
 .relayCorre { position: absolute; left: 0px; top: 3px; bottom: 3px; z-index: 0; border-radius: 8px; background: rgba(var(--t0,255,42,58),.85); box-shadow: 0 6px 16px -8px rgba(var(--t0,255,42,58),.9); transition: transform 440ms cubic-bezier(0.3, 1.25, 0.4, 1), width 440ms cubic-bezier(0.3, 1.25, 0.4, 1); pointer-events: none; }
 @keyframes relayListaEntra { 
   0% { opacity: 0; transform: translateY(-6px); }
@@ -200,11 +231,89 @@ html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #
 @keyframes relayGira { 
   100% { transform: rotate(360deg); }
 }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] { --npTapa: 340px; grid-template: "flujo letra cabeza" "flujo letra sigue" "flujo letra lista" minmax(0px, 1fr) "flujo letra lista" / 700px minmax(0px, 1fr) 340px !important; gap: 0px 44px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(1), html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) { display: contents !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2) { grid-area: letra; position: relative; z-index: 1; background: none !important; border-color: transparent !important; box-shadow: none !important; backdrop-filter: none !important; padding: 22px 6px 8px !important; overflow: visible !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #artworkWrap { grid-area: flujo; place-self: center; visibility: hidden; pointer-events: none; width: var(--npTapa) !important; max-width: none !important; margin: 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [style*="blur(30px)"] { filter: blur(82px) !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div:last-child { display: none !important; }
+#relayEspejo { position: absolute; left: calc(-40px * var(--cf, 1)); right: calc(-40px * var(--cf, 1)); top: calc(34px * var(--cf, 1)); height: calc(248px * var(--cf, 1)); z-index: 1; pointer-events: none; mask-size: 100% 100%; mask-repeat: no-repeat; mask-image: linear-gradient(transparent 0px, transparent 42%, rgba(0, 0, 0, 0.4) 43%, rgba(0, 0, 0, 0.34) 50%, rgba(0, 0, 0, 0.12) 66%, transparent 84%); }
+html[data-np="1"] #relayEspejo, html[data-zen] #relayEspejo { display: none; }
+#relayEspejo > div { position: absolute; left: 50%; cursor: default; transform-style: flat !important; opacity: 1 !important; }
+#relayEspejo i.relayPunto { position: absolute; width: 0px; height: 0px; }
+#relayEspejo i.relayPunto.p0 { left: 0px; top: 0px; }
+#relayEspejo i.relayPunto.p1 { right: 0px; top: 0px; }
+#relayEspejo i.relayPunto.p2 { left: 0px; bottom: 0px; }
+#relayEspejo i.relayPunto.p3 { right: 0px; bottom: 0px; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div > [style*="rgba(5, 5, 6, 0.72)"], #relayEspejo [style*="rgba(5, 5, 6, 0.72)"] { display: none !important; }
+#relayEspejo > div > div { transition: transform 200ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 200ms, filter 200ms; }
+#relayEspejo > [style*="z-index: 2;"], #relayEspejo > [style*="z-index:2;"] { display: none; }
+#relayEspejo > [style*="z-index: 4;"]:not(.encima) > div, #relayEspejo > [style*="z-index:4;"]:not(.encima) > div { filter: brightness(0.78); }
+#relayEspejo > [style*="z-index: 3;"]:not(.encima) > div, #relayEspejo > [style*="z-index:3;"]:not(.encima) > div { filter: brightness(0.52); }
+#relayEspejo > :not([style*="z-index: 5"]):not([style*="z-index:5"]):not(.encima) > div { box-shadow: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) { --cf: 2.742; grid-area: flujo; place-self: center stretch; min-height: 0px; pointer-events: none; margin: -56px 0px 0px !important; overflow: visible !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] { pointer-events: auto; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 4;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:4;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 3;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:3;"] { opacity: 1 !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 4;"]:not(:hover) > div:first-child, html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:4;"]:not(:hover) > div:first-child { filter: brightness(0.78); }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 3;"]:not(:hover) > div:first-child, html:is([data-np="3"], [data-np="2"]):not([data-zen]):not([data-sincola]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:3;"]:not(:hover) > div:first-child { filter: brightness(0.52); }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index: 2;"], html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"][style*="z-index:2;"] { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) > div:nth-child(3), html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) > div:nth-child(4) { display: none !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna { grid-area: flujo; align-self: center; z-index: 1; align-items: center; text-align: center; min-width: 0px; position: static !important; margin: 391px 0px 0px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(2) { position: relative; z-index: 1; max-width: 100%; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npRotulo { justify-content: center; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npTitle { font-size: 52px !important; text-align: center; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npArtist { text-align: center; font-size: 17px !important; margin-top: 12px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(3) { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 30px; margin-top: 20px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #npColumna > div:nth-child(3) > div { flex-direction: column; align-items: center; display: flex !important; gap: 7px !important; padding: 0px !important; border: 0px !important; }
+html[data-np]:not([data-zen]) #npAlbum:not(.editando) { mask-image: none; max-width: 100%; padding-left: 0px !important; margin-left: 0px !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+html[data-npfondo]:not([data-zen]) body, html[data-np]:not([data-zen]) #nowPlayingRoot { overflow: visible !important; }
+html[data-np]:not([data-zen]) #npColumna > div:first-child { z-index: 0; left: -44px !important; right: -44px !important; height: 250px !important; bottom: calc(-100px / var(--ahora, 1)) !important; mask-image: linear-gradient(transparent, rgb(0, 0, 0) 34%) !important; }
+html[data-np]:not([data-zen]) #relayBarras { opacity: 0.42 !important; }
+html[data-zen] #relayBarras > div:nth-child(2n) { display: none; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(1) { grid-area: cabeza; position: relative; z-index: 1; padding-top: 22px; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) { grid-area: sigue; position: relative; z-index: 1; margin-top: 26px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) > span:nth-child(2) { visibility: hidden; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) { contain-intrinsic-size: auto 56px; grid-template-columns: 18px 44px minmax(0px, 1fr) 38px 14px !important; gap: 11px !important; height: 56px !important; min-height: 56px !important; padding: 0px 8px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta)[data-mano=""][data-sugerida=""]:not(.relaySel) { background: none !important; border-color: transparent !important; box-shadow: none !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(2) { width: 44px !important; height: 44px !important; border-radius: 10px !important; box-shadow: rgba(0, 0, 0, 0.85) 0px 8px 18px -10px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(3) span:last-child:not(.relayVerCola) { font-size: 13.5px !important; }
+html[data-np]:not([data-zen]) :is(#queueList [data-act="jump-queue"], .relayFilaSuelta) > div:nth-child(3) > div:last-child { font-size: 12px !important; margin-top: 2px !important; }
+html[data-np]:not([data-zen]) #queueList > div:first-child { gap: 2px !important; }
+html:is([data-np="3"], [data-np="2"]):not([data-zen]) #queueList { grid-area: lista; z-index: 1; min-height: 0px; margin-bottom: -32px !important; }
+html[data-np][data-npfondo] .relayVelo { z-index: 2 !important; }
+html[data-np]:not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(1), html[data-np]:not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(3) { position: relative; z-index: 4 !important; }
+html[data-np]:not([data-zen]) #npColumna > div:first-child { z-index: 3 !important; }
+html[data-np]:not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2), html[data-np]:not([data-zen]) #npColumna > div:nth-child(2), html[data-np]:not([data-zen]) #npColumna > div:nth-child(3) { z-index: 4 !important; }
+html[data-np][data-npfondo] .relayVelo > i:nth-child(1) { mask-image: linear-gradient(transparent 0%, rgb(0, 0, 0) 16%, rgb(0, 0, 0) 36%, transparent 56%), linear-gradient(90deg, transparent, rgb(0, 0, 0) 60px, rgb(0, 0, 0) calc(100% - 60px), transparent); mask-composite: intersect; }
+html[data-np][data-npfondo] .relayVelo > i:nth-child(2) { mask-image: linear-gradient(transparent 16%, rgb(0, 0, 0) 36%, rgb(0, 0, 0) 56%, transparent 76%), linear-gradient(90deg, transparent, rgb(0, 0, 0) 60px, rgb(0, 0, 0) calc(100% - 60px), transparent); mask-composite: intersect; }
+html[data-np][data-npfondo] .relayVelo > i:nth-child(3) { mask-image: linear-gradient(transparent 36%, rgb(0, 0, 0) 56%, rgb(0, 0, 0) 76%, transparent 96%), linear-gradient(90deg, transparent, rgb(0, 0, 0) 60px, rgb(0, 0, 0) calc(100% - 60px), transparent); mask-composite: intersect; }
+html[data-np][data-npfondo] .relayVelo > i:nth-child(4) { mask-image: linear-gradient(transparent 56%, rgb(0, 0, 0) 76%), linear-gradient(90deg, transparent, rgb(0, 0, 0) 60px, rgb(0, 0, 0) calc(100% - 60px), transparent); mask-composite: intersect; }
+html[data-np][data-npfondo] .relayVelo > i:nth-child(5) { mask-image: linear-gradient(180deg,transparent calc((100% - var(--extra,0px)) * .76),#000 calc(100% - var(--extra,0px))),linear-gradient(90deg,transparent,#000 60px,#000 calc(100% - 60px),transparent); mask-composite: intersect; }
+html[data-np]:not([data-zen]) #nowPlayingRoot div:has(> #lyricsFootnote) { order: 1; justify-content: flex-start; max-height: 0px; opacity: 0; overflow: hidden; transition: max-height 340ms cubic-bezier(0.22, 0.61, 0.36, 1), margin-top 340ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 220ms; padding-top: 0px !important; border-top: 0px !important; margin-top: 0px !important; }
+html[data-np]:not([data-zen]) #lyricsScroll { order: 2; margin-top: 10px !important; }
+html[data-np]:not([data-zen]) #nowPlayingRoot div:has(> #lyricsFootnote) > div { display: none !important; }
+html[data-np]:not([data-zen]) #lyricsFootnote { text-align: left; color: rgba(238, 238, 244, 0.24) !important; }
+html[data-np]:not([data-zen]) .relayTituloLetra { font-size: 27px !important; }
+html[data-np]:not([data-zen]) .relayChipLetra { position: relative; top: 2.5px; cursor: default; }
+html[data-npfondo]:not([data-zen]):not([data-oculto]):not([data-sinaura]):not([data-fondofuera]) body::before { content: ""; position: fixed; z-index: -2; pointer-events: none; inset: 0px; background: var(--npFondo,none) center/cover no-repeat; transition: background-image 0.9s; }
+html[data-npfondo]:not([data-zen]):not([data-oculto]):not([data-sinaura]):not([data-fondofuera]) body::after { content: ""; position: fixed; inset: 0px; z-index: -2; pointer-events: none; background: radial-gradient(120% 90% at 50% 40%, rgba(20, 4, 10, 0.1), rgba(12, 3, 7, 0.72)), linear-gradient(rgba(60, 6, 20, 0.3), rgba(10, 2, 6, 0.5)); }
+html[data-np="2"]:not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] { --npTapa: 250px; grid-template: "flujo cabeza" "flujo sigue" "flujo lista" minmax(0px, 1fr) / 520px minmax(0px, 1fr) !important; gap: 0px 40px !important; }
+html[data-np="2"]:not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2) { grid-area: 1 / 2 / -1 / 3; }
+html[data-np="2"]:not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) { --cf: 2.016; margin: -48px 0px 0px !important; }
+html[data-np="2"]:not([data-zen]) #npColumna { margin: 330px 0px 0px !important; }
+html[data-np="2"]:not([data-zen]) #npTitle { font-size: 40px !important; }
+html[data-np="2"]:not([data-zen]) #npArtist { font-size: 16px !important; margin-top: 10px !important; }
+html[data-np="2"][data-np-tab="queue"]:not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2) { display: none !important; }
 .relayNpTabs { display: none; }
+html[data-np="1"] .relayNpTabs, html[data-np="2"] .relayNpTabs { display: inline-flex; flex: 0 0 auto; padding: 3px; border-radius: 11px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
 .relayNpTabs { position: relative; }
 .relayNpTabs span { position: relative; z-index: 1; padding: 7px 14px; border-radius: 8px; cursor: pointer; white-space: nowrap; font: 700 13px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.6); transition: color 200ms ease-out; }
 .relayNpTabs span:hover { color: rgb(242, 242, 244); }
 .relayNpTabs span.on { color: rgb(255, 255, 255); }
+html[data-np="1"] #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2) h4, html[data-np="2"] #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2) h4, html[data-np="1"] #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) h4, html[data-np="2"] #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) h4 { display: none !important; }
+html[data-np="1"] #relayAutoAvance, html[data-np="2"] #relayAutoAvance { order: 1; margin-left: auto !important; margin-right: 0px !important; }
+html[data-np="1"] [data-act="clear-queue"], html[data-np="2"] [data-act="clear-queue"] { order: 2; }
+html[data-np="1"] #queueSummary, html[data-np="2"] #queueSummary { order: 3; }
 @keyframes rioGira { 
   100% { transform: rotate(360deg); }
 }
@@ -252,18 +361,21 @@ html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #
 #relaySincro:active { transform: translate(-50%, 0px) scale(0.9); transition: transform 90ms; }
 #relayMandosLetra { margin-left: auto; display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
 #lyricsClock { margin-left: 0px !important; }
+#lyricsClock { order: 3; }
+#lyricsClock { min-width: 5.4em; text-align: right; font-variant-numeric: tabular-nums !important; font-feature-settings: "tnum" !important; }
+#queueSummary, .relayChipLetra { padding: 6px 8px 4px !important; }
+#relayAutoAvance > div { margin: 0px; position: relative; left: 0.5px; width: 16px !important; height: 16px !important; }
+#relayMandosLetra { order: 2; }
+.relayNpTabs { order: -1; }
 .relayMandoLetra { position: relative; flex: 0 0 auto; box-sizing: border-box; width: 30px; height: 30px; max-width: 30px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; background: rgba(255, 255, 255, 0.043); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: rgba(255, 255, 255, 0.06) 0px 1px 0px inset; color: rgba(238, 238, 244, 0.7); transition: background 160ms, border-color 160ms, color 160ms, box-shadow 220ms, opacity 220ms, transform 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4), max-width 280ms cubic-bezier(0.2, 0.8, 0.2, 1), margin 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
 .relayMandoLetra i { width: 15px; height: 15px; flex: 0 0 auto; pointer-events: none; background-color: currentcolor; mask: var(--icono) center/contain no-repeat; }
 .relayMandoLetra:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.26); color: rgb(255, 255, 255); transform: translateY(-1px); }
 .relayMandoLetra:active { transform: translateY(0px) scale(0.9); transition-duration: 90ms; }
-.relayMandoLetra i.entra { animation: 340ms cubic-bezier(0.2, 0.9, 0.3, 1.3) 0s 1 normal none running relayMandoEntra; }
 @keyframes relayMandoEntra { 
   0% { transform: scale(0.35) rotate(-50deg); opacity: 0; }
   100% { transform: none; opacity: 1; }
 }
-.relayMandoLetra[data-icono="activos/icono-letra-quitar.svg"] i { width: 12px; height: 12px; }
 .relayMandoLetra[data-icono="activos/icono-biblioteca.svg"] i { width: 18px; height: 18px; }
-#relayEstadoLetra[data-estado="quitar"]:hover { background: rgba(var(--t0,255,42,58),.16); border-color: rgba(var(--t0,255,42,58),.55); color: rgb(var(--t3,255,154,162)); }
 @keyframes relayMandoGira { 
   100% { transform: rotate(360deg); }
 }
@@ -280,7 +392,10 @@ html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #
 #relayPrecisaLetra { background: linear-gradient(140deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32))); border-color: rgba(255, 255, 255, 0.2); color: rgb(255, 255, 255); }
 #relayPrecisaLetra:hover { filter: brightness(1.12); }
 #relayPrecisaLetra.fuera, #relayVersionLetra.fuera, #relayOtraLetra.fuera { max-width: 0px; opacity: 0; margin-left: -6px; border-width: 0px; pointer-events: none; }
+#relayElegir { position: absolute; inset: 78px 14px 14px; z-index: 5; display: none; flex-direction: column; gap: 12px; padding: 18px 18px 12px; border-radius: 20px; box-sizing: border-box; background: linear-gradient(160deg, rgba(24, 22, 24, 0.97), rgba(12, 11, 12, 0.97)); backdrop-filter: blur(30px) saturate(150%); border: 1px solid rgba(255, 255, 255, 0.13); box-shadow: 0 30px 70px -24px rgba(var(--t5,30,0,6),.95),
+                 inset 0 1px 0 rgba(255,255,255,.14); font-family: Inter, system-ui, sans-serif; }
 html[data-zen] #relayZen .zLetra { position: relative; }
+html[data-zen] #relayZen .zLetra > #relayElegir { inset: 0px; z-index: 4; padding: 0px; border: 0px; border-radius: 0px; box-shadow: none; background: none; backdrop-filter: none; justify-content: center; gap: min(2.2vh, 20px); }
 html[data-zen] #relayZen .zLetra:has(> #relayElegir.seVe) > #lyricsScroll { opacity: 0; pointer-events: none; transition: opacity 260ms; }
 @keyframes relayElegirEntra { 
   0% { opacity: 0; transform: translateY(10px) scale(0.985); }
@@ -295,12 +410,17 @@ html[data-zen] #relayZen .zLetra:has(> #relayElegir.seVe) > #lyricsScroll { opac
   100% { opacity: 1; transform: none; }
 }
 #relaySincro::before { content: ""; flex: 0 0 auto; width: 15px; height: 15px; background: rgb(255, 255, 255); mask: url("activos/icono-resync.svg") center center / contain no-repeat; }
-#lyricsScroll > [data-act="seek-lyric"] { transition: opacity 420ms, transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1); background: none !important; border-color: transparent !important; box-shadow: none !important; }
+#lyricsScroll > [data-act="seek-lyric"] { filter: blur(var(--nubla,0px)); transition: opacity 420ms, transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1), filter 700ms ease-in-out; background: none !important; border-color: transparent !important; box-shadow: none !important; }
+#lyricsScroll > [data-act="seek-lyric"]:hover, #lyricsScroll.relayLeyendo > [data-act="seek-lyric"] { filter: none; }
 #lyricsScroll > [data-act="seek-lyric"] span { color: var(--tinta,rgba(238,238,244,.72)) !important; font-size: var(--cuerpo,33px) !important; line-height: 1.3 !important; font-weight: 600 !important; letter-spacing: -0.018em !important; }
-#lyricsScroll > [data-act="seek-lyric"] > span { display: inline-block; transition: transform 480ms cubic-bezier(0.22, 0.61, 0.36, 1), color 480ms, text-shadow 480ms; max-width: 100%; text-wrap: pretty; }
+#lyricsScroll > [data-act="seek-lyric"] > span { display: inline-block; transition: transform 480ms cubic-bezier(0.22, 0.61, 0.36, 1), color 480ms, text-shadow 480ms; max-width: calc(81.9672%); text-wrap: pretty; }
 #lyricsScroll > [data-act="seek-lyric"]:not(.relayVerso):hover span { transition: color 220ms; color: rgb(255, 255, 255) !important; }
 #lyricsScroll > [data-act="seek-lyric"].relayVerso > span { transform: scale(1.16); text-shadow: rgba(255, 255, 255, 0.28) 0px 0px 26px; max-width: calc(81.9672%); }
-#nowPlayingRoot div[style*="118deg"] { display: none !important; }
+#lyricsScroll > [data-act="seek-lyric"] > span.relayCanta { position: relative; -webkit-text-fill-color: transparent; text-shadow: none; }
+#lyricsScroll > [data-act="seek-lyric"].relayVerso > span.relayCanta { filter: drop-shadow(rgba(255, 255, 255, 0.2) 0px 0px 12px); }
+#lyricsScroll span.relayCapa { position: absolute; inset: 0px -24px; display: block; pointer-events: none; white-space: nowrap; -webkit-text-fill-color: rgb(255, 255, 255); }
+#lyricsScroll span.relayCapa > span { display: inline-block; will-change: transform; position: relative; mask-image: linear-gradient(90deg,#000 var(--cA,-50%),rgba(0,0,0,.4) var(--cB,0%)); }
+#nowPlayingRoot div[style*="118deg"], .relayFilaSuelta div[style*="118deg"] { display: none !important; }
 #queueList > div:first-child { height: 100%; overflow-y: auto; }
 #queueList > div:first-child { box-sizing: border-box; padding-left: 2px; padding-right: 2px; }
 #queueList > div:first-child::-webkit-scrollbar { width: 0px; }
@@ -326,7 +446,7 @@ html[data-zen] #relayZen .zLetra:has(> #relayElegir.seVe) > #lyricsScroll { opac
 #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"]:hover > div:first-child { transform: scale(1.07); filter: brightness(1.1) saturate(1.06); box-shadow: 0 24px 48px -14px rgba(var(--acento,var(--t0,255,42,58)),.78),
                  0 0 0 2px rgba(var(--acento,var(--t0,255,42,58)),.6),
                  inset 0 1px 0 rgba(255,255,255,.34) !important; }
-html[data-espectro] #relayBarras > div { transition: transform 70ms linear; animation: auto ease 0s 1 normal none running none !important; }
+html[data-espectro] #relayBarras > div { transform: scaleY(0.12); animation: auto ease 0s 1 normal none running none !important; }
 html:not([data-espectro]) #relayBarras > div { animation-duration: 3.6s !important; animation-fill-mode: backwards !important; }
 @keyframes relayBarVagaUno { 
   0% { transform: translate3d(-1px, -1px, 0px) scale(1); opacity: 0.72; }
@@ -537,50 +657,6 @@ html:not([data-autoavance]) #relayAutoAvance > div { animation: 380ms cubic-bezi
   40% { transform: scale(1.35); background: rgb(var(--t0,255,42,58)); color: rgb(255, 255, 255); }
   100% { transform: scale(1); }
 }
-html[data-espectro] #relayBarras > div:nth-child(1) { transform: scaleY(var(--b0,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(2) { transform: scaleY(var(--b1,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(3) { transform: scaleY(var(--b2,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(4) { transform: scaleY(var(--b3,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(5) { transform: scaleY(var(--b4,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(6) { transform: scaleY(var(--b5,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(7) { transform: scaleY(var(--b6,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(8) { transform: scaleY(var(--b7,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(9) { transform: scaleY(var(--b8,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(10) { transform: scaleY(var(--b9,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(11) { transform: scaleY(var(--b10,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(12) { transform: scaleY(var(--b11,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(13) { transform: scaleY(var(--b12,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(14) { transform: scaleY(var(--b13,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(15) { transform: scaleY(var(--b14,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(16) { transform: scaleY(var(--b15,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(17) { transform: scaleY(var(--b16,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(18) { transform: scaleY(var(--b17,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(19) { transform: scaleY(var(--b18,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(20) { transform: scaleY(var(--b19,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(21) { transform: scaleY(var(--b20,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(22) { transform: scaleY(var(--b21,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(23) { transform: scaleY(var(--b22,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(24) { transform: scaleY(var(--b23,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(25) { transform: scaleY(var(--b24,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(26) { transform: scaleY(var(--b25,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(27) { transform: scaleY(var(--b26,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(28) { transform: scaleY(var(--b27,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(29) { transform: scaleY(var(--b28,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(30) { transform: scaleY(var(--b29,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(31) { transform: scaleY(var(--b30,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(32) { transform: scaleY(var(--b31,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(33) { transform: scaleY(var(--b32,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(34) { transform: scaleY(var(--b33,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(35) { transform: scaleY(var(--b34,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(36) { transform: scaleY(var(--b35,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(37) { transform: scaleY(var(--b36,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(38) { transform: scaleY(var(--b37,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(39) { transform: scaleY(var(--b38,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(40) { transform: scaleY(var(--b39,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(41) { transform: scaleY(var(--b40,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(42) { transform: scaleY(var(--b41,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(43) { transform: scaleY(var(--b42,.12)) !important; }
-html[data-espectro] #relayBarras > div:nth-child(44) { transform: scaleY(var(--b43,.12)) !important; }
 .scp0:hover { border-color: rgba(var(--t0,255,42,58),.5) !important; background: rgba(var(--t0,255,42,58),.14) !important; }
 .scp1:hover { background: repeating-linear-gradient(rgba(238, 238, 244, 0.5) 0px, rgba(238, 238, 244, 0.5) 1.5px, transparent 1.5px, transparent 4px), repeating-linear-gradient(to right, rgba(238, 238, 244, 0.5) 0px, rgba(238, 238, 244, 0.5) 1.5px, transparent 1.5px, transparent 5px) !important; }
 html, body { height: 100%; margin: 0px; }
@@ -635,6 +711,12 @@ html, body { height: 100%; margin: 0px; }
   54% { transform: scaleY(0.88); }
   82% { transform: scaleY(0.48); }
 }
+@keyframes relayPaseo { 
+  0%, 5.849% { transform: translateX(0px); animation-timing-function: ease-in; }
+  13.446% { transform: translateX(-80px); animation-timing-function: linear; }
+  92.403% { transform: translateX(-1743px); animation-timing-function: ease-out; }
+  100% { transform: translateX(-1823px); }
+}
 html,body{margin:0;overflow:hidden;background:transparent}
 
 </style>
@@ -658,95 +740,183 @@ html,body{margin:0;overflow:hidden;background:transparent}
       <div data-dc-tpl="19" id="npColumna" style="position: relative; flex: 1 1 0%; min-height: 0px; margin-top: 22px; display: flex; flex-direction: column;">
 
         <div data-dc-tpl="20" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 172px; pointer-events: none; overflow: hidden; mask-image: linear-gradient(transparent, rgb(0, 0, 0) 26%, rgb(0, 0, 0) 90%, transparent);">
-          <div data-dc-tpl="21" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 100%; display: flex; align-items: flex-end; gap: 3px; opacity: 0.34; --b0: 0.448; --b1: 0.433; --b2: 0.418; --b3: 0.403; --b4: 0.387; --b5: 0.368; --b6: 0.348; --b7: 0.329; --b8: 0.310; --b9: 0.292; --b10: 0.274; --b11: 0.255; --b12: 0.239; --b13: 0.227; --b14: 0.216; --b15: 0.204; --b16: 0.196; --b17: 0.193; --b18: 0.191; --b19: 0.188; --b20: 0.190; --b21: 0.196; --b22: 0.203; --b23: 0.209; --b24: 0.219; --b25: 0.232; --b26: 0.244; --b27: 0.257; --b28: 0.270; --b29: 0.284; --b30: 0.298; --b31: 0.312; --b32: 0.323; --b33: 0.332; --b34: 0.342; --b35: 0.352; --b36: 0.355; --b37: 0.357; --b38: 0.359; --b39: 0.361; --b40: 0.355; --b41: 0.347; --b42: 0.340; --b43: 0.333;" id="relayBarras">
+          <div data-dc-tpl="21" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 100%; display: flex; align-items: flex-end; gap: 3px; opacity: 0.34;" id="relayBarras">
             
               <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.05s ease-in-out 0s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 0.07s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 0.035s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 0.14s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 0.07s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 0.21s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 0.105s infinite normal none running rnpsp4;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 0.28s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 0.14s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 0.35s infinite normal none running rnpsp1;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 0.175s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 0.42s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 0.21s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 0.49s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 0.245s infinite normal none running rnpsp4;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.26s ease-in-out 0.56s infinite normal none running rnpsp1;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.26s ease-in-out 0.28s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.88s ease-in-out 0.63s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.88s ease-in-out 0.315s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1s ease-in-out 0.7s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1s ease-in-out 0.35s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 1.16s ease-in-out 0.77s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 1.16s ease-in-out 0.385s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.05s ease-in-out 0.42s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 0.455s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 0.49s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 0.525s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 0.56s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 0.595s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 0.63s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 0.665s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.26s ease-in-out 0.7s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.88s ease-in-out 0.735s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1s ease-in-out 0.77s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 1.16s ease-in-out 0.805s infinite normal none running rnpsp4;"></div>
             
               <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.05s ease-in-out 0.84s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 0.91s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 0.875s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 0.98s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 0.91s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 1.05s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 0.945s infinite normal none running rnpsp4;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 1.12s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 0.98s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 1.19s infinite normal none running rnpsp1;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 1.015s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 1.26s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 1.05s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 1.33s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 1.085s infinite normal none running rnpsp4;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.26s ease-in-out 1.4s infinite normal none running rnpsp1;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.26s ease-in-out 1.12s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.88s ease-in-out 1.47s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.88s ease-in-out 1.155s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1s ease-in-out 1.54s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1s ease-in-out 1.19s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 1.16s ease-in-out 1.61s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 1.16s ease-in-out 1.225s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.05s ease-in-out 1.26s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 1.295s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 1.33s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 1.365s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 1.4s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 1.435s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 1.47s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 1.505s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.26s ease-in-out 1.54s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.88s ease-in-out 1.575s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1s ease-in-out 1.61s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 1.16s ease-in-out 1.645s infinite normal none running rnpsp4;"></div>
             
               <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.05s ease-in-out 1.68s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 1.75s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 1.715s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 1.82s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 1.75s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 1.89s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 1.785s infinite normal none running rnpsp4;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 1.96s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 1.82s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 2.03s infinite normal none running rnpsp1;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 1.855s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 2.1s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 1.89s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 2.17s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 1.925s infinite normal none running rnpsp4;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.26s ease-in-out 2.24s infinite normal none running rnpsp1;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.26s ease-in-out 1.96s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.88s ease-in-out 2.31s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.88s ease-in-out 1.995s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1s ease-in-out 2.38s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1s ease-in-out 2.03s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 1.16s ease-in-out 2.45s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 1.16s ease-in-out 2.065s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.05s ease-in-out 2.1s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 2.135s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 2.17s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 2.205s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 2.24s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 2.275s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 2.31s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 2.345s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.26s ease-in-out 2.38s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.88s ease-in-out 2.415s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1s ease-in-out 2.45s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 1.16s ease-in-out 2.485s infinite normal none running rnpsp4;"></div>
             
               <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.05s ease-in-out 2.52s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 2.59s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 2.555s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 2.66s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 2.59s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 2.73s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 2.625s infinite normal none running rnpsp4;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 2.8s infinite normal none running rnpsp2;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.18s ease-in-out 2.66s infinite normal none running rnpsp2;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 2.87s infinite normal none running rnpsp1;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.84s ease-in-out 2.695s infinite normal none running rnpsp1;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 2.94s infinite normal none running rnpsp3;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.12s ease-in-out 2.73s infinite normal none running rnpsp3;"></div>
             
-              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 3.01s infinite normal none running rnpsp4;"></div>
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.7s ease-in-out 2.765s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.26s ease-in-out 2.8s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.88s ease-in-out 2.835s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1s ease-in-out 2.87s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 1.16s ease-in-out 2.905s infinite normal none running rnpsp4;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgba(var(--t1,196,18,32),.12)); animation: 1.05s ease-in-out 2.94s infinite normal none running rnpsp1;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgba(var(--t1,196,18,32),.12)); animation: 0.78s ease-in-out 2.975s infinite normal none running rnpsp2;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgba(var(--t1,196,18,32),.12)); animation: 1.32s ease-in-out 3.01s infinite normal none running rnpsp3;"></div>
+            
+              <div data-dc-tpl="23" style="flex: 1 1 0%; height: 100%; border-radius: 3px 3px 1px 1px; transform-origin: center bottom; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgba(var(--t1,196,18,32),.12)); animation: 0.92s ease-in-out 3.045s infinite normal none running rnpsp4;"></div>
             
           </div>
         </div>
@@ -774,7 +944,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
             </div>
           
             <div data-dc-tpl="36" style="display: grid; grid-template-columns: 78px minmax(0px, 1fr); gap: 14px; align-items: baseline; padding: 8px 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-              <span data-dc-tpl="37" style="font: 700 8.5px / 1 Inter, sans-serif; letter-spacing: 0.14em; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">YEAR</span></span>
+              <span data-dc-tpl="37" style="font: 700 8.5px / 1 Inter, sans-serif; letter-spacing: 0.14em; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">DATE</span></span>
               <span data-dc-tpl="38" id="npYear" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; font: 500 12px / 1.3 Inter, sans-serif; color: rgba(238, 238, 244, 0.72);"><span class="sc-interp">2021</span></span>
             </div>
           
@@ -793,22 +963,22 @@ html,body{margin:0;overflow:hidden;background:transparent}
     </div>
 
     <div data-dc-tpl="39" style="box-sizing: border-box; padding: 26px 26px 20px; border-radius: 24px; background: linear-gradient(150deg, rgba(15, 15, 16, 0.6), rgba(9, 9, 10, 0.42)); backdrop-filter: blur(50px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.13); box-shadow: 0 40px 90px -30px rgba(var(--t5,30,0,6),.95),inset 0 1px 0 rgba(255,255,255,.18); display: flex; flex-direction: column; min-width: 0px; overflow: hidden;">
-      <div data-dc-tpl="40" style="display: flex; align-items: center; gap: 12px; flex: 0 0 auto; min-width: 0px;"><div class="relayNpTabs"><i class="relayCorre"></i><span data-tab="lyrics" class="on">Lyrics</span><span data-tab="queue">Queue</span></div>
-        <h4 data-dc-tpl="41" style="margin: 0px; font: 600 19px / 1 Inter, sans-serif; letter-spacing: -0.02em; color: rgb(252, 252, 253); white-space: nowrap;">Lyrics</h4>
-        <span data-dc-tpl="42" style="padding: 5px 8px; border-radius: 8px; background: rgba(var(--t0,255,42,58),.13); border: 1px solid rgba(var(--t0,255,42,58),.32); font: 700 8.5px / 1 Inter, sans-serif; letter-spacing: 0.12em; color: rgb(var(--t4,255,143,152)); white-space: nowrap; flex: 0 0 auto;"><span class="sc-interp">SYNCED</span></span>
-        <div id="relayMandosLetra"><span id="relayEstadoLetra" class="relayMandoLetra" data-act="lyrics-run" data-estado="quitar" data-id="quitar" data-icono="activos/icono-letra-quitar.svg" title="Remove these lyrics. Then reload to look them up again"><i style="--icono: url(&quot;activos/icono-letra-quitar.svg&quot;);" class="entra"></i></span><span id="relayEditaLetra" class="relayMandoLetra" data-act="edit-lyrics" data-icono="activos/icono-letra-editar.svg" title="Edit the lyrics and their timings"><i style="--icono: url(&quot;activos/icono-letra-editar.svg&quot;);"></i></span><span id="relayTraerLetra" class="relayMandoLetra" data-act="import-lyrics" data-icono="activos/icono-letra-txt.svg" title="Use lyrics from a file (.lrc or .txt). They replace the ones from the library or Whisper"><i style="--icono: url(&quot;activos/icono-letra-txt.svg&quot;);"></i></span><span id="relayPrecisaLetra" class="relayMandoLetra fuera" data-act="lyrics-precise" data-icono="activos/icono-resync.svg" data-estado="" title=""><i style="--icono: url(&quot;activos/icono-resync.svg&quot;);"></i></span><span id="relayVersionLetra" class="relayMandoLetra fuera" data-act="lyrics-versions" data-icono="activos/icono-letra-versiones.svg" title="This version () has its own lyrics. Click to share them with another version"><i style="--icono: url(&quot;activos/icono-letra-versiones.svg&quot;);"></i></span><span id="relayOtraLetra" class="relayMandoLetra" data-act="relyrics" data-icono="activos/icono-letra-otras.svg" title="Pick other lyrics from the library, or search by hand"><i style="--icono: url(&quot;activos/icono-letra-otras.svg&quot;);"></i></span><span id="relayFuente" class="relayMandoLetra" data-act="lyrics-source" data-icono="activos/icono-biblioteca.svg" data-id="audio" title="Library: lyrics are looked up online. Click to pull them from the audio with Whisper instead"><i style="--icono: url(&quot;activos/icono-biblioteca.svg&quot;);"></i></span></div><span data-dc-tpl="43" id="lyricsClock" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.36); white-space: nowrap; flex: 0 0 auto;"><span class="sc-interp">0:59 / 3:58</span></span>
+      <div data-dc-tpl="40" style="display: flex; align-items: center; gap: 12px; flex: 0 0 auto; min-width: 0px;"><div class="relayNpTabs"><i class="relayCorre"></i><span data-tab="lyrics">Lyrics</span><span data-tab="queue" class="on">Queue</span></div>
+        <h4 data-dc-tpl="41" style="margin: 0px; font: 600 19px / 1 Inter, sans-serif; letter-spacing: -0.02em; color: rgb(252, 252, 253); white-space: nowrap;" class="relayTituloLetra">Lyrics</h4>
+        <span data-dc-tpl="42" style="padding: 5px 8px; border-radius: 8px; background: rgba(var(--t0,255,42,58),.13); border: 1px solid rgba(var(--t0,255,42,58),.32); font: 700 8.5px / 1 Inter, sans-serif; letter-spacing: 0.12em; color: rgb(var(--t4,255,143,152)); white-space: nowrap; flex: 0 0 auto;" class="relayChipLetra"><span class="sc-interp">SYNCED</span></span>
+        <div id="relayMandosLetra"><span id="relayEstadoLetra" class="relayMandoLetra" data-act="lyrics-run" data-estado="recargar" data-id="recargar" data-icono="activos/icono-recargar.svg" title="Look up the lyrics, using the track's current title and artist"><i style="--icono: url(&quot;activos/icono-recargar.svg&quot;);"></i></span><span id="relayEditaLetra" class="relayMandoLetra" data-act="edit-lyrics" data-icono="activos/icono-letra-editar.svg" title="Edit the lyrics and their timings"><i style="--icono: url(&quot;activos/icono-letra-editar.svg&quot;);"></i></span><span id="relayTraerLetra" class="relayMandoLetra" data-act="import-lyrics" data-icono="activos/icono-letra-txt.svg" title="Use lyrics from a file (.lrc or .txt). They replace the ones from the library or Whisper"><i style="--icono: url(&quot;activos/icono-letra-txt.svg&quot;);"></i></span><span id="relayPrecisaLetra" class="relayMandoLetra fuera" data-act="lyrics-precise" data-icono="activos/icono-resync.svg" data-estado="" title=""><i style="--icono: url(&quot;activos/icono-resync.svg&quot;);"></i></span><span id="relayVersionLetra" class="relayMandoLetra fuera" data-act="lyrics-versions" data-icono="activos/icono-letra-versiones.svg" title="This version () has its own lyrics. Click to share them with another version"><i style="--icono: url(&quot;activos/icono-letra-versiones.svg&quot;);"></i></span><span id="relayOtraLetra" class="relayMandoLetra" data-act="relyrics" data-icono="activos/icono-letra-otras.svg" title="Pick other lyrics from yedits, lrc.red or LRCLIB, or search by hand"><i style="--icono: url(&quot;activos/icono-letra-otras.svg&quot;);"></i></span><span id="relayFuente" class="relayMandoLetra" data-act="lyrics-source" data-icono="activos/icono-biblioteca.svg" data-id="audio" title="Online: lyrics come from yedits, lrc.red and LRCLIB. Click to pull them from the audio with Whisper instead"><i style="--icono: url(&quot;activos/icono-biblioteca.svg&quot;);"></i></span></div><span data-dc-tpl="43" id="lyricsClock" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.36); white-space: nowrap; flex: 0 0 auto;"><span class="sc-interp">0:59 / 3:58</span></span>
       </div>
 
       
 
-      <div data-dc-tpl="61" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.09); display: flex; align-items: center; gap: 10px; flex: 0 0 auto;">
+      <div data-dc-tpl="61" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.09); display: flex; align-items: center; gap: 10px; flex: 0 0 auto;" class="">
         <div data-dc-tpl="62" style="width: 6px; height: 6px; border-radius: 50%; background: rgba(238, 238, 244, 0.35); flex: 0 0 auto;"></div>
         <span data-dc-tpl="63" id="lyricsFootnote" style="font: 500 10.5px / 1.4 Inter, sans-serif; color: rgba(238, 238, 244, 0.38); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp"></span></span>
       </div>
     </div>
 
     <div data-dc-tpl="64" style="position: relative; box-sizing: border-box; padding: 24px 20px 0px; border-radius: 24px; background: linear-gradient(150deg, rgba(15, 15, 16, 0.6), rgba(9, 9, 10, 0.42)); backdrop-filter: blur(48px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.13); box-shadow: 0 40px 90px -30px rgba(var(--t5,30,0,6),.95),inset 0 1px 0 rgba(255,255,255,.18); display: flex; flex-direction: column; min-width: 0px; overflow: hidden;">
-      <div data-dc-tpl="65" style="display: flex; align-items: center; gap: 11px; flex: 0 0 auto; min-width: 0px;"><div class="relayNpTabs"><i class="relayCorre"></i><span data-tab="lyrics" class="on">Lyrics</span><span data-tab="queue">Queue</span></div>
+      <div data-dc-tpl="65" style="display: flex; align-items: center; gap: 11px; flex: 0 0 auto; min-width: 0px;"><div class="relayNpTabs"><i class="relayCorre"></i><span data-tab="lyrics">Lyrics</span><span data-tab="queue" class="on">Queue</span></div>
         <h4 data-dc-tpl="66" style="margin: 0px; font: 600 19px / 1 Inter, sans-serif; letter-spacing: -0.02em; color: rgb(252, 252, 253); white-space: nowrap;">Queue</h4>
         <span data-dc-tpl="67" id="queueSummary" style="padding: 5px 8px; border-radius: 8px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); font: 700 8.5px / 1 Inter, sans-serif; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.5); white-space: nowrap; flex: 0 0 auto;"><span class="sc-interp">5 · 19 MIN</span></span>
         <div data-dc-tpl="68" id="relayAutoAvance" data-act="toggle-autoplay" title="Autoplay: play the next song when this one ends" class="scp0" style="margin-left: auto; margin-right: -5px; flex: 0 0 auto; width: 26px; height: 26px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.1); transition: border-color 140ms ease-out, background 140ms ease-out, box-shadow 140ms ease-out;">
@@ -819,12 +989,12 @@ html,body{margin:0;overflow:hidden;background:transparent}
             </div>
       </div>
 
-      <div data-dc-tpl="72" style="position: relative; margin-top: 14px; flex: 0 0 auto; height: 252px; margin-left: -20px; margin-right: -20px; overflow: hidden;">
-        <div data-dc-tpl="73" style="position: absolute; left: 50%; top: 28px; width: 300px; height: 300px; margin-left: -150px; background: radial-gradient(circle, rgba(247, 183, 12, 0.28), transparent 68%); filter: blur(30px); pointer-events: none;"></div>
-        <div data-dc-tpl="74" style="position: absolute; left: 0px; right: 0px; top: 34px; height: 124px;">
+      <div data-dc-tpl="72" style="position: relative; margin-top: 14px; flex: 0 0 auto; height: calc(252px * var(--cf, 1)); margin-left: -20px; margin-right: -20px; overflow: hidden;">
+        <div data-dc-tpl="73" style="position: absolute; left: 50%; top: calc(28px * var(--cf, 1)); width: calc(300px * var(--cf, 1)); height: calc(300px * var(--cf, 1)); margin-left: calc(-150px * var(--cf, 1)); background: radial-gradient(circle, rgba(229, 54, 85, 0.28), transparent 68%); filter: blur(30px); pointer-events: none;"></div>
+        <div data-dc-tpl="74" style="position: absolute; left: 0px; right: 0px; top: calc(34px * var(--cf, 1)); height: calc(124px * var(--cf, 1));">
           
-            <div data-dc-tpl="76" data-act="jump-queue" data-id="zh0" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: 62px; height: 62px; margin-left: -177px; top: 46px; transform: perspective(820px) rotateY(-76deg) scale(0.86); z-index: 2; opacity: 0.3; --acento: 246,68,105;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/inmersiva-0.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
+            <div data-dc-tpl="76" data-act="jump-queue" data-id="zh0" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(62px * var(--cf, 1)); height: calc(62px * var(--cf, 1)); margin-left: calc(-177px * var(--cf, 1)); top: calc(46px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-76deg) scale(0.86); z-index: 2; opacity: 0.3; --acento: 246,68,105;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(9px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/inmersiva-0.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -833,11 +1003,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: 42px; border-radius: 9px; background: url(&quot;arte/inmersiva-0.jpg&quot;) center bottom / 100% 148%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(41px * var(--cf, 1)); border-radius: calc(9px * var(--cf, 1)); background: url(&quot;arte/inmersiva-0.jpg&quot;) center bottom / 100% 151%; transform-origin: 50% 0px;"></div>
             </div>
           
-            <div data-dc-tpl="76" data-act="jump-queue" data-id="zh1" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: 78px; height: 78px; margin-left: -167px; top: 37px; transform: perspective(820px) rotateY(-62deg) scale(0.92); z-index: 3; opacity: 0.48; --acento: 54,249,216;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/inmersiva-1.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
+            <div data-dc-tpl="76" data-act="jump-queue" data-id="zh1" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(78px * var(--cf, 1)); height: calc(78px * var(--cf, 1)); margin-left: calc(-167px * var(--cf, 1)); top: calc(37px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-62deg) scale(0.92); z-index: 3; opacity: 0.48; --acento: 54,249,216;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(10px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/inmersiva-1.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -846,11 +1016,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: 51px; border-radius: 10px; background: url(&quot;arte/inmersiva-1.jpg&quot;) center bottom / 100% 153%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(51px * var(--cf, 1)); border-radius: calc(10px * var(--cf, 1)); background: url(&quot;arte/inmersiva-1.jpg&quot;) center bottom / 100% 153%; transform-origin: 50% 0px;"></div>
             </div>
           
-            <div data-dc-tpl="76" data-act="jump-queue" data-id="zh2" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: 96px; height: 96px; margin-left: -131px; top: 25px; transform: perspective(820px) rotateY(-40deg) scale(0.97); z-index: 4; opacity: 0.72; --acento: 142,197,254;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/inmersiva-2.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
+            <div data-dc-tpl="76" data-act="jump-queue" data-id="zh2" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(96px * var(--cf, 1)); height: calc(96px * var(--cf, 1)); margin-left: calc(-131px * var(--cf, 1)); top: calc(25px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-40deg) scale(0.97); z-index: 4; opacity: 0.72; --acento: 142,197,254;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(12px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/inmersiva-2.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -859,11 +1029,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: 63px; border-radius: 12px; background: url(&quot;arte/inmersiva-2.jpg&quot;) center bottom / 100% 152%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(63px * var(--cf, 1)); border-radius: calc(12px * var(--cf, 1)); background: url(&quot;arte/inmersiva-2.jpg&quot;) center bottom / 100% 152%; transform-origin: 50% 0px;"></div>
             </div>
           
-            <div data-dc-tpl="76" data-act="jump-queue" data-id="current" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: 124px; height: 124px; margin-left: -62px; top: 0px; transform: perspective(820px) rotateY(0deg) scale(1); z-index: 5; opacity: 1; --acento: 247,183,12;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.26); background: url(&quot;arte/inmersiva-3.jpg&quot;) center center / cover; box-shadow: rgba(247, 183, 12, 0.6) 0px 26px 54px -18px, rgba(247, 183, 12, 0.35) 0px 0px 0px 1px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset;">
+            <div data-dc-tpl="76" data-act="jump-queue" data-id="current" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(124px * var(--cf, 1)); height: calc(124px * var(--cf, 1)); margin-left: calc(-62px * var(--cf, 1)); top: 0px; transform: perspective(calc(820px * var(--cf, 1))) rotateY(0deg) scale(1); z-index: 5; opacity: 1; --acento: 247,183,12;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(14px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.26); background: url(&quot;arte/inmersiva-3.jpg&quot;) center center / cover; box-shadow: rgba(229, 54, 85, 0.6) 0px 26px 54px -18px, rgba(229, 54, 85, 0.35) 0px 0px 0px 1px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -875,11 +1045,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.36; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: 88px; border-radius: 14px; background: url(&quot;arte/inmersiva-3.jpg&quot;) center bottom / 100% 141%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.36; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(81px * var(--cf, 1)); border-radius: calc(14px * var(--cf, 1)); background: url(&quot;arte/inmersiva-3.jpg&quot;) center bottom / 100% 153%; transform-origin: 50% 0px;"></div>
             </div>
           
-            <div data-dc-tpl="76" data-act="jump-queue" data-id="zq0" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: 96px; height: 96px; margin-left: 35px; top: 25px; transform: perspective(820px) rotateY(40deg) scale(0.97); z-index: 4; opacity: 0.72; --acento: 233,9,119;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/inmersiva-4.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
+            <div data-dc-tpl="76" data-act="jump-queue" data-id="zq0" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(96px * var(--cf, 1)); height: calc(96px * var(--cf, 1)); margin-left: calc(35px * var(--cf, 1)); top: calc(25px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(40deg) scale(0.97); z-index: 4; opacity: 0.72; --acento: 233,9,119;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(12px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/inmersiva-4.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -888,11 +1058,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: 41px; border-radius: 12px; background: url(&quot;arte/inmersiva-4.jpg&quot;) center bottom / 100% 234%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(63px * var(--cf, 1)); border-radius: calc(12px * var(--cf, 1)); background: url(&quot;arte/inmersiva-4.jpg&quot;) center bottom / 100% 152%; transform-origin: 50% 0px;"></div>
             </div>
           
-            <div data-dc-tpl="76" data-act="jump-queue" data-id="zq1" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: 78px; height: 78px; margin-left: 89px; top: 37px; transform: perspective(820px) rotateY(62deg) scale(0.92); z-index: 3; opacity: 0.48; --acento: 45,201,110;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/inmersiva-5.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
+            <div data-dc-tpl="76" data-act="jump-queue" data-id="zq1" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(78px * var(--cf, 1)); height: calc(78px * var(--cf, 1)); margin-left: calc(89px * var(--cf, 1)); top: calc(37px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(62deg) scale(0.92); z-index: 3; opacity: 0.48; --acento: 45,201,110;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(10px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/inmersiva-5.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -901,11 +1071,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: 33px; border-radius: 10px; background: url(&quot;arte/inmersiva-5.jpg&quot;) center bottom / 100% 236%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(51px * var(--cf, 1)); border-radius: calc(10px * var(--cf, 1)); background: url(&quot;arte/inmersiva-5.jpg&quot;) center bottom / 100% 153%; transform-origin: 50% 0px;"></div>
             </div>
           
-            <div data-dc-tpl="76" data-act="jump-queue" data-id="zq2" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: 62px; height: 62px; margin-left: 115px; top: 46px; transform: perspective(820px) rotateY(76deg) scale(0.86); z-index: 2; opacity: 0.3; --acento: 249,151,153;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/inmersiva-6.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
+            <div data-dc-tpl="76" data-act="jump-queue" data-id="zq2" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(62px * var(--cf, 1)); height: calc(62px * var(--cf, 1)); margin-left: calc(115px * var(--cf, 1)); top: calc(46px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(76deg) scale(0.86); z-index: 2; opacity: 0.3; --acento: 249,151,153;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(9px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/inmersiva-6.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -914,11 +1084,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: 27px; border-radius: 9px; background: url(&quot;arte/inmersiva-6.jpg&quot;) center bottom / 100% 230%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(41px * var(--cf, 1)); border-radius: calc(9px * var(--cf, 1)); background: url(&quot;arte/inmersiva-6.jpg&quot;) center bottom / 100% 151%; transform-origin: 50% 0px;"></div>
             </div>
           
         </div>
-        <div data-dc-tpl="87" style="position: absolute; left: 50%; top: 162px; width: 200px; margin-left: -100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(247, 183, 12, 0.5), transparent); pointer-events: none;"></div>
+        <div data-dc-tpl="87" style="position: absolute; left: 50%; top: 162px; width: 200px; margin-left: -100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(229, 54, 85, 0.5), transparent); pointer-events: none;"></div>
         <div data-dc-tpl="88" style="position: absolute; left: 0px; right: 0px; bottom: 12px; display: flex; flex-direction: column; align-items: center; gap: 9px;">
           <div data-dc-tpl="89" style="display: flex; align-items: center; gap: 9px;">
             <div data-dc-tpl="90" style="display: flex; align-items: flex-end; gap: 2px; height: 11px;">
@@ -943,7 +1113,59 @@ html,body{margin:0;overflow:hidden;background:transparent}
             
           </div>
         </div>
-      </div>
+      <div id="relayEspejo" aria-hidden="true" style="mask-image: url(&quot;arte/inmersiva-7.png&quot;);"><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(62px * var(--cf, 1)); height: calc(62px * var(--cf, 1)); margin-left: calc(-177px * var(--cf, 1)); top: calc(46px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-76deg) scale(0.86) translateY(100%) scaleY(-1); z-index: 2; opacity: 0.3; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(9px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
+                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
+                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
+                
+                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.5);"></div>
+                
+                
+              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(78px * var(--cf, 1)); height: calc(78px * var(--cf, 1)); margin-left: calc(-167px * var(--cf, 1)); top: calc(37px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-62deg) scale(0.92) translateY(100%) scaleY(-1); z-index: 3; opacity: 0.48; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(10px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
+                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
+                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
+                
+                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.36);"></div>
+                
+                
+              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(96px * var(--cf, 1)); height: calc(96px * var(--cf, 1)); margin-left: calc(-131px * var(--cf, 1)); top: calc(25px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-40deg) scale(0.97) translateY(100%) scaleY(-1); z-index: 4; opacity: 0.72; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(12px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
+                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
+                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
+                
+                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.2);"></div>
+                
+                
+              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(124px * var(--cf, 1)); height: calc(124px * var(--cf, 1)); margin-left: calc(-62px * var(--cf, 1)); top: 0px; transform: perspective(calc(820px * var(--cf, 1))) rotateY(0deg) scale(1) translateY(100%) scaleY(-1); z-index: 5; opacity: 1; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(14px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.26); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(229, 54, 85, 0.6) 0px 26px 54px -18px, rgba(229, 54, 85, 0.35) 0px 0px 0px 1px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset;">
+                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
+                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
+                
+                
+                  <div data-dc-tpl="83" style="position: absolute; left: 0px; right: 0px; bottom: 0px; padding: 26px 12px 10px; background: linear-gradient(transparent, rgba(5, 5, 6, 0.72)); text-align: center; pointer-events: none;">
+                    <div data-dc-tpl="84" style="font: 700 13px / 1.2 Inter, sans-serif; letter-spacing: -0.01em; color: rgb(255, 255, 255); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">Glass Hours</span></div>
+                    <div data-dc-tpl="85" style="margin-top: 3px; font: 500 10.5px / 1.2 Inter, sans-serif; color: rgba(var(--t13,255,211,214),.8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">Odessa Wynn</span></div>
+                  </div>
+                
+              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(96px * var(--cf, 1)); height: calc(96px * var(--cf, 1)); margin-left: calc(35px * var(--cf, 1)); top: calc(25px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(40deg) scale(0.97) translateY(100%) scaleY(-1); z-index: 4; opacity: 0.72; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(12px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
+                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
+                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
+                
+                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.2);"></div>
+                
+                
+              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(78px * var(--cf, 1)); height: calc(78px * var(--cf, 1)); margin-left: calc(89px * var(--cf, 1)); top: calc(37px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(62deg) scale(0.92) translateY(100%) scaleY(-1); z-index: 3; opacity: 0.48; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(10px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
+                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
+                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
+                
+                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.36);"></div>
+                
+                
+              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(62px * var(--cf, 1)); height: calc(62px * var(--cf, 1)); margin-left: calc(115px * var(--cf, 1)); top: calc(46px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(76deg) scale(0.86) translateY(100%) scaleY(-1); z-index: 2; opacity: 0.3; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(9px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
+                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
+                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
+                
+                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.5);"></div>
+                
+                
+              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div></div></div>
 
       <div data-dc-tpl="99" style="margin-top: 14px; display: flex; align-items: center; gap: 11px; flex: 0 0 auto;">
         <span data-dc-tpl="100" style="font: 700 8.5px / 1 Inter, sans-serif; letter-spacing: 0.16em; color: rgba(238, 238, 244, 0.34); white-space: nowrap;">NEXT UP</span>
@@ -953,9 +1175,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
 
       
       <div data-dc-tpl="103" id="queueList" style="position: relative; margin-top: 12px; margin-left: -20px; margin-right: -20px; padding: 0px 20px; flex: 1 1 0%; min-height: 0px; overflow: hidden; mask-image: linear-gradient(transparent, rgb(0, 0, 0) 34px, rgb(0, 0, 0) calc(100% - 92px), transparent);" data-tope="" data-fondo="">
-        <div data-dc-tpl="104" style="display: flex; flex-direction: column; gap: 4px;" class="relayVelada" data-velo-fin="" data-vigilada="1">
+        <div data-dc-tpl="104" style="display: flex; flex-direction: column; gap: 4px;" class="relayVelada" data-vigilada="1" data-velo-fin="">
           
-            <div data-dc-tpl="106" data-act="jump-queue" data-id="zq0" data-pos="100" data-online="" data-depaso="" data-mano="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
+            <div data-dc-tpl="106" data-act="jump-queue" data-id="zq0" data-pos="100" data-online="" data-depaso="" data-mano="" data-sugerida="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
               <span data-dc-tpl="107" style="font: 500 10.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">1</span></span>
               <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-4.jpg&quot;) center center / cover;">
                 <div data-dc-tpl="109" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 8px); pointer-events: none;"></div>
@@ -972,7 +1194,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
               <div data-dc-tpl="127" data-act="reorder-queue" data-id="zq0" data-pos="100" class="scp1" style="width: 7px; height: 12px; background: repeating-linear-gradient(rgba(238, 238, 244, 0.22) 0px, rgba(238, 238, 244, 0.22) 1.5px, transparent 1.5px, transparent 4px), repeating-linear-gradient(to right, rgba(238, 238, 244, 0.22) 0px, rgba(238, 238, 244, 0.22) 1.5px, transparent 1.5px, transparent 5px); cursor: grab;"></div>
             </div>
           
-            <div data-dc-tpl="106" data-act="jump-queue" data-id="zq1" data-pos="101" data-online="" data-depaso="" data-mano="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
+            <div data-dc-tpl="106" data-act="jump-queue" data-id="zq1" data-pos="101" data-online="" data-depaso="" data-mano="" data-sugerida="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
               <span data-dc-tpl="107" style="font: 500 10.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">2</span></span>
               <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-5.jpg&quot;) center center / cover;">
                 <div data-dc-tpl="109" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 8px); pointer-events: none;"></div>
@@ -989,7 +1211,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
               <div data-dc-tpl="127" data-act="reorder-queue" data-id="zq1" data-pos="101" class="scp1" style="width: 7px; height: 12px; background: repeating-linear-gradient(rgba(238, 238, 244, 0.22) 0px, rgba(238, 238, 244, 0.22) 1.5px, transparent 1.5px, transparent 4px), repeating-linear-gradient(to right, rgba(238, 238, 244, 0.22) 0px, rgba(238, 238, 244, 0.22) 1.5px, transparent 1.5px, transparent 5px); cursor: grab;"></div>
             </div>
           
-            <div data-dc-tpl="106" data-act="jump-queue" data-id="zq2" data-pos="102" data-online="" data-depaso="" data-mano="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
+            <div data-dc-tpl="106" data-act="jump-queue" data-id="zq2" data-pos="102" data-online="" data-depaso="" data-mano="" data-sugerida="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
               <span data-dc-tpl="107" style="font: 500 10.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">3</span></span>
               <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-6.jpg&quot;) center center / cover;">
                 <div data-dc-tpl="109" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 8px); pointer-events: none;"></div>
@@ -1006,9 +1228,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
               <div data-dc-tpl="127" data-act="reorder-queue" data-id="zq2" data-pos="102" class="scp1" style="width: 7px; height: 12px; background: repeating-linear-gradient(rgba(238, 238, 244, 0.22) 0px, rgba(238, 238, 244, 0.22) 1.5px, transparent 1.5px, transparent 4px), repeating-linear-gradient(to right, rgba(238, 238, 244, 0.22) 0px, rgba(238, 238, 244, 0.22) 1.5px, transparent 1.5px, transparent 5px); cursor: grab;"></div>
             </div>
           
-            <div data-dc-tpl="106" data-act="jump-queue" data-id="zq3" data-pos="103" data-online="" data-depaso="" data-mano="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
+            <div data-dc-tpl="106" data-act="jump-queue" data-id="zq3" data-pos="103" data-online="" data-depaso="" data-mano="" data-sugerida="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
               <span data-dc-tpl="107" style="font: 500 10.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">4</span></span>
-              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-7.jpg&quot;) center center / cover;">
+              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-8.jpg&quot;) center center / cover;">
                 <div data-dc-tpl="109" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 8px); pointer-events: none;"></div>
               </div>
               <div data-dc-tpl="110" style="min-width: 0px;">
@@ -1023,9 +1245,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
               <div data-dc-tpl="127" data-act="reorder-queue" data-id="zq3" data-pos="103" class="scp1" style="width: 7px; height: 12px; background: repeating-linear-gradient(rgba(238, 238, 244, 0.22) 0px, rgba(238, 238, 244, 0.22) 1.5px, transparent 1.5px, transparent 4px), repeating-linear-gradient(to right, rgba(238, 238, 244, 0.22) 0px, rgba(238, 238, 244, 0.22) 1.5px, transparent 1.5px, transparent 5px); cursor: grab;"></div>
             </div>
           
-            <div data-dc-tpl="106" data-act="jump-queue" data-id="zq4" data-pos="104" data-online="" data-depaso="" data-mano="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
+            <div data-dc-tpl="106" data-act="jump-queue" data-id="zq4" data-pos="104" data-online="" data-depaso="" data-mano="" data-sugerida="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
               <span data-dc-tpl="107" style="font: 500 10.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">5</span></span>
-              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-8.jpg&quot;) center center / cover;">
+              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-9.jpg&quot;) center center / cover;">
                 <div data-dc-tpl="109" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 8px); pointer-events: none;"></div>
               </div>
               <div data-dc-tpl="110" style="min-width: 0px;">
@@ -1042,7 +1264,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
         </div>
         <div data-dc-tpl="128" style="position: absolute; right: 22px; top: 40px; bottom: 96px; width: 3px; border-radius: 2px; background: rgba(255, 255, 255, 0.06); pointer-events: none; opacity: 0;">
-          <div data-dc-tpl="129" id="queueScrollThumb" style="position: absolute; left: 0px; right: 0px; top: 8%; height: 34%; border-radius: 2px; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgb(var(--t1,196,18,32)));"></div>
+          <div data-dc-tpl="129" id="queueScrollThumb" style="position: absolute; left: 0px; right: 0px; top: 0%; height: 25.06%; border-radius: 2px; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgb(var(--t1,196,18,32)));"></div>
         </div>
       </div>
     </div>
@@ -1050,18 +1272,18 @@ html,body{margin:0;overflow:hidden;background:transparent}
 
 
 
-<div class="relayVelo suelto fuera" data-forma="1839,1112,660,134,32,0" style="left: 1839px; top: 1112px; width: 660px; height: 134px; --radio: 32px;"><i></i><i></i><i></i><i></i><i></i></div><span aria-hidden="true" style="position: absolute; left: -9999px; top: 0px; white-space: pre; visibility: hidden; pointer-events: none; font: 600 33px / 1.3 Inter, sans-serif; letter-spacing: -0.54px;">and I watch them turn to grey</span><div id="relayNpHalo" style="left: 272.66px; top: 357.082px; width: 432.6px; height: 432.6px;"><div class="tanda" style="--npTapa: url(&quot;arte/inmersiva-3.jpg&quot;);"><div class="uno" style="animation-delay: -11367.7ms;"></div><div class="dos" style="animation-delay: -3367.7ms;"></div></div></div><div id="relayZen" data-puesta="url(&quot;arte/inmersiva-3.jpg&quot;)"><div class="zFondos apagado"><div class="zFondo"></div><div class="zFondo zGira"></div></div><div class="zFondos"><div class="zFondo" style="background-image: url(&quot;arte/inmersiva-3.jpg&quot;);"></div><div class="zFondo zGira" style="background-image: url(&quot;arte/inmersiva-3.jpg&quot;);"></div></div><div class="zVelo"></div><div class="zBrillos"><i class="a"></i><i class="b"></i></div><div class="zEscena"><div class="zIzq"><div class="zTapa"><div data-dc-tpl="10" id="artworkWrap" style="position: relative; width: 100%; max-width: min(100%, 58vh); margin-inline: auto; flex: 0 0 auto;">
+<div class="relayVelo suelto fuera" data-forma="1002,589,518,121,0,0" style="left: 1002px; top: 589px; width: 518px; height: 121px;" hidden=""><i></i><i></i><i></i><i></i><i></i></div><div class="relayVelo arriba suelto fuera" data-forma="1002,114,518,121,103" style="left: 1002px; top: 114px; width: 518px; height: 224px; --extra: 103px;" hidden=""><i></i><i></i><i></i><i></i><i></i></div><div id="relayNpHalo" style="left: 281.781px; top: 293.422px; width: 429.719px; height: 429.719px;"><div class="tanda" style="--npTapa: url(&quot;arte/inmersiva-3.jpg.jpg&quot;);"><div class="uno" style="animation-delay: -16004.5ms;"></div><div class="dos" style="animation-delay: -16004.5ms;"></div></div></div><span aria-hidden="true" style="position: absolute; left: -9999px; top: 0px; white-space: pre; visibility: hidden; pointer-events: none; font: 400 33px / 1.3 Inter, system-ui, sans-serif; letter-spacing: normal;"></span><div id="relayZen" data-puesta="url(&quot;arte/inmersiva-3.jpg.jpg&quot;)"><div class="zFondos apagado"><div class="zFondo"></div><div class="zFondo zGira"></div></div><div class="zFondos"><div class="zFondo" style="background-image: url(&quot;arte/inmersiva-3.jpg.jpg&quot;);"></div><div class="zFondo zGira" style="background-image: url(&quot;arte/inmersiva-3.jpg.jpg&quot;);"></div></div><div class="zVelo" style="--zLatido: 0.032;"></div><div class="zEscena"><div class="zIzq"><div class="zTapa"><div data-dc-tpl="10" id="artworkWrap" style="position: relative; width: 100%; max-width: min(100%, 58vh); margin-inline: auto; flex: 0 0 auto;">
         <div data-dc-tpl="11" style="padding-top: 100%;"></div>
-        <div data-dc-tpl="12" id="artworkFrame" style="position: absolute; inset: 0px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: rgba(247, 183, 12, 0.55) 0px 40px 80px -26px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset; overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-3.jpg&quot;) center center / cover;">
+        <div data-dc-tpl="12" id="artworkFrame" style="position: absolute; inset: 0px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: rgba(229, 54, 85, 0.55) 0px 40px 80px -26px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset; overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-3.jpg&quot;) center center / cover;">
           <div data-dc-tpl="13" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 3px, transparent 3px, transparent 13px); pointer-events: none;"></div>
           
           <div data-dc-tpl="18" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 96px; background: linear-gradient(transparent, rgba(4, 4, 5, 0.35)); pointer-events: none;"></div>
         </div>
-      </div></div><div class="zTextos"><h3 data-dc-tpl="32" id="npTitle" style="margin: -3px 0px; font: 800 40px / 1 Inter, sans-serif; padding: 3px 0px; letter-spacing: -0.035em; color: rgb(255, 255, 255); text-shadow: rgba(4, 4, 5, 0.6) 0px 6px 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">Glass Hours</span></h3><div data-dc-tpl="33" id="npArtist" style="margin: -3px 0px; padding: 3px 0px; font: 500 15px / 1 Inter, sans-serif; color: rgba(247, 247, 248, 0.78); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">Odessa Wynn</span></div><span data-dc-tpl="38" id="npAlbum" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; font: 500 12px / 1.3 Inter, sans-serif; color: rgba(238, 238, 244, 0.72);"><span class="sc-interp">Glass Hours</span></span></div><div class="zMandos"><div class="zMando zPrev" title="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.5v13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"></path><path d="M19 6.2v11.6a1 1 0 0 1-1.54.84L9 13.2a1 1 0 0 1 0-1.68l8.46-5.44A1 1 0 0 1 19 6.2z" fill="currentColor"></path></svg></div><div class="zMando zPlay" title="Play or pause"><svg class="zIrPlay" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.3v13.4a1 1 0 0 0 1.53.85l10.6-6.7a1 1 0 0 0 0-1.7L9.03 4.45A1 1 0 0 0 7.5 5.3z" fill="currentColor"></path></svg><svg class="zIrPausa" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.6" y="5" width="4.1" height="14" rx="1.5" fill="currentColor"></rect><rect x="13.3" y="5" width="4.1" height="14" rx="1.5" fill="currentColor"></rect></svg></div><div class="zMando zNext" title="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 5.5v13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"></path><path d="M5 6.2v11.6a1 1 0 0 0 1.54.84L15 13.2a1 1 0 0 0 0-1.68L6.54 6.08A1 1 0 0 0 5 6.2z" fill="currentColor"></path></svg></div></div></div><div class="zLetra"><div data-dc-tpl="44" id="lyricsScroll" style="margin-top: 28px; display: flex; flex-direction: column; gap: 24px; flex: 1 1 0%; min-height: 0px; align-items: center; text-align: center; overflow: hidden auto; --rellenoLetra: 622px; --letraVis: 92px;" data-vis="92">
+      </div></div><div class="zTextos"><h3 data-dc-tpl="32" id="npTitle" style="margin: -3px 0px; font: 800 40px / 1 Inter, sans-serif; padding: 3px 0px; letter-spacing: -0.035em; color: rgb(255, 255, 255); text-shadow: rgba(4, 4, 5, 0.6) 0px 6px 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; --paseoSalto: 1823px; --paseoArriba: 3px;" class=""><span class="sc-interp">Glass Hours</span></h3><div data-dc-tpl="33" id="npArtist" style="margin: -3px 0px; padding: 3px 0px; font: 500 15px / 1 Inter, sans-serif; color: rgba(247, 247, 248, 0.78); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="relayPartido"><span class="sc-interp">Odessa Wynn</span><span class="relayArtistas" data-texto="Odessa Wynn"><span data-nombre="Odessa Wynn">Odessa Wynn</span></span></div><span data-dc-tpl="38" id="npAlbum" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; font: 500 12px / 1.3 Inter, sans-serif; color: rgba(238, 238, 244, 0.72);"><span class="sc-interp">Glass Hours</span></span></div><div class="zBarra" style="--zIda: 0.00210;"><div class="zVia"><div class="zIda"></div><div class="zTiro"></div></div><div class="zRelojes"><span>0:00</span><span>-3:57</span></div></div><div class="zMandos"><div class="zMando zAzar zSuelto" title="Shuffle"><svg class="zAzarNormal" aria-hidden="true" viewBox="0 0 512 512"><g transform="translate(0,512) scale(0.1,-0.1)" fill="currentColor" stroke="none"><path d="M4013 4419 c-48 -24 -99 -77 -119 -125 -20 -48 -17 -141 5 -189 10 -22 51 -71 90 -110 39 -38 71 -72 71 -76 0 -3 -37 -9 -82 -13 -315 -26 -667 -177 -926 -396 -41 -34 -365 -376 -721 -759 -356 -383 -672 -719 -702 -747 -157 -147 -355 -250 -581 -300 -53 -12 -149 -19 -353 -23 -260 -6 -283 -8 -320 -28 -86 -46 -129 -117 -129 -213 0 -95 43 -167 129 -213 38 -21 52 -22 310 -22 174 0 300 5 355 13 345 54 642 194 897 424 51 46 365 378 698 738 333 360 638 685 677 723 183 173 452 301 678 323 l65 7 -68 -71 c-80 -83 -97 -120 -97 -204 0 -116 74 -205 191 -230 45 -9 64 -8 114 7 58 17 67 24 348 303 316 315 337 342 337 442 0 102 -20 129 -341 442 -163 159 -307 291 -327 300 -53 25 -146 23 -199 -3z"></path><path d="M420 3911 c-112 -37 -174 -119 -174 -231 0 -96 43 -167 129 -213 37 -20 61 -22 320 -28 342 -9 433 -26 630 -120 168 -79 269 -161 465 -373 88 -95 149 -154 176 -167 165 -80 344 31 344 213 0 42 -6 75 -20 102 -23 48 -272 317 -375 406 -239 207 -507 334 -840 397 -90 17 -612 28 -655 14z"></path><path d="M2816 2335 c-133 -47 -198 -202 -138 -327 33 -67 363 -397 482 -481 228 -161 545 -282 795 -303 39 -3 76 -8 84 -10 9 -3 -10 -30 -58 -78 -82 -85 -104 -129 -104 -206 0 -92 47 -171 127 -213 63 -33 166 -31 226 5 25 15 170 152 322 305 294 295 317 326 318 413 0 103 0 102 -323 427 -335 337 -337 339 -451 331 -53 -3 -74 -10 -108 -34 -69 -48 -101 -103 -106 -178 -6 -94 10 -129 96 -218 l75 -78 -36 0 c-96 0 -269 51 -412 121 -145 71 -250 155 -429 343 -143 150 -163 167 -209 181 -62 18 -100 18 -151 0z"></path></g></svg><svg class="zAzarListo" aria-hidden="true" viewBox="0 0 512 512" fill="currentColor"><path d="m401.3 70.1c-4.8 2.4-9.9 7.7-11.9 12.5-2 4.8-1.7 14.1 0.5 18.9 1 2.2 5.1 7.1 9 11 3.9 3.8 7.1 7.2 7.1 7.6 0 0.3-3.7 0.9-8.2 1.3-31.5 2.6-66.7 17.7-92.6 39.6-4.1 3.4-36.5 37.6-72.1 75.9-35.6 38.3-67.2 71.9-70.2 74.7-15.7 14.7-35.5 25-58.1 30-5.3 1.2-14.9 1.9-35.3 2.3-26 0.6-28.3 0.8-32 2.8q-12.9 6.9-12.9 21.3c0 9.5 4.3 16.7 12.9 21.3 3.8 2.1 5.2 2.2 31 2.2 17.4 0 30-0.5 35.5-1.3 34.5-5.4 64.2-19.4 89.7-42.4 5.1-4.6 36.5-37.8 69.8-73.8 33.3-36 63.8-68.5 67.7-72.3 18.3-17.3 45.2-30.1 67.8-32.3l6.5-0.7-6.8 7.1c-8 8.3-9.7 12-9.7 20.4 0 11.6 7.4 20.5 19.1 23 4.5 0.9 6.4 0.8 11.4-0.7 5.8-1.7 6.7-2.4 34.8-30.3 31.6-31.5 33.7-34.2 33.7-44.2 0-10.2-2-12.9-34.1-44.2-16.3-15.9-30.7-29.1-32.7-30-5.3-2.5-14.6-2.3-19.9 0.3z"></path><path d="m281.6 278.5c-13.3 4.7-19.8 20.2-13.8 32.7 3.3 6.7 36.3 39.7 48.2 48.1 22.8 16.1 54.5 28.2 79.5 30.3 3.9 0.3 7.6 0.8 8.4 1 0.9 0.3-1 3-5.8 7.8-8.2 8.5-10.4 12.9-10.4 20.6 0 9.2 4.7 17.1 12.7 21.3 6.3 3.3 16.6 3.1 22.6-0.5 2.5-1.5 17-15.2 32.2-30.5 29.4-29.5 31.7-32.6 31.8-41.3 0-10.3 0-10.2-32.3-42.7-33.5-33.7-33.7-33.9-45.1-33.1-5.3 0.3-7.4 1-10.8 3.4-6.9 4.8-10.1 10.3-10.6 17.8-0.6 9.4 1 12.9 9.6 21.8l7.5 7.8h-3.6c-9.6 0-26.9-5.1-41.2-12.1-14.5-7.1-25-15.5-42.9-34.3-14.3-15-16.3-16.7-20.9-18.1-6.2-1.8-10-1.8-15.1 0z"></path><path d="M142 18C152.5 97 165 109.5 256 141.5C165 173.5 152.5 186 142 265C131.5 186 119 173.5 28 141.5C119 109.5 131.5 97 142 18Z"></path></svg></div><div class="zMando zPrev" title="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.5v13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"></path><path d="M19 6.2v11.6a1 1 0 0 1-1.54.84L9 13.2a1 1 0 0 1 0-1.68l8.46-5.44A1 1 0 0 1 19 6.2z" fill="currentColor"></path></svg></div><div class="zMando zPlay" title="Play or pause"><svg class="zIrPlay" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.3v13.4a1 1 0 0 0 1.53.85l10.6-6.7a1 1 0 0 0 0-1.7L9.03 4.45A1 1 0 0 0 7.5 5.3z" fill="currentColor"></path></svg><svg class="zIrPausa" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.6" y="5" width="4.1" height="14" rx="1.5" fill="currentColor"></rect><rect x="13.3" y="5" width="4.1" height="14" rx="1.5" fill="currentColor"></rect></svg></div><div class="zMando zNext" title="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 5.5v13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"></path><path d="M5 6.2v11.6a1 1 0 0 0 1.54.84L15 13.2a1 1 0 0 0 0-1.68L6.54 6.08A1 1 0 0 0 5 6.2z" fill="currentColor"></path></svg></div><div class="zMando zBucle zSuelto" title="Repeat"><i class="zDibujoBucle"></i></div></div></div><div class="zLetra"><div data-dc-tpl="44" id="lyricsScroll" style="margin-top: 28px; display: flex; flex-direction: column; gap: 24px; flex: 1 1 0%; min-height: 0px; align-items: center; text-align: center; overflow: hidden auto; --rellenoLetra: 369px; --letraVis: 777px;" data-vis="777">
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly0" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --cuerpo: 33px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly0" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.6px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(255,255,255,0.52);"><span class="sc-interp" style="--tinta: rgba(255,255,255,0.52);">You said you'd call me when you landed</span></span>
               
@@ -1071,7 +1293,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly1" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --cuerpo: 33px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly1" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.2000000000000002px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(255,255,255,0.57);"><span class="sc-interp" style="--tinta: rgba(255,255,255,0.57);">It's been three days and I'm still up</span></span>
               
@@ -1081,7 +1303,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly2" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --cuerpo: 33px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly2" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.8px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(255,255,255,0.63);"><span class="sc-interp" style="--tinta: rgba(255,255,255,0.63);">There's a light on in the kitchen</span></span>
               
@@ -1091,7 +1313,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly3" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --cuerpo: 33px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly3" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.4px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(255,255,255,0.68);"><span class="sc-interp" style="--tinta: rgba(255,255,255,0.68);">and a coffee I never drank</span></span>
               
@@ -1101,9 +1323,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly4" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --cuerpo: 33px;" class="relayVerso">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly4" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0px;" class="relayVerso">
               
-                <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgb(255,255,255);"><span class="sc-interp" style="--tinta: rgb(255,255,255);">So I keep the hours under glass</span></span>
+                <span data-dc-tpl="57" class="relayCanta" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgb(255,255,255);"><span class="sc-interp" style="--tinta: rgb(255,255,255);">So I keep the hours under glass</span><span class="relayCapa" data-clave=""><span>So</span> <span>I</span> <span>keep</span> <span>the</span> <span>hours</span> <span>under</span> <span>glass</span></span></span>
               
               
             </div>
@@ -1111,7 +1333,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly5" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --cuerpo: 33px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly5" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.4px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.34);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.34);">where nothing gets away</span></span>
               
@@ -1121,7 +1343,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly6" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --cuerpo: 33px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly6" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.8px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.29);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.29);">I keep the hours under glass</span></span>
               
@@ -1131,7 +1353,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly7" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --cuerpo: 33px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly7" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.2000000000000002px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.23);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.23);">and I watch them turn to grey</span></span>
               
@@ -1139,14 +1361,76 @@ html,body{margin:0;overflow:hidden;background:transparent}
             </div>
           
         
-      </div></div><div class="zCola" data-firma="100:arte/inmersiva-4.jpg|101:arte/inmersiva-5.jpg|102:arte/inmersiva-6.jpg|103:arte/inmersiva-7.jpg|104:arte/inmersiva-8.jpg"><div class="zFicha" style="--n: 0; --k: 0.1340; --ang: -30.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-4.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Midnight Static</div></div><div class="zFicha" style="--n: 1; --k: 0.0341; --ang: -15.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-5.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Afterglow District</div></div><div class="zFicha" style="--n: 2; --k: 0.0000; --ang: 0.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-6.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Heavy Bloom</div></div><div class="zFicha" style="--n: 3; --k: 0.0341; --ang: 15.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-7.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Neon Prayer</div></div><div class="zFicha" style="--n: 4; --k: 0.1340; --ang: 30.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-8.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Ritual</div></div></div></div><div id="relaySincro">RESYNC</div></div>
+          
+          
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly8" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.6px;">
+              
+                <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.18);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.18);">Every song we saved is still in line</span></span>
+              
+              
+            </div>
+          
+        
+          
+          
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly9" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 2px;">
+              
+                <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.14);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.14);">every light is green and every road is mine</span></span>
+              
+              
+            </div>
+          
+        
+          
+          
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly10" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 2.4000000000000004px;">
+              
+                <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.14);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.14);">So I keep the hours under glass</span></span>
+              
+              
+            </div>
+          
+        
+          
+          
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly11" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 2.5px;">
+              
+                <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.14);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.14);">and I let the evening stay</span></span>
+              
+              
+            </div>
+          
+        
+      </div><div id="relayElegir"></div></div><div class="zCola" data-firma="100:arte/inmersiva-4.jpg|101:arte/inmersiva-5.jpg|102:arte/inmersiva-6.jpg|103:arte/inmersiva-8.jpg|104:arte/inmersiva-9.jpg"><div class="zFicha" style="--n: 0; --k: 0.1340; --ang: -30.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-4.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Midnight Static</div></div><div class="zFicha" style="--n: 1; --k: 0.0341; --ang: -15.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-5.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Afterglow District</div></div><div class="zFicha" style="--n: 2; --k: 0.0000; --ang: 0.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-6.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Heavy Bloom</div></div><div class="zFicha" style="--n: 3; --k: 0.0341; --ang: 15.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-8.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Neon Prayer</div></div><div class="zFicha" style="--n: 4; --k: 0.1340; --ang: 30.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-9.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Ritual</div></div></div></div><div id="relaySincro">RESYNC</div></div>
 <script src="tema.js"></script>
 <script>
 /* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
-   al bajar por la web se quedaba uno atascado en una lista. */
-addEventListener("wheel", (e) => {
-  if (top !== window) { e.preventDefault(); try { top.scrollBy(0, e.deltaY); } catch (x) { } }
-}, { passive: false });
+   al bajar por la web se quedaba uno atascado en una lista.
+
+   Sin interceptar la rueda: antes se pasaba a mano con scrollBy, y con el
+   desplazamiento suave de la pagina cada muesca reiniciaba el viaje desde
+   donde iba -la pagina bajaba a tirones, como queriendo volver-. Ahora las
+   listas de dentro no se desplazan con la rueda (overflow hidden: siguen
+   pudiendo moverse por guion), asi que el navegador pasa la rueda a la
+   pagina el solo, igual de suave que en el resto. */
+if (top !== window) {
+  for (const el of document.querySelectorAll("*")) {
+    const cs = getComputedStyle(el);
+    if (/(auto|scroll)/.test(cs.overflowY + cs.overflowX)) { el.style.setProperty("overflow", "hidden", "important"); }
+  }
+}
 </script>
+<script>(function letraEnMedio() {
+  const centrar = () => {
+    const caja = document.getElementById("lyricsScroll");
+    const verso = caja && caja.querySelector(".relayVerso");
+    if (!verso) { return; }
+    const zona = (caja.parentElement || caja).getBoundingClientRect();
+    const r = verso.getBoundingClientRect();
+    caja.scrollTop += (r.top + r.height / 2) - (zona.top + zona.height / 2);
+  };
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(centrar); } else { centrar(); }
+  addEventListener("resize", centrar);
+})();</script>
 </body>
 </html>
