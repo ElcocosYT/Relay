@@ -243,10 +243,10 @@ h1.entrado.ola .letra { animation: ola .7s ease-in-out both; animation-delay: ca
 .demo.suelta { background: none; border-radius: 0; overflow: visible; }
 .demo.suelta.ancha { max-width: 1036px; margin: 22px auto 0; }
 .demo { transition: aspect-ratio .35s ease; }
-/* Themes es alta: el texto se queda a la vista mientras se baja por ella. */
-.muestra.temas { align-items: start; }
-.muestra.temas .explica { position: sticky; top: 110px; }
-@media (max-width: 860px) { .muestra.temas .explica { position: static; } }
+/* Themes: el selector de color de la app, solo, grande y de verdad. */
+.muestra.temas { grid-template-columns: 1fr 1.15fr; }
+.demo.selector { max-width: 620px; justify-self: end; filter: drop-shadow(0 40px 70px rgba(var(--rojo), .32)); }
+@media (max-width: 860px) { .demo.selector { justify-self: center; } }
 .nota { margin: 18px auto 0; max-width: 560px; font-size: 14px; color: var(--tenue); }
 .muestra .ventana, .doble .ventana { margin: 0; max-width: none; width: 100%; }
 .ventana.ancha { max-width: 1000px; margin: 26px auto 0; }
@@ -400,7 +400,7 @@ section { padding: 96px 0 0; }
 .serviciosPie { margin-top: 22px; text-align: center; color: var(--suave); font-size: 14.5px; }
 .serviciosPie b { color: rgb(var(--rosa)); }
 
-/* ── Las tres muestras: letra, cola con cover flow, temas ── */
+/* ── Las muestras: una explicacion al lado de una demo ── */
 .muestra { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
 .muestra.al-reves { grid-template-columns: 1.25fr 1fr; }
 .muestra .explica small { font: 700 12px/1 Inter, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--claro)); }
@@ -415,111 +415,6 @@ section { padding: 96px 0 0; }
   border: 1px solid rgba(var(--rojo), .25);
   box-shadow: 0 40px 100px -40px rgba(var(--rojo), .55), 0 20px 50px -30px rgba(0, 0, 0, .9);
 }
-
-/* Letra: como la de Now Playing. La linea que suena se llena palabra a
-   palabra; las de antes se apagan y las de despues esperan desenfocadas. */
-.letra-app { height: 420px; padding: 22px 28px; }
-.letra-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Inter, sans-serif; }
-.letra-app .cabeza i { font: 700 9px/1 Inter, sans-serif; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgb(var(--rosa)); background: rgba(var(--rojo), .15); border: 1px solid rgba(var(--rojo), .45); }
-.letra-app .ventanal { position: relative; height: 330px; margin-top: 16px; overflow: hidden;
-  -webkit-mask: linear-gradient(transparent, #000 22%, #000 78%, transparent); mask: linear-gradient(transparent, #000 22%, #000 78%, transparent); }
-.letra-app .rollo { position: absolute; left: 0; right: 0; top: 0; transition: translate .9s cubic-bezier(.22, 1, .36, 1); }
-/* Como en la app: un verso largo baja a otra linea en vez de salirse por los
-   lados; y deja aire a los lados para crecer al sonar sin cortarse. */
-.letra-app .verso {
-  min-height: 52px; box-sizing: border-box; padding: 6px 7%;
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; align-content: center; text-align: center;
-  font: 700 clamp(17px, 2vw, 24px)/1.15 Inter, sans-serif; letter-spacing: -.02em;
-  color: rgba(238, 238, 244, .3); filter: blur(1.4px); scale: .94;
-  transition: color .6s, filter .6s, scale .7s cubic-bezier(.22, 1, .36, 1);
-}
-.letra-app .verso.ya { color: rgba(238, 238, 244, .45); filter: none; }
-.letra-app .verso.ahora { filter: none; scale: 1.06; color: rgba(255, 255, 255, .35); }
-.letra-app .verso .pal { display: inline-block; margin: 0 .14em; }
-.letra-app .verso.ahora .pal {
-  background: linear-gradient(90deg, #fff 50%, rgba(255, 255, 255, .35) 50%) 100% 0 / 200% 100%;
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: llena var(--d, .4s) linear both; animation-delay: var(--t, 0s);
-  text-shadow: 0 0 22px rgba(255, 255, 255, .0);
-}
-@keyframes llena { to { background-position: 0 0; translate: 0 -2px; } }
-
-/* Cola y cover flow: el carrusel grande de la cola, avanzando solo. */
-.cola-app { padding: 24px 22px 20px; }
-.cola-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Inter, sans-serif; }
-.cola-app .cabeza i { font: 700 9px/1 Inter, sans-serif; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgba(238, 238, 244, .6); background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .1); }
-/* El cover flow de Now Playing, con los numeros de la app (RING en
-   RelayNowPlaying.dc.html) escalados de 124 px de centro a 170: tres por
-   lado, cada una mas pequena, mas girada y mas apagada. Las de la derecha
-   giran en positivo, como en la app. Las cartas son siete sitios fijos y al
-   avanzar cada una viaja al de al lado en 460 ms (VIAJE en relay-host.js). */
-.flujo { position: relative; height: 262px; margin: 16px -22px 0; overflow: hidden; --viaje: 460ms; }
-.flujo .bruma {
-  position: absolute; left: 50%; top: 38px; width: 410px; height: 410px; margin-left: -205px; pointer-events: none;
-  background: radial-gradient(circle at center, rgba(var(--cc, 255, 42, 58), .28), transparent 68%); filter: blur(30px);
-  transition: background .6s ease;
-}
-.flujo .raya {
-  position: absolute; left: 50%; top: 196px; width: 274px; margin-left: -137px; height: 1px; pointer-events: none;
-  background: linear-gradient(90deg, transparent, rgba(var(--cc, 255, 42, 58), .5), transparent);
-}
-.carta {
-  position: absolute; left: 50%; cursor: pointer;
-  transition: margin-left var(--viaje) cubic-bezier(.22, .61, .36, 1), width var(--viaje) cubic-bezier(.22, .61, .36, 1),
-              height var(--viaje) cubic-bezier(.22, .61, .36, 1), top var(--viaje) cubic-bezier(.22, .61, .36, 1),
-              transform var(--viaje) cubic-bezier(.22, .61, .36, 1), opacity var(--viaje) cubic-bezier(.22, .61, .36, 1);
-}
-.carta.sin-viaje { transition: none; }
-.carta .arte {
-  position: relative; width: 100%; height: 100%; overflow: hidden; box-sizing: border-box;
-  border-radius: var(--r); border: 1px solid rgba(255, 255, 255, var(--bd)); box-shadow: var(--sombra);
-  transition: transform 200ms cubic-bezier(.22, .61, .36, 1), box-shadow 200ms ease, filter 200ms ease, border-radius var(--viaje);
-}
-/* El brillo de encima, como en la app: rayas finas y un lustre en diagonal. */
-.carta .arte::before, .carta .arte::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
-.carta .arte::before { background: repeating-linear-gradient(118deg, rgba(255, 255, 255, .14) 0 2px, transparent 2px 9px); }
-.carta .arte::after { background: linear-gradient(105deg, rgba(255, 255, 255, .18), transparent 42%); }
-.carta .velo { position: absolute; inset: 0; background: rgb(5, 5, 6); opacity: var(--dim, 0); transition: opacity var(--viaje); pointer-events: none; }
-/* El reflejo tumbado 50 grados hacia atras, con el mismo velo (REFLEJO_* en relay-host.js). */
-.carta .reflejo {
-  position: absolute; left: 0; right: 0; top: 100%; height: 65.34%; pointer-events: none;
-  border-radius: var(--r); background-size: 100% 153%; background-position: center bottom;
-  transform-origin: 50% 0; transform: rotateX(-50deg) translateY(100%) scaleY(-1);
-  opacity: var(--ro, .5);
-  -webkit-mask-image: linear-gradient(0deg, rgba(0, 0, 0, .85), rgba(0, 0, 0, .24) 40%, transparent 84%);
-  mask-image: linear-gradient(0deg, rgba(0, 0, 0, .85), rgba(0, 0, 0, .24) 40%, transparent 84%);
-}
-/* El nombre va DENTRO de la del centro, abajo, y sale cuando termina el viaje. */
-.carta .nombre {
-  position: absolute; left: 0; right: 0; bottom: 0; padding: 34px 14px 12px; text-align: center; pointer-events: none;
-  background: linear-gradient(180deg, transparent, rgba(5, 5, 6, .72)); opacity: 0; transition: opacity 200ms ease;
-}
-.carta .nombre b { display: block; font: 700 15px/1.2 Inter, sans-serif; letter-spacing: -.01em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.carta .nombre span { display: block; margin-top: 3px; font: 500 12px/1.2 Inter, sans-serif; color: rgba(255, 211, 214, .8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.carta.centro .nombre { opacity: 1; transition-delay: var(--viaje); }
-/* El raton: la cara crece un poco y se enciende con SU color. */
-.carta:hover .arte {
-  transform: scale(1.07); filter: brightness(1.1) saturate(1.06);
-  box-shadow: 0 24px 48px -14px rgba(var(--cc), .78), 0 0 0 2px rgba(var(--cc), .6), inset 0 1px 0 rgba(255, 255, 255, .34);
-}
-.cola-app .sigue { margin-top: 18px; border-top: 1px solid var(--linea); padding-top: 12px; }
-.lista-cola { position: relative; }
-.cola-app .sigue small { font: 700 10px/1 Inter, sans-serif; letter-spacing: .14em; color: var(--tenue); }
-/* Las filas se mueven con top/left y se descubren con un recorte, sin
-   opacidad, igual que en la app: asi el texto no cambia de grosor al animarse. */
-.fila-cola {
-  position: relative; left: 0; top: 0;
-  display: flex; align-items: center; gap: 11px; padding: 7px 6px; border-radius: 12px; margin-top: 4px;
-}
-.fila-cola::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; opacity: 0; transition: opacity 130ms ease;
-  background: linear-gradient(100deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .028)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .13);
-}
-.fila-cola:hover::after { opacity: 1; }
-.fila-cola .mini { width: 34px; height: 34px; border-radius: 9px; flex: none; overflow: hidden; position: relative; border: 1px solid rgba(255, 255, 255, .14); box-sizing: border-box; }
-.fila-cola b { display: block; font: 700 13px/1.2 Inter, sans-serif; }
-.fila-cola span { font: 500 11.5px/1.2 Inter, sans-serif; color: var(--suave); }
-.fila-cola em { margin-left: auto; font: 600 11px/1 Inter, sans-serif; font-style: normal; color: var(--tenue); }
 
 /* Soundboard: pads como los de la app (.sbCara en relay-host.js). Suenan
    solos, varios a la vez, o al pulsarlos; abajo, lo que llega al microfono. */
@@ -678,8 +573,6 @@ footer .pie { font: 600 11px/1 Inter, sans-serif; letter-spacing: .12em; margin-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .aparece { opacity: 1; translate: none; filter: none; }
-  /* Sin movimiento la linea no se llena poco a poco: sale ya llena. */
-  .letra-app .verso.ahora .pal { background-position: 0 0; }
   #ascuas, .cielo .foco { display: none; }
 }
 </style>
@@ -716,7 +609,7 @@ footer .pie { font: 600 11px/1 Inter, sans-serif; letter-spacing: .12em; margin-
     </div>
     <div class="pildoras cae" style="--t:2"><span>No ads</span><span>Free</span><span>Forever</span></div>
 
-    <div class="escena"><div class="ventana aparece arriba"><div class="demo" data-w="1217" data-h="791"><iframe id="ventanaDemo" src="demos/ventana.html" title="Relay, live: the Albums screen"></iframe></div></div></div>
+    <div class="escena"><div class="ventana aparece arriba"><div class="demo" data-w="1440" data-h="810"><iframe id="ventanaDemo" src="demos/ventana.html" title="Relay, live: the Albums screen"></iframe></div></div></div>
     <p class="nota aparece">This is Relay itself, not a picture. Hover around and click the sidebar to switch screens.</p>
   </div>
 
@@ -767,49 +660,22 @@ footer .pie { font: 600 11px/1 Inter, sans-serif; letter-spacing: .12em; margin-
     </div>
   </section>
 
-  <section id="lyrics">
-    <div class="muestra">
-      <div class="explica aparece">
-        <small>Now Playing · Lyrics</small>
-        <h2>Lyrics that sing along</h2>
-        <p>Synced lyrics that move with the song, line by line, the way you'd expect from a streaming app. Click a line to jump there.</p>
-        <ul>
-          <li>The playing line fills word by word</li>
-          <li>Found for you, or written and timed by hand</li>
-          <li>Precise timing with Whisper, right on your PC</li>
-        </ul>
-      </div>
-      <div class="lienzo letra-app aparece">
-        <div class="cabeza">Lyrics <i>SYNCED</i></div>
-        <div class="ventanal"><div class="rollo"></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="queue">
-    <div class="muestra al-reves">
-      <div class="lienzo cola-app aparece">
-        <div class="cabeza">Queue <i>COVER FLOW</i></div>
-        <div class="flujo"></div>
-        <div class="sigue"><small>NEXT UP</small><div class="lista-cola"></div></div>
-      </div>
-      <div class="explica aparece">
-        <small>Now Playing · Queue</small>
-        <h2>Your queue, cover by cover</h2>
-        <p>Now Playing shows what's coming as a cover flow. Hover a cover to light it up, click it to jump there, drag songs to reorder.</p>
-        <ul>
-          <li>Each cover glows with its own colours</li>
-          <li>Versions of the same song stay together</li>
-          <li>Picks up where you left off when you open Relay</li>
-        </ul>
-      </div>
+  <section id="ahora">
+    <div class="titulo aparece"><small>Now Playing</small><h2>Your song, front and centre</h2></div>
+    <p class="entradilla aparece">The song playing sits in the middle of a cover flow, with what played before and what comes next at its sides. The lyrics follow along, the queue waits on the right, and the screen takes on the colours of the cover.</p>
+    <div class="ventana aparece"><div class="demo" data-w="1830" data-h="1000"><iframe loading="lazy" src="demos/ahora.html" title="Relay: Now Playing"></iframe></div></div>
+    <div class="puntos">
+      <div class="punto aparece"><b>Lyrics that sing along</b><span>The line playing fills word by word. Click any line to jump there.</span></div>
+      <div class="punto aparece"><b>Lyrics found for you</b><span>Word by word from Yedits and lrc.red, line by line from LRCLIB, or timed on your PC with Whisper.</span></div>
+      <div class="punto aparece"><b>Your queue, cover by cover</b><span>Click a cover to jump to it. Drag songs in the list to change the order.</span></div>
+      <div class="punto aparece"><b>Fits any window</b><span>In a smaller window it changes shape, with tabs for the lyrics and the queue.</span></div>
     </div>
   </section>
 
   <section id="inmersiva">
     <div class="titulo aparece"><small>Now Playing &middot; Immersive view</small><h2>One song, the whole window</h2></div>
     <p class="entradilla aparece">One button and the rest of Relay gets out of the way. The cover and the controls on the left, the lyrics in the middle, and the next five covers along the right edge. The colours are taken from the artwork.</p>
-    <div class="ventana aparece"><div class="demo" data-w="1280" data-h="720"><iframe loading="lazy" src="demos/inmersiva.html" title="Relay: the immersive view"></iframe></div></div>
+    <div class="ventana aparece"><div class="demo" data-w="1440" data-h="810"><iframe loading="lazy" src="demos/inmersiva.html" title="Relay: the immersive view"></iframe></div></div>
   </section>
 
   <section id="soundboard">
@@ -932,15 +798,16 @@ footer .pie { font: 600 11px/1 Inter, sans-serif; letter-spacing: .12em; margin-
       <div class="explica aparece">
         <small>Themes</small>
         <h2>Any colour you like</h2>
-        <p>Pick a colour and all of Relay follows: the sidebar, the glows, the buttons and the waves. Try it here: this whole page changes with it.</p>
+        <p>Pick a colour and all of Relay follows: the sidebar, the glows, the buttons and the waves. Try it here: drag across the colour picker, or choose one of Relay's colours below, and this whole page changes with it.</p>
         <div class="colores" role="group" aria-label="Theme colour"></div>
         <ul>
-          <li>Ready-made themes or any colour you pick</li>
+          <li>Ready-made colours, or any colour you pick</li>
+          <li>Separate colours for the bars, the equalizer and the wave</li>
           <li>Save your own looks</li>
           <li>Turn each effect on or off</li>
         </ul>
       </div>
-      <div class="demo suelta aparece" data-w="959" data-h="1713"><iframe loading="lazy" src="demos/themes.html" title="Relay: Themes"></iframe></div>
+      <div class="demo suelta selector aparece" data-w="620" data-h="624"><iframe loading="lazy" src="demos/temas-color.html" title="Relay: pick a colour"></iframe></div>
     </div>
   </section>
 
@@ -1159,227 +1026,6 @@ const enVista = new Map();
 const vigia = new IntersectionObserver((es) => es.forEach((e) => enVista.set(e.target, e.isIntersecting)), { threshold: .2 });
 const seVe = (el) => enVista.get(el) !== false && !document.hidden;
 
-// La letra. Inventada para esta pagina: nada de letras de nadie.
-(() => {
-  const VERSOS = [
-    "Headlights fading on the interstate",
-    "I keep the volume where the silence breaks",
-    "Every song we saved is still in line",
-    "Press play and it's the summer every time",
-    "Turn it up and let the whole room know",
-    "Call me when the bass comes through the floor",
-    "We don't need a reason, just the beat",
-    "Radio static turning into heat",
-    "Say it once and sing it back to me",
-    "All the words are glowing, can't you see",
-    "Hold the note until the lights go down",
-    "This is how the night is meant to sound",
-  ];
-  const caja = document.querySelector(".letra-app");
-  const rollo = caja.querySelector(".rollo");
-  rollo.innerHTML = VERSOS.map((v) => '<div class="verso">' + v.split(" ").map((p) => '<span class="pal">' + p + "</span>").join(" ") + "</div>").join("");
-  const versos = [...rollo.children];
-  vigia.observe(caja);
-  let i = 0;
-  function poner() {
-    versos.forEach((v, k) => { v.classList.toggle("ahora", k === i); v.classList.toggle("ya", k < i); });
-    const pals = versos[i].querySelectorAll(".pal");
-    const dura = 2600;
-    pals.forEach((p, k) => { p.style.setProperty("--t", (k * dura / pals.length / 1000) + "s"); p.style.setProperty("--d", (dura / pals.length / 1000) + "s"); });
-    centrar();
-  }
-  // El verso que suena, en el centro del recuadro: midiendolo, porque los que
-  // bajan a dos lineas son mas altos.
-  const ventanal = caja.querySelector(".ventanal");
-  function centrar() {
-    const v = versos[i];
-    rollo.style.translate = "0 " + Math.round(ventanal.clientHeight / 2 - (v.offsetTop + v.offsetHeight / 2)) + "px";
-  }
-  new ResizeObserver(centrar).observe(ventanal);
-  document.fonts?.ready.then(centrar);
-  poner();
-  if (!quieto) {
-    setInterval(() => { if (seVe(caja)) { i = (i + 1) % versos.length; poner(); } }, 3000);
-  }
-})();
-
-// La cola: portadas generadas -degradados y formas, sin portadas de nadie-
-// en un cover flow que avanza solo, y la lista de lo siguiente.
-(() => {
-  const DISCOS = [
-    ["Night Drive", "Neon Harbor", [255, 42, 58], [60, 10, 90]],
-    ["Paper Moons", "Lucia Vale", [255, 176, 64], [120, 20, 60]],
-    ["Glasshouse", "The Northern Lines", [64, 200, 255], [20, 30, 110]],
-    ["Low Tide", "Marlo", [80, 230, 170], [10, 60, 70]],
-    ["Afterglow", "Rosa Keane", [255, 110, 180], [70, 10, 80]],
-    ["Static Hearts", "Kite Club", [170, 110, 255], [20, 10, 60]],
-    ["Golden Hour", "Ada Sol", [255, 214, 90], [140, 40, 10]],
-  ];
-  const arte = ([, , a, b], k) => {
-    const formas = [
-      `radial-gradient(circle at 70% 30%, rgba(255,255,255,.55) 0 12%, transparent 13%)`,
-      `repeating-linear-gradient(135deg, rgba(255,255,255,.14) 0 6px, transparent 6px 18px)`,
-      `radial-gradient(circle at 30% 75%, rgba(0,0,0,.35) 0 30%, transparent 31%)`,
-      `conic-gradient(from 45deg at 50% 50%, rgba(255,255,255,.18), transparent 25%, rgba(255,255,255,.12) 50%, transparent 75%)`,
-    ];
-    return formas[k % 4] + `, linear-gradient(135deg, rgb(${a}), rgb(${b}))`;
-  };
-  const caja = document.querySelector(".cola-app");
-  const flujo = caja.querySelector(".flujo");
-  const lista = caja.querySelector(".lista-cola");
-  vigia.observe(caja);
-
-  // Los sitios, calculados como en RelayNowPlaying.dc.html pero a 170 px.
-  const K = 170 / 124, CW = 170, rad = (g) => g * Math.PI / 180;
-  const RING = [
-    { w: 96, a: 40, sc: .97, op: .72, r: 12, bd: .16, dim: .2, lift: 3, z: 4, ov: 15 },
-    { w: 78, a: 62, sc: .92, op: .48, r: 10, bd: .12, dim: .36, lift: 9, z: 3, ov: 7 },
-    { w: 62, a: 76, sc: .86, op: .3, r: 9, bd: .09, dim: .5, lift: 16, z: 2, ov: 5 },
-  ].map((c) => ({ ...c, w: c.w * K, r: c.r * K, lift: c.lift * K, ov: c.ov * K }));
-  let borde = CW / 2;
-  for (const c of RING) {
-    const proj = c.w * Math.cos(rad(c.a)) * c.sc;
-    c.x = borde - c.ov + proj / 2;
-    borde = c.x + proj / 2;
-  }
-  const ARRIBA = 20;
-  // Del -3 al 3. El reflejo descuenta la opacidad de la carta, como ponerReflejo().
-  const sitio = (d) => {
-    if (d === 0) {
-      return { w: CW, ml: -CW / 2, top: ARRIBA, tr: "perspective(820px) rotateY(0deg) scale(1)", z: 5, op: 1, r: 14 * K, bd: .26, dim: 0,
-        sombra: "0 26px 54px -18px rgba(var(--cc),.6),0 0 0 1px rgba(var(--cc),.35),inset 0 1px 0 rgba(255,255,255,.3)" };
-    }
-    const lado = Math.sign(d), c = RING[Math.abs(d) - 1];
-    return { w: c.w, ml: lado * c.x - c.w / 2, top: ARRIBA + CW - c.w - c.lift,
-      tr: `perspective(820px) rotateY(${lado * c.a}deg) scale(${c.sc})`, z: c.z, op: c.op, r: c.r, bd: c.bd, dim: c.dim,
-      sombra: `0 ${14 + c.z * 2}px ${30 + c.z * 3}px -16px rgba(5,5,6,.9)` };
-  };
-  const colocar = (c, s, op) => {
-    c.style.width = c.style.height = s.w.toFixed(1) + "px";
-    c.style.marginLeft = s.ml.toFixed(1) + "px";
-    c.style.top = s.top.toFixed(1) + "px";
-    c.style.transform = s.tr;
-    c.style.zIndex = s.z;
-    c.style.opacity = op ?? s.op;
-    c.style.setProperty("--r", s.r.toFixed(1) + "px");
-    c.style.setProperty("--bd", s.bd);
-    c.style.setProperty("--dim", s.dim);
-    c.style.setProperty("--sombra", s.sombra);
-    c.style.setProperty("--ro", Math.min(.5, .36 / s.op).toFixed(3));
-  };
-
-  flujo.innerHTML = `<div class="bruma"></div><div class="raya"></div>`;
-  const cartas = DISCOS.map((d, k) => {
-    const c = document.createElement("div");
-    const fondo = arte(d, k);
-    c.className = "carta";
-    c.style.setProperty("--cc", d[2].join(","));
-    c.innerHTML = `<div class="arte" style="background:${fondo}"><div class="velo"></div>`
-      + `<div class="nombre"><b>${d[0]}</b><span>${d[1]}</span></div></div>`
-      + `<div class="reflejo" style="background-image:${fondo}"></div>`;
-    c.addEventListener("click", () => { ir(k); reiniciar(); });
-    flujo.appendChild(c);
-    return c;
-  });
-
-  const N = DISCOS.length;
-  const distancia = (k, a) => { let d = k - a; if (d > 3) { d -= N; } if (d < -3) { d += N; } return d; };
-  let actual = 2;
-
-  function ponerFlujo(paso) {
-    // Paso de una: 460 ms. Saltos largos: mas deprisa, con techo (PRISA).
-    const viaje = Math.abs(paso) <= 1 ? 460 : Math.min(360, 200 + Math.abs(paso) * 26);
-    flujo.style.setProperty("--viaje", (quieto ? 0 : viaje) + "ms");
-    flujo.style.setProperty("--cc", DISCOS[actual][2].join(","));
-    cartas.forEach((c, k) => {
-      const d = distancia(k, actual);
-      const antes = c._d;
-      c._d = d;
-      c.classList.toggle("centro", d === 0);
-      // La que da la vuelta por detras no cruza el carrusel: entra barriendo
-      // desde el borde por el que va el gesto, apagada, como en la app.
-      if (!quieto && antes !== undefined && paso && antes - paso !== d) {
-        c.classList.add("sin-viaje");
-        colocar(c, sitio(paso > 0 ? 3 : -3), 0);
-        void c.offsetWidth;
-        c.classList.remove("sin-viaje");
-      }
-      colocar(c, sitio(d));
-    });
-  }
-
-  // La lista: lo que se va sale por la derecha, lo que sigue sube a su
-  // sitio cuando lo otro ya se fue, y lo nuevo se descubre desde la derecha.
-  const suave = "cubic-bezier(.22,.61,.36,1)";
-  const filaDe = (k) => {
-    const d = DISCOS[k], f = document.createElement("div");
-    f.className = "fila-cola";
-    f.dataset.k = k;
-    f.innerHTML = `<div class="mini" style="background:${arte(d, k)}"></div><div><b>${d[0]}</b><span>${d[1]}</span></div><em>${2 + (k % 3)}:${String(10 + k * 7).slice(-2)}</em>`;
-    return f;
-  };
-  function ponerLista() {
-    const quiero = [1, 2, 3].map((n) => (actual + n) % N);
-    const viejas = new Map([...lista.children].filter((f) => !f.classList.contains("fantasma")).map((f) => [+f.dataset.k, f]));
-    const arriba = new Map([...viejas].map(([k, f]) => [k, f.offsetTop]));
-    const quitadas = [...viejas.keys()].filter((k) => !quiero.includes(k));
-    const anadidas = quiero.filter((k) => !viejas.has(k));
-    const seguidas = viejas.size - quitadas.length;
-    const reemplazo = quitadas.length > 0 && anadidas.length > 0 && seguidas <= Math.max(1, Math.floor(viejas.size * .25));
-
-    let orden = 0, finFantasmas = 0;
-    quitadas.forEach((k) => {
-      const f = viejas.get(k);
-      if (quieto || reemplazo || !viejas.size) { f.remove(); return; }
-      f.classList.add("fantasma");
-      Object.assign(f.style, { position: "absolute", left: "0", right: "0", top: arriba.get(k) + "px", marginTop: "0", zIndex: 4, pointerEvents: "none" });
-      const espera = Math.min(orden++, 12) * 38;
-      finFantasmas = Math.max(finFantasmas, espera + 340);
-      f.animate([{ opacity: 1, translate: "0 0" }, { opacity: 0, translate: "70px 0" }],
-        { duration: 340, delay: espera, easing: "cubic-bezier(.5,0,.75,.2)", fill: "both" })
-        .finished.then(() => f.remove(), () => f.remove());
-    });
-
-    const nuevas = quiero.map((k) => viejas.get(k) || filaDe(k));
-    const fantasmas = [...lista.querySelectorAll(".fantasma")];
-    lista.replaceChildren(...nuevas, ...fantasmas);
-    if (quieto || !arriba.size) { return; }
-
-    let n = 0;
-    nuevas.forEach((f) => {
-      const k = +f.dataset.k;
-      if (arriba.has(k)) {
-        const dy = arriba.get(k) - f.offsetTop;
-        if (Math.abs(dy) > .5) {
-          f.animate([{ top: dy + "px" }, { top: "0px" }],
-            { duration: 380, easing: suave, delay: Math.max(0, finFantasmas - 60), fill: "backwards" });
-        }
-        return;
-      }
-      f.animate(
-        [{ left: "44px", clipPath: "inset(0 0 0 100% round 12px)" }, { left: "0px", clipPath: "inset(0 0 0 0 round 12px)" }],
-        { duration: 440, delay: Math.max(0, finFantasmas - 60) + Math.min(n++, 14) * 34, easing: suave, fill: "backwards" });
-    });
-  }
-
-  function ir(k) {
-    const paso = distancia(k, actual);
-    if (!paso) { return; }
-    actual = k;
-    ponerFlujo(paso);
-    ponerLista();
-  }
-
-  ponerFlujo(0);
-  ponerLista();
-  let reloj = 0;
-  function reiniciar() {
-    clearInterval(reloj);
-    if (!quieto) { reloj = setInterval(() => { if (seVe(caja) && !caja.matches(":hover")) { ir((actual + 1) % N); } }, 2800); }
-  }
-  reiniciar();
-})();
-
 // La soundboard: pads inventados, como los de la app. Cada poco suena uno
 // por su atajo -a menudo encima de otro-; pulsados, suenan. Abajo, lo que
 // llega al microfono: la musica, los pads y tu voz.
@@ -1498,8 +1144,9 @@ document.querySelectorAll(".cambia").forEach((grupo) => {
   let elegido = null;
   try { elegido = localStorage.getItem("relay.web.tema"); } catch (e) { }
   const poner = (hex) => {
+    if (!/^#[0-9a-f]{6}$/i.test(hex || "")) { return; }
     window.relayTema(hex);
-    caja.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.hex === hex)));
+    caja.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.hex.toUpperCase() === hex.toUpperCase())));
     try { localStorage.setItem("relay.web.tema", hex); } catch (e) { }
     document.dispatchEvent(new CustomEvent("relaytema"));
   };
@@ -1512,7 +1159,9 @@ document.querySelectorAll(".cambia").forEach((grupo) => {
     b.addEventListener("click", () => poner(t.hex));
     caja.appendChild(b);
   });
-  poner(elegido && window.relayTemas.some((t) => t.hex === elegido) ? elegido : window.relayTemas[0].hex);
+  // El selector de color de la demo de Themes elige por aqui: cualquier color.
+  window.ponerTemaWeb = poner;
+  poner(/^#[0-9a-f]{6}$/i.test(elegido || "") ? elegido : window.relayTemas[0].hex);
   // Las demos perezosas, al cargar, toman el elegido.
   document.querySelectorAll(".demo iframe").forEach((f) => f.addEventListener("load", () => {
     try { f.contentWindow.relayTema && f.contentWindow.relayTema(window.__relayTemaHex); } catch (e) { }
