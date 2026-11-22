@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-pie="" data-np="2" data-np-tab="queue" data-npfondo="" data-espectro="" data-autoavance="" data-cantar="" data-sinluz="" data-sonando="" data-zen="">
+<html data-pie="" data-np="2" data-np-tab="lyrics" data-npfondo="" data-espectro="" data-autoavance="" data-azar="" data-cantar="" data-sonando="" data-zen="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,6 +33,11 @@ html[data-autoavance] #relayAutoAvance > div { background: rgb(var(--t14,255,107
 #libraryRoot > div[style*="rlbdrift"], #nowPlayingRoot > div[style*="rnpdrift"], #albumsRoot > div[style*="ralbdrift"], #artistsRoot > div[style*="rartdrift"], #onlineRoot > div[style*="ronldrift"], #mixerRoot > div[style*="rmxdrift"], #settingsRoot > div[style*="rstdrift"] { display: none !important; }
 #npColumna { margin-top: 8px !important; }
 #npRotulo { margin-bottom: 14px; }
+#npRotulo > .relayNpVer { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; flex: 0 0 auto; padding: 5px 9px 5px 8px; border-radius: 8px; cursor: pointer; user-select: none; background: rgba(var(--t0,255,42,58),.14); border: 1px solid rgba(var(--t0,255,42,58),.3); font: 700 8.5px / 1 Inter, sans-serif; letter-spacing: 0.14em; color: rgb(var(--t3,255,154,162)); white-space: nowrap; transition: background 160ms, border-color 160ms, color 160ms, transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1.4), box-shadow 220ms; animation: 420ms cubic-bezier(0.2, 1.4, 0.3, 1) 0s 1 normal both running relayNpVerEntra; }
+#npRotulo > .relayNpVer:hover { color: rgb(var(--t13,255,211,214)); border-color: rgba(var(--t0,255,42,58),.65); background: rgba(var(--t0,255,42,58),.28); transform: translateY(-1px); box-shadow: 0 0 16px -2px rgba(var(--t0,255,42,58),.55),inset 0 1px 0 rgba(255,255,255,.12); }
+#npRotulo > .relayNpVer:active { transform: scale(0.94); transition-duration: 90ms; }
+#npRotulo > .relayNpVer i { width: 10px; height: 10px; flex: 0 0 auto; background: currentcolor; opacity: 0.8; mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3 2 8l10 5 10-5-10-5Z'/><path d='m2 12 10 5 10-5'/><path d='m2 16 10 5 10-5'/></svg>") center center / contain no-repeat; }
+#npRotulo > .relayNpVer.cambia b { animation: 380ms cubic-bezier(0.2, 1.4, 0.3, 1) 0s 1 normal none running relayNpVerNombre; }
 @keyframes relayNpVerEntra { 
   0% { opacity: 0; transform: translateX(8px) scale(0.9); }
   100% { opacity: 1; transform: none; }
@@ -41,6 +46,7 @@ html[data-autoavance] #relayAutoAvance > div { background: rgb(var(--t14,255,107
   0% { opacity: 0; transform: translateY(5px); }
   100% { opacity: 1; transform: none; }
 }
+#npRotulo > .relayNpVer b { display: inline-block; font-weight: 700; }
 @keyframes relayWebVa { 
   0% { transform: translateX(-100%); }
   100% { transform: translateX(290%); }
@@ -117,6 +123,8 @@ html[data-zen] #npArtist > .relayArtistas > [data-nombre]:hover { color: rgb(var
 #relayZen .zMando.zSuelto { width: min(5.6vh, 48px); height: min(5.6vh, 48px); background: none; border-color: transparent; backdrop-filter: none; color: rgba(255, 255, 255, 0.62); }
 #relayZen .zMando.zSuelto:hover { background: none; border-color: transparent; color: rgb(255, 255, 255); }
 #relayZen .zMando.zSuelto svg { width: 52%; height: 52%; }
+html[data-azar] #relayZen .zAzar, html[data-azarlisto] #relayZen .zAzar, html[data-bucle] #relayZen .zBucle { color: rgb(var(--t2,255,90,99)); filter: drop-shadow(0 0 10px rgba(var(--t0,255,42,58),.55)); }
+html[data-azar] #relayZen .zAzar:hover, html[data-azarlisto] #relayZen .zAzar:hover, html[data-bucle] #relayZen .zBucle:hover { color: rgb(var(--t3,255,154,162)); }
 #relayZen .zAzar .zAzarListo { display: none; }
 #relayZen .zDibujoBucle { display: block; width: 56%; height: 56%; background-color: currentcolor; mask: url("activos/loop.svg") center center / contain no-repeat; translate: 0px 3.6%; }
 #relayZen .zMando.zPlay .zIrPausa { display: none; }
@@ -131,9 +139,9 @@ html[data-sonando] #relayZen .zMando.zPlay .zIrPausa { display: block; }
 #relayZen .zLetra { flex: 1 1 auto; max-width: max(min(52vw, 840px), -318px + 60vw); height: 100%; min-height: 0px; min-width: 0px; display: flex; flex-direction: column; opacity: 1; transition: max-width 620ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 420ms 160ms, transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1); }
 #relayZen .zEscena { gap: 0px; }
 #relayZen .zLetra { margin-left: min(7vw, 90px); }
-html[data-zen] #relayZen .zLetra > #lyricsScroll { flex: 1 1 auto; min-height: 0px; mask-image: linear-gradient(transparent, rgb(0, 0, 0) 22%, rgb(0, 0, 0) 78%, transparent); margin: 0px !important; align-items: center !important; text-align: center !important; gap: min(2.6vh, 26px) !important; padding: 34vh 90px !important; margin-inline: -86px !important; }
+html[data-zen] #relayZen .zLetra > #lyricsScroll { flex: 1 1 auto; min-height: 0px; mask-image: linear-gradient(transparent, rgb(0, 0, 0) 22%, rgb(0, 0, 0) 78%, transparent); margin: 0px !important; align-items: center !important; text-align: center !important; gap: min(2.6vh, max(26px, 1.45vw)) !important; padding: 34vh 90px !important; margin-inline: -86px !important; }
 html[data-zen] #relayZen #lyricsScroll > [data-act="seek-lyric"] { align-items: center !important; text-align: center !important; padding: 0px !important; background: none !important; border: 0px !important; box-shadow: none !important; }
-html[data-zen] #relayZen #lyricsScroll > [data-act="seek-lyric"] span { font: 600 min(3.2vh, 30px) / 1.38 Inter, sans-serif !important; text-align: center !important; }
+html[data-zen] #relayZen #lyricsScroll > [data-act="seek-lyric"] span { font: 600 min(3.2vh, max(30px, 1.7vw)) / 1.38 Inter, sans-serif !important; text-align: center !important; }
 html[data-zen] #relayZen #lyricsScroll > [data-act="seek-lyric"].relayVerso > span { font-weight: 800 !important; }
 html[data-zen] #relaySincro { z-index: 71; left: auto; right: max(6vw, 80px); bottom: min(6vh, 54px); padding: 10px 16px; backdrop-filter: blur(26px) saturate(170%); color: rgba(255, 255, 255, 0.86); font-size: 11px; transform: translate(0px, 14px) scale(0.94); background: rgba(255, 255, 255, 0.08) !important; border-color: rgba(255, 255, 255, 0.16) !important; box-shadow: rgba(0, 0, 0, 0.7) 0px 14px 34px -14px, rgba(255, 255, 255, 0.14) 0px 1px 0px inset !important; }
 html[data-zen] #relaySincro:hover { color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.14) !important; }
@@ -197,6 +205,10 @@ html { user-select: none; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
 @property --relayFinal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --vb1 { syntax: "<color>"; inherits: true; initial-value: #FF2A3A; }
+@property --vb2 { syntax: "<color>"; inherits: true; initial-value: #FFC533; }
+@property --vb3 { syntax: "<color>"; inherits: true; initial-value: #3DDC97; }
+@property --vb4 { syntax: "<color>"; inherits: true; initial-value: #38BDF8; }
 #trackList, #albumGrid, #artistGrid, #artistList, #onlineList, #relayDetCuerpo, #settingsGrid, #themesCuerpo, .sbResultados, .relayVelada { mask-image: linear-gradient(180deg,#000 calc(100% - 18px + var(--relayFinal)),transparent calc(100% + var(--relayFinal))); transition: --relayFinal 320ms cubic-bezier(0.3, 0.7, 0.2, 1); }
 [data-velo-fin] { --relayFinal: 18px; }
 .relayVelo { position: absolute; z-index: 20; pointer-events: none; }
@@ -223,6 +235,19 @@ html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #
 html[data-np][data-npfondo] .relayVelo.arriba > i:nth-child(4) { mask-image: linear-gradient(transparent 56%, rgb(0, 0, 0) 76%, rgb(0, 0, 0) calc(100% - 36px), transparent), linear-gradient(90deg, transparent, rgb(0, 0, 0) 60px, rgb(0, 0, 0) calc(100% - 60px), transparent); mask-composite: intersect; }
 html[data-np][data-npfondo] .relayVelo.arriba > i:nth-child(5) { mask-image: linear-gradient(180deg,transparent calc((100% - var(--extra,0px)) * .76),#000 calc(100% - var(--extra,0px)),#000 calc(100% - 36px),transparent),linear-gradient(90deg,transparent,#000 60px,#000 calc(100% - 60px),transparent); mask-composite: intersect; }
 html:not([data-sinvelo]) #queueList { --relayLargo: 18px; }
+:is(#albumGrid, #artistGrid, #artistList)[data-velo-tope] { --relayTope: 34px; }
+html:not([data-sinvelo]) :is(#albumGrid, #artistGrid, #artistList) { --relayLargo: 18px; }
+:is(#relayVistaOnline, #relayVistaArtistas) span:hover { color: rgb(242, 242, 244); }
+:is(#relayVistaOnline, #relayVistaArtistas) span.on { color: rgb(255, 255, 255); }
+:is(#relayVistaOnline, #relayVistaArtistas) span::before { content: ""; width: 14px; height: 14px; background: currentcolor; mask: var(--i) center/contain no-repeat; }
+:is(#relayVistaOnline, #relayVistaArtistas) span[data-vista="list"] { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='5' width='18' height='2.6' rx='1.3'/><rect x='3' y='10.7' width='18' height='2.6' rx='1.3'/><rect x='3' y='16.4' width='18' height='2.6' rx='1.3'/></svg>"); }
+:is(#relayVistaOnline, #relayVistaArtistas) span[data-vista="covers"] { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='3' width='8' height='8' rx='2.4'/><rect x='13' y='3' width='8' height='8' rx='2.4'/><rect x='3' y='13' width='8' height='8' rx='2.4'/><rect x='13' y='13' width='8' height='8' rx='2.4'/></svg>"); }
+@keyframes relayPreguntaFondo { 
+  0% { opacity: 0; }
+}
+@keyframes relayPreguntaEntra { 
+  0% { opacity: 0; transform: translateY(8px) scale(0.96); }
+}
 .relayCorre { position: absolute; left: 0px; top: 3px; bottom: 3px; z-index: 0; border-radius: 8px; background: rgba(var(--t0,255,42,58),.85); box-shadow: 0 6px 16px -8px rgba(var(--t0,255,42,58),.9); transition: transform 440ms cubic-bezier(0.3, 1.25, 0.4, 1), width 440ms cubic-bezier(0.3, 1.25, 0.4, 1); pointer-events: none; }
 @keyframes relayListaEntra { 
   0% { opacity: 0; transform: translateY(-6px); }
@@ -239,17 +264,7 @@ html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [style*="b
 html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div:last-child { display: none !important; }
 #relayEspejo { position: absolute; left: calc(-40px * var(--cf, 1)); right: calc(-40px * var(--cf, 1)); top: calc(34px * var(--cf, 1)); height: calc(248px * var(--cf, 1)); z-index: 1; pointer-events: none; mask-size: 100% 100%; mask-repeat: no-repeat; mask-image: linear-gradient(transparent 0px, transparent 42%, rgba(0, 0, 0, 0.4) 43%, rgba(0, 0, 0, 0.34) 50%, rgba(0, 0, 0, 0.12) 66%, transparent 84%); }
 html[data-np="1"] #relayEspejo, html[data-zen] #relayEspejo { display: none; }
-#relayEspejo > div { position: absolute; left: 50%; cursor: default; transform-style: flat !important; opacity: 1 !important; }
-#relayEspejo i.relayPunto { position: absolute; width: 0px; height: 0px; }
-#relayEspejo i.relayPunto.p0 { left: 0px; top: 0px; }
-#relayEspejo i.relayPunto.p1 { right: 0px; top: 0px; }
-#relayEspejo i.relayPunto.p2 { left: 0px; bottom: 0px; }
-#relayEspejo i.relayPunto.p3 { right: 0px; bottom: 0px; }
 html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] > div > [style*="rgba(5, 5, 6, 0.72)"], #relayEspejo [style*="rgba(5, 5, 6, 0.72)"] { display: none !important; }
-#relayEspejo > div > div { transition: transform 200ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 200ms, filter 200ms; }
-#relayEspejo > [style*="z-index: 2;"], #relayEspejo > [style*="z-index:2;"] { display: none; }
-#relayEspejo > [style*="z-index: 4;"]:not(.encima) > div, #relayEspejo > [style*="z-index:4;"]:not(.encima) > div { filter: brightness(0.78); }
-#relayEspejo > [style*="z-index: 3;"]:not(.encima) > div, #relayEspejo > [style*="z-index:3;"]:not(.encima) > div { filter: brightness(0.52); }
 #relayEspejo > :not([style*="z-index: 5"]):not([style*="z-index:5"]):not(.encima) > div { box-shadow: none !important; }
 html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:nth-child(2) { --cf: 2.742; grid-area: flujo; place-self: center stretch; min-height: 0px; pointer-events: none; margin: -56px 0px 0px !important; overflow: visible !important; }
 html:is([data-np="3"], [data-np="2"]):not([data-zen]) #nowPlayingRoot [data-act="jump-queue"][style*="preserve-3d"] { pointer-events: auto; }
@@ -303,7 +318,7 @@ html[data-np="2"]:not([data-zen]) #nowPlayingRoot > div[style*="grid-template-co
 html[data-np="2"]:not([data-zen]) #npColumna { margin: 330px 0px 0px !important; }
 html[data-np="2"]:not([data-zen]) #npTitle { font-size: 40px !important; }
 html[data-np="2"]:not([data-zen]) #npArtist { font-size: 16px !important; margin-top: 10px !important; }
-html[data-np="2"][data-np-tab="queue"]:not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(2) { display: none !important; }
+html[data-np="2"][data-np-tab="lyrics"]:not([data-zen]) #nowPlayingRoot > div[style*="grid-template-columns"] > div:nth-child(3) > div:not(:nth-child(2)) { display: none !important; }
 .relayNpTabs { display: none; }
 html[data-np="1"] .relayNpTabs, html[data-np="2"] .relayNpTabs { display: inline-flex; flex: 0 0 auto; padding: 3px; border-radius: 11px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
 .relayNpTabs { position: relative; }
@@ -371,11 +386,14 @@ html[data-np="1"] #queueSummary, html[data-np="2"] #queueSummary { order: 3; }
 .relayMandoLetra i { width: 15px; height: 15px; flex: 0 0 auto; pointer-events: none; background-color: currentcolor; mask: var(--icono) center/contain no-repeat; }
 .relayMandoLetra:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.26); color: rgb(255, 255, 255); transform: translateY(-1px); }
 .relayMandoLetra:active { transform: translateY(0px) scale(0.9); transition-duration: 90ms; }
+.relayMandoLetra i.entra { animation: 340ms cubic-bezier(0.2, 0.9, 0.3, 1.3) 0s 1 normal none running relayMandoEntra; }
 @keyframes relayMandoEntra { 
   0% { transform: scale(0.35) rotate(-50deg); opacity: 0; }
   100% { transform: none; opacity: 1; }
 }
+.relayMandoLetra[data-icono="activos/icono-letra-quitar.svg"] i { width: 12px; height: 12px; }
 .relayMandoLetra[data-icono="activos/icono-biblioteca.svg"] i { width: 18px; height: 18px; }
+#relayEstadoLetra[data-estado="quitar"]:hover { background: rgba(var(--t0,255,42,58),.16); border-color: rgba(var(--t0,255,42,58),.55); color: rgb(var(--t3,255,154,162)); }
 @keyframes relayMandoGira { 
   100% { transform: rotate(360deg); }
 }
@@ -392,10 +410,7 @@ html[data-np="1"] #queueSummary, html[data-np="2"] #queueSummary { order: 3; }
 #relayPrecisaLetra { background: linear-gradient(140deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32))); border-color: rgba(255, 255, 255, 0.2); color: rgb(255, 255, 255); }
 #relayPrecisaLetra:hover { filter: brightness(1.12); }
 #relayPrecisaLetra.fuera, #relayVersionLetra.fuera, #relayOtraLetra.fuera { max-width: 0px; opacity: 0; margin-left: -6px; border-width: 0px; pointer-events: none; }
-#relayElegir { position: absolute; inset: 78px 14px 14px; z-index: 5; display: none; flex-direction: column; gap: 12px; padding: 18px 18px 12px; border-radius: 20px; box-sizing: border-box; background: linear-gradient(160deg, rgba(24, 22, 24, 0.97), rgba(12, 11, 12, 0.97)); backdrop-filter: blur(30px) saturate(150%); border: 1px solid rgba(255, 255, 255, 0.13); box-shadow: 0 30px 70px -24px rgba(var(--t5,30,0,6),.95),
-                 inset 0 1px 0 rgba(255,255,255,.14); font-family: Inter, system-ui, sans-serif; }
 html[data-zen] #relayZen .zLetra { position: relative; }
-html[data-zen] #relayZen .zLetra > #relayElegir { inset: 0px; z-index: 4; padding: 0px; border: 0px; border-radius: 0px; box-shadow: none; background: none; backdrop-filter: none; justify-content: center; gap: min(2.2vh, 20px); }
 html[data-zen] #relayZen .zLetra:has(> #relayElegir.seVe) > #lyricsScroll { opacity: 0; pointer-events: none; transition: opacity 260ms; }
 @keyframes relayElegirEntra { 
   0% { opacity: 0; transform: translateY(10px) scale(0.985); }
@@ -481,6 +496,16 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   100% { scale: 1; }
 }
 [data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child { --resorte: cubic-bezier(.2,1.5,.3,1); transition: background 140ms ease-out, border-color 140ms ease-out !important; }
+[data-act="open-album"]:not(.relayAlb):active:not(:has([data-act]:active)), [data-act="open-artist"]:not(.relayArt):active:not(:has([data-act]:active, .relayArtPin:active)) { scale: 0.96; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+html[data-filtros] :is(#albumSearchScope, #artistSearchScope) { top: calc(100% + 8px); right: 0px; z-index: 40; min-width: 150px; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px) scale(0.94); transform-origin: right top; transition: opacity 160ms, transform 240ms cubic-bezier(0.3, 1.25, 0.4, 1), visibility linear 240ms; position: absolute !important; flex-direction: column !important; align-items: stretch !important; height: auto !important; gap: 2px !important; box-shadow: rgba(0, 0, 0, 0.95) 0px 26px 50px -18px, rgba(255, 255, 255, 0.04) 0px 0px 0px 1px, rgba(255, 255, 255, 0.14) 0px 1px 0px inset !important; }
+html[data-filtros][data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition: opacity 160ms, transform 300ms cubic-bezier(0.3, 1.25, 0.4, 1), visibility; }
+html[data-filtros] :is(#albumSearchScope, #artistSearchScope) > [data-act="set-search-field"] { justify-content: flex-start; opacity: 0; transform: translateY(-4px); height: 32px !important; padding: 0px 14px 0px 12px !important; transition: color 240ms, scale 90ms, opacity 160ms, transform 220ms cubic-bezier(0.3, 1.3, 0.4, 1) !important; }
+html[data-filtros][data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act="set-search-field"] { opacity: 1; transform: none; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(2) { transition-delay: 0s, 0s, 25ms, 25ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(3) { transition-delay: 0s, 0s, 50ms, 50ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(4) { transition-delay: 0s, 0s, 75ms, 75ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(5) { transition-delay: 0s, 0s, 100ms, 100ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(6) { transition-delay: 0s, 0s, 125ms, 125ms !important; }
 @keyframes relayFiltra { 
   0% { opacity: 0.25; transform: translateY(8px); }
   100% { opacity: 1; transform: none; }
@@ -525,15 +550,20 @@ html:not([data-autoavance]) #relayAutoAvance > div { animation: 380ms cubic-bezi
         ); }}
 @media (prefers-reduced-motion: reduce) {[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child, [data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { transition: background 140ms ease-out, border-color 140ms ease-out !important; }
 [data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { scale: 0.92; }}
-@keyframes relayArtLate { 
-  0%, 100% { scale: 1; opacity: 0.6; }
-  50% { scale: 1.12; opacity: 0.9; }
-}
-@keyframes relayArtBrillo { 
-  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+@keyframes relayArtBarrido { 
+  0% { transform: rotate(16deg) translateX(0px); opacity: 0; }
   15% { opacity: 0.9; }
-  100% { transform: rotate(16deg) translate3d(420px, 0px, 0px); opacity: 0; }
+  100% { transform: rotate(16deg) translateX(520px); opacity: 0; }
 }
+#artistGrid .relayArt:hover :is(.relayArtPlay, .relayArtPin) { will-change: transform; }
+#artistList .relayArtFila:hover :is(.relayArtPlay, .relayArtPin) { will-change: transform; }
+@keyframes relayArtEq { 
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+html[data-sonando] :is(#artistGrid, #artistList) .relayArtSuena .relayArtPlay::before { mask-position: 50% 50%; }
+:is(#artistGrid, #artistList) .relayArtPin { width: 32px; height: 32px; border-radius: 50%; box-sizing: border-box; background: rgba(14, 10, 12, 0.46); border: 1px solid rgba(255, 255, 255, 0.16); filter: none; box-shadow: rgba(0, 0, 0, 0.6) 0px 6px 16px -6px; }
+:is(#artistGrid, #artistList) .relayArtPin::before { width: 16px; height: 16px; mask-size: 15px 15px; }
 @keyframes relayEstGira { 
   100% { rotate: 360deg; }
 }
@@ -546,9 +576,24 @@ html:not([data-autoavance]) #relayAutoAvance > div { animation: 380ms cubic-bezi
 @keyframes relayAlbAro { 
   100% { opacity: 0; box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 14px inset; }
 }
+#artistList [data-act="open-artist"]:active:not(:has(.relayArtPlay:active, .relayArtPin:active)) { transform: scale(0.985); }
 @keyframes relayDetEntra { 
   0% { opacity: 0; transform: translateY(14px); }
   100% { opacity: 1; transform: translateY(0px); }
+}
+@keyframes relayDetAlbEqSube { 
+  0%, 100% { transform: scaleY(0.26); }
+  50% { transform: scaleY(1); }
+}
+@keyframes relayArtSube { 
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-1000px); }
+}
+@keyframes relayFavSalta { 
+  0% { transform: scale(1) rotate(0deg); }
+  35% { transform: scale(1.35) rotate(-14deg); }
+  70% { transform: scale(0.92) rotate(6deg); }
+  100% { transform: scale(1) rotate(0deg); }
 }
 #relayNpHalo { position: fixed; z-index: -1; pointer-events: none; }
 #relayNpHalo > .tanda { position: absolute; inset: 0px; pointer-events: none; }
@@ -611,6 +656,33 @@ html:not([data-autoavance]) #relayAutoAvance > div { animation: 380ms cubic-bezi
   0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0); }
   50% { box-shadow: 0 0 22px 2px rgba(var(--t0,255,42,58),.45); }
 }
+@keyframes tmVivoGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes vbUno { 
+  0% { transform: translate(0px, 0px) scale(1); }
+  35% { transform: translate(42%, 30%) scale(1.25); }
+  70% { transform: translate(12%, 52%) scale(0.85); }
+  100% { transform: translate(34%, 8%) scale(1.1); }
+}
+@keyframes vbDos { 
+  0% { transform: translate(0px, 0px) scale(1.1); }
+  40% { transform: translate(-46%, 36%) scale(0.85); }
+  75% { transform: translate(-20%, 56%) scale(1.25); }
+  100% { transform: translate(-40%, 6%) scale(1); }
+}
+@keyframes vbTres { 
+  0% { transform: translate(0px, 0px) scale(0.9); }
+  30% { transform: translate(38%, -40%) scale(1.2); }
+  65% { transform: translate(56%, -10%) scale(1); }
+  100% { transform: translate(10%, -48%) scale(1.25); }
+}
+@keyframes vbCuatro { 
+  0% { transform: translate(0px, 0px) scale(1.2); }
+  45% { transform: translate(-50%, -30%) scale(0.9); }
+  80% { transform: translate(-14%, -52%) scale(1.15); }
+  100% { transform: translate(-36%, -6%) scale(0.95); }
+}
 @property --tmGiro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 @keyframes tmGiro { 
   100% { --tmGiro: 360deg; }
@@ -656,6 +728,27 @@ html:not([data-autoavance]) #relayAutoAvance > div { animation: 380ms cubic-bezi
   0% { transform: scale(1); }
   40% { transform: scale(1.35); background: rgb(var(--t0,255,42,58)); color: rgb(255, 255, 255); }
   100% { transform: scale(1); }
+}
+@keyframes sleepTic { 
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-28deg); }
+  60% { transform: rotate(14deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes sleepEntra { 
+  0% { transform: scale(0.3); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes sleepAbre { 
+  0% { opacity: 0; transform: translateY(10px) scale(0.86); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sleepCierra { 
+  100% { opacity: 0; transform: translateY(8px) scale(0.9); }
+}
+@keyframes sleepOpcion { 
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: none; }
 }
 .scp0:hover { border-color: rgba(var(--t0,255,42,58),.5) !important; background: rgba(var(--t0,255,42,58),.14) !important; }
 .scp1:hover { background: repeating-linear-gradient(rgba(238, 238, 244, 0.5) 0px, rgba(238, 238, 244, 0.5) 1.5px, transparent 1.5px, transparent 4px), repeating-linear-gradient(to right, rgba(238, 238, 244, 0.5) 0px, rgba(238, 238, 244, 0.5) 1.5px, transparent 1.5px, transparent 5px) !important; }
@@ -710,12 +803,6 @@ html, body { height: 100%; margin: 0px; }
   26% { transform: scaleY(0.22); }
   54% { transform: scaleY(0.88); }
   82% { transform: scaleY(0.48); }
-}
-@keyframes relayPaseo { 
-  0%, 5.849% { transform: translateX(0px); animation-timing-function: ease-in; }
-  13.446% { transform: translateX(-80px); animation-timing-function: linear; }
-  92.403% { transform: translateX(-1743px); animation-timing-function: ease-out; }
-  100% { transform: translateX(-1823px); }
 }
 html,body{margin:0;overflow:hidden;background:transparent}
 
@@ -931,7 +1018,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 <div data-dc-tpl="31" style="width: 2.5px; height: 100%; border-radius: 2px; background: rgb(var(--t1,196,18,32)); transform-origin: center bottom; animation: 1.1s ease-in-out 0.3s infinite normal none running rnpeq;"></div>
               </div>
             
-          </div>
+          <span class="relayNpVer cambia" title="This is the Original version. Click to switch"><i></i><b>ORIGINAL</b></span></div>
           
           
         </div>
@@ -963,10 +1050,10 @@ html,body{margin:0;overflow:hidden;background:transparent}
     </div>
 
     <div data-dc-tpl="39" style="box-sizing: border-box; padding: 26px 26px 20px; border-radius: 24px; background: linear-gradient(150deg, rgba(15, 15, 16, 0.6), rgba(9, 9, 10, 0.42)); backdrop-filter: blur(50px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.13); box-shadow: 0 40px 90px -30px rgba(var(--t5,30,0,6),.95),inset 0 1px 0 rgba(255,255,255,.18); display: flex; flex-direction: column; min-width: 0px; overflow: hidden;">
-      <div data-dc-tpl="40" style="display: flex; align-items: center; gap: 12px; flex: 0 0 auto; min-width: 0px;"><div class="relayNpTabs"><i class="relayCorre"></i><span data-tab="lyrics">Lyrics</span><span data-tab="queue" class="on">Queue</span></div>
+      <div data-dc-tpl="40" style="display: flex; align-items: center; gap: 12px; flex: 0 0 auto; min-width: 0px;"><div class="relayNpTabs"><i class="relayCorre" style="transform: translateX(3px); width: 66px;"></i><span data-tab="lyrics" class="on">Lyrics</span><span data-tab="queue">Queue</span></div>
         <h4 data-dc-tpl="41" style="margin: 0px; font: 600 19px / 1 Inter, sans-serif; letter-spacing: -0.02em; color: rgb(252, 252, 253); white-space: nowrap;" class="relayTituloLetra">Lyrics</h4>
         <span data-dc-tpl="42" style="padding: 5px 8px; border-radius: 8px; background: rgba(var(--t0,255,42,58),.13); border: 1px solid rgba(var(--t0,255,42,58),.32); font: 700 8.5px / 1 Inter, sans-serif; letter-spacing: 0.12em; color: rgb(var(--t4,255,143,152)); white-space: nowrap; flex: 0 0 auto;" class="relayChipLetra"><span class="sc-interp">SYNCED</span></span>
-        <div id="relayMandosLetra"><span id="relayEstadoLetra" class="relayMandoLetra" data-act="lyrics-run" data-estado="recargar" data-id="recargar" data-icono="activos/icono-recargar.svg" title="Look up the lyrics, using the track's current title and artist"><i style="--icono: url(&quot;activos/icono-recargar.svg&quot;);"></i></span><span id="relayEditaLetra" class="relayMandoLetra" data-act="edit-lyrics" data-icono="activos/icono-letra-editar.svg" title="Edit the lyrics and their timings"><i style="--icono: url(&quot;activos/icono-letra-editar.svg&quot;);"></i></span><span id="relayTraerLetra" class="relayMandoLetra" data-act="import-lyrics" data-icono="activos/icono-letra-txt.svg" title="Use lyrics from a file (.lrc or .txt). They replace the ones from the library or Whisper"><i style="--icono: url(&quot;activos/icono-letra-txt.svg&quot;);"></i></span><span id="relayPrecisaLetra" class="relayMandoLetra fuera" data-act="lyrics-precise" data-icono="activos/icono-resync.svg" data-estado="" title=""><i style="--icono: url(&quot;activos/icono-resync.svg&quot;);"></i></span><span id="relayVersionLetra" class="relayMandoLetra fuera" data-act="lyrics-versions" data-icono="activos/icono-letra-versiones.svg" title="This version () has its own lyrics. Click to share them with another version"><i style="--icono: url(&quot;activos/icono-letra-versiones.svg&quot;);"></i></span><span id="relayOtraLetra" class="relayMandoLetra" data-act="relyrics" data-icono="activos/icono-letra-otras.svg" title="Pick other lyrics from yedits, lrc.red or LRCLIB, or search by hand"><i style="--icono: url(&quot;activos/icono-letra-otras.svg&quot;);"></i></span><span id="relayFuente" class="relayMandoLetra" data-act="lyrics-source" data-icono="activos/icono-biblioteca.svg" data-id="audio" title="Online: lyrics come from yedits, lrc.red and LRCLIB. Click to pull them from the audio with Whisper instead"><i style="--icono: url(&quot;activos/icono-biblioteca.svg&quot;);"></i></span></div><span data-dc-tpl="43" id="lyricsClock" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.36); white-space: nowrap; flex: 0 0 auto;"><span class="sc-interp">0:59 / 3:58</span></span>
+        <div id="relayMandosLetra"><span id="relayEstadoLetra" class="relayMandoLetra" data-act="lyrics-run" data-estado="quitar" data-id="quitar" data-icono="activos/icono-letra-quitar.svg" title="Remove these lyrics. Then reload to look them up again"><i style="--icono: url(&quot;activos/icono-letra-quitar.svg&quot;);" class="entra"></i></span><span id="relayEditaLetra" class="relayMandoLetra" data-act="edit-lyrics" data-icono="activos/icono-letra-editar.svg" title="Edit the lyrics and their timings"><i style="--icono: url(&quot;activos/icono-letra-editar.svg&quot;);"></i></span><span id="relayTraerLetra" class="relayMandoLetra" data-act="import-lyrics" data-icono="activos/icono-letra-txt.svg" title="Use lyrics from a file (.lrc or .txt). They replace the ones from the library or Whisper"><i style="--icono: url(&quot;activos/icono-letra-txt.svg&quot;);"></i></span><span id="relayPrecisaLetra" class="relayMandoLetra fuera" data-act="lyrics-precise" data-icono="activos/icono-resync.svg" data-estado="" title=""><i style="--icono: url(&quot;activos/icono-resync.svg&quot;);"></i></span><span id="relayVersionLetra" class="relayMandoLetra" data-act="lyrics-versions" data-icono="activos/icono-letra-versiones.svg" title="This version (Original) has its own lyrics. Click to share them with another version"><i style="--icono: url(&quot;activos/icono-letra-versiones.svg&quot;);"></i></span><span id="relayOtraLetra" class="relayMandoLetra" data-act="relyrics" data-icono="activos/icono-letra-otras.svg" title="Pick other lyrics from yedits, lrc.red or LRCLIB, or search by hand"><i style="--icono: url(&quot;activos/icono-letra-otras.svg&quot;);"></i></span><span id="relayFuente" class="relayMandoLetra" data-act="lyrics-source" data-icono="activos/icono-biblioteca.svg" data-id="audio" title="Online: lyrics come from yedits, lrc.red and LRCLIB. Click to pull them from the audio with Whisper instead"><i style="--icono: url(&quot;activos/icono-biblioteca.svg&quot;);"></i></span></div><span data-dc-tpl="43" id="lyricsClock" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.36); white-space: nowrap; flex: 0 0 auto;"><span class="sc-interp">0:59 / 3:58</span></span>
       </div>
 
       
@@ -978,7 +1065,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
     </div>
 
     <div data-dc-tpl="64" style="position: relative; box-sizing: border-box; padding: 24px 20px 0px; border-radius: 24px; background: linear-gradient(150deg, rgba(15, 15, 16, 0.6), rgba(9, 9, 10, 0.42)); backdrop-filter: blur(48px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.13); box-shadow: 0 40px 90px -30px rgba(var(--t5,30,0,6),.95),inset 0 1px 0 rgba(255,255,255,.18); display: flex; flex-direction: column; min-width: 0px; overflow: hidden;">
-      <div data-dc-tpl="65" style="display: flex; align-items: center; gap: 11px; flex: 0 0 auto; min-width: 0px;"><div class="relayNpTabs"><i class="relayCorre"></i><span data-tab="lyrics">Lyrics</span><span data-tab="queue" class="on">Queue</span></div>
+      <div data-dc-tpl="65" style="display: flex; align-items: center; gap: 11px; flex: 0 0 auto; min-width: 0px;"><div class="relayNpTabs"><i class="relayCorre" style="transform: translateX(3px); width: 66px;"></i><span data-tab="lyrics" class="on">Lyrics</span><span data-tab="queue">Queue</span></div>
         <h4 data-dc-tpl="66" style="margin: 0px; font: 600 19px / 1 Inter, sans-serif; letter-spacing: -0.02em; color: rgb(252, 252, 253); white-space: nowrap;">Queue</h4>
         <span data-dc-tpl="67" id="queueSummary" style="padding: 5px 8px; border-radius: 8px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); font: 700 8.5px / 1 Inter, sans-serif; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.5); white-space: nowrap; flex: 0 0 auto;"><span class="sc-interp">5 · 19 MIN</span></span>
         <div data-dc-tpl="68" id="relayAutoAvance" data-act="toggle-autoplay" title="Autoplay: play the next song when this one ends" class="scp0" style="margin-left: auto; margin-right: -5px; flex: 0 0 auto; width: 26px; height: 26px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.1); transition: border-color 140ms ease-out, background 140ms ease-out, box-shadow 140ms ease-out;">
@@ -990,11 +1077,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
       </div>
 
       <div data-dc-tpl="72" style="position: relative; margin-top: 14px; flex: 0 0 auto; height: calc(252px * var(--cf, 1)); margin-left: -20px; margin-right: -20px; overflow: hidden;">
-        <div data-dc-tpl="73" style="position: absolute; left: 50%; top: calc(28px * var(--cf, 1)); width: calc(300px * var(--cf, 1)); height: calc(300px * var(--cf, 1)); margin-left: calc(-150px * var(--cf, 1)); background: radial-gradient(circle, rgba(229, 54, 85, 0.28), transparent 68%); filter: blur(30px); pointer-events: none;"></div>
+        <div data-dc-tpl="73" style="position: absolute; left: 50%; top: calc(28px * var(--cf, 1)); width: calc(300px * var(--cf, 1)); height: calc(300px * var(--cf, 1)); margin-left: calc(-150px * var(--cf, 1)); background: radial-gradient(circle, rgba(247, 182, 13, 0.28), transparent 68%); filter: blur(30px); pointer-events: none;"></div>
         <div data-dc-tpl="74" style="position: absolute; left: 0px; right: 0px; top: calc(34px * var(--cf, 1)); height: calc(124px * var(--cf, 1));">
           
             <div data-dc-tpl="76" data-act="jump-queue" data-id="zh0" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(62px * var(--cf, 1)); height: calc(62px * var(--cf, 1)); margin-left: calc(-177px * var(--cf, 1)); top: calc(46px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-76deg) scale(0.86); z-index: 2; opacity: 0.3; --acento: 246,68,105;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(9px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/inmersiva-0.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(9px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/a7.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -1003,11 +1090,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(41px * var(--cf, 1)); border-radius: calc(9px * var(--cf, 1)); background: url(&quot;arte/inmersiva-0.jpg&quot;) center bottom / 100% 151%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(42px * var(--cf, 1)); border-radius: calc(9px * var(--cf, 1)); background: url(&quot;arte/a7.jpg&quot;) center bottom / 100% 148%; transform-origin: 50% 0px;"></div>
             </div>
           
             <div data-dc-tpl="76" data-act="jump-queue" data-id="zh1" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(78px * var(--cf, 1)); height: calc(78px * var(--cf, 1)); margin-left: calc(-167px * var(--cf, 1)); top: calc(37px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-62deg) scale(0.92); z-index: 3; opacity: 0.48; --acento: 54,249,216;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(10px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/inmersiva-1.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(10px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/a4.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -1016,11 +1103,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(51px * var(--cf, 1)); border-radius: calc(10px * var(--cf, 1)); background: url(&quot;arte/inmersiva-1.jpg&quot;) center bottom / 100% 153%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(51px * var(--cf, 1)); border-radius: calc(10px * var(--cf, 1)); background: url(&quot;arte/a4.jpg&quot;) center bottom / 100% 153%; transform-origin: 50% 0px;"></div>
             </div>
           
-            <div data-dc-tpl="76" data-act="jump-queue" data-id="zh2" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(96px * var(--cf, 1)); height: calc(96px * var(--cf, 1)); margin-left: calc(-131px * var(--cf, 1)); top: calc(25px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-40deg) scale(0.97); z-index: 4; opacity: 0.72; --acento: 142,197,254;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(12px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/inmersiva-2.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
+            <div data-dc-tpl="76" data-act="jump-queue" data-id="zh2" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(96px * var(--cf, 1)); height: calc(96px * var(--cf, 1)); margin-left: calc(-131px * var(--cf, 1)); top: calc(25px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-40deg) scale(0.97); z-index: 4; opacity: 0.72; --acento: 141,197,253;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(12px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/a10.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -1029,11 +1116,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(63px * var(--cf, 1)); border-radius: calc(12px * var(--cf, 1)); background: url(&quot;arte/inmersiva-2.jpg&quot;) center bottom / 100% 152%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(64px * var(--cf, 1)); border-radius: calc(12px * var(--cf, 1)); background: url(&quot;arte/a10.jpg&quot;) center bottom / 100% 150%; transform-origin: 50% 0px;"></div>
             </div>
           
-            <div data-dc-tpl="76" data-act="jump-queue" data-id="current" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(124px * var(--cf, 1)); height: calc(124px * var(--cf, 1)); margin-left: calc(-62px * var(--cf, 1)); top: 0px; transform: perspective(calc(820px * var(--cf, 1))) rotateY(0deg) scale(1); z-index: 5; opacity: 1; --acento: 247,183,12;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(14px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.26); background: url(&quot;arte/inmersiva-3.jpg&quot;) center center / cover; box-shadow: rgba(229, 54, 85, 0.6) 0px 26px 54px -18px, rgba(229, 54, 85, 0.35) 0px 0px 0px 1px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset;">
+            <div data-dc-tpl="76" data-act="jump-queue" data-id="current" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(124px * var(--cf, 1)); height: calc(124px * var(--cf, 1)); margin-left: calc(-62px * var(--cf, 1)); top: 0px; transform: perspective(calc(820px * var(--cf, 1))) rotateY(0deg) scale(1); z-index: 5; opacity: 1; --acento: 247,182,13;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(14px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.26); background: url(&quot;arte/a2.jpg&quot;) center center / cover; box-shadow: rgba(247, 182, 13, 0.6) 0px 26px 54px -18px, rgba(247, 182, 13, 0.35) 0px 0px 0px 1px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -1045,11 +1132,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.36; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(81px * var(--cf, 1)); border-radius: calc(14px * var(--cf, 1)); background: url(&quot;arte/inmersiva-3.jpg&quot;) center bottom / 100% 153%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.36; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(88px * var(--cf, 1)); border-radius: calc(14px * var(--cf, 1)); background: url(&quot;arte/a2.jpg&quot;) center bottom / 100% 141%; transform-origin: 50% 0px;"></div>
             </div>
           
             <div data-dc-tpl="76" data-act="jump-queue" data-id="zq0" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(96px * var(--cf, 1)); height: calc(96px * var(--cf, 1)); margin-left: calc(35px * var(--cf, 1)); top: calc(25px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(40deg) scale(0.97); z-index: 4; opacity: 0.72; --acento: 233,9,119;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(12px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/inmersiva-4.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(12px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/a5.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -1058,11 +1145,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(63px * var(--cf, 1)); border-radius: calc(12px * var(--cf, 1)); background: url(&quot;arte/inmersiva-4.jpg&quot;) center bottom / 100% 152%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(63px * var(--cf, 1)); border-radius: calc(12px * var(--cf, 1)); background: url(&quot;arte/a5.jpg&quot;) center bottom / 100% 152%; transform-origin: 50% 0px;"></div>
             </div>
           
-            <div data-dc-tpl="76" data-act="jump-queue" data-id="zq1" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(78px * var(--cf, 1)); height: calc(78px * var(--cf, 1)); margin-left: calc(89px * var(--cf, 1)); top: calc(37px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(62deg) scale(0.92); z-index: 3; opacity: 0.48; --acento: 45,201,110;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(10px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/inmersiva-5.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
+            <div data-dc-tpl="76" data-act="jump-queue" data-id="zq1" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(78px * var(--cf, 1)); height: calc(78px * var(--cf, 1)); margin-left: calc(89px * var(--cf, 1)); top: calc(37px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(62deg) scale(0.92); z-index: 3; opacity: 0.48; --acento: 46,201,110;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(10px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/a9.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -1071,11 +1158,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(51px * var(--cf, 1)); border-radius: calc(10px * var(--cf, 1)); background: url(&quot;arte/inmersiva-5.jpg&quot;) center bottom / 100% 153%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(51px * var(--cf, 1)); border-radius: calc(10px * var(--cf, 1)); background: url(&quot;arte/a9.jpg&quot;) center bottom / 100% 153%; transform-origin: 50% 0px;"></div>
             </div>
           
             <div data-dc-tpl="76" data-act="jump-queue" data-id="zq2" style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(62px * var(--cf, 1)); height: calc(62px * var(--cf, 1)); margin-left: calc(115px * var(--cf, 1)); top: calc(46px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(76deg) scale(0.86); z-index: 2; opacity: 0.3; --acento: 249,151,153;">
-              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(9px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/inmersiva-6.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
+              <div data-dc-tpl="77" style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(9px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/a11.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
                 <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
                 <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
                 
@@ -1084,11 +1171,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
               </div>
               
-              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(41px * var(--cf, 1)); border-radius: calc(9px * var(--cf, 1)); background: url(&quot;arte/inmersiva-6.jpg&quot;) center bottom / 100% 151%; transform-origin: 50% 0px;"></div>
+              <div data-dc-tpl="86" style="position: absolute; left: 0px; right: 0px; top: 100%; transform: rotateX(-50deg) translateY(100%) scaleY(-1); opacity: 0.5; mask-image: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.24) 40%, transparent 84%); pointer-events: none; height: calc(41px * var(--cf, 1)); border-radius: calc(9px * var(--cf, 1)); background: url(&quot;arte/a11.jpg&quot;) center bottom / 100% 151%; transform-origin: 50% 0px;"></div>
             </div>
           
         </div>
-        <div data-dc-tpl="87" style="position: absolute; left: 50%; top: 162px; width: 200px; margin-left: -100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(229, 54, 85, 0.5), transparent); pointer-events: none;"></div>
+        <div data-dc-tpl="87" style="position: absolute; left: 50%; top: 162px; width: 200px; margin-left: -100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(247, 182, 13, 0.5), transparent); pointer-events: none;"></div>
         <div data-dc-tpl="88" style="position: absolute; left: 0px; right: 0px; bottom: 12px; display: flex; flex-direction: column; align-items: center; gap: 9px;">
           <div data-dc-tpl="89" style="display: flex; align-items: center; gap: 9px;">
             <div data-dc-tpl="90" style="display: flex; align-items: flex-end; gap: 2px; height: 11px;">
@@ -1113,59 +1200,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
             
           </div>
         </div>
-      <div id="relayEspejo" aria-hidden="true" style="mask-image: url(&quot;arte/inmersiva-7.png&quot;);"><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(62px * var(--cf, 1)); height: calc(62px * var(--cf, 1)); margin-left: calc(-177px * var(--cf, 1)); top: calc(46px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-76deg) scale(0.86) translateY(100%) scaleY(-1); z-index: 2; opacity: 0.3; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(9px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
-                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
-                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
-                
-                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.5);"></div>
-                
-                
-              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(78px * var(--cf, 1)); height: calc(78px * var(--cf, 1)); margin-left: calc(-167px * var(--cf, 1)); top: calc(37px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-62deg) scale(0.92) translateY(100%) scaleY(-1); z-index: 3; opacity: 0.48; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(10px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
-                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
-                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
-                
-                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.36);"></div>
-                
-                
-              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(96px * var(--cf, 1)); height: calc(96px * var(--cf, 1)); margin-left: calc(-131px * var(--cf, 1)); top: calc(25px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(-40deg) scale(0.97) translateY(100%) scaleY(-1); z-index: 4; opacity: 0.72; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(12px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
-                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
-                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
-                
-                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.2);"></div>
-                
-                
-              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(124px * var(--cf, 1)); height: calc(124px * var(--cf, 1)); margin-left: calc(-62px * var(--cf, 1)); top: 0px; transform: perspective(calc(820px * var(--cf, 1))) rotateY(0deg) scale(1) translateY(100%) scaleY(-1); z-index: 5; opacity: 1; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(14px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.26); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(229, 54, 85, 0.6) 0px 26px 54px -18px, rgba(229, 54, 85, 0.35) 0px 0px 0px 1px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset;">
-                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
-                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
-                
-                
-                  <div data-dc-tpl="83" style="position: absolute; left: 0px; right: 0px; bottom: 0px; padding: 26px 12px 10px; background: linear-gradient(transparent, rgba(5, 5, 6, 0.72)); text-align: center; pointer-events: none;">
-                    <div data-dc-tpl="84" style="font: 700 13px / 1.2 Inter, sans-serif; letter-spacing: -0.01em; color: rgb(255, 255, 255); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">Glass Hours</span></div>
-                    <div data-dc-tpl="85" style="margin-top: 3px; font: 500 10.5px / 1.2 Inter, sans-serif; color: rgba(var(--t13,255,211,214),.8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">Odessa Wynn</span></div>
-                  </div>
-                
-              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(96px * var(--cf, 1)); height: calc(96px * var(--cf, 1)); margin-left: calc(35px * var(--cf, 1)); top: calc(25px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(40deg) scale(0.97) translateY(100%) scaleY(-1); z-index: 4; opacity: 0.72; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(12px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.16); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 22px 42px -16px;">
-                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
-                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
-                
-                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.2);"></div>
-                
-                
-              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(78px * var(--cf, 1)); height: calc(78px * var(--cf, 1)); margin-left: calc(89px * var(--cf, 1)); top: calc(37px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(62deg) scale(0.92) translateY(100%) scaleY(-1); z-index: 3; opacity: 0.48; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(10px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.12); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 20px 39px -16px;">
-                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
-                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
-                
-                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.36);"></div>
-                
-                
-              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div><div style="position: absolute; left: 50%; transform-style: preserve-3d; cursor: pointer; width: calc(62px * var(--cf, 1)); height: calc(62px * var(--cf, 1)); margin-left: calc(115px * var(--cf, 1)); top: calc(46px * var(--cf, 1)); transform: perspective(calc(820px * var(--cf, 1))) rotateY(76deg) scale(0.86) translateY(100%) scaleY(-1); z-index: 2; opacity: 0.3; --acento: 229,54,85;"><div style="position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(9px * var(--cf, 1)); border: 1px solid rgba(255, 255, 255, 0.09); background: url(&quot;arte/inmersiva-3.jpg.jpg&quot;) center center / cover; box-shadow: rgba(5, 5, 6, 0.9) 0px 18px 36px -16px;">
-                <div data-dc-tpl="78" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px); pointer-events: none;"></div>
-                <div data-dc-tpl="79" style="position: absolute; inset: 0px; background: linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 42%); pointer-events: none;"></div>
-                
-                  <div data-dc-tpl="81" style="position: absolute; inset: 0px; pointer-events: none; background: rgba(5, 5, 6, 0.5);"></div>
-                
-                
-              </div><i class="relayPunto p0"></i><i class="relayPunto p1"></i><i class="relayPunto p2"></i><i class="relayPunto p3"></i></div></div></div>
+      <div id="relayEspejo" aria-hidden="true" style="mask-image: url(&quot;arte/a30.png&quot;);"></div></div>
 
       <div data-dc-tpl="99" style="margin-top: 14px; display: flex; align-items: center; gap: 11px; flex: 0 0 auto;">
         <span data-dc-tpl="100" style="font: 700 8.5px / 1 Inter, sans-serif; letter-spacing: 0.16em; color: rgba(238, 238, 244, 0.34); white-space: nowrap;">NEXT UP</span>
@@ -1175,11 +1210,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
 
       
       <div data-dc-tpl="103" id="queueList" style="position: relative; margin-top: 12px; margin-left: -20px; margin-right: -20px; padding: 0px 20px; flex: 1 1 0%; min-height: 0px; overflow: hidden; mask-image: linear-gradient(transparent, rgb(0, 0, 0) 34px, rgb(0, 0, 0) calc(100% - 92px), transparent);" data-tope="" data-fondo="">
-        <div data-dc-tpl="104" style="display: flex; flex-direction: column; gap: 4px;" class="relayVelada" data-vigilada="1" data-velo-fin="">
+        <div data-dc-tpl="104" class="relayVelada" style="display: flex; flex-direction: column; gap: 4px;" data-velo-tope="" data-vigilada="1" data-velo-fin="">
           
             <div data-dc-tpl="106" data-act="jump-queue" data-id="zq0" data-pos="100" data-online="" data-depaso="" data-mano="" data-sugerida="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
               <span data-dc-tpl="107" style="font: 500 10.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">1</span></span>
-              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-4.jpg&quot;) center center / cover;">
+              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/a5.jpg&quot;) center center / cover;">
                 <div data-dc-tpl="109" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 8px); pointer-events: none;"></div>
               </div>
               <div data-dc-tpl="110" style="min-width: 0px;">
@@ -1196,7 +1231,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="106" data-act="jump-queue" data-id="zq1" data-pos="101" data-online="" data-depaso="" data-mano="" data-sugerida="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
               <span data-dc-tpl="107" style="font: 500 10.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">2</span></span>
-              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-5.jpg&quot;) center center / cover;">
+              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/a9.jpg&quot;) center center / cover;">
                 <div data-dc-tpl="109" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 8px); pointer-events: none;"></div>
               </div>
               <div data-dc-tpl="110" style="min-width: 0px;">
@@ -1213,7 +1248,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="106" data-act="jump-queue" data-id="zq2" data-pos="102" data-online="" data-depaso="" data-mano="" data-sugerida="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
               <span data-dc-tpl="107" style="font: 500 10.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">3</span></span>
-              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-6.jpg&quot;) center center / cover;">
+              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/a11.jpg&quot;) center center / cover;">
                 <div data-dc-tpl="109" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 8px); pointer-events: none;"></div>
               </div>
               <div data-dc-tpl="110" style="min-width: 0px;">
@@ -1230,7 +1265,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="106" data-act="jump-queue" data-id="zq3" data-pos="103" data-online="" data-depaso="" data-mano="" data-sugerida="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
               <span data-dc-tpl="107" style="font: 500 10.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">4</span></span>
-              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-8.jpg&quot;) center center / cover;">
+              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/a0.jpg&quot;) center center / cover;">
                 <div data-dc-tpl="109" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 8px); pointer-events: none;"></div>
               </div>
               <div data-dc-tpl="110" style="min-width: 0px;">
@@ -1247,7 +1282,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="106" data-act="jump-queue" data-id="zq4" data-pos="104" data-online="" data-depaso="" data-mano="" data-sugerida="" style="position: relative; display: grid; grid-template-columns: 20px 34px minmax(0px, 1fr) 44px 14px; gap: 11px; align-items: center; height: 44px; min-height: 44px; padding: 0px 11px; box-sizing: border-box; border-radius: 12px; overflow: hidden; flex: 0 0 auto; cursor: pointer; background: linear-gradient(100deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.05);">
               <span data-dc-tpl="107" style="font: 500 10.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.34); white-space: nowrap;"><span class="sc-interp">5</span></span>
-              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-9.jpg&quot;) center center / cover;">
+              <div data-dc-tpl="108" style="position: relative; width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.14); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/a13.jpg&quot;) center center / cover;">
                 <div data-dc-tpl="109" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 8px); pointer-events: none;"></div>
               </div>
               <div data-dc-tpl="110" style="min-width: 0px;">
@@ -1264,7 +1299,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
         </div>
         <div data-dc-tpl="128" style="position: absolute; right: 22px; top: 40px; bottom: 96px; width: 3px; border-radius: 2px; background: rgba(255, 255, 255, 0.06); pointer-events: none; opacity: 0;">
-          <div data-dc-tpl="129" id="queueScrollThumb" style="position: absolute; left: 0px; right: 0px; top: 0%; height: 25.06%; border-radius: 2px; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgb(var(--t1,196,18,32)));"></div>
+          <div data-dc-tpl="129" id="queueScrollThumb" style="position: absolute; left: 0px; right: 0px; top: 8%; height: 34%; border-radius: 2px; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgb(var(--t1,196,18,32)));"></div>
         </div>
       </div>
     </div>
@@ -1272,18 +1307,18 @@ html,body{margin:0;overflow:hidden;background:transparent}
 
 
 
-<div class="relayVelo suelto fuera" data-forma="1002,589,518,121,0,0" style="left: 1002px; top: 589px; width: 518px; height: 121px;" hidden=""><i></i><i></i><i></i><i></i><i></i></div><div class="relayVelo arriba suelto fuera" data-forma="1002,114,518,121,103" style="left: 1002px; top: 114px; width: 518px; height: 224px; --extra: 103px;" hidden=""><i></i><i></i><i></i><i></i><i></i></div><div id="relayNpHalo" style="left: 281.781px; top: 293.422px; width: 429.719px; height: 429.719px;"><div class="tanda" style="--npTapa: url(&quot;arte/inmersiva-3.jpg.jpg&quot;);"><div class="uno" style="animation-delay: -16004.5ms;"></div><div class="dos" style="animation-delay: -16004.5ms;"></div></div></div><span aria-hidden="true" style="position: absolute; left: -9999px; top: 0px; white-space: pre; visibility: hidden; pointer-events: none; font: 400 33px / 1.3 Inter, system-ui, sans-serif; letter-spacing: normal;"></span><div id="relayZen" data-puesta="url(&quot;arte/inmersiva-3.jpg.jpg&quot;)"><div class="zFondos apagado"><div class="zFondo"></div><div class="zFondo zGira"></div></div><div class="zFondos"><div class="zFondo" style="background-image: url(&quot;arte/inmersiva-3.jpg.jpg&quot;);"></div><div class="zFondo zGira" style="background-image: url(&quot;arte/inmersiva-3.jpg.jpg&quot;);"></div></div><div class="zVelo" style="--zLatido: 0.032;"></div><div class="zEscena"><div class="zIzq"><div class="zTapa"><div data-dc-tpl="10" id="artworkWrap" style="position: relative; width: 100%; max-width: min(100%, 58vh); margin-inline: auto; flex: 0 0 auto;">
+<div class="relayVelo suelto fuera" data-forma="946,588,451,91,22,0" style="left: 946px; top: 588px; width: 451px; height: 91px; --radio: 22px;"><i></i><i></i><i></i><i></i><i></i></div><div class="relayVelo arriba suelto fuera" data-forma="946,297,451,91,78" style="left: 946px; top: 297px; width: 451px; height: 169px; --extra: 78px;"><i></i><i></i><i></i><i></i><i></i></div><div id="relayNpHalo" style="left: 107.016px; top: 94.8125px; width: 340.188px; height: 340.188px;"><div class="tanda" style="--npTapa: url(&quot;arte/a2.jpg&quot;);"><div class="uno" style="animation-delay: -9914.4ms;"></div><div class="dos" style="animation-delay: -1914.4ms;"></div></div></div><span aria-hidden="true" style="position: absolute; left: -9999px; top: 0px; white-space: pre; visibility: hidden; pointer-events: none; font: 600 33px / 1.3 Inter, sans-serif; letter-spacing: -0.46656px;">and I let the evening stay</span><div id="relayZen" data-puesta="url(&quot;arte/a2.jpg&quot;)"><div class="zFondos apagado"><div class="zFondo"></div><div class="zFondo zGira"></div></div><div class="zFondos"><div class="zFondo" style="background-image: url(&quot;arte/a2.jpg&quot;);"></div><div class="zFondo zGira" style="background-image: url(&quot;arte/a2.jpg&quot;);"></div></div><div class="zVelo" style="--zLatido: 0.322;"></div><div class="zEscena"><div class="zIzq"><div class="zTapa"><div data-dc-tpl="10" id="artworkWrap" style="position: relative; width: 100%; max-width: min(100%, 58vh); margin-inline: auto; flex: 0 0 auto;">
         <div data-dc-tpl="11" style="padding-top: 100%;"></div>
-        <div data-dc-tpl="12" id="artworkFrame" style="position: absolute; inset: 0px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: rgba(229, 54, 85, 0.55) 0px 40px 80px -26px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset; overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/inmersiva-3.jpg&quot;) center center / cover;">
+        <div data-dc-tpl="12" id="artworkFrame" style="position: absolute; inset: 0px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: rgba(247, 182, 13, 0.55) 0px 40px 80px -26px, rgba(255, 255, 255, 0.3) 0px 1px 0px inset; overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/a2.jpg&quot;) center center / cover;">
           <div data-dc-tpl="13" style="position: absolute; inset: 0px; background: repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 3px, transparent 3px, transparent 13px); pointer-events: none;"></div>
           
           <div data-dc-tpl="18" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 96px; background: linear-gradient(transparent, rgba(4, 4, 5, 0.35)); pointer-events: none;"></div>
         </div>
-      </div></div><div class="zTextos"><h3 data-dc-tpl="32" id="npTitle" style="margin: -3px 0px; font: 800 40px / 1 Inter, sans-serif; padding: 3px 0px; letter-spacing: -0.035em; color: rgb(255, 255, 255); text-shadow: rgba(4, 4, 5, 0.6) 0px 6px 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; --paseoSalto: 1823px; --paseoArriba: 3px;" class=""><span class="sc-interp">Glass Hours</span></h3><div data-dc-tpl="33" id="npArtist" style="margin: -3px 0px; padding: 3px 0px; font: 500 15px / 1 Inter, sans-serif; color: rgba(247, 247, 248, 0.78); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="relayPartido"><span class="sc-interp">Odessa Wynn</span><span class="relayArtistas" data-texto="Odessa Wynn"><span data-nombre="Odessa Wynn">Odessa Wynn</span></span></div><span data-dc-tpl="38" id="npAlbum" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; font: 500 12px / 1.3 Inter, sans-serif; color: rgba(238, 238, 244, 0.72);"><span class="sc-interp">Glass Hours</span></span></div><div class="zBarra" style="--zIda: 0.00210;"><div class="zVia"><div class="zIda"></div><div class="zTiro"></div></div><div class="zRelojes"><span>0:00</span><span>-3:57</span></div></div><div class="zMandos"><div class="zMando zAzar zSuelto" title="Shuffle"><svg class="zAzarNormal" aria-hidden="true" viewBox="0 0 512 512"><g transform="translate(0,512) scale(0.1,-0.1)" fill="currentColor" stroke="none"><path d="M4013 4419 c-48 -24 -99 -77 -119 -125 -20 -48 -17 -141 5 -189 10 -22 51 -71 90 -110 39 -38 71 -72 71 -76 0 -3 -37 -9 -82 -13 -315 -26 -667 -177 -926 -396 -41 -34 -365 -376 -721 -759 -356 -383 -672 -719 -702 -747 -157 -147 -355 -250 -581 -300 -53 -12 -149 -19 -353 -23 -260 -6 -283 -8 -320 -28 -86 -46 -129 -117 -129 -213 0 -95 43 -167 129 -213 38 -21 52 -22 310 -22 174 0 300 5 355 13 345 54 642 194 897 424 51 46 365 378 698 738 333 360 638 685 677 723 183 173 452 301 678 323 l65 7 -68 -71 c-80 -83 -97 -120 -97 -204 0 -116 74 -205 191 -230 45 -9 64 -8 114 7 58 17 67 24 348 303 316 315 337 342 337 442 0 102 -20 129 -341 442 -163 159 -307 291 -327 300 -53 25 -146 23 -199 -3z"></path><path d="M420 3911 c-112 -37 -174 -119 -174 -231 0 -96 43 -167 129 -213 37 -20 61 -22 320 -28 342 -9 433 -26 630 -120 168 -79 269 -161 465 -373 88 -95 149 -154 176 -167 165 -80 344 31 344 213 0 42 -6 75 -20 102 -23 48 -272 317 -375 406 -239 207 -507 334 -840 397 -90 17 -612 28 -655 14z"></path><path d="M2816 2335 c-133 -47 -198 -202 -138 -327 33 -67 363 -397 482 -481 228 -161 545 -282 795 -303 39 -3 76 -8 84 -10 9 -3 -10 -30 -58 -78 -82 -85 -104 -129 -104 -206 0 -92 47 -171 127 -213 63 -33 166 -31 226 5 25 15 170 152 322 305 294 295 317 326 318 413 0 103 0 102 -323 427 -335 337 -337 339 -451 331 -53 -3 -74 -10 -108 -34 -69 -48 -101 -103 -106 -178 -6 -94 10 -129 96 -218 l75 -78 -36 0 c-96 0 -269 51 -412 121 -145 71 -250 155 -429 343 -143 150 -163 167 -209 181 -62 18 -100 18 -151 0z"></path></g></svg><svg class="zAzarListo" aria-hidden="true" viewBox="0 0 512 512" fill="currentColor"><path d="m401.3 70.1c-4.8 2.4-9.9 7.7-11.9 12.5-2 4.8-1.7 14.1 0.5 18.9 1 2.2 5.1 7.1 9 11 3.9 3.8 7.1 7.2 7.1 7.6 0 0.3-3.7 0.9-8.2 1.3-31.5 2.6-66.7 17.7-92.6 39.6-4.1 3.4-36.5 37.6-72.1 75.9-35.6 38.3-67.2 71.9-70.2 74.7-15.7 14.7-35.5 25-58.1 30-5.3 1.2-14.9 1.9-35.3 2.3-26 0.6-28.3 0.8-32 2.8q-12.9 6.9-12.9 21.3c0 9.5 4.3 16.7 12.9 21.3 3.8 2.1 5.2 2.2 31 2.2 17.4 0 30-0.5 35.5-1.3 34.5-5.4 64.2-19.4 89.7-42.4 5.1-4.6 36.5-37.8 69.8-73.8 33.3-36 63.8-68.5 67.7-72.3 18.3-17.3 45.2-30.1 67.8-32.3l6.5-0.7-6.8 7.1c-8 8.3-9.7 12-9.7 20.4 0 11.6 7.4 20.5 19.1 23 4.5 0.9 6.4 0.8 11.4-0.7 5.8-1.7 6.7-2.4 34.8-30.3 31.6-31.5 33.7-34.2 33.7-44.2 0-10.2-2-12.9-34.1-44.2-16.3-15.9-30.7-29.1-32.7-30-5.3-2.5-14.6-2.3-19.9 0.3z"></path><path d="m281.6 278.5c-13.3 4.7-19.8 20.2-13.8 32.7 3.3 6.7 36.3 39.7 48.2 48.1 22.8 16.1 54.5 28.2 79.5 30.3 3.9 0.3 7.6 0.8 8.4 1 0.9 0.3-1 3-5.8 7.8-8.2 8.5-10.4 12.9-10.4 20.6 0 9.2 4.7 17.1 12.7 21.3 6.3 3.3 16.6 3.1 22.6-0.5 2.5-1.5 17-15.2 32.2-30.5 29.4-29.5 31.7-32.6 31.8-41.3 0-10.3 0-10.2-32.3-42.7-33.5-33.7-33.7-33.9-45.1-33.1-5.3 0.3-7.4 1-10.8 3.4-6.9 4.8-10.1 10.3-10.6 17.8-0.6 9.4 1 12.9 9.6 21.8l7.5 7.8h-3.6c-9.6 0-26.9-5.1-41.2-12.1-14.5-7.1-25-15.5-42.9-34.3-14.3-15-16.3-16.7-20.9-18.1-6.2-1.8-10-1.8-15.1 0z"></path><path d="M142 18C152.5 97 165 109.5 256 141.5C165 173.5 152.5 186 142 265C131.5 186 119 173.5 28 141.5C119 109.5 131.5 97 142 18Z"></path></svg></div><div class="zMando zPrev" title="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.5v13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"></path><path d="M19 6.2v11.6a1 1 0 0 1-1.54.84L9 13.2a1 1 0 0 1 0-1.68l8.46-5.44A1 1 0 0 1 19 6.2z" fill="currentColor"></path></svg></div><div class="zMando zPlay" title="Play or pause"><svg class="zIrPlay" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.3v13.4a1 1 0 0 0 1.53.85l10.6-6.7a1 1 0 0 0 0-1.7L9.03 4.45A1 1 0 0 0 7.5 5.3z" fill="currentColor"></path></svg><svg class="zIrPausa" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.6" y="5" width="4.1" height="14" rx="1.5" fill="currentColor"></rect><rect x="13.3" y="5" width="4.1" height="14" rx="1.5" fill="currentColor"></rect></svg></div><div class="zMando zNext" title="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 5.5v13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"></path><path d="M5 6.2v11.6a1 1 0 0 0 1.54.84L15 13.2a1 1 0 0 0 0-1.68L6.54 6.08A1 1 0 0 0 5 6.2z" fill="currentColor"></path></svg></div><div class="zMando zBucle zSuelto" title="Repeat"><i class="zDibujoBucle"></i></div></div></div><div class="zLetra"><div data-dc-tpl="44" id="lyricsScroll" style="margin-top: 28px; display: flex; flex-direction: column; gap: 24px; flex: 1 1 0%; min-height: 0px; align-items: center; text-align: center; overflow: hidden auto; --rellenoLetra: 369px; --letraVis: 777px;" data-vis="777">
+      </div></div><div class="zTextos"><h3 data-dc-tpl="32" id="npTitle" style="margin: -3px 0px; font: 800 40px / 1 Inter, sans-serif; padding: 3px 0px; letter-spacing: -0.035em; color: rgb(255, 255, 255); text-shadow: rgba(4, 4, 5, 0.6) 0px 6px 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">Glass Hours</span></h3><div data-dc-tpl="33" id="npArtist" style="margin: -3px 0px; padding: 3px 0px; font: 500 15px / 1 Inter, sans-serif; color: rgba(247, 247, 248, 0.78); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="relayPartido"><span class="sc-interp">Odessa Wynn</span><span class="relayArtistas" data-texto="Odessa Wynn"><span data-nombre="Odessa Wynn">Odessa Wynn</span></span></div><span data-dc-tpl="38" id="npAlbum" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0px; font: 500 12px / 1.3 Inter, sans-serif; color: rgba(238, 238, 244, 0.72);"><span class="sc-interp">Glass Hours</span></span></div><div class="zBarra" style="--zIda: 0.00210;"><div class="zVia"><div class="zIda"></div><div class="zTiro"></div></div><div class="zRelojes"><span>0:00</span><span>-3:57</span></div></div><div class="zMandos"><div class="zMando zAzar zSuelto" title="Shuffle"><svg class="zAzarNormal" aria-hidden="true" viewBox="0 0 512 512"><g transform="translate(0,512) scale(0.1,-0.1)" fill="currentColor" stroke="none"><path d="M4013 4419 c-48 -24 -99 -77 -119 -125 -20 -48 -17 -141 5 -189 10 -22 51 -71 90 -110 39 -38 71 -72 71 -76 0 -3 -37 -9 -82 -13 -315 -26 -667 -177 -926 -396 -41 -34 -365 -376 -721 -759 -356 -383 -672 -719 -702 -747 -157 -147 -355 -250 -581 -300 -53 -12 -149 -19 -353 -23 -260 -6 -283 -8 -320 -28 -86 -46 -129 -117 -129 -213 0 -95 43 -167 129 -213 38 -21 52 -22 310 -22 174 0 300 5 355 13 345 54 642 194 897 424 51 46 365 378 698 738 333 360 638 685 677 723 183 173 452 301 678 323 l65 7 -68 -71 c-80 -83 -97 -120 -97 -204 0 -116 74 -205 191 -230 45 -9 64 -8 114 7 58 17 67 24 348 303 316 315 337 342 337 442 0 102 -20 129 -341 442 -163 159 -307 291 -327 300 -53 25 -146 23 -199 -3z"></path><path d="M420 3911 c-112 -37 -174 -119 -174 -231 0 -96 43 -167 129 -213 37 -20 61 -22 320 -28 342 -9 433 -26 630 -120 168 -79 269 -161 465 -373 88 -95 149 -154 176 -167 165 -80 344 31 344 213 0 42 -6 75 -20 102 -23 48 -272 317 -375 406 -239 207 -507 334 -840 397 -90 17 -612 28 -655 14z"></path><path d="M2816 2335 c-133 -47 -198 -202 -138 -327 33 -67 363 -397 482 -481 228 -161 545 -282 795 -303 39 -3 76 -8 84 -10 9 -3 -10 -30 -58 -78 -82 -85 -104 -129 -104 -206 0 -92 47 -171 127 -213 63 -33 166 -31 226 5 25 15 170 152 322 305 294 295 317 326 318 413 0 103 0 102 -323 427 -335 337 -337 339 -451 331 -53 -3 -74 -10 -108 -34 -69 -48 -101 -103 -106 -178 -6 -94 10 -129 96 -218 l75 -78 -36 0 c-96 0 -269 51 -412 121 -145 71 -250 155 -429 343 -143 150 -163 167 -209 181 -62 18 -100 18 -151 0z"></path></g></svg><svg class="zAzarListo" aria-hidden="true" viewBox="0 0 512 512" fill="currentColor"><path d="m401.3 70.1c-4.8 2.4-9.9 7.7-11.9 12.5-2 4.8-1.7 14.1 0.5 18.9 1 2.2 5.1 7.1 9 11 3.9 3.8 7.1 7.2 7.1 7.6 0 0.3-3.7 0.9-8.2 1.3-31.5 2.6-66.7 17.7-92.6 39.6-4.1 3.4-36.5 37.6-72.1 75.9-35.6 38.3-67.2 71.9-70.2 74.7-15.7 14.7-35.5 25-58.1 30-5.3 1.2-14.9 1.9-35.3 2.3-26 0.6-28.3 0.8-32 2.8q-12.9 6.9-12.9 21.3c0 9.5 4.3 16.7 12.9 21.3 3.8 2.1 5.2 2.2 31 2.2 17.4 0 30-0.5 35.5-1.3 34.5-5.4 64.2-19.4 89.7-42.4 5.1-4.6 36.5-37.8 69.8-73.8 33.3-36 63.8-68.5 67.7-72.3 18.3-17.3 45.2-30.1 67.8-32.3l6.5-0.7-6.8 7.1c-8 8.3-9.7 12-9.7 20.4 0 11.6 7.4 20.5 19.1 23 4.5 0.9 6.4 0.8 11.4-0.7 5.8-1.7 6.7-2.4 34.8-30.3 31.6-31.5 33.7-34.2 33.7-44.2 0-10.2-2-12.9-34.1-44.2-16.3-15.9-30.7-29.1-32.7-30-5.3-2.5-14.6-2.3-19.9 0.3z"></path><path d="m281.6 278.5c-13.3 4.7-19.8 20.2-13.8 32.7 3.3 6.7 36.3 39.7 48.2 48.1 22.8 16.1 54.5 28.2 79.5 30.3 3.9 0.3 7.6 0.8 8.4 1 0.9 0.3-1 3-5.8 7.8-8.2 8.5-10.4 12.9-10.4 20.6 0 9.2 4.7 17.1 12.7 21.3 6.3 3.3 16.6 3.1 22.6-0.5 2.5-1.5 17-15.2 32.2-30.5 29.4-29.5 31.7-32.6 31.8-41.3 0-10.3 0-10.2-32.3-42.7-33.5-33.7-33.7-33.9-45.1-33.1-5.3 0.3-7.4 1-10.8 3.4-6.9 4.8-10.1 10.3-10.6 17.8-0.6 9.4 1 12.9 9.6 21.8l7.5 7.8h-3.6c-9.6 0-26.9-5.1-41.2-12.1-14.5-7.1-25-15.5-42.9-34.3-14.3-15-16.3-16.7-20.9-18.1-6.2-1.8-10-1.8-15.1 0z"></path><path d="M142 18C152.5 97 165 109.5 256 141.5C165 173.5 152.5 186 142 265C131.5 186 119 173.5 28 141.5C119 109.5 131.5 97 142 18Z"></path></svg></div><div class="zMando zPrev" title="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.5v13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"></path><path d="M19 6.2v11.6a1 1 0 0 1-1.54.84L9 13.2a1 1 0 0 1 0-1.68l8.46-5.44A1 1 0 0 1 19 6.2z" fill="currentColor"></path></svg></div><div class="zMando zPlay" title="Play or pause"><svg class="zIrPlay" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.3v13.4a1 1 0 0 0 1.53.85l10.6-6.7a1 1 0 0 0 0-1.7L9.03 4.45A1 1 0 0 0 7.5 5.3z" fill="currentColor"></path></svg><svg class="zIrPausa" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.6" y="5" width="4.1" height="14" rx="1.5" fill="currentColor"></rect><rect x="13.3" y="5" width="4.1" height="14" rx="1.5" fill="currentColor"></rect></svg></div><div class="zMando zNext" title="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 5.5v13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"></path><path d="M5 6.2v11.6a1 1 0 0 0 1.54.84L15 13.2a1 1 0 0 0 0-1.68L6.54 6.08A1 1 0 0 0 5 6.2z" fill="currentColor"></path></svg></div><div class="zMando zBucle zSuelto" title="Repeat"><i class="zDibujoBucle"></i></div></div></div><div class="zLetra"><div data-dc-tpl="44" id="lyricsScroll" style="margin-top: 28px; display: flex; flex-direction: column; gap: 24px; flex: 1 1 0%; min-height: 0px; align-items: center; text-align: center; overflow: hidden auto; --rellenoLetra: 345px; --letraVis: 64px;" data-vis="64">
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly0" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.6px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly0" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.6px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(255,255,255,0.52);"><span class="sc-interp" style="--tinta: rgba(255,255,255,0.52);">You said you'd call me when you landed</span></span>
               
@@ -1293,7 +1328,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly1" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.2000000000000002px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly1" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.2000000000000002px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(255,255,255,0.57);"><span class="sc-interp" style="--tinta: rgba(255,255,255,0.57);">It's been three days and I'm still up</span></span>
               
@@ -1303,7 +1338,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly2" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.8px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly2" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.8px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(255,255,255,0.63);"><span class="sc-interp" style="--tinta: rgba(255,255,255,0.63);">There's a light on in the kitchen</span></span>
               
@@ -1313,7 +1348,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly3" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.4px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly3" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.4px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(255,255,255,0.68);"><span class="sc-interp" style="--tinta: rgba(255,255,255,0.68);">and a coffee I never drank</span></span>
               
@@ -1323,9 +1358,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly4" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0px;" class="relayVerso">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly4" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0px; --cuerpo: 33px;" class="relayVerso">
               
-                <span data-dc-tpl="57" class="relayCanta" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgb(255,255,255);"><span class="sc-interp" style="--tinta: rgb(255,255,255);">So I keep the hours under glass</span><span class="relayCapa" data-clave=""><span>So</span> <span>I</span> <span>keep</span> <span>the</span> <span>hours</span> <span>under</span> <span>glass</span></span></span>
+                <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgb(255,255,255);" class="relayCanta"><span class="sc-interp" style="--tinta: rgb(255,255,255);">So I keep the hours under glass</span><span class="relayCapa" data-clave="So I keep the hours under glass|0000000|378|29.40-29.62,29.62-29.73,29.73-30.16,30.16-30.49,30.49-31.03,31.03-31.58,31.58-32.12"><span>So</span> <span>I</span> <span>keep</span> <span>the</span> <span>hours</span> <span>under</span> <span>glass</span></span></span>
               
               
             </div>
@@ -1333,7 +1368,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly5" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.4px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly5" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.4px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.34);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.34);">where nothing gets away</span></span>
               
@@ -1343,7 +1378,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly6" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.8px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly6" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 0.8px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.29);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.29);">I keep the hours under glass</span></span>
               
@@ -1353,7 +1388,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly7" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.2000000000000002px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly7" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.2000000000000002px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.23);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.23);">and I watch them turn to grey</span></span>
               
@@ -1363,7 +1398,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly8" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.6px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly8" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 1.6px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.18);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.18);">Every song we saved is still in line</span></span>
               
@@ -1373,7 +1408,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly9" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 2px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly9" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 2px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.14);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.14);">every light is green and every road is mine</span></span>
               
@@ -1383,7 +1418,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly10" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 2.4000000000000004px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly10" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 2.4000000000000004px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.14);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.14);">So I keep the hours under glass</span></span>
               
@@ -1393,7 +1428,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
         
           
           
-            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly11" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 2.5px;">
+            <div data-dc-tpl="55" data-act="seek-lyric" data-id="ly11" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; cursor: pointer; opacity: 1; --nubla: 2.5px; --cuerpo: 33px;">
               
                 <span data-dc-tpl="57" style="font: 500 15px / 1.4 Inter, sans-serif; color: rgba(247, 247, 248, 0.9); text-wrap: pretty; --tinta: rgba(238,238,244,0.14);"><span class="sc-interp" style="--tinta: rgba(238,238,244,0.14);">and I let the evening stay</span></span>
               
@@ -1401,7 +1436,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
             </div>
           
         
-      </div><div id="relayElegir"></div></div><div class="zCola" data-firma="100:arte/inmersiva-4.jpg|101:arte/inmersiva-5.jpg|102:arte/inmersiva-6.jpg|103:arte/inmersiva-8.jpg|104:arte/inmersiva-9.jpg"><div class="zFicha" style="--n: 0; --k: 0.1340; --ang: -30.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-4.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Midnight Static</div></div><div class="zFicha" style="--n: 1; --k: 0.0341; --ang: -15.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-5.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Afterglow District</div></div><div class="zFicha" style="--n: 2; --k: 0.0000; --ang: 0.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-6.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Heavy Bloom</div></div><div class="zFicha" style="--n: 3; --k: 0.0341; --ang: 15.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-8.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Neon Prayer</div></div><div class="zFicha" style="--n: 4; --k: 0.1340; --ang: 30.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/inmersiva-9.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Ritual</div></div></div></div><div id="relaySincro">RESYNC</div></div>
+      </div><div id="relaySincro">RESYNC</div></div><div class="zCola" data-firma="100:arte/a5.jpg|101:arte/a9.jpg|102:arte/a11.jpg|103:arte/a0.jpg|104:arte/a13.jpg"><div class="zFicha" style="--n: 0; --k: 0.1340; --ang: -30.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/a5.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Midnight Static</div></div><div class="zFicha" style="--n: 1; --k: 0.0341; --ang: -15.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/a9.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Afterglow District</div></div><div class="zFicha" style="--n: 2; --k: 0.0000; --ang: 0.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/a11.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Heavy Bloom</div></div><div class="zFicha" style="--n: 3; --k: 0.0341; --ang: 15.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/a0.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Neon Prayer</div></div><div class="zFicha" style="--n: 4; --k: 0.1340; --ang: 30.0deg;"><div class="zFichaTapa" style="background: url(&quot;arte/a13.jpg&quot;) center center / cover;"></div><div class="zFichaNombre">Ritual</div></div></div></div></div>
 <script src="tema.js"></script>
 <script>
 /* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
