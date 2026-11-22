@@ -2,8 +2,24 @@
    (relay-host.js), copiado por tools/demos-web/capturar.mjs. No editar a mano.
    window.relayTema(hex) tiñe esta pagina; los presets en window.relayTemas. */
 (() => {
+const TEMA_TRIPLETES = [[255,42,58],[196,18,32],[255,90,99],[255,154,162],[255,143,152],[30,0,6],[142,14,28],[26,2,6],[255,185,189],[196,82,90],[94,8,16],[255,122,128],[122,18,25],[255,211,214],[255,107,118],[110,8,18],[255,179,185],[120,26,32],[255,120,132],[255,106,114],[255,154,161],[255,213,216],[255,120,130],[255,199,203],[255,180,186],[255,210,213],[255,76,87],[212,20,31],[240,222,223],[30,0,8],[142,64,70],[58,4,9],[122,58,64],[46,3,7],[176,85,92],[74,10,16],[138,67,72],[51,4,8],[32,0,8],[244,226,227],[255,233,234],[255,194,198]];
 
+const TEMA_ROJO = "#FF2A3A";
 
+const PRESETS_TEMA = [
+    { id: "relay", nombre: "Relay", hex: "#FF2A3A", defecto: true },
+    { id: "ember", nombre: "Ember", hex: "#FF6B2C" },
+    { id: "amber", nombre: "Amber", hex: "#FFB21E" },
+    { id: "lime", nombre: "Lime", hex: "#8FDB2A" },
+    { id: "mint", nombre: "Mint", hex: "#22D39B" },
+    { id: "aqua", nombre: "Aqua", hex: "#19C6DE" },
+    { id: "ocean", nombre: "Ocean", hex: "#2E86FF" },
+    { id: "indigo", nombre: "Indigo", hex: "#5A5DFF" },
+    { id: "violet", nombre: "Violet", hex: "#9A4DFF" },
+    { id: "orchid", nombre: "Orchid", hex: "#DD3FF2" },
+    { id: "rose", nombre: "Rose", hex: "#FF4D97" },
+    { id: "mono", nombre: "Mono", hex: "#B9BCC6" },
+  ];
 
 function limitar(n, min, max) {
     return Math.max(min, Math.min(max, n));
@@ -95,6 +111,7 @@ function baseDeTema(hex) {
     return [hsl[0], s, l];
   }
 
+const paletasTema = new Map();
 
 function paletaDeTema(hex) {
     const clave = (temaHex(hex) || TEMA_ROJO);
