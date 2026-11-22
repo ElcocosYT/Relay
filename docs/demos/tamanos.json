@@ -1,19 +1,19 @@
 {
  "themes": [
-  959,
-  1999
+  1182,
+  1655
  ],
  "recap": [
   1036,
-  831
+  850
  ],
  "compartir": [
   1036,
   748
  ],
  "inmersiva": [
-  1217,
-  791
+  1440,
+  810
  ],
  "ahora": [
   1830,
@@ -22,6 +22,38 @@
  "temas-color": [
   620,
   624
+ ],
+ "ventana-library": [
+  1440,
+  810
+ ],
+ "ventana-albums": [
+  1440,
+  810
+ ],
+ "ventana-album": [
+  1440,
+  810
+ ],
+ "ventana-artists": [
+  1440,
+  810
+ ],
+ "ventana-artista": [
+  1440,
+  810
+ ],
+ "ventana-soundboard": [
+  1440,
+  810
+ ],
+ "ventana-online": [
+  1440,
+  810
+ ],
+ "ventana-mixer": [
+  1440,
+  810
  ],
  "sala": [
   540,
