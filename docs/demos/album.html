@@ -97,7 +97,6 @@ html { user-select: none; }
 @property --vb3 { syntax: "<color>"; inherits: true; initial-value: #3DDC97; }
 @property --vb4 { syntax: "<color>"; inherits: true; initial-value: #38BDF8; }
 #trackList, #albumGrid, #artistGrid, #artistList, #onlineList, #relayDetCuerpo, #settingsGrid, #themesCuerpo, .sbResultados, .relayVelada { mask-image: linear-gradient(180deg,#000 calc(100% - 18px + var(--relayFinal)),transparent calc(100% + var(--relayFinal))); transition: --relayFinal 320ms cubic-bezier(0.3, 0.7, 0.2, 1); }
-[data-velo-fin] { --relayFinal: 18px; }
 .relayVelo { position: absolute; z-index: 20; pointer-events: none; }
 .relayVelo.suelto { position: fixed; z-index: 31; }
 .relayVelo > i:not(:last-child) { bottom: var(--extra,0px); }
@@ -363,7 +362,7 @@ html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-ac
 }
 html[data-sonando] :is(#artistGrid, #artistList) .relayArtSuena .relayArtPlay::before { mask-position: 50% 50%; }
 :is(#artistGrid, #artistList) .relayArtPin { width: 32px; height: 32px; border-radius: 50%; box-sizing: border-box; background: rgba(14, 10, 12, 0.46); border: 1px solid rgba(255, 255, 255, 0.16); filter: none; box-shadow: rgba(0, 0, 0, 0.6) 0px 6px 16px -6px; }
-:is(#artistGrid, #artistList) .relayArtPin::before { width: 16px; height: 16px; mask-size: 15px 15px; }
+:is(#artistGrid, #artistList) .relayArtPin::before { width: 16px; height: 16px; mask-size: 16px 16px; mask-position: 50% calc(50% - 0.72px); }
 #albumGrid { padding: 22px 80px 96px 40px !important; margin-left: -32px !important; }
 #albumGrid { --relaySube: 30px; mask-image: linear-gradient(180deg,transparent calc(30px - var(--relayTope)),
         #000 calc(30px + var(--relayLargo,34px) - var(--relayTope)),#000 calc(100% - 18px + var(--relayFinal)),
@@ -412,8 +411,8 @@ html[data-sonando] :is(#artistGrid, #artistList) .relayArtSuena .relayArtPlay::b
 #albumGrid .relayAlbPlay, #albumGrid .relayAlbMas { position: absolute; z-index: 4; bottom: 10px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; opacity: 0; transform: translateY(6px) scale(0.9); transition: opacity 0.2s, transform 0.3s cubic-bezier(0.34, 1.45, 0.64, 1), background 0.16s, box-shadow 0.2s, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4), scale 90ms !important; }
 #albumGrid .relayAlbPlay { left: 10px; width: 38px; height: 38px; background: linear-gradient(100deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32))); box-shadow: 0 8px 22px -8px rgba(var(--t0,255,42,58),1),inset 0 1px 0 rgba(255,255,255,.3); }
 #albumGrid .relayAlbPlay::before { width: 15px !important; height: 15px !important; margin: 0px 0px 0px 0.6px !important; }
-#albumGrid .relayAlbMas { right: 10px; width: 30px; height: 30px; color: rgb(255, 255, 255); background: rgba(20, 18, 24, 0.55); backdrop-filter: blur(12px); box-shadow: rgba(255, 255, 255, 0.12) 0px 0px 0px 1px inset; }
-#albumGrid .relayAlbMas::before { content: ""; width: 3.6px; height: 3.6px; border-radius: 50%; background: currentcolor; box-shadow: currentcolor -6px 0px 0px, currentcolor 6px 0px 0px; }
+#albumGrid .relayAlbMas { right: 10px; width: 38px; height: 38px; color: rgb(255, 255, 255); background: rgba(20, 18, 24, 0.55); backdrop-filter: blur(12px); box-shadow: rgba(255, 255, 255, 0.12) 0px 0px 0px 1px inset; }
+#albumGrid .relayAlbMas::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: currentcolor; box-shadow: currentcolor -7px 0px 0px, currentcolor 7px 0px 0px; }
 #albumGrid .relayAlb:hover .relayAlbPlay, #albumGrid .relayAlb:hover .relayAlbMas { opacity: 1; transform: none; }
 #albumGrid .relayAlbPlay:hover { background: linear-gradient(100deg,rgb(var(--t2,255,90,99)),rgb(var(--t1,196,18,32))); box-shadow: 0 0 0 5px rgba(var(--t0,255,42,58),.18),0 10px 26px -6px rgba(var(--t0,255,42,58),1),inset 0 1px 0 rgba(255,255,255,.4); transform: scale(1.1) !important; }
 #albumGrid .relayAlbMas:hover { background: rgba(255, 255, 255, 0.22); transform: scale(1.1) !important; }
@@ -458,10 +457,26 @@ html[data-detalle] #albumsCuerpo, html[data-detalle] #artistsCuerpo { visibility
 .relayDetBoton.principal:hover { box-shadow: 0 0 28px -4px rgba(var(--t0,255,42,58),1),inset 0 1px 0 rgba(255,255,255,.4); }
 #relayDetCuerpo { position: relative; flex: 1 1 0%; min-height: 0px; overflow: hidden auto; padding: 20px 32px 44px; }
 .relayDetTitSec { font: 700 11.5px / 1.1 Inter, sans-serif; letter-spacing: 0.09em; color: rgba(238, 238, 244, 0.5); margin: 0px 0px 14px; }
+#relayDetAlbumes, #relayDetSingles, #relayDetApariciones, #relayDetMasDe { display: grid; gap: 14px; margin-bottom: 26px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.relayDetAlbum { display: flex; flex-direction: column; gap: 9px; padding: 10px 10px 12px; border-radius: 14px; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.09); background: linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.016)); box-shadow: 0 18px 40px -18px rgba(var(--t5,30,0,6),.9),inset 0 1px 0 rgba(255,255,255,.14); transition: transform 0.18s cubic-bezier(0.22, 0.61, 0.36, 1), border-color 0.18s; }
+.relayDetAlbCaja { display: flex; flex-direction: column; min-width: 0px; }
+.relayDetAlbCaja > .relayDetAlbum { flex: 1 1 0%; }
+.relayDetAlbCaja:hover > .relayDetAlbum { transform: translateY(-3px); border-color: rgba(255, 255, 255, 0.24); }
+.relayDetAlbum:active { transform: scale(0.98); }
+.relayDetAlbum > div:first-child { width: 100%; aspect-ratio: 1 / 1; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.12); background-size: cover !important; background-position: center center !important; }
+.relayDetAlbum b { font: 600 12.5px / 1.25 Inter, sans-serif; color: rgb(242, 242, 244); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.relayDetAlbum span { font: 500 10px / 1 Inter, sans-serif; letter-spacing: 0.1em; color: rgba(238, 238, 244, 0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.relayDetAlbum b { display: flex; align-items: center; gap: 6px; min-width: 0px; }
+.relayDetAlbum b > em { font-style: normal; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color 0.25s; }
+.relayDetAlbEq { display: none; flex: 0 0 auto; align-items: flex-end; gap: 2px; height: 11px; }
+.relayDetAlbEq > i { display: block; width: 2px; height: 100%; border-radius: 1px; transform-origin: center bottom; background: rgb(var(--t0,255,42,58)); animation: 0.9s ease-in-out 0s infinite normal none running relayDetAlbEqSube; }
+.relayDetAlbEq > i:nth-child(2) { background: rgb(var(--t2,255,90,99)); animation-duration: 0.7s; animation-delay: 0.15s; }
+.relayDetAlbEq > i:nth-child(3) { background: rgb(var(--t4,255,143,152)); animation-duration: 1.1s; animation-delay: 0.3s; }
 @keyframes relayDetAlbEqSube { 
   0%, 100% { transform: scaleY(0.26); }
   50% { transform: scaleY(1); }
 }
+html:not([data-sonando]) .relayDetAlbEq > i { animation-play-state: paused; }
 .relayDetEnlace { cursor: pointer; border-radius: 3px; transition: color 0.14s; }
 .relayDetEnlace:hover { text-decoration: underline; text-underline-offset: 2px; color: rgb(var(--t4,255,143,152)) !important; }
 .relayDetPista { display: flex; align-items: center; gap: 14px; height: 46px; box-sizing: border-box; padding: 0px 14px; border-radius: 11px; cursor: default; border: 1px solid transparent; transition: background 0.16s, border-color 0.16s, transform 0.16s; }
@@ -500,17 +515,64 @@ html[data-detalle] #albumsCuerpo, html[data-detalle] #artistsCuerpo { visibility
   70% { transform: scale(0.92) rotate(6deg); }
   100% { transform: scale(1) rotate(0deg); }
 }
-#relayDetalle.relayAlb { --albAcento: var(--t0,255,42,58); display: grid; grid-template-columns: minmax(430px, 32%) minmax(0px, 1fr); align-items: stretch; }
+#relayDetAlbumes, #relayDetSingles, #relayDetApariciones, #relayDetMasDe { padding-right: 44px; grid-template-columns: repeat(auto-fill, minmax(164px, 1fr)) !important; gap: 34px !important; }
+.relayDetAlbum { position: relative; background: none !important; border-color: transparent !important; box-shadow: none !important; transition: transform 0.42s cubic-bezier(0.22, 0.61, 0.36, 1) !important; }
+.relayDetAlbum::before{
+      content:"";position:absolute;z-index:0;pointer-events:none;
+      left:10px;right:10px;top:10px;aspect-ratio:1/1;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at center,#07070a 0 3%,rgba(0,0,0,0) 3.1%),
+        repeating-radial-gradient(circle at center,
+          rgba(0,0,0,.32) 0 1px,rgba(255,255,255,.08) 1px 4px),
+        radial-gradient(circle at 32% 26%,
+          rgba(255,255,255,.3),rgba(255,255,255,0) 46%),
+        radial-gradient(circle at center,
+          rgba(0,0,0,0) 58%,rgba(0,0,0,.34) 100%),
+        radial-gradient(circle at center,
+          rgb(var(--estAcento,var(--t0,255,42,58))) 0 34%,
+          rgba(var(--estAcento,var(--t0,255,42,58)),.94) 35% 72%,
+          rgba(var(--estAcento,var(--t0,255,42,58)),.86) 73% 100%);
+      background-color:#0d0d0f;
+      box-shadow:0 16px 30px -16px rgba(0,0,0,.95),
+                 0 0 0 1px rgba(255,255,255,.14),
+                 inset 0 0 26px rgba(0,0,0,.55);
+      translate:22px 0;
+      scale:.95;
+      transition:translate .5s cubic-bezier(.22,.61,.36,1),
+                 scale .5s cubic-bezier(.22,.61,.36,1),
+                 box-shadow .4s ease;
+      animation:relayEstGira 8s linear infinite;
+      animation-play-state:paused;
+    }
+.relayDetAlbum::after { content: ""; position: absolute; z-index: 0; pointer-events: none; left: -2px; right: -2px; top: -2px; aspect-ratio: 1 / 1; border-radius: 22px; background-image: var(--tapa,none); background-size: cover; background-position: center center; filter: blur(24px) saturate(215%); opacity: 0.75; transition: opacity 0.4s, scale 0.5s cubic-bezier(0.22, 0.61, 0.36, 1); }
+.relayDetAlbum b { margin-top: 10px; margin-bottom: -4px; }
+.relayDetAlbum > div:first-child { position: relative; z-index: 1; }
+.relayDetAlbum > div:first-child::before, .relayDetAlbum > div:first-child::after { content: ""; position: absolute; pointer-events: none; mix-blend-mode: screen; transition: opacity 0.4s; }
+.relayDetAlbum > div:first-child::before { inset: -4px; border-radius: 14px; box-shadow: 0 0 0 1.5px rgba(var(--estAcento,var(--t0,255,42,58)),.5),
+                 0 0 16px 2px rgba(var(--estAcento,var(--t0,255,42,58)),.55); filter: blur(3px); opacity: 0.66; }
+.relayDetAlbum > div:first-child::after { inset: 0px; border-radius: 10px; box-shadow: 0 0 30px 5px rgba(var(--estAcento,var(--t0,255,42,58)),.4); opacity: 0.66; }
+.relayDetAlbum b, .relayDetAlbum span { position: relative; z-index: 1; }
+.relayDetAlbCaja:hover > .relayDetAlbum { transform: translateY(-12px) scale(1.04) !important; z-index: 3; }
+.relayDetAlbCaja:hover > .relayDetAlbum::before { translate: 38px; scale: 1; animation-play-state: running; box-shadow: 0 20px 34px -14px rgba(0,0,0,.95),
+                 0 0 0 1px rgba(var(--estAcento,var(--t0,255,42,58)),.45),
+                 0 0 38px -10px rgba(var(--estAcento,var(--t0,255,42,58)),.8),
+                 inset 0 0 26px rgba(0,0,0,.55); }
+.relayDetAlbCaja:hover > .relayDetAlbum::after { opacity: 1; scale: 1.05; }
+#relayDetalle.relayAlb { --albAcento: var(--t0,255,42,58); --albAlto: calc(var(--tope,0px) + clamp(330px,30vw,540px)); --albLado: clamp(36px,4.4vw,92px); display: flex; flex-direction: column; }
+#relayAlbFondo { position: absolute; left: 0px; right: 0px; top: 0px; z-index: 0; pointer-events: none; height: calc(var(--albAlto) + 120px); overflow: hidden; mask-image: linear-gradient(rgb(0, 0, 0) 55%, rgba(0, 0, 0, 0.6) 75%, transparent); will-change: transform; }
+#relayAlbFondo::before { content: ""; position: absolute; inset: -140px; background: var(--albTapa,none) center/cover no-repeat; filter: blur(80px) saturate(160%); opacity: 0.55; }
+#relayAlbFondo::after { content: ""; position: absolute; inset: 0px; background: linear-gradient(rgba(8, 5, 7, 0.45), rgba(8, 5, 7, 0.12) 30%, rgba(8, 5, 7, 0.18) 60%, rgba(8, 5, 7, 0.7)); }
 #relayDetalle.relayAlb::after { content: ""; position: absolute; inset: auto 0px 0px; z-index: -1; height: 46%; pointer-events: none; background: linear-gradient(to top,
         rgba(var(--albAcento),.13),rgba(var(--albAcento),0) 100%); }
-#relayDetalle.relayAlb #relayDetCab { flex-direction: column; align-items: center; justify-content: center; gap: 30px; padding-right: 40px; padding-bottom: 44px; padding-left: 40px; padding-top: calc(40px + var(--tope,0px)); background: none; backdrop-filter: none; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor; border-right: 1px solid rgba(255, 255, 255, 0.07); overflow: visible; }
+#relayDetalle.relayAlb #relayDetCab { position: relative; z-index: 0; box-sizing: border-box; height: var(--albAlto); margin: calc(-26px - var(--tope,0px)) calc(-1 * var(--albLado)) 18px; padding: calc(var(--tope,0px) + 44px) var(--albLado) clamp(30px,2.6vw,52px); display: flex; flex-direction: row; align-items: flex-end; justify-content: flex-start; gap: clamp(56px, 5vw, 104px); background: none; backdrop-filter: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; overflow: visible; }
 @keyframes relayNpVaga { 
   0% { transform: translate3d(-3px, -2px, 0px) scale(1); }
   35% { transform: translate3d(3px, -4px, 0px) scale(1.05); }
   70% { transform: translate3d(4px, 3px, 0px) scale(1.01); }
   100% { transform: translate3d(-3px, -2px, 0px) scale(1); }
 }
-#relayDetalle.relayAlb .relayAlbEscena { position: relative; flex: 0 0 auto; width: 80%; max-width: min(80%, 46vh); aspect-ratio: 1 / 1; height: auto; margin: 6px 0px 18px; }
+#relayDetalle.relayAlb .relayAlbEscena { position: relative; flex: 0 0 auto; height: 100%; width: auto; max-width: none; aspect-ratio: 1 / 1; margin: 0px; }
 #relayDetalle.relayAlb #relayDetArte { position: relative; z-index: 3; width: 100%; height: 100%; border-radius: 24px; box-shadow: rgba(0, 0, 0, 0.96) 0px 44px 72px -34px, rgba(255, 255, 255, 0.18) 0px 1px 0px inset; }
 #relayDetalle.relayAlb .relayAlbAura { position: absolute; inset: -14px; z-index: 1; border-radius: 28px; pointer-events: none; background-size: cover; background-position: center center; filter: blur(22px) saturate(220%); opacity: 0.88; will-change: transform, opacity; }
 #relayDetalle.relayAlb .relayAlbAura.uno { animation: 19s ease-in-out 0s infinite normal none running relayAlbVagaUno; }
@@ -587,11 +649,11 @@ html[data-detalle] #albumsCuerpo, html[data-detalle] #artistsCuerpo { visibility
   100% { transform: rotate(360deg); }
 }
 #relayDetalle.relayAlb .relayAlbSombra { position: absolute; z-index: 0; left: 5%; right: 5%; bottom: -32px; height: 54px; pointer-events: none; background: radial-gradient(50% 50%, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0) 72%); filter: blur(12px); }
-#relayDetalle.relayAlb #relayDetInfo { flex: 0 0 auto; width: 100%; gap: 11px; align-items: center; text-align: center; }
-#relayDetalle.relayAlb #relayDetBotones { justify-content: center; }
-#relayDetalle.relayAlb #relayDetTitulo { font-size: clamp(30px, 2.2vw, 60px); line-height: 1.04; -webkit-line-clamp: 3; }
-#relayDetalle.relayAlb #relayDetSub { font-size: clamp(13px, 0.92vw, 21px); }
-#relayDetalle.relayAlb #relayDetTipo { font-size: clamp(9.5px, 0.62vw, 14px); }
+#relayDetalle.relayAlb #relayDetInfo { flex: 1 1 0%; min-width: 0px; gap: 12px; align-items: flex-start; text-align: left; padding-bottom: 2px; }
+#relayDetalle.relayAlb #relayDetBotones { justify-content: flex-start; }
+#relayDetalle.relayAlb #relayDetTitulo { font-size: clamp(40px, 4.4vw, 104px); line-height: 1; letter-spacing: -0.035em; -webkit-line-clamp: 2; padding-bottom: 0.08em; text-shadow: none; filter: drop-shadow(rgba(0, 0, 0, 0.35) 0px 6px 40px); }
+#relayDetalle.relayAlb #relayDetSub { font-size: clamp(15px, 1.25vw, 27px); }
+#relayDetalle.relayAlb #relayDetTipo { font-size: clamp(10px, 0.7vw, 15px); }
 #relayDetalle.relayAlb #relayDetBotones { gap: 12px; margin-top: 8px; }
 #relayDetalle.relayAlb .relayDetBoton { display: inline-flex; align-items: center; justify-content: center; height: clamp(46px, 2.85vw, 70px); padding: 0px clamp(19px, 1.48vw, 33px); border-radius: 999px; font: 700 clamp(12.5px, 0.85vw, 18px) / 1 Inter, sans-serif; }
 #relayDetalle.relayAlb .relayDetBoton.principal { gap: 0.75em; padding: 0px clamp(24px, 1.85vw, 40px) 0px clamp(20px, 1.57vw, 35px); font-size: clamp(13.5px, 0.97vw, 20px); box-shadow: 0 20px 42px -18px rgba(var(--t0,255,42,58),.95),
@@ -604,7 +666,10 @@ html[data-detalle] #albumsCuerpo, html[data-detalle] #artistsCuerpo { visibility
 #relayDetalle #relayDetBotones [data-act="detalle-play"] { --dibujo: url("activos/paused.svg"); }
 #relayDetalle #relayDetBotones [data-act="detalle-play"]::before { margin-left: 2px; }
 #relayDetalle #relayDetBotones [data-act="cat-delete"] { --dibujo: url("activos/icono-papelera.svg"); }
-#relayDetalle.relayAlb #relayDetCuerpo { padding-right: 30px; padding-bottom: 30px; padding-left: 30px; padding-top: calc(26px + var(--tope,0px)); }
+#relayDetalle.relayAlb #relayDetCuerpo{padding-bottom:130px!important}
+#relayDetDosCol { display: grid; align-items: start; gap: 0px clamp(24px, 2.4vw, 52px); grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+.relayDetMitad { min-width: 0px; }
+#relayDetalle.relayAlb .relayDetTitMas { margin-top: clamp(36px, 3vw, 56px); }
 #relayDetalle.relayAlb .relayDetPista { position: relative; }
 #relayDetalle.relayAlb .relayDetPista.suena { background: linear-gradient(100deg,
         rgba(var(--albAcento),.26),rgba(var(--albAcento),.05) 62%); border-color: rgba(var(--albAcento),.55); box-shadow: 0 14px 36px -14px rgba(var(--albAcento),.75); }
@@ -613,9 +678,8 @@ html[data-detalle] #albumsCuerpo, html[data-detalle] #artistsCuerpo { visibility
   0%, 100% { opacity: 0; }
   50% { opacity: 0.6; }
 }
-@media (max-width: 980px) {#relayDetalle.relayAlb { grid-template-columns: minmax(320px, 38%) minmax(0px, 1fr); }
-#relayDetalle.relayAlb .relayAlbEscena { max-width: min(84%, 40vh); }
-#relayDetalle.relayAlb #relayDetCab { gap: 22px; padding-right: 26px; padding-bottom: 30px; padding-left: 26px; padding-top: calc(28px + var(--tope,0px)); }}
+@media (max-width: 980px) {#relayDetalle.relayAlb { --albAlto: calc(var(--tope,0px) + 280px); --albLado: 26px; }
+#relayDetalle.relayAlb #relayDetCab { gap: 40px; padding-top: calc(var(--tope,0px) + 30px); }}
 @keyframes relayFlotaEntra { 
   0% { opacity: 0; }
   100% { opacity: 1; }
@@ -816,13 +880,13 @@ html,body{margin:0;overflow:hidden;background:transparent}
     <div data-dc-tpl="27" style="position: relative; margin-top: 18px; flex: 1 1 0%; min-height: 0px; display: flex; flex-direction: column;">
 
       
-        <div data-dc-tpl="29" id="albumGrid" class="relayVelada" style="flex: 1 1 0%; min-height: 0px; display: grid; align-content: start; gap: 26px 30px; padding: 2px 4px 44px 0px; box-sizing: border-box; overflow: hidden auto; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));" data-velo-tope="">
+        <div data-dc-tpl="29" id="albumGrid" style="flex: 1 1 0%; min-height: 0px; display: grid; align-content: start; gap: 26px 30px; padding: 2px 4px 44px 0px; box-sizing: border-box; overflow: hidden auto; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));" class="relayVelada" data-velo-tope="">
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo0" data-tinta="" data-acento="255,95,109" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,95,109;" data-tenido="demo0">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a0.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-0.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a0.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-0.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo0" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -842,9 +906,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo1" data-tinta="" data-acento="0,198,255" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 0,198,255;" data-tenido="demo1">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a1.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-1.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a1.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-1.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo1" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -864,9 +928,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb relayAlbSonando" data-act="open-album" data-id="demo2" data-tinta="" data-acento="247,151,30" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 247,151,30;" data-tenido="demo2">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a2.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-2.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a2.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-2.jpg&quot;) center center / cover;">
                   
                     <div data-dc-tpl="37" class="relayAlbSuena" style="position: absolute; right: 9px; top: 9px; display: flex; align-items: flex-end; gap: 2.5px; height: 13px; pointer-events: none;">
                       <div data-dc-tpl="38" style="width: 2.5px; height: 100%; border-radius: 1px; background: rgb(var(--t0,255,42,58)); transform-origin: center bottom; animation: 0.9s ease-in-out 0s infinite normal none running ralbeq;"></div>
@@ -892,9 +956,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo3" data-tinta="" data-acento="196,113,245" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 196,113,245;" data-tenido="demo3">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a3.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-3.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a3.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-3.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo3" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -914,9 +978,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo4" data-tinta="" data-acento="67,233,123" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 67,233,123;" data-tenido="demo4">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a4.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-4.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a4.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-4.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo4" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -936,9 +1000,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo5" data-tinta="" data-acento="238,9,121" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 238,9,121;" data-tenido="demo5">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a5.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-5.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a5.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-5.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo5" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -958,9 +1022,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo6" data-tinta="" data-acento="168,237,234" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 168,237,234;" data-tenido="demo6">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a6.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-6.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a6.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-6.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo6" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -980,9 +1044,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo7" data-tinta="" data-acento="252,70,107" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 252,70,107;" data-tenido="demo7">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a7.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-7.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a7.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-7.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo7" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -1002,9 +1066,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo8" data-tinta="" data-acento="248,181,0" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 248,181,0;" data-tenido="demo8">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a8.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-8.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a8.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-8.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo8" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -1024,9 +1088,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo9" data-tinta="" data-acento="17,153,142" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 17,153,142;" data-tenido="demo9">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a9.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-9.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a9.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-9.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo9" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -1046,9 +1110,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo10" data-tinta="" data-acento="224,195,252" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 224,195,252;" data-tenido="demo10">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a10.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-10.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a10.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-10.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo10" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -1068,9 +1132,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo11" data-tinta="" data-acento="255,154,158" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,154,158;" data-tenido="demo11">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a11.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-11.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a11.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-11.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo11" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -1090,9 +1154,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo12" data-tinta="" data-acento="255,95,109" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 255,95,109;" data-tenido="demo12">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a12.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-12.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a12.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-12.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo12" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -1112,9 +1176,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo13" data-tinta="" data-acento="0,198,255" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 0,198,255;" data-tenido="demo13">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a13.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-13.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a13.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-13.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo13" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -1134,9 +1198,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo14" data-tinta="" data-acento="247,151,30" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 247,151,30;" data-tenido="demo14">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a14.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-14.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a14.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-14.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo14" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -1156,9 +1220,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
           
             <div data-dc-tpl="31" class="relayAlb" data-act="open-album" data-id="demo15" data-tinta="" data-acento="196,113,245" style="position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0px; box-sizing: border-box; cursor: default; --estAcento: 196,113,245;" data-tenido="demo15">
               <div data-dc-tpl="32" class="relayAlbArte" style="position: relative; width: 100%; aspect-ratio: 1 / 1;">
-                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/a15.jpg&quot;) center center / cover;"></div>
+                <div data-dc-tpl="33" class="relayAlbHalo" style="background: url(&quot;arte/album_ventana-album-15.jpg&quot;) center center / cover;"></div>
                 <div data-dc-tpl="34" class="relayAlbDisco"></div>
-                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/a15.jpg&quot;) center center / cover;">
+                <div data-dc-tpl="35" class="relayAlbTapa" style="background: url(&quot;arte/album_ventana-album-15.jpg&quot;) center center / cover;">
                   
                   <div data-dc-tpl="41" class="relayAlbPin" role="button" title="Add to favourites" aria-label="Add to favourites"></div>
                   <div data-dc-tpl="42" class="relayAlbPlay" data-act="play-album" data-id="demo15" title="Play" aria-label="Play"><div data-dc-tpl="43"></div></div>
@@ -1189,7 +1253,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
 
 
 
-<div id="relayDetalle" class="relayAlb sonando" data-firma="album:demo2:glass-hours" style="--albAcento: 247,151,30;"><div id="relayDetCab"><div class="relayAlbEscena"><div class="relayAlbAura uno" style="background-image: url(&quot;arte/a2.jpg&quot;);"></div><div class="relayAlbAura dos" style="background-image: url(&quot;arte/a2.jpg&quot;);"></div><div class="relayAlbLustre"></div><div class="relayAlbDisco"><div class="relayAlbEtiqueta" style="background-image: url(&quot;arte/a2.jpg&quot;);"></div></div><div class="relayAlbSombra"></div><div id="relayDetArte" class="cambiable" data-act="detalle-caratula" style="background: url(&quot;arte/a2.jpg&quot;) center center / cover;"></div></div><div id="relayDetInfo"><span id="relayDetTipo">ALBUM</span><h1 id="relayDetTitulo" contenteditable="plaintext-only" spellcheck="false">Glass Hours</h1><div id="relayDetSub"><span data-act="goto-artist-name" data-id="Odessa Wynn" data-nombre="1">Odessa Wynn</span><span class="relayDetSubEdita" title="Edit the album's artists"></span></div><div id="relayDetMeta"><span id="relayDetAno" contenteditable="plaintext-only" spellcheck="false" title="Click to change the year">2021</span><i>·</i><span>12 SONGS</span><i>·</i><span>42m</span></div><div id="relayDetBotones"><span class="relayDetBoton redondo peligro" data-act="cat-delete" title="Delete album" data-pregunta="Delete Glass Hours?" data-aviso="Relay removes the album from the tags of 12 songs. The songs stay in your library, but this can't be undone."></span><span class="relayDetBoton redondo principal" data-act="detalle-play" title="Play"></span><span class="relayDetBoton redondo peligro favorito" data-act="detalle-favorito" title="Remove from favourites" data-tipo="album" data-clave="demo2" aria-label="Remove from favourites"></span></div></div></div><div id="relayDetCuerpo" class="relayVelada" data-velo-fin=""><div class="relayDetTitSec">SONGS</div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp0"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">1</span><span class="relayDetNom">Kitchen Light</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:31</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp1"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">2</span><span class="relayDetNom">Three Days</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:12</span></div><div class="relayDetPista suena ordenable" data-act="detalle-pista" data-id="dp2"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">3</span><span class="relayDetNom">Glass Hours</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:58</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp3"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">4</span><span class="relayDetNom">Weightless</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">2:51</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp4"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">5</span><span class="relayDetNom">Paper Moon</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span>, <span class="relayDetEnlace" data-act="goto-artist-name" data-id="KAITO">KAITO</span></span><span class="relayDetDur">3:44</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp5"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">6</span><span class="relayDetNom">Coffee Gone Cold</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">4:05</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp6"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">7</span><span class="relayDetNom">Green Lights</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:27</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp7"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">8</span><span class="relayDetNom">Every Song We Saved</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">4:18</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp8"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">9</span><span class="relayDetNom">Low Tide</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:03</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp9"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">10</span><span class="relayDetNom">Roads</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:39</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp10"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">11</span><span class="relayDetNom">The Evening Stays</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">4:52</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp11"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">12</span><span class="relayDetNom">Under Glass (Reprise)</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">1:58</span></div></div></div><div class="relayVelo suelto fuera" data-forma="430,560,752,96,0,100" style="left: 430px; top: 560px; width: 752px; height: 196px; --extra: 100px;"><i></i><i></i><i></i><i></i><i></i></div>
+<div id="relayDetalle" class="relayAlb sonando" data-firma="album:demo2:glass-hours" style="--albTapa: url(&quot;arte/album_ventana-album-2.jpg&quot;); --albAcento: 247,151,30;"><div id="relayAlbFondo"></div><div id="relayDetCuerpo" class="relayVelada"><div id="relayDetCab"><div class="relayAlbEscena"><div class="relayAlbAura uno" style="background-image: url(&quot;arte/album_ventana-album-2.jpg&quot;);"></div><div class="relayAlbAura dos" style="background-image: url(&quot;arte/album_ventana-album-2.jpg&quot;);"></div><div class="relayAlbLustre"></div><div class="relayAlbDisco"><div class="relayAlbEtiqueta" style="background-image: url(&quot;arte/album_ventana-album-2.jpg&quot;);"></div></div><div class="relayAlbSombra"></div><div id="relayDetArte" class="cambiable" data-act="detalle-caratula" style="background: url(&quot;arte/album_ventana-album-2.jpg&quot;) center center / cover;"></div></div><div id="relayDetInfo"><span id="relayDetTipo">ALBUM</span><h1 id="relayDetTitulo" contenteditable="plaintext-only" spellcheck="false">Glass Hours</h1><div id="relayDetSub"><span data-act="goto-artist-name" data-id="Odessa Wynn" data-nombre="1">Odessa Wynn</span><span class="relayDetSubEdita" title="Edit the album's artists"></span></div><div id="relayDetMeta"><span id="relayDetAno" contenteditable="plaintext-only" spellcheck="false" title="Click to change the year">2021</span><i>·</i><span>12 SONGS</span><i>·</i><span>42m</span></div><div id="relayDetBotones"><span class="relayDetBoton redondo peligro" data-act="cat-delete" title="Delete album" data-pregunta="Delete Glass Hours?" data-aviso="Relay removes the album from the tags of 12 songs. The songs stay in your library, but this can't be undone."></span><span class="relayDetBoton redondo principal" data-act="detalle-play" title="Play"></span><span class="relayDetBoton redondo peligro favorito" data-act="detalle-favorito" title="Remove from favourites" data-tipo="album" data-clave="demo2" aria-label="Remove from favourites"></span></div></div></div><div class="relayDetTitSec">SONGS</div><div id="relayDetDosCol"><div class="relayDetMitad"><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp0"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">1</span><span class="relayDetNom">Kitchen Light</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:31</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp1"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">2</span><span class="relayDetNom">Three Days</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:12</span></div><div class="relayDetPista suena ordenable" data-act="detalle-pista" data-id="dp2"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">3</span><span class="relayDetNom">Glass Hours</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:58</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp3"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">4</span><span class="relayDetNom">Weightless</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">2:51</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp4"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">5</span><span class="relayDetNom">Paper Moon</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span>, <span class="relayDetEnlace" data-act="goto-artist-name" data-id="KAITO">KAITO</span></span><span class="relayDetDur">3:44</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp5"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">6</span><span class="relayDetNom">Coffee Gone Cold</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">4:05</span></div></div><div class="relayDetMitad"><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp6"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">7</span><span class="relayDetNom">Green Lights</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:27</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp7"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">8</span><span class="relayDetNom">Every Song We Saved</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">4:18</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp8"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">9</span><span class="relayDetNom">Low Tide</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:03</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp9"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">10</span><span class="relayDetNom">Roads</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">3:39</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp10"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">11</span><span class="relayDetNom">The Evening Stays</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">4:52</span></div><div class="relayDetPista ordenable" data-act="detalle-pista" data-id="dp11"><span class="relayDetAsa"><i></i><i></i><i></i></span><span class="relayDetNum">12</span><span class="relayDetNom">Under Glass (Reprise)</span><span class="relayDetArt"><span class="relayDetEnlace" data-act="goto-artist-name" data-id="Odessa Wynn">Odessa Wynn</span></span><span class="relayDetDur">1:58</span></div></div></div><div class="relayDetTitSec relayDetTitMas">MORE BY ODESSA WYNN</div><div id="relayDetMasDe"><div class="relayDetAlbCaja"><div class="relayDetAlbum" data-act="detalle-album" data-id="demoQ" style="--tapa: url(&quot;arte/album_ventana-album-12.jpg&quot;); --estAcento: 255,95,109;"><div style="background: url(&quot;arte/album_ventana-album-12.jpg&quot;) center center / cover;"></div><b><em>Quiet Engines</em><i class="relayDetAlbEq"><i></i><i></i><i></i></i></b><span>2024</span></div></div><div class="relayDetAlbCaja"><div class="relayDetAlbum" data-act="detalle-album" data-id="demoL" style="--tapa: url(&quot;arte/album_ventana-album-14.jpg&quot;); --estAcento: 247,151,30;"><div style="background: url(&quot;arte/album_ventana-album-14.jpg&quot;) center center / cover;"></div><b><em>Lowlight</em><i class="relayDetAlbEq"><i></i><i></i><i></i></i></b><span>2018</span></div></div><div class="relayDetAlbCaja"><div class="relayDetAlbum" data-act="detalle-album" data-id="demoN" style="--tapa: url(&quot;arte/album_ventana-album-7.jpg&quot;); --estAcento: 252,70,107;"><div style="background: url(&quot;arte/album_ventana-album-7.jpg&quot;) center center / cover;"></div><b><em>Northern Room</em><i class="relayDetAlbEq"><i></i><i></i><i></i></i></b><span>2016</span></div></div><div class="relayDetAlbCaja"><div class="relayDetAlbum" data-act="detalle-album" data-id="demoS1" style="--tapa: url(&quot;arte/album_ventana-album-1.jpg&quot;); --estAcento: 0,198,255;"><div style="background: url(&quot;arte/album_ventana-album-1.jpg&quot;) center center / cover;"></div><b><em>Satellite Heart</em><i class="relayDetAlbEq"><i></i><i></i><i></i></i></b><span>2025</span></div></div><div class="relayDetAlbCaja"><div class="relayDetAlbum" data-act="detalle-album" data-id="demoS2" style="--tapa: url(&quot;arte/album_ventana-album-6.jpg&quot;); --estAcento: 168,237,234;"><div style="background: url(&quot;arte/album_ventana-album-6.jpg&quot;) center center / cover;"></div><b><em>Blue Hour</em><i class="relayDetAlbEq"><i></i><i></i><i></i></i></b><span>2023</span></div></div><div class="relayDetAlbCaja"><div class="relayDetAlbum" data-act="detalle-album" data-id="demoS3" style="--tapa: url(&quot;arte/album_ventana-album-3.jpg&quot;); --estAcento: 196,113,245;"><div style="background: url(&quot;arte/album_ventana-album-3.jpg&quot;) center center / cover;"></div><b><em>Kitchen Light</em><i class="relayDetAlbEq"><i></i><i></i><i></i></i></b><span>2021</span></div></div></div></div></div><div class="relayVelo suelto" data-forma="0,560,1174,96,0,100" style="left: 0px; top: 560px; width: 1174px; height: 196px; --extra: 100px;"><i></i><i></i><i></i><i></i><i></i></div>
 <script src="tema.js"></script>
 <script>
 /* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
