@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-espectro="" data-barras="12" data-apilado="" data-sinluz="">
+<html data-espectro="" data-barras="12">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -102,8 +102,25 @@ html { user-select: none; }
 #titleBlock > div:last-child::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.8px; margin: -0.9px 0px 0px -5px; border-radius: 1px; background: rgba(var(--t4,255,143,152),.7); transform: translateY(3.4px); transition: transform 560ms cubic-bezier(0.3, 1.45, 0.4, 1) 40ms; }
 #titleBlock:hover > div:last-child::before { transform: translateY(-2.2px) rotate(45deg); }
 @property --relayFinal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --vb1 { syntax: "<color>"; inherits: true; initial-value: #FF2A3A; }
+@property --vb2 { syntax: "<color>"; inherits: true; initial-value: #FFC533; }
+@property --vb3 { syntax: "<color>"; inherits: true; initial-value: #3DDC97; }
+@property --vb4 { syntax: "<color>"; inherits: true; initial-value: #38BDF8; }
 html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #onlineList, #relayInicioOnline, #relayDetCuerpo, #settingsGrid, #themesCuerpo, .sbResultados, .relayVelada, #queueList) { --relayFinal: 18px; }
 @property --relayTope { syntax: "<length>"; inherits: false; initial-value: 0px; }
+:is(#albumGrid, #artistGrid, #artistList)[data-velo-tope] { --relayTope: 34px; }
+html:not([data-sinvelo]) :is(#albumGrid, #artistGrid, #artistList) { --relayLargo: 18px; }
+:is(#relayVistaOnline, #relayVistaArtistas) span:hover { color: rgb(242, 242, 244); }
+:is(#relayVistaOnline, #relayVistaArtistas) span.on { color: rgb(255, 255, 255); }
+:is(#relayVistaOnline, #relayVistaArtistas) span::before { content: ""; width: 14px; height: 14px; background: currentcolor; mask: var(--i) center/contain no-repeat; }
+:is(#relayVistaOnline, #relayVistaArtistas) span[data-vista="list"] { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='5' width='18' height='2.6' rx='1.3'/><rect x='3' y='10.7' width='18' height='2.6' rx='1.3'/><rect x='3' y='16.4' width='18' height='2.6' rx='1.3'/></svg>"); }
+:is(#relayVistaOnline, #relayVistaArtistas) span[data-vista="covers"] { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='3' width='8' height='8' rx='2.4'/><rect x='13' y='3' width='8' height='8' rx='2.4'/><rect x='3' y='13' width='8' height='8' rx='2.4'/><rect x='13' y='13' width='8' height='8' rx='2.4'/></svg>"); }
+@keyframes relayPreguntaFondo { 
+  0% { opacity: 0; }
+}
+@keyframes relayPreguntaEntra { 
+  0% { opacity: 0; transform: translateY(8px) scale(0.96); }
+}
 @keyframes relayListaEntra { 
   0% { opacity: 0; transform: translateY(-6px); }
   100% { opacity: 1; transform: none; }
@@ -161,10 +178,6 @@ html:is([data-np="3"], [data-np="2"]):not([data-zen]) #queueList { grid-area: li
   0% { opacity: 0; transform: translateY(10px) scale(0.98); }
   100% { opacity: 1; transform: none; }
 }
-#relayVersionesBtn { position: absolute; top: 50%; margin-top: -14px; width: 30px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 9px; border: 1px solid transparent; cursor: pointer; color: rgb(240, 240, 244); --resorte: cubic-bezier(.2,1.5,.3,1); transition: background 140ms ease-out, border-color 140ms ease-out; }
-#relayVersionesBtn:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.14); }
-#relayVersionesBtn::before { content: ""; width: 20px; height: 20px; background: currentcolor; opacity: 0.75; mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3 2 8l10 5 10-5-10-5Z'/><path d='m2 12 10 5 10-5'/><path d='m2 16 10 5 10-5'/></svg>") center center / contain no-repeat; }
-#relayVersionesBtn:active { scale: 0.84 0.76; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1); }
 @keyframes relayExtraEntra { 
   0% { opacity: 0; scale: 0.3; filter: blur(3px); }
   55% { opacity: 1; filter: none; }
@@ -173,14 +186,7 @@ html:is([data-np="3"], [data-np="2"]):not([data-zen]) #queueList { grid-area: li
 @keyframes relayExtraSale { 
   100% { opacity: 0; scale: 0.3; }
 }
-#relayVersionesBtn, #relayAtajosBtn { transition: background 140ms ease-out, border-color 140ms ease-out, translate 460ms cubic-bezier(0.3, 1.2, 0.4, 1), opacity 240ms, transform 420ms cubic-bezier(0.3, 1.35, 0.4, 1); }
 html [data-act="toggle-shuffle"], html [data-act="cycle-loop"] { transition: background 140ms ease-out, border-color 140ms ease-out, opacity 240ms, transform 420ms cubic-bezier(0.3, 1.35, 0.4, 1) !important; }
-html[data-apilado] #relayVersionesBtn { translate: var(--meter,50px) 0; }
-html[data-apilado]:not([data-caraizq]) #relayVersionesBtn, html[data-apilado]:not([data-carader]) #relayAtajosBtn, html[data-caraizq] [data-act="toggle-shuffle"], html[data-carader] [data-act="cycle-loop"] { opacity: 0; transform: scale(0.45) rotate(-12deg); pointer-events: none; }
-.relayPuntos { position: absolute; display: flex; gap: 4px; translate: -50%; pointer-events: none; opacity: 0; transition: opacity 260ms; }
-html[data-apilado] .relayPuntos { opacity: 1; }
-.relayPuntos i { width: 4px; height: 4px; border-radius: 50%; background: rgba(240, 240, 244, 0.28); transition: background 200ms, box-shadow 200ms, scale 300ms cubic-bezier(0.3, 1.6, 0.4, 1); }
-.relayPuntos i.cara { background: rgba(240, 240, 244, 0.9); scale: 1.3; }
 @keyframes relayGira { 
   100% { transform: rotate(360deg); }
 }
@@ -267,11 +273,6 @@ html[data-apilado] .relayPuntos { opacity: 1; }
 #playerBarRoot > div:has(#outputTrack) > div { width: 100% !important; }
 #playerBarRoot > div:has(#outputTrack) > div, #playerBarRoot > div:has(#outputTrack) > div > div { flex: 1 1 auto !important; }
 #micTrack, #outputTrack, [data-act="toggle-mic-mute"] + div { max-width: 118px; width: auto !important; flex: 1 1 118px !important; min-width: 36px !important; }
-#spectrum > div { display: none; }
-html[data-barras="12"] #spectrum > div:nth-child(-n+12) { display: block; }
-#spectrum > div, #relayBarras > div { will-change: transform; }
-html[data-espectro] #spectrum > div { transform: scaleY(0.12); animation: auto ease 0s 1 normal none running none !important; }
-html:not([data-espectro]) #spectrum > div { animation-duration: 3.6s !important; animation-fill-mode: backwards !important; }
 #seekWave svg, #seekWaveScrub svg { display: none !important; }
 #relayOlas { position: fixed; pointer-events: none; z-index: 40; }
 [data-act="toggle-mic-mute"], div:has(> #outputTrack) > div:first-child { position: relative; }
@@ -293,6 +294,16 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   100% { scale: 1; }
 }
 [data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child { --resorte: cubic-bezier(.2,1.5,.3,1); transition: background 140ms ease-out, border-color 140ms ease-out !important; }
+[data-act="open-album"]:not(.relayAlb):active:not(:has([data-act]:active)), [data-act="open-artist"]:not(.relayArt):active:not(:has([data-act]:active, .relayArtPin:active)) { scale: 0.96; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+html[data-filtros] :is(#albumSearchScope, #artistSearchScope) { top: calc(100% + 8px); right: 0px; z-index: 40; min-width: 150px; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px) scale(0.94); transform-origin: right top; transition: opacity 160ms, transform 240ms cubic-bezier(0.3, 1.25, 0.4, 1), visibility linear 240ms; position: absolute !important; flex-direction: column !important; align-items: stretch !important; height: auto !important; gap: 2px !important; box-shadow: rgba(0, 0, 0, 0.95) 0px 26px 50px -18px, rgba(255, 255, 255, 0.04) 0px 0px 0px 1px, rgba(255, 255, 255, 0.14) 0px 1px 0px inset !important; }
+html[data-filtros][data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition: opacity 160ms, transform 300ms cubic-bezier(0.3, 1.25, 0.4, 1), visibility; }
+html[data-filtros] :is(#albumSearchScope, #artistSearchScope) > [data-act="set-search-field"] { justify-content: flex-start; opacity: 0; transform: translateY(-4px); height: 32px !important; padding: 0px 14px 0px 12px !important; transition: color 240ms, scale 90ms, opacity 160ms, transform 220ms cubic-bezier(0.3, 1.3, 0.4, 1) !important; }
+html[data-filtros][data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act="set-search-field"] { opacity: 1; transform: none; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(2) { transition-delay: 0s, 0s, 25ms, 25ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(3) { transition-delay: 0s, 0s, 50ms, 50ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(4) { transition-delay: 0s, 0s, 75ms, 75ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(5) { transition-delay: 0s, 0s, 100ms, 100ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(6) { transition-delay: 0s, 0s, 125ms, 125ms !important; }
 @keyframes relayFiltra { 
   0% { opacity: 0.25; transform: translateY(8px); }
   100% { opacity: 1; transform: none; }
@@ -339,15 +350,20 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
         ); }}
 @media (prefers-reduced-motion: reduce) {[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child, [data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { transition: background 140ms ease-out, border-color 140ms ease-out !important; }
 [data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { scale: 0.92; }}
-@keyframes relayArtLate { 
-  0%, 100% { scale: 1; opacity: 0.6; }
-  50% { scale: 1.12; opacity: 0.9; }
-}
-@keyframes relayArtBrillo { 
-  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+@keyframes relayArtBarrido { 
+  0% { transform: rotate(16deg) translateX(0px); opacity: 0; }
   15% { opacity: 0.9; }
-  100% { transform: rotate(16deg) translate3d(420px, 0px, 0px); opacity: 0; }
+  100% { transform: rotate(16deg) translateX(520px); opacity: 0; }
 }
+#artistGrid .relayArt:hover :is(.relayArtPlay, .relayArtPin) { will-change: transform; }
+#artistList .relayArtFila:hover :is(.relayArtPlay, .relayArtPin) { will-change: transform; }
+@keyframes relayArtEq { 
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+html[data-sonando] :is(#artistGrid, #artistList) .relayArtSuena .relayArtPlay::before { mask-position: 50% 50%; }
+:is(#artistGrid, #artistList) .relayArtPin { width: 32px; height: 32px; border-radius: 50%; box-sizing: border-box; background: rgba(14, 10, 12, 0.46); border: 1px solid rgba(255, 255, 255, 0.16); filter: none; box-shadow: rgba(0, 0, 0, 0.6) 0px 6px 16px -6px; }
+:is(#artistGrid, #artistList) .relayArtPin::before { width: 16px; height: 16px; mask-size: 15px 15px; }
 @keyframes relayEstGira { 
   100% { rotate: 360deg; }
 }
@@ -360,9 +376,24 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
 @keyframes relayAlbAro { 
   100% { opacity: 0; box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 14px inset; }
 }
+#artistList [data-act="open-artist"]:active:not(:has(.relayArtPlay:active, .relayArtPin:active)) { transform: scale(0.985); }
 @keyframes relayDetEntra { 
   0% { opacity: 0; transform: translateY(14px); }
   100% { opacity: 1; transform: translateY(0px); }
+}
+@keyframes relayDetAlbEqSube { 
+  0%, 100% { transform: scaleY(0.26); }
+  50% { transform: scaleY(1); }
+}
+@keyframes relayArtSube { 
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-1000px); }
+}
+@keyframes relayFavSalta { 
+  0% { transform: scale(1) rotate(0deg); }
+  35% { transform: scale(1.35) rotate(-14deg); }
+  70% { transform: scale(0.92) rotate(6deg); }
+  100% { transform: scale(1) rotate(0deg); }
 }
 @keyframes relayNpVaga { 
   0% { transform: translate3d(-3px, -2px, 0px) scale(1); }
@@ -420,6 +451,33 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0); }
   50% { box-shadow: 0 0 22px 2px rgba(var(--t0,255,42,58),.45); }
 }
+@keyframes tmVivoGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes vbUno { 
+  0% { transform: translate(0px, 0px) scale(1); }
+  35% { transform: translate(42%, 30%) scale(1.25); }
+  70% { transform: translate(12%, 52%) scale(0.85); }
+  100% { transform: translate(34%, 8%) scale(1.1); }
+}
+@keyframes vbDos { 
+  0% { transform: translate(0px, 0px) scale(1.1); }
+  40% { transform: translate(-46%, 36%) scale(0.85); }
+  75% { transform: translate(-20%, 56%) scale(1.25); }
+  100% { transform: translate(-40%, 6%) scale(1); }
+}
+@keyframes vbTres { 
+  0% { transform: translate(0px, 0px) scale(0.9); }
+  30% { transform: translate(38%, -40%) scale(1.2); }
+  65% { transform: translate(56%, -10%) scale(1); }
+  100% { transform: translate(10%, -48%) scale(1.25); }
+}
+@keyframes vbCuatro { 
+  0% { transform: translate(0px, 0px) scale(1.2); }
+  45% { transform: translate(-50%, -30%) scale(0.9); }
+  80% { transform: translate(-14%, -52%) scale(1.15); }
+  100% { transform: translate(-36%, -6%) scale(0.95); }
+}
 @property --tmGiro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 @keyframes tmGiro { 
   100% { --tmGiro: 360deg; }
@@ -465,6 +523,27 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   0% { transform: scale(1); }
   40% { transform: scale(1.35); background: rgb(var(--t0,255,42,58)); color: rgb(255, 255, 255); }
   100% { transform: scale(1); }
+}
+@keyframes sleepTic { 
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-28deg); }
+  60% { transform: rotate(14deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes sleepEntra { 
+  0% { transform: scale(0.3); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes sleepAbre { 
+  0% { opacity: 0; transform: translateY(10px) scale(0.86); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sleepCierra { 
+  100% { opacity: 0; transform: translateY(8px) scale(0.9); }
+}
+@keyframes sleepOpcion { 
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: none; }
 }
 .scp0:hover { background: linear-gradient(100deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.024)) !important; border-color: rgba(255, 255, 255, 0.14) !important; }
 .scp1:hover { opacity: 1 !important; }
@@ -534,7 +613,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
 
   <div data-dc-tpl="6" style="display: flex; align-items: center; gap: 10px; min-width: 0px;">
     <div data-dc-tpl="7" id="titleBlock" data-act="open-now-playing" class="scp0" style="display: flex; align-items: center; gap: 14px; min-width: 0px; flex: 1 1 0%; padding: 7px 10px 7px 7px; margin-left: -7px; border-radius: 15px; border: 1px solid transparent; cursor: pointer; transition: background 160ms ease-out, border-color 160ms ease-out;">
-      <div id="relayBarAura" style="--fin: 219px; left: 7px; top: 7px; width: 54px; height: 54px; --albAcento: 247,183,12;" data-sitio="7,7,54,54" data-fuente="arte/a2.jpg"><div class="tanda"><i class="uno" style="background-image: url(&quot;arte/a2.jpg&quot;); animation-delay: -1536.2ms;"></i><i class="dos" style="background-image: url(&quot;arte/a2.jpg&quot;); animation-delay: -20536.2ms;"></i></div><i class="filo"></i><i class="filo2"></i><i class="lustre"></i></div><div data-dc-tpl="8" id="barArtwork" style="position: relative; width: 52px; height: 52px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 10px 24px -8px rgba(var(--t0,255,42,58),.55); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/a2.jpg&quot;) center center / cover;">
+      <div id="relayBarAura" style="--fin: 219px; left: 7px; top: 7px; width: 54px; height: 54px; --albAcento: 247,182,13;" data-sitio="7,7,54,54" data-fuente="arte/a2.jpg"><div class="tanda"><i class="uno" style="background-image: url(&quot;arte/a2.jpg&quot;); animation-delay: -15701.3ms;"></i><i class="dos" style="background-image: url(&quot;arte/a2.jpg&quot;); animation-delay: -15701.3ms;"></i></div><i class="filo"></i><i class="filo2"></i><i class="lustre"></i></div><div data-dc-tpl="8" id="barArtwork" style="position: relative; width: 52px; height: 52px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 10px 24px -8px rgba(var(--t0,255,42,58),.55); overflow: hidden; flex: 0 0 auto; background: url(&quot;arte/a2.jpg&quot;) center center / cover;">
         <div data-dc-tpl="9" style="position: absolute; inset: 0px; background: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.14) 0px, rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 9px);"></div>
       </div>
       <div data-dc-tpl="10" style="min-width: 0px; flex: 1 1 0%;">
@@ -548,44 +627,19 @@ html,body{margin:0;overflow:hidden;background:transparent}
     </div>
 
     
-      <div data-dc-tpl="20" id="spectrum" style="display: flex; align-items: flex-end; gap: 2.5px; height: 34px; flex: 0 0 auto; align-self: flex-end; padding-bottom: 13px;">
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgb(var(--t1,196,18,32))); animation: 1.05s ease-in-out 0s infinite normal none running rsp1;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgb(var(--t1,196,18,32))); animation: 0.78s ease-in-out 0.07s infinite normal none running rsp2;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32))); animation: 1.32s ease-in-out 0.14s infinite normal none running rsp3;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgb(var(--t1,196,18,32))); animation: 0.92s ease-in-out 0.21s infinite normal none running rsp4;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgb(var(--t1,196,18,32))); animation: 1.18s ease-in-out 0.28s infinite normal none running rsp2;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgb(var(--t1,196,18,32))); animation: 0.84s ease-in-out 0.35s infinite normal none running rsp1;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32))); animation: 1.12s ease-in-out 0.42s infinite normal none running rsp3;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgb(var(--t1,196,18,32))); animation: 0.7s ease-in-out 0.49s infinite normal none running rsp4;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t2,255,90,99)),rgb(var(--t1,196,18,32))); animation: 1.26s ease-in-out 0.56s infinite normal none running rsp1;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t11,255,122,128)),rgb(var(--t1,196,18,32))); animation: 0.88s ease-in-out 0.63s infinite normal none running rsp2;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t0,255,42,58)),rgb(var(--t1,196,18,32))); animation: 1s ease-in-out 0.7s infinite normal none running rsp3;"></div>
-        
-          <div data-dc-tpl="22" style="width: 2.5px; border-radius: 2px 2px 1px 1px; transform-origin: center bottom; height: 100%; background: linear-gradient(180deg,rgb(var(--t3,255,154,162)),rgb(var(--t1,196,18,32))); animation: 1.16s ease-in-out 0.77s infinite normal none running rsp4;"></div>
-        
-      </div>
-    
   </div>
 
   <div data-dc-tpl="23" style="display: flex; flex-direction: column; align-items: center; gap: 9px; min-width: 0px; width: 100%;">
-    <div data-dc-tpl="24" style="display: flex; align-items: center; gap: 20px; position: relative;">
+    <div data-dc-tpl="24" style="display: flex; align-items: center; gap: 20px;">
 
       
-      
-        <div data-dc-tpl="34" id="shuffleButtonOff" data-act="toggle-shuffle" class="scp2" style="width: 30px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 9px; border: 1px solid transparent; cursor: pointer; transition: background 140ms ease-out, border-color 140ms ease-out;">
-          <svg data-dc-tpl="35" viewBox="0 0 512 512" style="width: 20px; height: 20px; display: block; color: rgb(240, 240, 244); opacity: 0.75;"><g data-dc-tpl="36" transform="translate(0,512) scale(0.1,-0.1)" fill="currentColor" stroke="none"><path data-dc-tpl="37" d="M4013 4419 c-48 -24 -99 -77 -119 -125 -20 -48 -17 -141 5 -189 10 -22 51 -71 90 -110 39 -38 71 -72 71 -76 0 -3 -37 -9 -82 -13 -315 -26 -667 -177 -926 -396 -41 -34 -365 -376 -721 -759 -356 -383 -672 -719 -702 -747 -157 -147 -355 -250 -581 -300 -53 -12 -149 -19 -353 -23 -260 -6 -283 -8 -320 -28 -86 -46 -129 -117 -129 -213 0 -95 43 -167 129 -213 38 -21 52 -22 310 -22 174 0 300 5 355 13 345 54 642 194 897 424 51 46 365 378 698 738 333 360 638 685 677 723 183 173 452 301 678 323 l65 7 -68 -71 c-80 -83 -97 -120 -97 -204 0 -116 74 -205 191 -230 45 -9 64 -8 114 7 58 17 67 24 348 303 316 315 337 342 337 442 0 102 -20 129 -341 442 -163 159 -307 291 -327 300 -53 25 -146 23 -199 -3z"></path><path data-dc-tpl="38" d="M420 3911 c-112 -37 -174 -119 -174 -231 0 -96 43 -167 129 -213 37 -20 61 -22 320 -28 342 -9 433 -26 630 -120 168 -79 269 -161 465 -373 88 -95 149 -154 176 -167 165 -80 344 31 344 213 0 42 -6 75 -20 102 -23 48 -272 317 -375 406 -239 207 -507 334 -840 397 -90 17 -612 28 -655 14z"></path><path data-dc-tpl="39" d="M2816 2335 c-133 -47 -198 -202 -138 -327 33 -67 363 -397 482 -481 228 -161 545 -282 795 -303 39 -3 76 -8 84 -10 9 -3 -10 -30 -58 -78 -82 -85 -104 -129 -104 -206 0 -92 47 -171 127 -213 63 -33 166 -31 226 5 25 15 170 152 322 305 294 295 317 326 318 413 0 103 0 102 -323 427 -335 337 -337 339 -451 331 -53 -3 -74 -10 -108 -34 -69 -48 -101 -103 -106 -178 -6 -94 10 -129 96 -218 l75 -78 -36 0 c-96 0 -269 51 -412 121 -145 71 -250 155 -429 343 -143 150 -163 167 -209 181 -62 18 -100 18 -151 0z"></path></g></svg>
+        <div data-dc-tpl="26" id="shuffleButton" data-act="toggle-shuffle" style="position: relative; width: 30px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 9px; background: rgba(var(--t0,255,42,58),.14); border: 1px solid rgba(var(--t0,255,42,58),.38); box-shadow: 0 0 18px -6px rgba(var(--t0,255,42,58),.85); cursor: pointer;">
+          
+          <svg data-dc-tpl="27" viewBox="0 0 512 512" style="width: 20px; height: 20px; display: block; color: rgb(var(--t2,255,90,99));"><g data-dc-tpl="28" transform="translate(0,512) scale(0.1,-0.1)" fill="currentColor" stroke="none"><path data-dc-tpl="29" d="M4013 4419 c-48 -24 -99 -77 -119 -125 -20 -48 -17 -141 5 -189 10 -22 51 -71 90 -110 39 -38 71 -72 71 -76 0 -3 -37 -9 -82 -13 -315 -26 -667 -177 -926 -396 -41 -34 -365 -376 -721 -759 -356 -383 -672 -719 -702 -747 -157 -147 -355 -250 -581 -300 -53 -12 -149 -19 -353 -23 -260 -6 -283 -8 -320 -28 -86 -46 -129 -117 -129 -213 0 -95 43 -167 129 -213 38 -21 52 -22 310 -22 174 0 300 5 355 13 345 54 642 194 897 424 51 46 365 378 698 738 333 360 638 685 677 723 183 173 452 301 678 323 l65 7 -68 -71 c-80 -83 -97 -120 -97 -204 0 -116 74 -205 191 -230 45 -9 64 -8 114 7 58 17 67 24 348 303 316 315 337 342 337 442 0 102 -20 129 -341 442 -163 159 -307 291 -327 300 -53 25 -146 23 -199 -3z"></path><path data-dc-tpl="30" d="M420 3911 c-112 -37 -174 -119 -174 -231 0 -96 43 -167 129 -213 37 -20 61 -22 320 -28 342 -9 433 -26 630 -120 168 -79 269 -161 465 -373 88 -95 149 -154 176 -167 165 -80 344 31 344 213 0 42 -6 75 -20 102 -23 48 -272 317 -375 406 -239 207 -507 334 -840 397 -90 17 -612 28 -655 14z"></path><path data-dc-tpl="31" d="M2816 2335 c-133 -47 -198 -202 -138 -327 33 -67 363 -397 482 -481 228 -161 545 -282 795 -303 39 -3 76 -8 84 -10 9 -3 -10 -30 -58 -78 -82 -85 -104 -129 -104 -206 0 -92 47 -171 127 -213 63 -33 166 -31 226 5 25 15 170 152 322 305 294 295 317 326 318 413 0 103 0 102 -323 427 -335 337 -337 339 -451 331 -53 -3 -74 -10 -108 -34 -69 -48 -101 -103 -106 -178 -6 -94 10 -129 96 -218 l75 -78 -36 0 c-96 0 -269 51 -412 121 -145 71 -250 155 -429 343 -143 150 -163 167 -209 181 -62 18 -100 18 -151 0z"></path></g></svg>
+          
+          <div data-dc-tpl="32" style="position: absolute; bottom: -10px; left: 50%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: rgb(var(--t0,255,42,58)); box-shadow: 0 0 8px rgb(var(--t0,255,42,58)); pointer-events: none;"></div>
         </div>
+      
       
 
       
@@ -620,7 +674,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
           <div data-dc-tpl="71" style="position: absolute; width: 0px; height: 0px; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-right: 4.5px solid rgb(240, 240, 244); left: 6px; top: -2.75px;"></div></div>
         </div>
       
-    <div id="relayVersionesBtn" class="" title="Versions: each song plays its own" style="left: -52px; --meter: 52px;"></div><span id="relayPuntosIzq" class="relayPuntos" style="left: 16px; top: 41px;"><i></i><i class="cara"></i></span></div>
+    </div>
 
     <div data-dc-tpl="72" style="display: flex; align-items: center; gap: 12px; width: 100%; max-width: 520px;">
       <span data-dc-tpl="73" id="elapsedLabel" style="font: 500 11.5px / 1 Inter, sans-serif; color: rgba(238, 238, 244, 0.55); flex: 0 0 auto;"><span class="sc-interp">1:14</span></span>
@@ -694,7 +748,7 @@ html,body{margin:0;overflow:hidden;background:transparent}
 
 
 
-<svg id="relayOlas" width="62.640625" height="30" viewBox="0 0 62.640625 30" style="display: block; left: 481.594px; top: 36.5px;"><defs><linearGradient data-dc-tpl="102" id="relayOla0" x1="0" y1="0" x2="0" y2="1"><stop data-dc-tpl="103" offset="0" style="stop-color: rgb(var(--t6,142,14,28));"></stop><stop data-dc-tpl="104" offset="1" style="stop-color: rgba(var(--t6,142,14,28),.10);"></stop></linearGradient><linearGradient data-dc-tpl="108" id="relayOla1" x1="0" y1="0" x2="0" y2="1"><stop data-dc-tpl="109" offset="0" style="stop-color: rgb(var(--t0,255,42,58));"></stop><stop data-dc-tpl="110" offset="1" style="stop-color: rgba(var(--t0,255,42,58),.10);"></stop></linearGradient><linearGradient data-dc-tpl="114" id="relayOla2" x1="0" y1="0" x2="0" y2="1"><stop data-dc-tpl="115" offset="0" style="stop-color: rgb(var(--t3,255,154,162));"></stop><stop data-dc-tpl="116" offset="1" style="stop-color: rgba(var(--t3,255,154,162),.08);"></stop></linearGradient></defs><g style="transform-origin:bottom center;transform-box:view-box;mix-blend-mode:screen;opacity:1;animation: 3.6s ease-in-out 0s infinite normal none running rblobA"><path fill="url(#relayOla0)" d="M0,30 L0.0,30.00 L2.0,30.00 L4.0,29.99 L6.0,29.97 L8.0,29.93 L10.0,29.87 L12.0,29.78 L14.0,29.68 L16.0,29.56 L18.0,29.43 L20.0,29.32 L22.0,29.22 L24.0,29.13 L26.0,29.06 L28.0,29.01 L30.0,28.98 L32.0,28.95 L34.0,28.93 L36.0,28.91 L38.0,28.90 L40.0,28.91 L42.0,28.94 L44.0,29.01 L46.0,29.10 L48.0,29.23 L50.0,29.38 L52.0,29.54 L54.0,29.69 L56.0,29.82 L58.0,29.92 L60.0,29.98 L62.0,30.00 L62.640625,30 Z"></path></g><g style="transform-origin:bottom center;transform-box:view-box;mix-blend-mode:screen;opacity:1;animation: 2.7s ease-in-out 0s infinite normal none running rblobB"><path fill="url(#relayOla1)" d="M0,30 L0.0,30.00 L2.0,29.98 L4.0,29.91 L6.0,29.82 L8.0,29.71 L10.0,29.61 L12.0,29.53 L14.0,29.48 L16.0,29.46 L18.0,29.41 L20.0,29.30 L22.0,29.09 L24.0,28.75 L26.0,28.27 L28.0,27.69 L30.0,27.07 L32.0,26.50 L34.0,26.06 L36.0,25.82 L38.0,25.82 L40.0,26.06 L42.0,26.51 L44.0,27.10 L46.0,27.74 L48.0,28.35 L50.0,28.89 L52.0,29.30 L54.0,29.60 L56.0,29.79 L58.0,29.91 L60.0,29.97 L62.0,30.00 L62.640625,30 Z"></path></g><g style="transform-origin:bottom center;transform-box:view-box;mix-blend-mode:screen;opacity:1;animation: 4.3s ease-in-out 0s infinite normal none running rblobC"><path fill="url(#relayOla2)" d="M0,30 L0.0,30.00 L2.0,29.97 L4.0,29.90 L6.0,29.77 L8.0,29.61 L10.0,29.46 L12.0,29.36 L14.0,29.34 L16.0,29.42 L18.0,29.57 L20.0,29.73 L22.0,29.84 L24.0,29.85 L26.0,29.75 L28.0,29.56 L30.0,29.32 L32.0,29.10 L34.0,28.95 L36.0,28.90 L38.0,28.94 L40.0,29.07 L42.0,29.23 L44.0,29.39 L46.0,29.54 L48.0,29.65 L50.0,29.74 L52.0,29.82 L54.0,29.88 L56.0,29.93 L58.0,29.97 L60.0,29.99 L62.0,30.00 L62.640625,30 Z"></path></g></svg>
+<svg id="relayOlas" width="131.984375" height="30" viewBox="0 0 131.984375 30" style="display: block; left: 481.594px; top: 36.5px;"><defs><linearGradient data-dc-tpl="102" id="relayOla0" x1="0" y1="0" x2="0" y2="1"><stop data-dc-tpl="103" offset="0" style="stop-color: rgb(var(--t6,142,14,28));"></stop><stop data-dc-tpl="104" offset="1" style="stop-color: rgba(var(--t6,142,14,28),.10);"></stop></linearGradient><linearGradient data-dc-tpl="108" id="relayOla1" x1="0" y1="0" x2="0" y2="1"><stop data-dc-tpl="109" offset="0" style="stop-color: rgb(var(--t0,255,42,58));"></stop><stop data-dc-tpl="110" offset="1" style="stop-color: rgba(var(--t0,255,42,58),.10);"></stop></linearGradient><linearGradient data-dc-tpl="114" id="relayOla2" x1="0" y1="0" x2="0" y2="1"><stop data-dc-tpl="115" offset="0" style="stop-color: rgb(var(--t3,255,154,162));"></stop><stop data-dc-tpl="116" offset="1" style="stop-color: rgba(var(--t3,255,154,162),.08);"></stop></linearGradient></defs><g style="transform-origin:bottom center;transform-box:view-box;mix-blend-mode:screen;opacity:1;animation: 3.6s ease-in-out 0s infinite normal none running rblobA"><path fill="url(#relayOla0)" d="M0,30 L0.0,30.00 L2.0,30.00 L4.0,29.99 L6.0,29.97 L8.0,29.93 L10.0,29.86 L12.0,29.75 L14.0,29.62 L16.0,29.46 L18.0,29.28 L20.0,29.08 L22.0,28.88 L24.0,28.67 L26.0,28.46 L28.0,28.25 L30.0,28.01 L32.0,27.76 L34.0,27.45 L36.0,27.09 L38.0,26.67 L40.0,26.20 L42.0,25.68 L44.0,25.15 L46.0,24.65 L48.0,24.22 L50.0,23.90 L52.0,23.75 L54.0,23.78 L56.0,24.04 L58.0,24.49 L60.0,25.11 L62.0,25.85 L64.0,26.63 L66.0,27.36 L68.0,27.94 L70.0,28.32 L72.0,28.41 L74.0,28.18 L76.0,27.62 L78.0,26.75 L80.0,25.62 L82.0,24.32 L84.0,22.95 L86.0,21.62 L88.0,20.44 L90.0,19.50 L92.0,18.87 L94.0,18.58 L96.0,18.66 L98.0,19.08 L100.0,19.80 L102.0,20.73 L104.0,21.82 L106.0,22.98 L108.0,24.13 L110.0,25.22 L112.0,26.20 L114.0,27.05 L116.0,27.76 L118.0,28.34 L120.0,28.81 L122.0,29.18 L124.0,29.47 L126.0,29.69 L128.0,29.86 L130.0,29.96 L131.984375,30 Z"></path></g><g style="transform-origin:bottom center;transform-box:view-box;mix-blend-mode:screen;opacity:1;animation: 2.7s ease-in-out 0s infinite normal none running rblobB"><path fill="url(#relayOla1)" d="M0,30 L0.0,30.00 L2.0,29.98 L4.0,29.91 L6.0,29.81 L8.0,29.69 L10.0,29.57 L12.0,29.47 L14.0,29.40 L16.0,29.33 L18.0,29.24 L20.0,29.06 L22.0,28.70 L24.0,28.08 L26.0,27.15 L28.0,25.89 L30.0,24.32 L32.0,22.53 L34.0,20.65 L36.0,18.87 L38.0,17.35 L40.0,16.27 L42.0,15.75 L44.0,15.84 L46.0,16.50 L48.0,17.63 L50.0,19.05 L52.0,20.57 L54.0,21.98 L56.0,23.11 L58.0,23.85 L60.0,24.18 L62.0,24.15 L64.0,23.86 L66.0,23.46 L68.0,23.08 L70.0,22.86 L72.0,22.91 L74.0,23.25 L76.0,23.83 L78.0,24.55 L80.0,25.29 L82.0,25.92 L84.0,26.33 L86.0,26.47 L88.0,26.34 L90.0,25.98 L92.0,25.49 L94.0,24.98 L96.0,24.56 L98.0,24.33 L100.0,24.35 L102.0,24.62 L104.0,25.13 L106.0,25.80 L108.0,26.56 L110.0,27.33 L112.0,28.04 L114.0,28.64 L116.0,29.12 L118.0,29.46 L120.0,29.69 L122.0,29.83 L124.0,29.91 L126.0,29.95 L128.0,29.98 L130.0,29.99 L131.984375,30 Z"></path></g><g style="transform-origin:bottom center;transform-box:view-box;mix-blend-mode:screen;opacity:1;animation: 4.3s ease-in-out 0s infinite normal none running rblobC"><path fill="url(#relayOla2)" d="M0,30 L0.0,30.00 L2.0,29.97 L4.0,29.89 L6.0,29.76 L8.0,29.58 L10.0,29.41 L12.0,29.28 L14.0,29.23 L16.0,29.30 L18.0,29.45 L20.0,29.63 L22.0,29.77 L24.0,29.78 L26.0,29.59 L28.0,29.21 L30.0,28.68 L32.0,28.08 L34.0,27.50 L36.0,27.06 L38.0,26.81 L40.0,26.75 L42.0,26.85 L44.0,27.03 L46.0,27.23 L48.0,27.38 L50.0,27.48 L52.0,27.54 L54.0,27.61 L56.0,27.74 L58.0,27.95 L60.0,28.24 L62.0,28.58 L64.0,28.89 L66.0,29.15 L68.0,29.31 L70.0,29.39 L72.0,29.41 L74.0,29.41 L76.0,29.42 L78.0,29.36 L80.0,29.35 L82.0,29.35 L84.0,29.36 L86.0,29.34 L88.0,29.24 L90.0,29.03 L92.0,28.73 L94.0,28.38 L96.0,28.05 L98.0,27.81 L100.0,27.72 L102.0,27.80 L104.0,28.03 L106.0,28.36 L108.0,28.71 L110.0,29.04 L112.0,29.30 L114.0,29.48 L116.0,29.59 L118.0,29.66 L120.0,29.71 L122.0,29.77 L124.0,29.84 L126.0,29.91 L128.0,29.96 L130.0,29.99 L131.984375,30 Z"></path></g></svg>
 <script src="tema.js"></script>
 <script>
 /* En la web, la rueda mueve la pagina, no lo de dentro de la demo: si no,
