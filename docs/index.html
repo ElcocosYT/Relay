@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Relay · Music player &amp; soundboard for Windows</title>
-<meta name="description" content="A free music player and soundboard for Windows. No ads. Play your library, fire sounds with hotkeys, send it all through your mic in calls, and show what's playing on Discord.">
+<meta name="description" content="A free music player and soundboard for Windows, with no ads. Play your library, search eight online sources, send music and sounds through your mic in calls, and show what you're playing on Discord.">
 <meta name="theme-color" content="#0B0809">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Relay">
 <meta property="og:title" content="Relay · Music player & soundboard for Windows">
-<meta property="og:description" content="Free, no ads. Your music and your sounds in one place, through your mic in calls, and on your Discord status.">
+<meta property="og:description" content="Free, with no ads. Your music and your sounds in one app, through your mic in calls and on your Discord status.">
 <meta property="og:url" content="https://relaymusic.pages.dev/">
 <meta property="og:image" content="https://relaymusic.pages.dev/og.png">
 <meta property="og:image:width" content="1280">
@@ -25,10 +25,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* La marca RELAY: Inter Display ExtraBold estatica, la misma que la app
+/* La marca RELAY: Inter Display ExtraBold, la misma que la app
    (InterDisplay-ExtraBold.woff2, OFL en Inter-OFL.txt). */
 @font-face { font-family: "Relay Marca"; src: url("InterDisplay-ExtraBold.woff2") format("woff2"); font-weight: 800; font-display: swap; }
-html { font-variant-numeric: tabular-nums; }
 
 :root {
   /* Los colores de la app (--tN), que cambia la paleta de demos/tema.js. */
@@ -37,550 +36,271 @@ html { font-variant-numeric: tabular-nums; }
   --rosa: var(--t13, 255, 211, 214);
   --claro: var(--t4, 255, 143, 152);
   --fondo: #0B0809;
+  --panel: #131012;
   --texto: #F2F2F4;
-  --suave: rgba(238, 238, 244, .64);
-  --tenue: rgba(238, 238, 244, .38);
-  --linea: rgba(255, 255, 255, .09);
-  --ancho: 1160px;
+  --suave: rgba(238, 238, 244, .66);
+  --tenue: rgba(238, 238, 244, .42);
+  --linea: rgba(255, 255, 255, .08);
+  --ancho: 1200px;
+  --anchoTour: 1480px;
 }
 * { box-sizing: border-box; }
-/* Sin barra de desplazamiento: la rueda, el tactil y el teclado siguen igual. */
-html { scroll-behavior: smooth; scrollbar-width: none; }
-html::-webkit-scrollbar { display: none; }
+html { scroll-behavior: smooth; font-variant-numeric: tabular-nums; }
 body {
-  margin: 0; background: var(--fondo); color: var(--texto);
+  margin: 0; color: var(--texto);
+  /* Un solo resplandor arriba, del color del tema, y nada que se mueva. */
+  background:
+    radial-gradient(70% 520px at 50% -120px, rgba(var(--rojo), .20), transparent 70%),
+    var(--fondo);
+  background-repeat: no-repeat;
   font: 500 16px/1.6 Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
-
-/* ── El fondo: los focos rojos de la aplicacion, y un grano fino ── */
-.cielo { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-.cielo::before {
-  content: ""; position: absolute; inset: -20%;
-  background:
-    radial-gradient(40% 35% at 18% 22%, rgba(var(--rojo), .22), transparent 70%),
-    radial-gradient(35% 30% at 88% 12%, rgba(var(--rojoOscuro), .20), transparent 70%),
-    radial-gradient(45% 35% at 70% 88%, rgba(var(--rojo), .10), transparent 70%);
-  animation: deriva 26s ease-in-out infinite alternate;
-}
-.cielo::after {
-  content: ""; position: absolute; inset: 0; opacity: .05;
-  background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 4px 4px;
-}
-@keyframes deriva { to { transform: translate3d(3%, -2%, 0) scale(1.06); } }
-
+button { font: inherit; color: inherit; }
 .marco { width: min(var(--ancho), 100% - 32px); margin: 0 auto; }
 
 /* ── Arriba ── */
 .barra {
   position: sticky; top: 0; z-index: 10;
-  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%);
-  background: rgba(11, 8, 9, .6); border-bottom: 1px solid var(--linea);
+  backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%);
+  background: rgba(11, 8, 9, .72); border-bottom: 1px solid var(--linea);
 }
-.barra .marco { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-/* La marca, como la de la barra de titulo de Relay: el abanico a la
-   izquierda y RELAY en mayusculas, 28 px de logo por 22 de letra. */
-.marca { display: flex; align-items: center; gap: 9px; font: 800 22px/28px "Relay Marca", Inter, sans-serif; letter-spacing: -.022em; color: #FCFCFD; }
+.barra .marco { display: flex; align-items: center; justify-content: space-between; height: 60px; width: min(var(--anchoTour), 100% - 32px); }
+/* La marca, como la de la barra de titulo de Relay: el abanico y RELAY. */
+.marca { display: flex; align-items: center; gap: 9px; font: 800 21px/28px "Relay Marca", Inter, sans-serif; letter-spacing: -.022em; color: #FCFCFD; }
 .marca span { position: relative; top: 1px; }
-.marca img { width: 28px; height: 28px; transition: transform .56s cubic-bezier(.34, 1.56, .64, 1), filter .32s ease; }
-.marca:hover img { transform: rotate(-14deg) scale(1.13); filter: drop-shadow(0 0 7px rgba(var(--rojo), .85)); }
-.enlaces { display: flex; align-items: center; gap: 6px; }
-.enlaces a.suave { padding: 9px 12px; border-radius: 10px; color: var(--suave); font-weight: 600; font-size: 14px; transition: color .2s, background .2s; }
+.marca img { width: 26px; height: 26px; }
+.enlaces { display: flex; align-items: center; gap: 4px; }
+.enlaces a.suave { padding: 8px 12px; border-radius: 9px; color: var(--suave); font-weight: 600; font-size: 14px; transition: color .15s, background .15s; }
 .enlaces a.suave:hover { color: #fff; background: rgba(255, 255, 255, .06); }
 
 /* ── Los botones ── */
-/*
-  El boton: sube un poco al pasar por encima y un brillo lo cruza. Cada cosa
-  en su propiedad -translate, scale- para que no se pisen.
-
-  No sigue al raton: se movia hacia el mientras estaba encima, y un boton que
-  se aparta de donde se va a pulsar llama mas la atencion que lo que dice.
-*/
 .boton {
-  position: relative; overflow: hidden; isolation: isolate;
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 12px 18px; border-radius: 12px;
-  font: 700 14.5px/1 Inter, sans-serif; color: #fff;
-  background: linear-gradient(180deg, rgb(var(--rojo)), rgb(var(--rojoOscuro)));
-  box-shadow: 0 10px 30px -10px rgba(var(--rojo), .8), inset 0 1px 0 rgba(255, 255, 255, .25);
-  translate: 0 var(--sube, 0px);
-  transition: translate .35s cubic-bezier(.34, 1.56, .64, 1), scale .3s cubic-bezier(.34, 1.56, .64, 1), box-shadow .3s ease;
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  padding: 10px 16px; border-radius: 10px; border: 0; cursor: pointer;
+  font: 700 14px/1 Inter, sans-serif; color: #fff;
+  background: rgb(var(--rojo));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), 0 8px 24px -12px rgba(var(--rojo), .9);
+  transition: background .15s, transform .15s;
 }
-.boton:hover { --sube: -2px; box-shadow: 0 16px 40px -10px rgba(var(--rojo), .95), inset 0 1px 0 rgba(255, 255, 255, .3); }
-.boton:active { scale: .97; transition-duration: .09s; }
-.boton.grande { padding: 18px 28px; border-radius: 16px; font-size: 17px; }
-.boton::after {
-  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, .38) 48%, transparent 66%);
-  translate: -120% 0; transition: translate .7s ease;
-}
-.boton:hover::after { translate: 120% 0; }
-.boton.grande::after { animation: destello 5.5s ease-in-out 2.4s infinite; }
-@keyframes destello { 0%, 72% { translate: -120% 0; } 90%, 100% { translate: 120% 0; } }
-/*
-  El icono al centro OPTICO del texto, no al de su caja: casi todo es
-  minuscula, y la flecha quedaba un pixel y medio por encima. Y su vaiven, a
-  partes iguales arriba y abajo: antes solo bajaba y se veia descentrado.
-*/
-.boton svg { width: 18px; height: 18px; flex: none; position: relative; top: 1px; }
-.boton.grande svg { width: 21px; height: 21px; }
-.boton:hover svg { animation: baja .9s ease-in-out infinite; }
-@keyframes baja { 0%, 100% { transform: translateY(-1.5px); } 50% { transform: translateY(1.5px); } }
+.boton:hover { background: rgb(var(--rojoOscuro)); }
+.boton:active { transform: scale(.98); }
+.boton.grande { padding: 15px 24px; border-radius: 12px; font-size: 16px; }
+.boton svg { width: 17px; height: 17px; flex: none; }
+.boton.grande svg { width: 19px; height: 19px; }
+.boton.otro { background: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
+.boton.otro:hover { background: rgba(255, 255, 255, .1); }
 
 /* ── La portada ── */
-.portada { padding: 88px 0 40px; text-align: center; }
-/* El titulo: la misma marca de la barra, en grande y con las mismas
-   proporciones (logo 28/22 de la letra, hueco 9/22). */
-h1 {
-  margin: 0; display: inline-flex; align-items: center; gap: .41em;
-  font: 800 clamp(56px, 10vw, 112px)/1 "Relay Marca", Inter, sans-serif; letter-spacing: -.022em; color: #FCFCFD;
-  text-shadow: 0 0 60px rgba(var(--rojo), .35);
+.portada { padding: 76px 0 48px; text-align: center; }
+/*
+  El titulo: el abanico y RELAY, la misma marca de la barra de titulo de la
+  aplicacion (logo 28/22 de la letra, hueco 9/22), y "for Windows" en el
+  color del tema debajo. Al pasar el raton, la ola de la barra de titulo; al pulsar
+  el logo, una vuelta entera.
+*/
+.portada h1 {
+  margin: 0; display: flex; flex-direction: column; align-items: center; gap: .12em;
+  font: 800 clamp(54px, 8.4vw, 104px)/1 "Relay Marca", Inter, sans-serif; letter-spacing: -.022em; color: #FCFCFD;
 }
-h1 > span { position: relative; top: .045em; display: inline-flex; perspective: 600px; }
-h1 img {
-  width: 1.27em; height: 1.27em;
-  filter: drop-shadow(0 0 .35em rgba(var(--rojo), .6)) drop-shadow(0 .15em .25em rgba(0, 0, 0, .6));
-  animation: logoEntra 1.1s cubic-bezier(.22, 1.3, .36, 1) both, flota 6s ease-in-out 1.1s infinite;
-  cursor: pointer;
+.portada h1 .marcaGrande { display: inline-flex; align-items: center; gap: .2em; }
+.portada h1 .letras { position: relative; top: .12em; display: inline-flex; perspective: 600px; }
+.portada h1 em {
+  font: 800 .46em/1 Inter, sans-serif; letter-spacing: -.03em; font-style: normal; color: rgb(var(--rojo));
 }
-@keyframes logoEntra {
-  from { opacity: 0; transform: rotate(-140deg) scale(.3); filter: blur(8px) drop-shadow(0 0 0 transparent); }
+.portada h1 img {
+  width: 1.15em; height: 1.15em; cursor: pointer;
+  filter: drop-shadow(0 .12em .22em rgba(0, 0, 0, .5));
+  animation: logoEntra 1s cubic-bezier(.22, 1.3, .36, 1) both;
 }
-@keyframes flota { 50% { transform: translateY(-.06em) rotate(-4deg); } }
-/* Ya entrado solo flota: si no, al quitar la vuelta volveria a entrar. */
-h1 img.listo { animation: flota 6s ease-in-out infinite; }
-/* Al pulsarlo, una vuelta entera, como el de la aplicacion. */
-h1 img.listo.gira { animation: vuelta .9s cubic-bezier(.34, 1.56, .64, 1); }
+@keyframes logoEntra { from { opacity: 0; transform: rotate(-140deg) scale(.3); } }
+.portada h1 img.listo { animation: none; }
+.portada h1 img.listo.gira { animation: vuelta .9s cubic-bezier(.34, 1.56, .64, 1); }
 @keyframes vuelta { to { transform: rotate(360deg) scale(1.05); } }
-
-/* Las letras de RELAY: entran de una en una y, al pasar el raton, la ola de
-   la barra de titulo de la aplicacion. */
 .letra {
   display: inline-block; transform-origin: 50% 80%;
-  animation: letraEntra .9s cubic-bezier(.22, 1, .36, 1) both;
-  animation-delay: calc(.25s + var(--i) * 70ms);
+  animation: letraEntra .8s cubic-bezier(.22, 1, .36, 1) both;
+  animation-delay: calc(.2s + var(--i) * 60ms);
 }
-@keyframes letraEntra {
-  from { opacity: 0; transform: translateY(.45em) rotateX(-80deg); filter: blur(10px); }
-}
-/* Ya entradas, quietas: si no, al quitar la ola volvia a sonar la entrada.
-   La ola la pone el guion (clase .ola) y se quita sola al acabar, asi que
-   termina entera aunque el raton se vaya a mitad. */
-h1.entrado .letra { animation: none; }
-h1.entrado.ola .letra { animation: ola .7s ease-in-out both; animation-delay: calc(var(--i) * 60ms); }
+@keyframes letraEntra { from { opacity: 0; transform: translateY(.4em) rotateX(-80deg); } }
+/* Ya entradas, quietas; la ola la pone el guion y se quita sola al acabar. */
+.portada h1.entrado .letra { animation: none; }
+.portada h1.entrado.ola .letra { animation: ola .7s ease-in-out both; animation-delay: calc(var(--i) * 60ms); }
 @keyframes ola { 40% { transform: translateY(-.14em); color: rgb(var(--rosa)); } }
+.lema { margin: 20px auto 0; max-width: 640px; font-size: clamp(16px, 2vw, 19px); color: var(--suave); }
+.acciones { margin-top: 32px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+.detalle { margin-top: 16px; font: 600 13px/1.4 Inter, sans-serif; color: var(--tenue); }
+.detalle b { color: var(--suave); font-weight: 700; }
 
-/* Lo demas de la portada, en cascada detras del titulo. */
-.cae { animation: cae .9s cubic-bezier(.22, 1, .36, 1) both; animation-delay: calc(.7s + var(--t) * 110ms); }
-@keyframes cae { from { opacity: 0; translate: 0 16px; filter: blur(6px); } }
-.lema { margin: 18px auto 0; max-width: 620px; font-size: clamp(17px, 2.3vw, 21px); color: var(--suave); }
-.acciones { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-.detalle { font: 600 12.5px/1 Inter, sans-serif; letter-spacing: .04em; color: var(--tenue); }
-.detalle b { color: rgb(var(--rosa)); font-weight: 700; }
-.pildoras { display: flex; justify-content: center; gap: 8px; margin-top: 26px; flex-wrap: wrap; }
-.pildoras span {
-  font: 700 13px/1 Inter, sans-serif; color: rgba(255, 236, 238, .9);
-  padding: 9px 14px; border-radius: 999px;
-  background: rgba(var(--rojo), .1); border: 1px solid rgba(var(--rojo), .35);
-  transition: background .2s, border-color .2s, translate .35s cubic-bezier(.34, 1.56, .64, 1);
+/* ── El recorrido: una demo grande, los pasos al lado ── */
+.recorrido { width: min(var(--anchoTour), 100% - 32px); margin: 0 auto; }
+.rec { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 36px; align-items: start; }
+.pasos { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
+.paso { border-bottom: 1px solid var(--linea); }
+.paso > button {
+  width: 100%; display: flex; align-items: baseline; gap: 14px; padding: 13px 4px;
+  background: none; border: 0; cursor: pointer; text-align: left;
+  font: 700 16px/1.3 Inter, sans-serif; letter-spacing: -.01em; color: var(--tenue);
+  transition: color .15s;
 }
-.pildoras span:hover { translate: 0 -3px; background: rgba(var(--rojo), .2); border-color: rgba(var(--rojo), .65); }
+.paso > button span { font: 700 12px/1 Inter, sans-serif; letter-spacing: .04em; color: var(--tenue); min-width: 20px; }
+.paso > button:hover { color: var(--suave); }
+.paso.activo > button { color: #fff; }
+.paso.activo > button span { color: rgb(var(--claro)); }
+/* El texto del paso abierto, desplegado; el de los demas, cerrado. */
+.paso .cuerpo { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+.paso.activo .cuerpo { grid-template-rows: 1fr; }
+.paso .cuerpo > div { overflow: hidden; padding: 0 4px 0 38px; }
+.paso.activo .cuerpo > div { padding-bottom: 16px; }
+.paso p { margin: 0 0 10px; color: var(--suave); font-size: 14.5px; line-height: 1.55; }
+.paso ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.paso li { position: relative; padding-left: 15px; color: rgba(238, 238, 244, .8); font-size: 13.5px; line-height: 1.45; }
+.paso li::before { content: ""; position: absolute; left: 0; top: .55em; width: 5px; height: 5px; border-radius: 50%; background: rgb(var(--rojo)); }
 
-/*
-  La captura grande, en su ventana. Se inclina en 3D hacia el raton (--rx,
-  --ry) con un reflejo que lo sigue (--gx, --gy), y la de arriba crece un
-  poco al subir con la pagina (--s). Todo lo ponen los guiones de abajo.
-*/
-.escena { perspective: 1600px; }
-.ventana {
-  position: relative; margin: 64px auto 0; max-width: 1080px;
-  border-radius: 18px; padding: 8px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .02));
-  border: 1px solid rgba(var(--rojo), .3);
-  box-shadow: 0 50px 120px -40px rgba(var(--rojo), .55), 0 30px 60px -30px rgba(0, 0, 0, .9);
-  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  scale: var(--s, 1);
-  transition: transform .5s cubic-bezier(.22, 1, .36, 1), box-shadow .4s ease;
-  transform-style: preserve-3d;
+.escenario { min-width: 0; }
+/* Cada paso es la ventana de Relay, a su tamano real, encogida a lo que haya. */
+.escena {
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden;
+  border-radius: 14px; background: #0A0A0B;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .09), 0 40px 90px -40px rgba(0, 0, 0, .9), 0 30px 80px -50px rgba(var(--rojo), .55);
 }
-.ventana.sigue { transition: transform .12s linear, box-shadow .4s ease; }
-.ventana::after {
-  content: ""; position: absolute; inset: 8px; border-radius: 12px; pointer-events: none;
-  background: radial-gradient(520px circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, .13), transparent 55%);
-  opacity: 0; transition: opacity .35s ease; mix-blend-mode: screen;
+.escena iframe {
+  position: absolute; left: 0; top: 0; border: 0; display: block; transform-origin: 0 0;
+  opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility 0s linear .3s;
 }
-.ventana.sigue::after { opacity: 1; }
-.ventana:hover { box-shadow: 0 60px 140px -40px rgba(var(--rojo), .7), 0 30px 60px -30px rgba(0, 0, 0, .9); }
-/* height:auto: el height="870" del img fijaba la altura y, con menos ancho,
-   la captura salia ampliada y recortada por los lados. */
-.ventana img { border-radius: 12px; width: 100%; height: auto; }
+.escena iframe.activo { opacity: 1; visibility: visible; transition: opacity .3s ease; }
+.mandos { display: flex; align-items: center; gap: 14px; margin-top: 16px; }
+.cuenta { font: 700 13px/1 Inter, sans-serif; color: var(--suave); min-width: 52px; }
+.avance { flex: 1; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, .08); overflow: hidden; }
+.avance i { display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: rgb(var(--rojo)); transition: width .3s ease; }
+.flecha {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .12); transition: background .15s, border-color .15s;
+}
+.flecha:hover { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .22); }
+.flecha svg { width: 18px; height: 18px; }
+.pista { margin: 12px 0 0; font-size: 13px; color: var(--tenue); }
 
-/*
-  Las demos: la aplicacion de verdad -el diseño y todo lo que la app le pone
-  encima-, copiada con datos inventados por tools/demos-web/capturar.mjs. Cada
-  una se pinta a su tamaño real (data-w x data-h) y se encoge a lo que haya.
-  Detras, el fondo de la ventana de Relay, con su luz del color del tema.
-*/
-.demo {
-  position: relative; width: 100%; max-width: 100%; aspect-ratio: var(--w) / var(--h);
-  overflow: hidden; border-radius: 12px; isolation: isolate;
-  background:
-    radial-gradient(55% 60% at 8% 0%, rgba(var(--t1, 196, 18, 32), .38), transparent 70%),
-    radial-gradient(45% 50% at 100% 0%, rgba(var(--t0, 255, 42, 58), .16), transparent 70%),
-    linear-gradient(165deg, #0B0B0C, #050506 60%, #030304);
-}
+/* ── Secciones ── */
+section.seccion { padding: 120px 0 0; }
+.cabeza { max-width: 680px; margin-bottom: 40px; }
+.cabeza.centro { margin-left: auto; margin-right: auto; text-align: center; }
+.cabeza small, .explica small { font: 700 12px/1 Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: rgb(var(--claro)); }
+.cabeza h2, .explica h2 { margin: 12px 0 12px; font: 800 clamp(28px, 3.6vw, 40px)/1.1 Inter, sans-serif; letter-spacing: -.035em; }
+.cabeza p, .explica p { margin: 0; color: var(--suave); font-size: 17px; }
+.explica ul { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.explica li { position: relative; padding-left: 17px; color: rgba(238, 238, 244, .82); font-size: 15px; }
+.explica li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: rgb(var(--rojo)); }
+
+/* Una explicacion al lado de una muestra. */
+.muestra { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 56px; align-items: center; }
+.muestra.al-reves { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+
+/* Las demas demos (la sala, el chat, el Recap, el color): cada una a su
+   tamano real (data-w x data-h) y encogida a lo que haya. */
+.demo { position: relative; width: 100%; aspect-ratio: var(--w) / var(--h); }
 .demo iframe {
   position: absolute; left: 0; top: 0; border: 0; display: block;
   width: calc(var(--w) * 1px); height: calc(var(--h) * 1px);
   transform: scale(var(--k, .5)); transform-origin: 0 0;
-  opacity: 1; transition: opacity .25s ease;
+  transition: opacity .25s ease;
 }
 .demo iframe.cambiando { opacity: 0; }
-/* Sueltas: la sala, el chat, el Recap y Themes, como ventanas flotantes, sin
-   marco ni fondo: lo que se ve es el propio panel de la app, con su sombra. */
-.demo.suelta { background: none; border-radius: 0; overflow: visible; }
-.demo.suelta.ancha { max-width: 1036px; margin: 22px auto 0; }
-.demo { transition: aspect-ratio .35s ease; }
-/* Themes: el selector de color de la app, solo, grande y de verdad. */
-.muestra.temas { grid-template-columns: 1fr 1.15fr; }
-.demo.selector { max-width: 620px; justify-self: end; filter: drop-shadow(0 40px 70px rgba(var(--rojo), .32)); }
-@media (max-width: 860px) { .demo.selector { justify-self: center; } }
-.nota { margin: 18px auto 0; max-width: 560px; font-size: 14px; color: var(--tenue); }
-.muestra .ventana, .doble .ventana { margin: 0; max-width: none; width: 100%; }
-.ventana.ancha { max-width: 1000px; margin: 26px auto 0; }
-.entradilla { margin: -24px auto 30px; max-width: 640px; text-align: center; color: var(--suave); }
+.demo { transition: aspect-ratio .3s ease; }
 
-/* Dos demos juntas: la sala y su chat. */
-.doble { display: grid; grid-template-columns: 540fr 420fr; gap: 26px; align-items: center; max-width: 1000px; margin: 0 auto; }
-.puntos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1000px; margin: 26px auto 0; }
-.punto { padding: 18px; border-radius: 16px; background: linear-gradient(180deg, #161012, #100b0d); border: 1px solid var(--linea); }
-.punto b, .cosa b { display: block; font: 700 15px/1.25 Inter, sans-serif; letter-spacing: -.01em; color: #fff; }
+/* Los servicios en los que busca Relay, con su logo (los mismos de Online). */
+.servicios { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.servicio {
+  display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 14px;
+  background: var(--panel); border: 1px solid var(--linea); transition: border-color .15s;
+}
+.servicio:hover { border-color: rgba(255, 255, 255, .18); }
+.servicio .logo { width: 40px; height: 40px; flex: none; background-position: center; background-size: contain; background-repeat: no-repeat; }
+/* De una tinta -Archive, yedits-: el dibujo como mascara, en blanco. */
+.servicio .logo.tinta { background: #fff; -webkit-mask: var(--logo) center/contain no-repeat; mask: var(--logo) center/contain no-repeat; }
+.servicio .logo.wv { border-radius: 10px; }
+/* unreleased.world es un circulo negro con un aro rosa: con su brillo se ve
+   sobre el fondo oscuro. */
+.servicio .logo.ur { filter: drop-shadow(0 0 6px rgba(246, 128, 251, .55)); }
+.servicio b { display: block; font: 700 15px/1.25 Inter, sans-serif; color: #fff; }
+.servicio span { display: block; margin-top: 2px; font-size: 13px; line-height: 1.4; color: var(--suave); }
+.nota { margin: 18px 0 0; font-size: 14px; color: var(--tenue); }
+
+/* La sala y su chat, juntas. */
+.doble { display: grid; grid-template-columns: 540fr 420fr; gap: 28px; align-items: center; max-width: 1000px; margin: 0 auto; }
+.puntos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 32px; }
+.punto { padding: 18px; border-radius: 14px; background: var(--panel); border: 1px solid var(--linea); }
+.punto b, .cosa b { display: block; font: 700 15px/1.3 Inter, sans-serif; color: #fff; }
 .punto span, .cosa span { display: block; margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: var(--suave); }
 
-/* Pestañas pequeñas para cambiar de demo: Home o Search, Recap o una cancion. */
-.cambia { display: inline-flex; gap: 4px; margin-top: 20px; padding: 4px; border-radius: 12px; background: rgba(255, 255, 255, .04); border: 1px solid var(--linea); }
-.cambia.centro { display: flex; width: max-content; margin: 0 auto; }
+/* Pestanas pequenas para cambiar de demo: el Recap o una cancion. */
+.cambia { display: flex; width: max-content; margin: 0 auto; gap: 4px; padding: 4px; border-radius: 11px; background: rgba(255, 255, 255, .04); border: 1px solid var(--linea); }
 .cambia button {
-  font: 700 13px/1 Inter, sans-serif; color: var(--suave); cursor: pointer; border: 1px solid transparent;
-  padding: 9px 14px; border-radius: 9px; background: none; transition: color .2s, background .25s, border-color .25s;
+  font: 700 13px/1 Inter, sans-serif; color: var(--suave); cursor: pointer; border: 0;
+  padding: 9px 14px; border-radius: 8px; background: none; transition: color .15s, background .15s;
 }
 .cambia button:hover { color: #fff; }
-.cambia button[aria-selected="true"] { color: #fff; background: rgba(var(--rojo), .22); border-color: rgba(var(--rojo), .55); }
+.cambia button[aria-selected="true"] { color: #fff; background: rgba(var(--rojo), .25); }
+.recap { max-width: 1036px; margin: 24px auto 0; }
+.enlaces-relay { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 1036px; margin: 20px auto 0; }
+@media (max-width: 560px) { .enlaces-relay { grid-template-columns: 1fr; } }
 
-/* Los colores de los temas: los mismos de la aplicacion. */
-.colores { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 18px; }
+/* Themes: los colores de la aplicacion y su selector de color. */
+.colores { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 4px; }
 .colores button {
-  width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; padding: 0;
-  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, .45), transparent 45%), var(--c);
-  box-shadow: 0 6px 16px -6px var(--c); transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), border-color .2s;
+  width: 28px; height: 28px; border-radius: 50%; cursor: pointer; padding: 0; background: var(--c);
+  border: 2px solid transparent; outline: 1px solid rgba(255, 255, 255, .12); outline-offset: -1px; transition: transform .15s;
 }
-.colores button:hover { transform: scale(1.15); }
-.colores button[aria-pressed="true"] { border-color: #fff; transform: scale(1.12); }
+.colores button:hover { transform: scale(1.1); }
+.colores button[aria-pressed="true"] { border-color: #fff; }
+.selector { max-width: 560px; justify-self: end; width: 100%; }
 
 /* El resto, como lista. */
-.mas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 28px; }
-.cosa { padding: 16px 0 16px 18px; border-left: 2px solid rgba(var(--rojo), .45); }
+.mas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 32px; }
+.cosa { padding: 18px 0; border-top: 1px solid var(--linea); }
+
+/* ── El final ── */
+.final { margin: 120px auto 0; padding: 56px 24px; text-align: center; border-radius: 20px; background: var(--panel); border: 1px solid var(--linea); }
+.final h2 { margin: 0 0 10px; font: 800 clamp(28px, 4vw, 40px)/1.1 Inter, sans-serif; letter-spacing: -.035em; }
+.final p { margin: 0 0 26px; color: var(--suave); }
+footer { padding: 40px 0 48px; color: var(--tenue); font-size: 13px; }
+footer .marco { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--linea); padding-top: 24px; }
+footer nav { display: flex; gap: 18px; }
+footer a:hover { color: #fff; }
+
+/* Aparecen al llegar, una vez: un poco de subida, nada mas. */
+.aparece { opacity: 0; translate: 0 14px; transition: opacity .6s ease, translate .6s ease; }
+.aparece.visto { opacity: 1; translate: none; }
+
+@media (max-width: 1100px) {
+  .rec { grid-template-columns: 1fr; gap: 20px; }
+  .lado { order: 2; }
+}
 @media (max-width: 860px) {
+  .muestra, .muestra.al-reves { grid-template-columns: 1fr; gap: 28px; }
+  .muestra.al-reves .explica { order: -1; }
+  .selector { justify-self: center; }
+  .servicios { grid-template-columns: 1fr 1fr; }
   .doble { grid-template-columns: 1fr; }
   .puntos { grid-template-columns: 1fr 1fr; }
   .mas { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
-  .puntos, .mas { grid-template-columns: 1fr; }
-}
-
-/* ── Secciones ── */
-section { padding: 96px 0 0; }
-.titulo { text-align: center; margin-bottom: 44px; }
-.titulo small { font: 700 12px/1 Inter, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--claro)); }
-.titulo h2 { margin: 14px 0 0; font: 800 clamp(30px, 4.4vw, 44px)/1.1 Inter, sans-serif; letter-spacing: -.035em; }
-
-.rejilla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-/*
-  Las tarjetas: un foco que sigue al raton por dentro y enciende el borde
-  alrededor (--cx, --cy), una inclinacion leve hacia el, y el icono que salta.
-  El borde encendido es una capa detras, un pixel mas grande, que asoma por
-  el canto: la tarjeta es casi opaca.
-*/
-.tarjeta {
-  position: relative; isolation: isolate; padding: 24px; border-radius: 18px;
-  border: 1px solid transparent;
-  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-}
-/* Dos capas: detras el borde encendido (todo el canto), y encima el relleno
-   (solo por dentro del canto). Asi del borde solo asoma el pixel de fuera. */
-.tarjeta::before, .tarjeta::after { content: ""; position: absolute; pointer-events: none; }
-.tarjeta::before {
-  inset: -1px; z-index: -2; border-radius: 18px;
-  background:
-    radial-gradient(240px circle at var(--cx, 50%) var(--cy, -40%), rgba(var(--rojo), .95), transparent 70%),
-    rgba(255, 255, 255, .09);
-}
-.tarjeta::after {
-  inset: 0; z-index: -1; border-radius: 17px;
-  background:
-    radial-gradient(360px circle at var(--cx, 50%) var(--cy, -40%), rgba(var(--rojo), .1), transparent 60%),
-    linear-gradient(180deg, #161012, #100b0d);
-}
-/* .visto delante: la regla de .aparece va despues y ganaria. */
-.tarjeta.visto:hover { translate: 0 -4px; }
-.rejilla { perspective: 1200px; }
-.icono {
-  width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
-  color: rgb(var(--rosa));
-  background: radial-gradient(circle at 30% 25%, rgba(var(--rojo), .45), rgba(var(--rojo), .12) 70%);
-  border: 1px solid rgba(var(--rojo), .45);
-  transition: transform .5s cubic-bezier(.34, 1.56, .64, 1), box-shadow .3s ease, color .3s;
-}
-.tarjeta:hover .icono { transform: scale(1.14) rotate(-7deg); color: #fff; box-shadow: 0 0 24px rgba(var(--rojo), .55); }
-/* Los iconos de la aplicacion, con las proporciones de la barra lateral
-   (alli 19 el globo, 17 las barras y los pads, 14x12 las rayas). */
-.icono svg { width: 21px; height: 21px; }
-.icono svg[viewBox="0 0 14 12"] { width: 17px; height: 14px; }
-.icono svg[viewBox="0 0 512 512"], .icono svg[fill-rule] { width: 19px; height: 19px; }
-.icono svg[viewBox="-3 0 19 19"] { width: 22px; height: 22px; }
-.tarjeta h3 { margin: 18px 0 6px; font: 700 18px/1.25 Inter, sans-serif; letter-spacing: -.02em; }
-.tarjeta p { margin: 0; color: var(--suave); font-size: 14.5px; }
-
-/*
-  Los servicios en los que busca Relay: los de Online, con su logo y su color
-  (los mismos de la aplicacion, ver COLOR en RelayOnline.dc.html). Cada uno
-  flota a su ritmo, y cada pocos segundos una luz los recorre de uno en uno,
-  como Relay preguntandoles, encendiendolos de su color.
-*/
-/* Ocho: dos filas de cuatro; en el movil, de dos en dos. En una sola fila
-   cada tarjeta se queda en ciento veinte pixeles y el nombre no cabe. */
-.servicios { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; --cols: 4; }
-.servicios > .servicio { flex: 0 0 calc((100% - (var(--cols) - 1) * 12px) / var(--cols)); box-sizing: border-box; min-width: 0; }
-.servicio {
-  --c: 255, 255, 255;
-  position: relative; overflow: hidden; isolation: isolate;
-  display: flex; flex-direction: column; align-items: center; text-align: center;
-  padding: 26px 14px 22px; border-radius: 20px;
-  background: linear-gradient(180deg, rgba(22, 16, 18, .94), rgba(15, 11, 13, .94));
-  border: 1px solid rgba(255, 255, 255, .08);
-  transition: translate .45s cubic-bezier(.34, 1.56, .64, 1), border-color .3s, box-shadow .4s;
-}
-/* El halo de su color, detras del logo; late con la luz que los recorre. */
-.servicio::before {
-  content: ""; position: absolute; left: 50%; top: 18px; z-index: -1;
-  width: 150px; height: 150px; translate: -50% 0; border-radius: 50%; pointer-events: none;
-  background: radial-gradient(closest-side, rgba(var(--c), .28), transparent);
-  opacity: .35; animation: pregunta 6s ease-in-out infinite; animation-delay: calc(var(--i) * .35s);
-}
-@keyframes pregunta {
-  0%, 12%, 100% { opacity: .35; scale: 1; }
-  5% { opacity: 1; scale: 1.25; }
-}
-.servicio .logoServicio {
-  width: 64px; height: 64px; flex: none;
-  background-position: center; background-size: contain; background-repeat: no-repeat;
-  filter: drop-shadow(0 8px 18px rgba(var(--c), .35));
-  animation: flotaServicio 5.2s ease-in-out infinite; animation-delay: calc(var(--i) * -.9s);
-  transition: scale .5s cubic-bezier(.34, 1.56, .64, 1), rotate .5s cubic-bezier(.34, 1.56, .64, 1), filter .3s;
-}
-/* De una tinta -Archive, yedits-: el dibujo como mascara, pintado de su color. */
-.servicio .logoServicio.tinta {
-  background: rgb(var(--c));
-  -webkit-mask: var(--logo) center/contain no-repeat; mask: var(--logo) center/contain no-repeat;
-}
-/* wavernrs es una foto: con las esquinas redondas, como su icono. */
-.servicio .logoServicio.wv { border-radius: 16px; }
-@keyframes flotaServicio { 50% { translate: 0 -7px; } }
-.servicio b { margin-top: 16px; font: 700 16px/1.2 Inter, sans-serif; letter-spacing: -.02em; color: #fff; }
-.servicio span { margin-top: 6px; font: 500 12.5px/1.4 Inter, sans-serif; color: var(--suave); }
-.servicio.visto:hover {
-  translate: 0 -6px; border-color: rgba(var(--c), .6);
-  box-shadow: 0 18px 44px -18px rgba(var(--c), .7), inset 0 0 0 1px rgba(var(--c), .15);
-}
-.servicio:hover .logoServicio { scale: 1.14; rotate: -6deg; filter: drop-shadow(0 10px 26px rgba(var(--c), .75)); }
-.servicio:hover::before { opacity: 1; scale: 1.35; animation-play-state: paused; }
-.serviciosPie { margin-top: 22px; text-align: center; color: var(--suave); font-size: 14.5px; }
-.serviciosPie b { color: rgb(var(--rosa)); }
-
-/* ── Las muestras: una explicacion al lado de una demo ── */
-.muestra { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
-.muestra.al-reves { grid-template-columns: 1.25fr 1fr; }
-.muestra .explica small { font: 700 12px/1 Inter, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--claro)); }
-.muestra .explica h2 { margin: 14px 0 12px; font: 800 clamp(28px, 3.6vw, 40px)/1.1 Inter, sans-serif; letter-spacing: -.035em; }
-.muestra .explica p { margin: 0 0 16px; color: var(--suave); }
-.muestra .explica ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
-.muestra .explica li { display: flex; gap: 10px; align-items: baseline; color: rgba(238, 238, 244, .82); font-size: 15px; }
-.muestra .explica li::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; translate: 0 -2px; background: rgb(var(--rojo)); box-shadow: 0 0 10px rgba(var(--rojo), .8); }
-.lienzo {
-  position: relative; overflow: hidden; border-radius: 22px;
-  background: linear-gradient(180deg, rgba(26, 16, 20, .96), rgba(14, 10, 12, .96));
-  border: 1px solid rgba(var(--rojo), .25);
-  box-shadow: 0 40px 100px -40px rgba(var(--rojo), .55), 0 20px 50px -30px rgba(0, 0, 0, .9);
-}
-
-/* Soundboard: pads como los de la app (.sbCara en relay-host.js). Suenan
-   solos, varios a la vez, o al pulsarlos; abajo, lo que llega al microfono. */
-.sb-app { padding: 22px 22px 18px; }
-.sb-app .cabeza { display: flex; align-items: center; gap: 10px; font: 700 17px/1 Inter, sans-serif; }
-.sb-app .cabeza i { font: 700 9px/1 Inter, sans-serif; font-style: normal; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; color: rgb(var(--rosa)); background: rgba(var(--rojo), .15); border: 1px solid rgba(var(--rojo), .45); }
-.sb-app .parar { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; cursor: pointer; font: 700 11.5px/1 Inter, sans-serif; color: #fff; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); transition: background .2s ease, border-color .2s ease; }
-.sb-app .parar:hover { background: rgba(var(--rojo), .2); border-color: rgba(var(--rojo), .6); }
-.sb-app .parar svg { width: 11px; height: 11px; }
-.pads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
-.pad {
-  position: relative; aspect-ratio: 1; border-radius: 18px; overflow: hidden; cursor: pointer; user-select: none;
-  border: 1px solid rgba(255, 255, 255, .12);
-  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .14);
-  transition: transform .26s cubic-bezier(.2, .9, .3, 1.5), border-color .22s ease;
-}
-.pad:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, .22); }
-.pad.hunde { transform: scale(.92) translateY(2px); transition: transform 90ms ease-out; }
-.pad .arte { position: absolute; inset: 0; transition: transform .52s cubic-bezier(.2, .9, .25, 1), filter .3s ease; }
-.pad:hover .arte { transform: scale(1.06); }
-.pad .velo { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 8, 9, .5) 0%, rgba(8, 8, 9, 0) 30%, rgba(8, 8, 9, 0) 45%, rgba(8, 8, 9, .55) 72%, rgba(8, 8, 9, .92) 100%); }
-.pad .info { position: absolute; left: 12px; right: 34px; bottom: 12px; min-width: 0; }
-.pad .info b { display: block; font: 700 13.5px/1.2 Inter, sans-serif; letter-spacing: -.01em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
-.pad .info span { display: block; margin-top: 3px; font: 500 11px/1.3 Inter, sans-serif; color: rgba(238, 238, 244, .7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.pad .chips { position: absolute; left: 10px; top: 10px; display: flex; gap: 5px; }
-.pad .chip { padding: 4px 6px 3px; border-radius: 7px; font: 700 9px/1 Inter, sans-serif; letter-spacing: .08em; color: rgba(255, 255, 255, .88); background: rgba(10, 10, 11, .55); border: 1px solid rgba(255, 255, 255, .14); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background .15s ease, border-color .15s ease; }
-.pad .chip.trozo { color: rgb(var(--rosa)); background: rgba(var(--rojo), .28); border-color: rgba(var(--rojo), .55); }
-.pad .chip.pulsada { color: #fff; background: rgba(var(--rojo), .8); border-color: rgb(var(--rojo)); }
-.pad .tiempo { position: absolute; right: 12px; bottom: 14px; font: 700 10px/1 Inter, sans-serif; color: rgba(238, 238, 244, .7); transition: opacity .2s ease; }
-.pad .eq { position: absolute; right: 12px; bottom: 15px; display: flex; align-items: flex-end; gap: 2px; height: 14px; opacity: 0; transition: opacity .2s ease; }
-.pad .eq i { width: 3px; height: 14px; border-radius: 2px; background: rgb(var(--claro)); transform-origin: bottom; animation: sbBarras .8s ease-in-out infinite; }
-.pad .eq i:nth-child(2) { animation-duration: .62s; animation-delay: .12s; }
-.pad .eq i:nth-child(3) { animation-duration: .95s; animation-delay: .25s; }
-.pad .progreso { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255, 255, 255, .08); opacity: 0; transition: opacity .2s ease; }
-.pad .progreso i { position: absolute; inset: 0; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, rgb(196, 18, 32), rgb(var(--rojo)), rgb(255, 154, 162)); }
-.pad .onda { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; border: 2px solid rgb(var(--rojo)); opacity: 0; }
-.pad.golpe .onda { animation: sbAnillo 560ms ease-out; }
-.pad.suena { animation: sbBrillo 1.6s ease-in-out infinite; border-color: rgba(var(--rojo), .9); }
-.pad.suena .arte { filter: saturate(130%) brightness(1.08); }
-.pad.suena .progreso, .pad.suena .eq { opacity: 1; }
-.pad.suena .tiempo { opacity: 0; }
-@keyframes sbBarras { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
-@keyframes sbAnillo { 0% { opacity: .9; transform: scale(.96); } 100% { opacity: 0; transform: scale(1.14); } }
-@keyframes sbBrillo {
-  0%, 100% { box-shadow: 0 0 0 2px rgba(var(--rojo), .95), 0 0 28px 2px rgba(var(--rojo), .55), 0 22px 50px -18px rgba(var(--rojo), .9); }
-  50% { box-shadow: 0 0 0 2px rgba(255, 90, 99, 1), 0 0 40px 6px rgba(var(--rojo), .7), 0 22px 60px -16px rgba(var(--rojo), 1); }
-}
-.al-mic { margin-top: 16px; border-top: 1px solid var(--linea); padding-top: 12px; }
-.al-mic small { font: 700 10px/1 Inter, sans-serif; letter-spacing: .14em; color: var(--tenue); }
-.canales { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 10px; }
-.canal span { font: 600 11.5px/1 Inter, sans-serif; color: var(--suave); }
-.medidor { margin-top: 7px; height: 6px; border-radius: 99px; overflow: hidden; background: rgba(255, 255, 255, .07); }
-.medidor i { display: block; height: 100%; border-radius: inherit; transform-origin: left; transform: scaleX(var(--v, 0)); transition: transform .14s linear; background: linear-gradient(90deg, rgb(var(--rojo)), rgb(var(--claro))); }
-.rejilla.importa { margin-top: 26px; }
-@media (max-width: 560px) {
-  .pads { gap: 9px; }
-  .pad .info span, .pad .tiempo { display: none; }
-  .pad .info { left: 9px; right: 9px; bottom: 10px; }
-  .pad .info b { font-size: 12px; }
-  .pad .eq { display: none; }
-}
-
-@media (max-width: 860px) {
-  .muestra, .muestra.al-reves { grid-template-columns: 1fr; gap: 26px; }
-  .muestra.al-reves .explica { order: -1; }
-}
-
-/* ── El final: dos orbes que van y vienen detras ── */
-.final {
-  position: relative; overflow: hidden; isolation: isolate;
-  margin: 110px auto 0; padding: 56px 24px; text-align: center; border-radius: 26px;
-  background: radial-gradient(60% 90% at 50% 0%, rgba(var(--rojo), .22), transparent 70%), rgba(20, 14, 16, .9);
-  border: 1px solid rgba(var(--rojo), .25);
-}
-/*
-  Dos luces redondas, cada una de su tamano en pixeles, como el fondo de los
-  paneles de la aplicacion.
-
-  Antes era un barrido conico de 140% del ancho y cuadrado: en una ventana
-  ancha ese cuadrado medida metro y medio de lado, asi que de la tarjeta solo
-  se veia un trozo del barrido, estirado y distinto segun el ancho.
-*/
-.final::before,
-.final::after {
-  content: ""; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none;
-  filter: blur(60px);
-}
-.final::before {
-  left: -40px; top: -180px; width: 460px; height: 460px;
-  background: radial-gradient(circle at center, rgba(var(--rojo), .42), transparent 70%);
-  animation: orbe 19s ease-in-out infinite;
-}
-.final::after {
-  right: -60px; bottom: -200px; width: 520px; height: 520px;
-  background: radial-gradient(circle at center, rgba(var(--claro), .22), transparent 70%);
-  animation: orbe 24s ease-in-out 3s infinite reverse;
-}
-@keyframes orbe { 50% { translate: 46px -26px; scale: 1.12; } }
-
-/* ── Arriba del todo: cuanto se ha bajado ── */
-.progreso {
-  position: fixed; left: 0; top: 0; z-index: 20; height: 2px; width: 100%;
-  transform-origin: 0 50%; transform: scaleX(var(--p, 0));
-  background: linear-gradient(90deg, rgb(var(--rojoOscuro)), rgb(var(--rojo)), rgb(var(--claro)));
-  box-shadow: 0 0 12px rgba(var(--rojo), .8);
-}
-/* La barra se oscurece al bajar, y los enlaces llevan una raya que crece. */
-.barra { transition: background .3s ease, box-shadow .3s ease; }
-.barra.bajada { background: rgba(11, 8, 9, .82); box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .9); }
-.enlaces a.suave { position: relative; }
-.enlaces a.suave::after {
-  content: ""; position: absolute; left: 12px; right: 12px; bottom: 5px; height: 2px; border-radius: 2px;
-  background: rgb(var(--rojo)); transform: scaleX(0); transition: transform .3s cubic-bezier(.22, 1, .36, 1);
-}
-.enlaces a.suave:hover::after { transform: scaleX(1); }
-
-/* Las ascuas del fondo y el foco que sigue al raton. */
-#ascuas { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
-.cielo .foco {
-  position: absolute; left: 0; top: 0; width: 900px; height: 900px; margin: -450px 0 0 -450px;
-  background: radial-gradient(closest-side, rgba(var(--rojo), .11), transparent);
-  translate: var(--fx, 50vw) var(--fy, 30vh); opacity: 0; transition: opacity .6s ease;
-}
-.cielo .foco.vivo { opacity: 1; }
-.final h2 { margin: 0 0 10px; font: 800 clamp(28px, 4vw, 40px)/1.1 Inter, sans-serif; letter-spacing: -.035em; }
-.final p { margin: 0 0 28px; color: var(--suave); }
-
-footer { padding: 48px 0 40px; text-align: center; color: var(--tenue); font-size: 13px; }
-footer .pie { font: 600 11px/1 Inter, sans-serif; letter-spacing: .12em; margin-bottom: 10px; }
-
-/* Aparecen al llegar: suben, se enfocan y se encienden. Con translate y no
-   transform, que es de la inclinacion de las ventanas y las tarjetas. */
-.aparece {
-  opacity: 0; translate: 0 26px; filter: blur(8px);
-  transition: opacity .8s ease, translate 1s cubic-bezier(.22, 1, .36, 1), filter .8s ease,
-              transform .5s cubic-bezier(.22, 1, .36, 1), box-shadow .4s ease, border-color .25s, background .25s;
-}
-.aparece.visto { opacity: 1; translate: none; filter: none; }
-.ventana.aparece.sigue {
-  transition: opacity .8s ease, translate 1s cubic-bezier(.22, 1, .36, 1), filter .8s ease,
-              transform .12s linear, box-shadow .4s ease;
-}
-
-@media (max-width: 860px) {
-  .rejilla { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 560px) {
-  .servicios { --cols: 2; }
-}
-@media (max-width: 560px) {
-  .rejilla { grid-template-columns: 1fr; }
   .enlaces a.suave { display: none; }
-  .portada { padding-top: 56px; }
-  section { padding-top: 72px; }
+  .portada { padding-top: 48px; }
+  section.seccion { padding-top: 88px; }
+  .servicios, .puntos, .mas { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .aparece { opacity: 1; translate: none; filter: none; }
-  #ascuas, .cielo .foco { display: none; }
+  .aparece { opacity: 1; translate: none; }
 }
 </style>
 </head>
 <body>
-<div class="cielo"><div class="foco"></div></div>
-<canvas id="ascuas" aria-hidden="true"></canvas>
-<div class="progreso"></div>
 
 <header class="barra">
   <div class="marco">
@@ -596,249 +316,268 @@ footer .pie { font: 600 11px/1 Inter, sans-serif; letter-spacing: .12em; margin-
   </div>
 </header>
 
-<main class="marco">
-  <div class="portada">
-    <h1 aria-label="Relay"><img src="logo.svg" alt=""><span aria-hidden="true"><span class="letra" style="--i:0">R</span><span class="letra" style="--i:1">E</span><span class="letra" style="--i:2">L</span><span class="letra" style="--i:3">A</span><span class="letra" style="--i:4">Y</span></span></h1>
-    <p class="lema cae" style="--t:0">Your music and your soundboard in one place, with a virtual microphone for Discord and friends.</p>
-    <div class="acciones cae" style="--t:1">
+<main>
+  <div class="portada marco">
+    <h1 aria-label="Relay for Windows"><span class="marcaGrande"><img src="logo.svg" alt=""><span class="letras" aria-hidden="true"><span class="letra" style="--i:0">R</span><span class="letra" style="--i:1">E</span><span class="letra" style="--i:2">L</span><span class="letra" style="--i:3">A</span><span class="letra" style="--i:4">Y</span></span></span><em aria-hidden="true">for Windows</em></h1>
+    <p class="lema">Play your own music or search eight online sources. Use sounds in calls and games, send everything through your mic, and show what you're playing on Discord.</p>
+    <div class="acciones">
       <a class="boton grande descarga" href="https://github.com/ElcocosYT/Relay/releases/latest/download/Relay-Setup.exe">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>
         Download for Windows
       </a>
-      <div class="detalle"><span class="version">Latest version</span> · Windows 10 &amp; 11 · 125 MB</div>
+      <a class="boton grande otro" href="#tour">Take the tour</a>
     </div>
-    <div class="pildoras cae" style="--t:2"><span>No ads</span><span>Free</span><span>Forever</span></div>
-
-    <div class="escena"><div class="ventana aparece arriba"><div class="demo" data-w="1440" data-h="810"><iframe id="ventanaDemo" src="demos/ventana.html" title="Relay, live: the Albums screen"></iframe></div></div></div>
-    <p class="nota aparece">This is Relay itself, not a picture. Hover around and click the sidebar to switch screens.</p>
+    <p class="detalle"><span class="version">Latest version</span> · Windows 10 and 11 · <span class="peso">125 MB</span> · Free, no ads</p>
   </div>
 
-  <section id="tour">
-    <div class="titulo aparece"><small>Take the tour</small><h2>Everything you play, in one app</h2></div>
+  <!--
+    El recorrido: la ventana de Relay de verdad, un paso cada vez.
 
-    <div class="muestra">
-      <div class="explica aparece">
-        <small>Library</small>
-        <h2>Your files, your way</h2>
-        <p>Point Relay at your music folders and it reads everything in them: tags, covers and lyrics. Sort it how you like and keep it tidy.</p>
-        <ul>
-          <li>Pick, reorder and resize the columns</li>
-          <li>Colour tags and a hotkey for any song</li>
-          <li>Versions of the same song grouped in one row</li>
-          <li>Drag songs and folders straight in, or import playlists</li>
-        </ul>
+    Cada paso es una copia de la aplicacion con datos inventados, hecha por
+    tools/demos-web/capturar.mjs (demos/ventana-*.html, ahora.html,
+    inmersiva.html). Se cargan al pedirlas, y la siguiente se adelanta.
+  -->
+  <section class="recorrido" id="tour" aria-label="Tour">
+    <div class="rec">
+      <div class="lado">
+        <ol class="pasos">
+          <li class="paso" data-src="demos/ventana-library.html" data-w="1440" data-h="810" data-vista="library">
+            <button type="button" aria-expanded="false"><span>01</span>Library</button>
+            <div class="cuerpo"><div>
+              <p>Add your music folders and Relay reads the tags, covers and lyrics in your files. Sort and organise everything the way you like.</p>
+              <ul>
+                <li>Choose, move and resize the columns</li>
+                <li>Give any song a colour tag or a hotkey</li>
+                <li>Different versions of a song share one row</li>
+                <li>Drag in songs and folders, or import playlists</li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="paso" data-src="demos/ventana-albums.html" data-w="1440" data-h="810" data-vista="albums">
+            <button type="button" aria-expanded="false"><span>02</span>Albums</button>
+            <div class="cuerpo"><div>
+              <p>All your albums as covers. Point at one and its record slides out. The album that is playing keeps its record turning.</p>
+              <ul>
+                <li>Pin your favourite albums so they stay first</li>
+                <li>Play an album or open its menu from the cover</li>
+                <li>Show only albums, singles or one artist</li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="paso" data-src="demos/ventana-album.html" data-w="1440" data-h="810">
+            <button type="button" aria-expanded="false"><span>03</span>An album</button>
+            <div class="cuerpo"><div>
+              <p>Open an album to see its songs, its year and how long it is. The song that is playing is marked.</p>
+              <ul>
+                <li>Click the name, year or artist to change them</li>
+                <li>Drag songs to change their order</li>
+                <li>Albums with more than one disc show each disc in its own column</li>
+                <li>Click an artist's name to open their page</li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="paso" data-src="demos/ventana-artists.html" data-w="1440" data-h="810" data-vista="artists">
+            <button type="button" aria-expanded="false"><span>04</span>Artists</button>
+            <div class="cuerpo"><div>
+              <p>Everyone in your library, each with their picture. A song with more than one artist counts for each of them.</p>
+              <ul>
+                <li>Set your own picture for any artist</li>
+                <li>Sort by name, albums or songs</li>
+                <li>Add artists to your favourites</li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="paso" data-src="demos/ventana-artista.html" data-w="1440" data-h="810">
+            <button type="button" aria-expanded="false"><span>05</span>An artist</button>
+            <div class="cuerpo"><div>
+              <p>An artist's page shows their latest release, their most played songs, their albums and singles, the albums they appear on, and all their songs.</p>
+              <ul>
+                <li>Put your own image, GIF or video at the top</li>
+                <li>The album that is playing shows in your theme colour</li>
+                <li>Click an album or an artist's name to go there</li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="paso" data-src="demos/ahora.html" data-w="1830" data-h="1000">
+            <button type="button" aria-expanded="false"><span>06</span>Now Playing</button>
+            <div class="cuerpo"><div>
+              <p>The song that is playing is in the middle, with the songs before and after it at the sides. The lyrics move with the song, and the queue is on the right.</p>
+              <ul>
+                <li>Lyrics word by word from yedits and lrc.red, or line by line from LRCLIB</li>
+                <li>No lyrics found? Relay can make timed lyrics on your PC with Whisper</li>
+                <li>Click a line to go to that part of the song</li>
+                <li>Drag songs in the queue to change the order</li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="paso" data-src="demos/inmersiva.html" data-w="1440" data-h="810">
+            <button type="button" aria-expanded="false"><span>07</span>Immersive view</button>
+            <div class="cuerpo"><div>
+              <p>One click hides the rest of Relay. The cover and the controls are on the left, the lyrics are in the middle, and the next songs are on the right. The colours come from the cover.</p>
+            </div></div>
+          </li>
+          <li class="paso" data-src="demos/ventana-soundboard.html" data-w="1440" data-h="810" data-vista="soundboard">
+            <button type="button" aria-expanded="false"><span>08</span>Soundboard</button>
+            <div class="cuerpo"><div>
+              <p>Put songs and sound clips on pads and play them with a click or a hotkey. They play on top of your music, several at once, and go through your mic together with your voice.</p>
+              <ul>
+                <li>Drag songs from your library onto a pad</li>
+                <li>Play the whole song or only part of it, cut on its waveform</li>
+                <li>A hotkey for every pad, plus loop and Stop all</li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="paso" data-src="demos/ventana-online.html" data-w="1440" data-h="810" data-vista="online">
+            <button type="button" aria-expanded="false"><span>09</span>Online search</button>
+            <div class="cuerpo"><div>
+              <p>Search YouTube, Deezer, SoundCloud and five more sources at the same time. Play a result right away, or add it to your library with its cover.</p>
+              <ul>
+                <li>The home page shows your recent searches, what you played and what's popular</li>
+                <li>Find albums, playlists and artists, not only songs</li>
+                <li>Turn sources on or off, or change their order</li>
+              </ul>
+            </div></div>
+          </li>
+          <li class="paso" data-src="demos/ventana-mixer.html" data-w="1440" data-h="810" data-vista="mixer">
+            <button type="button" aria-expanded="false"><span>10</span>Mixer</button>
+            <div class="cuerpo"><div>
+              <p>Relay adds a virtual microphone. Choose it in Discord or in a game, and people hear your music and sounds together with your voice.</p>
+              <ul>
+                <li>Separate volume for music, mic, sounds and the total</li>
+                <li>The music gets quieter while you talk</li>
+                <li>An equalizer with presets</li>
+              </ul>
+            </div></div>
+          </li>
+        </ol>
       </div>
-      <div class="ventana aparece"><div class="demo" data-w="960" data-h="640"><iframe loading="lazy" src="demos/main.html" title="Relay: Library"></iframe></div></div>
-    </div>
-
-    <div class="muestra al-reves">
-      <div class="ventana aparece"><div class="demo" data-w="960" data-h="640"><iframe loading="lazy" src="demos/albums.html" title="Relay: Albums"></iframe></div></div>
-      <div class="explica aparece">
-        <small>Albums</small>
-        <h2>Covers first</h2>
-        <p>Big covers and nothing in the way. Hover one and its record slides out, painted in the colours of the cover. The album playing now keeps its record spinning.</p>
-        <ul>
-          <li>Pin your favourites so they're always first</li>
-          <li>Play it or open its menu right on the cover</li>
-          <li>Filter by album, single or artist as you type</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="muestra">
-      <div class="explica aparece">
-        <small>Artists</small>
-        <h2>Everyone you listen to</h2>
-        <p>Every artist with their own glow, taken from their picture. Open one and you get their albums, their singles, the albums they appear in and every song.</p>
-        <ul>
-          <li>Collaborations counted for everyone on the track</li>
-          <li>Set your own picture for any artist</li>
-          <li>Play everything by them in one click</li>
-        </ul>
-      </div>
-      <div class="ventana aparece"><div class="demo" data-w="960" data-h="640"><iframe loading="lazy" src="demos/artists.html" title="Relay: Artists"></iframe></div></div>
-    </div>
-  </section>
-
-  <section id="ahora">
-    <div class="titulo aparece"><small>Now Playing</small><h2>Your song, front and centre</h2></div>
-    <p class="entradilla aparece">The song playing sits in the middle of a cover flow, with what played before and what comes next at its sides. The lyrics follow along, the queue waits on the right, and the screen takes on the colours of the cover.</p>
-    <div class="ventana aparece"><div class="demo" data-w="1830" data-h="1000"><iframe loading="lazy" src="demos/ahora.html" title="Relay: Now Playing"></iframe></div></div>
-    <div class="puntos">
-      <div class="punto aparece"><b>Lyrics that sing along</b><span>The line playing fills word by word. Click any line to jump there.</span></div>
-      <div class="punto aparece"><b>Lyrics found for you</b><span>Word by word from Yedits and lrc.red, line by line from LRCLIB, or timed on your PC with Whisper.</span></div>
-      <div class="punto aparece"><b>Your queue, cover by cover</b><span>Click a cover to jump to it. Drag songs in the list to change the order.</span></div>
-      <div class="punto aparece"><b>Fits any window</b><span>In a smaller window it changes shape, with tabs for the lyrics and the queue.</span></div>
-    </div>
-  </section>
-
-  <section id="inmersiva">
-    <div class="titulo aparece"><small>Now Playing &middot; Immersive view</small><h2>One song, the whole window</h2></div>
-    <p class="entradilla aparece">One button and the rest of Relay gets out of the way. The cover and the controls on the left, the lyrics in the middle, and the next five covers along the right edge. The colours are taken from the artwork.</p>
-    <div class="ventana aparece"><div class="demo" data-w="1440" data-h="810"><iframe loading="lazy" src="demos/inmersiva.html" title="Relay: the immersive view"></iframe></div></div>
-  </section>
-
-  <section id="soundboard">
-    <div class="muestra al-reves">
-      <div class="lienzo sb-app aparece">
-        <div class="cabeza">Soundboard <i>ON YOUR MIC</i><button class="parar" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>Stop all</button></div>
-        <div class="pads"></div>
-        <div class="al-mic">
-          <small>INTO YOUR MIC</small>
-          <div class="canales">
-            <div class="canal" data-c="musica"><span>Music</span><div class="medidor"><i></i></div></div>
-            <div class="canal" data-c="pads"><span>Pads</span><div class="medidor"><i></i></div></div>
-            <div class="canal" data-c="voz"><span>Your voice</span><div class="medidor"><i></i></div></div>
-          </div>
+      <div class="escenario">
+        <div class="escena"></div>
+        <div class="mandos">
+          <span class="cuenta">01 / 10</span>
+          <div class="avance"><i></i></div>
+          <button class="flecha atras" type="button" aria-label="Previous screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="flecha alante" type="button" aria-label="Next screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
-      </div>
-      <div class="explica aparece">
-        <small>Soundboard</small>
-        <h2>Sounds on cue, over your music</h2>
-        <p>Put songs and sounds on pads and fire them in a call or a game. They play over whatever's on, several at once, and go out through your mic along with your voice. Click a pad to try it.</p>
-        <ul>
-          <li>Drag songs from your library straight onto a pad</li>
-          <li>Play the whole song or just a clip, cut on its real waveform</li>
-          <li>A hotkey for every pad, loop, and Stop all</li>
-        </ul>
+        <p class="pista">This is the real Relay screen, with made-up music. You can point at things and click the sidebar.</p>
       </div>
     </div>
   </section>
 
-  <section id="online">
-    <div class="titulo aparece"><small>Online</small><h2>Search eight services at once</h2></div>
-    <div class="muestra">
-      <div class="explica aparece">
-        <p>Type once and every service answers. Play a song straight away, or import it into your library with its cover, ready to play offline.</p>
-        <ul>
-          <li>A home page with your recent searches, what you played and what's trending</li>
-          <li>Albums, playlists and artists, not just songs</li>
-          <li>Put a service first, or switch it off</li>
-        </ul>
-        <div class="cambia" role="tablist" aria-label="Online">
-          <button role="tab" aria-selected="true" data-demo="online-inicio">Home</button>
-          <button role="tab" aria-selected="false" data-demo="online">Search</button>
+  <div class="marco">
+    <section class="seccion" id="online">
+      <div class="cabeza aparece">
+        <small>Online</small>
+        <h2>Eight sources, one search</h2>
+        <p>Relay searches all of these at the same time. You don't need an account for any of them.</p>
+      </div>
+      <div class="servicios">
+        <div class="servicio aparece"><div class="logo" style="background-image:url(servicios/youtube.png)"></div><div><b>YouTube</b><span>Songs, mixes and live sets</span></div></div>
+        <div class="servicio aparece"><div class="logo" style="background-image:url(servicios/deezer.svg)"></div><div><b>Deezer</b><span>Full albums from record labels</span></div></div>
+        <div class="servicio aparece"><div class="logo" style="background-image:url(servicios/soundcloud.png)"></div><div><b>SoundCloud</b><span>Remixes and independent releases</span></div></div>
+        <div class="servicio aparece"><div class="logo" style="background-image:url(servicios/audius.webp)"></div><div><b>Audius</b><span>Music from independent artists</span></div></div>
+        <div class="servicio aparece"><div class="logo tinta" style="--logo:url(servicios/yedits.png)"></div><div><b>yedits</b><span>Edits and reworks by fans</span></div></div>
+        <div class="servicio aparece"><div class="logo wv" style="background-image:url(servicios/wavernrs.png)"></div><div><b>wavernrs</b><span>Ye comps, edits and an archive</span></div></div>
+        <div class="servicio aparece"><div class="logo ur" style="background-image:url(servicios/unreleased.png)"></div><div><b>unreleased.world</b><span>Unreleased songs, demos and snippets</span></div></div>
+        <div class="servicio aparece"><div class="logo tinta" style="--logo:url(servicios/archive.png)"></div><div><b>Internet Archive</b><span>Old recordings and live shows</span></div></div>
+      </div>
+      <p class="nota aparece">You can also copy a link to a song, album or playlist from Spotify, YouTube or SoundCloud, and Relay offers to add it when you come back.</p>
+    </section>
+
+    <section class="seccion" id="party">
+      <div class="cabeza centro aparece">
+        <small>Listening parties</small>
+        <h2>Listen together</h2>
+        <p>Start a party and your friends hear the same song at the same time, with its cover and lyrics. If someone doesn't have a song, Relay sends it to them.</p>
+      </div>
+      <div class="doble">
+        <div class="demo aparece" data-w="540" data-h="513"><iframe loading="lazy" src="demos/sala.html" title="Relay: your listening party"></iframe></div>
+        <div class="demo aparece" data-w="420" data-h="564"><iframe loading="lazy" src="demos/chat.html" title="Relay: party chat"></iframe></div>
+      </div>
+      <div class="puntos">
+        <div class="punto aparece"><b>Guests and editors</b><span>Guests listen. Editors can also add songs and fix the lyrics.</span></div>
+        <div class="punto aparece"><b>Chat</b><span>Send messages, with Discord emoji, during the party.</span></div>
+        <div class="punto aparece"><b>Kick and ban</b><span>Remove someone, or stop them from coming back to that party.</span></div>
+        <div class="punto aparece"><b>Join from Discord</b><span>While you host, your Discord status has a Join button.</span></div>
+      </div>
+    </section>
+
+    <section class="seccion" id="recap">
+      <div class="cabeza centro aparece">
+        <small>Share</small>
+        <h2>Relay Recap</h2>
+        <p>Your top songs, artists and listening time as an image you can post on Discord, X or Instagram. You can also share one song as a card.</p>
+      </div>
+      <div class="cambia aparece" role="tablist" aria-label="Share">
+        <button role="tab" aria-selected="true" data-demo="recap" data-alto="850">Recap</button>
+        <button role="tab" aria-selected="false" data-demo="compartir" data-alto="748">A song</button>
+      </div>
+      <div class="recap"><div class="demo aparece" data-w="1036" data-h="850"><iframe id="recapDemo" loading="lazy" src="demos/recap.html" title="Relay: Relay Recap"></iframe></div></div>
+      <div class="enlaces-relay">
+        <div class="punto aparece"><b>Share songs as a link</b><span>Songs you found online can be shared as a Relay link. When a friend opens it, the song is added to their Relay library, ready to play.</span></div>
+        <div class="punto aparece"><b>Albums and playlists too</b><span>In Online, share a whole album or playlist the same way, or pick several songs and send them as one link.</span></div>
+      </div>
+    </section>
+
+    <section class="seccion" id="themes">
+      <div class="muestra">
+        <div class="explica aparece">
+          <small>Themes</small>
+          <h2>Pick your colour</h2>
+          <p>Choose a colour and all of Relay changes to match: the sidebar, the buttons, the glows and the waves. Try it here with the picker or the colours below, and this page changes too.</p>
+          <div class="colores" role="group" aria-label="Theme colour"></div>
+          <ul>
+            <li>Ready-made colours, or any colour you want</li>
+            <li>Separate colours for the bars, the equalizer and the waves</li>
+            <li>Save your own themes</li>
+            <li>Turn each effect on or off</li>
+          </ul>
         </div>
+        <div class="demo selector aparece" data-w="620" data-h="624"><iframe loading="lazy" src="demos/temas-color.html" title="Relay: pick a colour"></iframe></div>
       </div>
-      <div class="ventana aparece"><div class="demo" data-w="960" data-h="640"><iframe id="onlineDemo" loading="lazy" src="demos/online-inicio.html" title="Relay: Online"></iframe></div></div>
-    </div>
-    <div class="servicios">
-      <div class="servicio aparece" style="--i:0;--c:255,74,74"><div class="logoServicio" style="background-image:url(servicios/youtube.png)"></div><b>YouTube</b><span>Almost any song, mix or live set</span></div>
-      <div class="servicio aparece" style="--i:1;--c:162,56,255"><div class="logoServicio" style="background-image:url(servicios/deezer.svg)"></div><b>Deezer</b><span>Full label albums, like on Spotify</span></div>
-      <div class="servicio aparece" style="--i:2;--c:255,122,47"><div class="logoServicio" style="background-image:url(servicios/soundcloud.png)"></div><b>SoundCloud</b><span>Remixes, bootlegs and indie drops</span></div>
-      <div class="servicio aparece" style="--i:3;--c:193,59,255"><div class="logoServicio" style="background-image:url(servicios/audius.webp)"></div><b>Audius</b><span>Independent artists, free to stream</span></div>
-      <div class="servicio aparece" style="--i:4;--c:255,255,255"><div class="logoServicio tinta" style="--logo:url(servicios/yedits.png)"></div><b>yedits</b><span>Edits and reworks from the community</span></div>
-      <div class="servicio aparece" style="--i:5;--c:92,214,160"><div class="logoServicio wv" style="background-image:url(servicios/wavernrs.png)"></div><b>wavernrs</b><span>Ye comps, edits and a huge archive</span></div>
-      <div class="servicio aparece" style="--i:6;--c:246,128,251"><div class="logoServicio" style="background-image:url(servicios/unreleased.png)"></div><b>unreleased.world</b><span>Demos, snippets and whole unreleased eras</span></div>
-      <div class="servicio aparece" style="--i:7;--c:255,255,255"><div class="logoServicio tinta" style="--logo:url(servicios/archive.png)"></div><b>Internet Archive</b><span>Old recordings, live shows and rarities</span></div>
-    </div>
-    <div class="rejilla importa">
-      <div class="tarjeta aparece">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="4" rx="1.5"/><path d="M8 5H6.5A2.5 2.5 0 0 0 4 7.5v11A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 17.5 5H16M12 10v7M9 14l3 3 3-3"/></svg></div>
-        <h3>Copy a link, import it</h3>
-        <p>Copy a song, album or playlist from Spotify, YouTube or SoundCloud, and Relay offers to bring it in when you come back.</p>
+    </section>
+
+    <section class="seccion" id="more">
+      <div class="cabeza aparece">
+        <small>And more</small>
+        <h2>Everything else</h2>
       </div>
-      <div class="tarjeta aparece">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h11M4 12h11M4 18h7M18 14v7M15 18l3 3 3-3"/></svg></div>
-        <h3>Whole playlists at once</h3>
-        <p>Paste a playlist or album link and every song comes in, with its cover, ready to play offline.</p>
+      <div class="mas">
+        <div class="cosa aparece"><b>Discord status</b><span>Shows the song you're playing, its cover and how far along it is.</span></div>
+        <div class="cosa aparece"><b>Global hotkeys</b><span>Play, skip and use pads from any app, even during a game.</span></div>
+        <div class="cosa aparece"><b>Import from a link</b><span>Paste a playlist or album link and every song is added with its cover.</span></div>
+        <div class="cosa aparece"><b>Crossfade and gapless</b><span>Fade songs into each other, or play them with no gap.</span></div>
+        <div class="cosa aparece"><b>Same volume for every song</b><span>Plays every song at the same loudness without changing your files.</span></div>
+        <div class="cosa aparece"><b>Frame your covers</b><span>Move and zoom a cover or a picture to choose what shows.</span></div>
+        <div class="cosa aparece"><b>Sleep timer</b><span>Stops the music after the time you choose.</span></div>
+        <div class="cosa aparece"><b>Last.fm</b><span>Link your Last.fm account to keep a record of what you play.</span></div>
+        <div class="cosa aparece"><b>Move files</b><span>Move songs to another folder. Lyrics, versions and the queue stay linked.</span></div>
+        <div class="cosa aparece"><b>Backups</b><span>Save your library, playlists and settings, and restore them later.</span></div>
+        <div class="cosa aparece"><b>Keeps playing in the tray</b><span>Close the window and the music keeps going.</span></div>
+        <div class="cosa aparece"><b>Automatic updates</b><span>New versions download in the background, with notes on what changed.</span></div>
       </div>
-      <div class="tarjeta aparece">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg></div>
-        <h3>Full albums, not previews</h3>
-        <p>Label albums from Deezer play complete, and SoundCloud albums that only have 30-second previews say so up front.</p>
-      </div>
-    </div>
+    </section>
 
-  </section>
-
-  <section id="mixer">
-    <div class="muestra al-reves">
-      <div class="ventana aparece"><div class="demo" data-w="960" data-h="640"><iframe loading="lazy" src="demos/mixer.html" title="Relay: Mixer"></iframe></div></div>
-      <div class="explica aparece">
-        <small>Mixer</small>
-        <h2>Your music, through your mic</h2>
-        <p>Relay sets up a virtual microphone. Pick it in Discord or a game and your friends hear your music and your sounds, mixed with your own voice.</p>
-        <ul>
-          <li>Music, mic, sounds and master, each on its own fader</li>
-          <li>Ducking: the music dips while you talk</li>
-          <li>An equalizer, and each channel to the device you pick</li>
-        </ul>
-      </div>
+    <div class="final aparece">
+      <h2>Try Relay</h2>
+      <p>Free, with no ads. It keeps itself up to date.</p>
+      <a class="boton grande descarga" href="https://github.com/ElcocosYT/Relay/releases/latest/download/Relay-Setup.exe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>
+        Download for Windows
+      </a>
     </div>
-  </section>
-
-  <section id="party">
-    <div class="titulo aparece"><small>Listening parties</small><h2>Listen together, in sync</h2></div>
-    <p class="entradilla aparece">Start a party and your friends hear exactly what you play, at the same moment, with your names, covers and lyrics. Songs they don't have are sent to them directly.</p>
-    <div class="doble">
-      <div class="demo suelta aparece" data-w="540" data-h="513"><iframe loading="lazy" src="demos/sala.html" title="Relay: your listening party"></iframe></div>
-      <div class="demo suelta aparece" data-w="420" data-h="564"><iframe loading="lazy" src="demos/chat.html" title="Relay: party chat"></iframe></div>
-    </div>
-    <div class="puntos">
-      <div class="punto aparece"><b>Guests and editors</b><span>Guests listen along. Editors can add songs and fix the lyrics live.</span></div>
-      <div class="punto aparece"><b>Live chat</b><span>With Discord emoji. Messages pop up over the party button.</span></div>
-      <div class="punto aparece"><b>Kick and ban</b><span>Remove someone, or keep them out of that party for good.</span></div>
-      <div class="punto aparece"><b>Join from Discord</b><span>Your status shows a Join button while you host.</span></div>
-    </div>
-  </section>
-
-  <section id="recap">
-    <div class="titulo aparece"><small>Share</small><h2>Your Relay Recap</h2></div>
-    <p class="entradilla aparece">Your top songs, artists and minutes as an image, ready to paste into Discord, X or Instagram. Or share any song as a card of its own.</p>
-    <div class="cambia centro aparece" role="tablist" aria-label="Share">
-      <button role="tab" aria-selected="true" data-demo="recap" data-alto="831">Recap</button>
-      <button role="tab" aria-selected="false" data-demo="compartir" data-alto="748">A song</button>
-    </div>
-    <div class="demo suelta ancha aparece" data-w="1036" data-h="831"><iframe id="recapDemo" loading="lazy" src="demos/recap.html" title="Relay: Relay Recap"></iframe></div>
-  </section>
-
-  <section id="themes">
-    <div class="muestra temas">
-      <div class="explica aparece">
-        <small>Themes</small>
-        <h2>Any colour you like</h2>
-        <p>Pick a colour and all of Relay follows: the sidebar, the glows, the buttons and the waves. Try it here: drag across the colour picker, or choose one of Relay's colours below, and this whole page changes with it.</p>
-        <div class="colores" role="group" aria-label="Theme colour"></div>
-        <ul>
-          <li>Ready-made colours, or any colour you pick</li>
-          <li>Separate colours for the bars, the equalizer and the wave</li>
-          <li>Save your own looks</li>
-          <li>Turn each effect on or off</li>
-        </ul>
-      </div>
-      <div class="demo suelta selector aparece" data-w="620" data-h="624"><iframe loading="lazy" src="demos/temas-color.html" title="Relay: pick a colour"></iframe></div>
-    </div>
-  </section>
-
-  <section id="more">
-    <div class="titulo aparece"><small>And more</small><h2>The little things</h2></div>
-    <div class="mas">
-      <div class="cosa aparece"><b>On your Discord status</b><span>"Listening to Relay" with the song, its cover and a live progress bar.</span></div>
-      <div class="cosa aparece"><b>Global hotkeys</b><span>Play, skip and fire pads from any app, even in a game.</span></div>
-      <div class="cosa aparece"><b>Copy a link, import it</b><span>Copy a song, album or playlist from Spotify, YouTube or SoundCloud and Relay offers to bring it in.</span></div>
-      <div class="cosa aparece"><b>Whole playlists at once</b><span>Paste a playlist link and every song comes in with its cover.</span></div>
-      <div class="cosa aparece"><b>Crossfade and gapless</b><span>Songs run into each other, or play back to back without a gap.</span></div>
-      <div class="cosa aparece"><b>Normalisation</b><span>Every song at the same loudness, without touching your files.</span></div>
-      <div class="cosa aparece"><b>Move to folder</b><span>Move song files anywhere. Lyrics, versions and the queue follow them.</span></div>
-      <div class="cosa aparece"><b>Backups</b><span>Save your whole library, lists and settings, and bring it all back.</span></div>
-      <div class="cosa aparece"><b>Your party profile</b><span>Your own name and picture, or your Discord one.</span></div>
-      <div class="cosa aparece"><b>Full screen</b><span>F11, or the maximise button on a maximised window.</span></div>
-      <div class="cosa aparece"><b>Keeps playing in the tray</b><span>Close the window and the music keeps going.</span></div>
-      <div class="cosa aparece"><b>Updates itself</b><span>New versions download in the background, with notes on what changed.</span></div>
-    </div>
-  </section>
-
-  <div class="final aparece">
-    <h2>Ready to try it?</h2>
-    <p>Free, no ads, and it updates itself.</p>
-    <a class="boton grande descarga" href="https://github.com/ElcocosYT/Relay/releases/latest/download/Relay-Setup.exe">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>
-      Download for Windows
-    </a>
   </div>
 </main>
 
+<footer>
+  <div class="marco">
+    <a class="marca" href="#"><img src="logo.svg" alt=""><span>RELAY</span></a>
+    <nav>
+      <a href="https://github.com/ElcocosYT/Relay" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/ElcocosYT/Relay/releases" target="_blank" rel="noopener">Release notes</a>
+      <a href="Inter-OFL.txt">Font licence</a>
+    </nav>
+  </div>
 </footer>
 
 <script src="demos/tema.js"></script>
@@ -851,272 +590,131 @@ fetch("https://api.github.com/repos/ElcocosYT/Relay/releases/latest")
     if (!d) { return; }
     const v = String(d.tag_name || "").replace(/^v/, "");
     const exe = (d.assets || []).find((a) => a.name === "Relay-Setup.exe");
-    const detalle = document.querySelector(".detalle");
-    if (v) { detalle.querySelector(".version").innerHTML = "Version <b>" + v + "</b>"; }
-    if (exe) { detalle.lastChild.textContent = " · Windows 10 & 11 · " + Math.round(exe.size / 1048576) + " MB"; }
+    if (v) { document.querySelector(".detalle .version").innerHTML = "Version <b>" + v + "</b>"; }
+    if (exe) { document.querySelector(".detalle .peso").textContent = Math.round(exe.size / 1048576) + " MB"; }
   })
   .catch(() => {});
 
-// ── El movimiento ──
-// Quieto del todo si el sistema pide menos movimiento; lo que sigue al raton,
-// solo con un raton de verdad (en un movil no hay "encima").
 const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const conRaton = matchMedia("(hover: hover) and (pointer: fine)").matches;
-const raiz = document.documentElement;
 
-// El logo del titulo: entra girando, luego flota; pulsado, da una vuelta.
-const logoTitulo = document.querySelector("h1 img");
-logoTitulo.addEventListener("animationend", (e) => {
-  if (e.animationName === "logoEntra") { logoTitulo.classList.add("listo"); }
-  if (e.animationName === "vuelta") { logoTitulo.classList.remove("gira"); }
-});
-logoTitulo.addEventListener("click", () => {
-  logoTitulo.classList.remove("gira");
-  void logoTitulo.offsetWidth;
-  logoTitulo.classList.add("gira");
-});
-if (quieto) { logoTitulo.classList.add("listo"); }
-
-// Las letras de RELAY: al acabar de entrar se quedan quietas, y la ola al
-// pasar el raton va de una vez, sin volver a la entrada al irse.
-const titulo = document.querySelector("h1");
-const letras = titulo.querySelectorAll(".letra");
-letras[letras.length - 1].addEventListener("animationend", (e) => {
-  if (e.animationName === "letraEntra") { titulo.classList.add("entrado"); }
-  if (e.animationName === "ola") { titulo.classList.remove("ola"); }
-});
-titulo.addEventListener("pointerenter", () => {
-  if (titulo.classList.contains("entrado") && !titulo.classList.contains("ola")) { titulo.classList.add("ola"); }
-});
-if (quieto) { titulo.classList.add("entrado"); }
-
-// Al bajar: la raya de arriba, la barra mas oscura y la captura de la
-// portada que crece hasta su tamano al acercarse al centro.
-const barra = document.querySelector(".barra");
-const arriba = document.querySelector(".ventana.arriba");
-let pintandoScroll = false;
-function alBajar() {
-  pintandoScroll = false;
-  const alto = raiz.scrollHeight - innerHeight;
-  raiz.style.setProperty("--p", alto > 0 ? (scrollY / alto).toFixed(4) : 0);
-  barra.classList.toggle("bajada", scrollY > 8);
-  if (!quieto && arriba) {
-    const r = arriba.getBoundingClientRect();
-    const t = Math.min(1, Math.max(0, 1 - (r.top - innerHeight * .25) / (innerHeight * .75)));
-    arriba.style.setProperty("--s", (.93 + .07 * t).toFixed(4));
-  }
-}
-addEventListener("scroll", () => { if (!pintandoScroll) { pintandoScroll = true; requestAnimationFrame(alBajar); } }, { passive: true });
-addEventListener("resize", alBajar);
-alBajar();
-
-if (conRaton && !quieto) {
-  // Las capturas se inclinan en 3D, con un reflejo donde esta el raton.
-  document.querySelectorAll(".ventana").forEach((v) => {
-    v.addEventListener("pointermove", (e) => {
-      const r = v.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      v.classList.add("sigue");
-      v.style.setProperty("--ry", ((x - .5) * 7).toFixed(2) + "deg");
-      v.style.setProperty("--rx", ((.5 - y) * 5).toFixed(2) + "deg");
-      v.style.setProperty("--gx", (x * 100).toFixed(1) + "%");
-      v.style.setProperty("--gy", (y * 100).toFixed(1) + "%");
-    });
-    v.addEventListener("pointerleave", () => {
-      v.classList.remove("sigue");
-      v.style.setProperty("--rx", "0deg");
-      v.style.setProperty("--ry", "0deg");
-    });
-  });
-
-  // Las tarjetas: el foco y el borde encendido siguen al raton.
-  document.querySelectorAll(".tarjeta").forEach((t) => {
-    t.addEventListener("pointermove", (e) => {
-      const r = t.getBoundingClientRect();
-      const x = e.clientX - r.left, y = e.clientY - r.top;
-      t.style.setProperty("--cx", x + "px");
-      t.style.setProperty("--cy", y + "px");
-      t.style.setProperty("--ry", ((x / r.width - .5) * 6).toFixed(2) + "deg");
-      t.style.setProperty("--rx", ((.5 - y / r.height) * 6).toFixed(2) + "deg");
-    });
-    t.addEventListener("pointerleave", () => {
-      t.style.setProperty("--rx", "0deg");
-      t.style.setProperty("--ry", "0deg");
-      t.style.setProperty("--cy", "-40%");
-    });
-  });
-
-  // El foco rojo del fondo va detras del raton, con retraso.
-  const foco = document.querySelector(".cielo .foco");
-  let fx = innerWidth / 2, fy = innerHeight / 3, ax = fx, ay = fy, siguiendo = false;
-  addEventListener("pointermove", (e) => {
-    ax = e.clientX; ay = e.clientY;
-    foco.classList.add("vivo");
-    if (!siguiendo) { siguiendo = true; requestAnimationFrame(seguir); }
-  }, { passive: true });
-  document.addEventListener("pointerleave", () => foco.classList.remove("vivo"));
-  function seguir() {
-    fx += (ax - fx) * .08; fy += (ay - fy) * .08;
-    foco.style.setProperty("--fx", fx.toFixed(1) + "px");
-    foco.style.setProperty("--fy", fy.toFixed(1) + "px");
-    if (Math.abs(ax - fx) + Math.abs(ay - fy) > .5) { requestAnimationFrame(seguir); } else { siguiendo = false; }
-  }
-}
-
-// Las ascuas: chispas que suben despacio por el fondo, como las del cielo de
-// la firma en la aplicacion. Se paran con la pestana escondida.
-if (!quieto) {
-  const lienzo = document.getElementById("ascuas");
-  const ctx = lienzo.getContext("2d");
-  let COLORES = ["255,42,58", "255,143,152", "255,210,213", "255,76,87"];
-  const leerColores = () => {
-    const cs = getComputedStyle(document.documentElement);
-    const v = (n, d) => (cs.getPropertyValue("--t" + n).trim() || d).replace(/\s/g, "");
-    COLORES = [v(0, "255,42,58"), v(4, "255,143,152"), v(13, "255,211,214"), v(26, "255,76,87")];
-    chispas.forEach((c) => { c.rgb = COLORES[Math.floor(Math.random() * COLORES.length)]; });
-  };
-  document.addEventListener("relaytema", () => leerColores());
-  let ancho = 0, alto = 0, escala = 1, chispas = [];
-  const azar = (a, b) => a + Math.random() * (b - a);
-  const nueva = (abajo) => ({
-    x: azar(0, ancho), y: abajo ? alto + azar(0, 60) : azar(0, alto),
-    r: azar(.6, 2.2), vy: azar(10, 30), fase: azar(0, 6.28), onda: azar(.4, 1.2),
-    brillo: azar(.35, .9), rgb: COLORES[Math.floor(Math.random() * COLORES.length)],
-  });
-  function medir() {
-    escala = Math.min(devicePixelRatio || 1, 1.5);
-    ancho = innerWidth; alto = innerHeight;
-    lienzo.width = ancho * escala; lienzo.height = alto * escala;
-    ctx.setTransform(escala, 0, 0, escala, 0, 0);
-    const cuantas = Math.round(Math.min(70, ancho * alto / 22000));
-    while (chispas.length < cuantas) { chispas.push(nueva(false)); }
-    chispas.length = cuantas;
-  }
-  medir();
-  addEventListener("resize", medir);
-  let antes = performance.now();
-  function pintar(ahora) {
-    const dt = Math.min(.05, (ahora - antes) / 1000);
-    antes = ahora;
-    ctx.clearRect(0, 0, ancho, alto);
-    ctx.globalCompositeOperation = "lighter";
-    for (const c of chispas) {
-      c.y -= c.vy * dt;
-      c.fase += dt * c.onda;
-      const x = c.x + Math.sin(c.fase) * 14;
-      if (c.y < -20) { Object.assign(c, nueva(true)); continue; }
-      // Mas tenues arriba: se apagan al subir.
-      const a = c.brillo * Math.min(1, c.y / (alto * .6)) * (.7 + .3 * Math.sin(c.fase * 3));
-      if (a <= 0) { continue; }
-      ctx.fillStyle = "rgba(" + c.rgb + "," + (a * .18).toFixed(3) + ")";
-      ctx.beginPath(); ctx.arc(x, c.y, c.r * 4, 0, 6.2832); ctx.fill();
-      ctx.fillStyle = "rgba(" + c.rgb + "," + a.toFixed(3) + ")";
-      ctx.beginPath(); ctx.arc(x, c.y, c.r, 0, 6.2832); ctx.fill();
-    }
-    if (!document.hidden) { requestAnimationFrame(pintar); }
-  }
-  requestAnimationFrame(pintar);
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) { antes = performance.now(); requestAnimationFrame(pintar); }
-  });
-}
-
-// ── Las muestras: solo se mueven mientras se ven ──
-const enVista = new Map();
-const vigia = new IntersectionObserver((es) => es.forEach((e) => enVista.set(e.target, e.isIntersecting)), { threshold: .2 });
-const seVe = (el) => enVista.get(el) !== false && !document.hidden;
-
-// La soundboard: pads inventados, como los de la app. Cada poco suena uno
-// por su atajo -a menudo encima de otro-; pulsados, suenan. Abajo, lo que
-// llega al microfono: la musica, los pads y tu voz.
+// El titulo: el logo entra girando y, pulsado, da una vuelta; las letras de
+// RELAY entran de una en una y, al pasar el raton, hacen la ola entera.
 (() => {
-  const PADS = [
-    ["Air Horn", "Sound effect", "F1", 3, false, [255, 176, 64], [150, 30, 20]],
-    ["Drum Roll", "Sound effect", "F2", 4, false, [64, 200, 255], [20, 30, 110]],
-    ["Night Drive", "Neon Harbor", "F3", 6, true, [255, 42, 58], [60, 10, 90]],
-    ["Applause", "Sound effect", "F4", 5, false, [80, 230, 170], [10, 60, 70]],
-    ["Golden Hour", "Ada Sol", "F5", 6, true, [255, 214, 90], [140, 40, 10]],
-    ["Sad Trombone", "Sound effect", "F6", 3, false, [170, 110, 255], [20, 10, 60]],
-  ];
-  const FORMAS = [
-    "radial-gradient(circle at 30% 30%, rgba(255,255,255,.5) 0 14%, transparent 15%)",
-    "repeating-radial-gradient(circle at 50% 120%, rgba(255,255,255,.16) 0 4px, transparent 4px 14px)",
-    "linear-gradient(160deg, transparent 55%, rgba(0,0,0,.35) 56%)",
-    "conic-gradient(from 200deg at 70% 70%, rgba(255,255,255,.22), transparent 30%)",
-    "radial-gradient(circle at 75% 25%, rgba(255,255,255,.4) 0 20%, transparent 21%)",
-    "repeating-linear-gradient(45deg, rgba(255,255,255,.12) 0 5px, transparent 5px 15px)",
-  ];
-  const caja = document.querySelector(".sb-app");
-  const rejilla = caja.querySelector(".pads");
-  vigia.observe(caja);
-  const sonando = new Map();
-  const pads = PADS.map(([nom, quien, tecla, seg, trozo, a, b], k) => {
-    const p = document.createElement("div");
-    p.className = "pad";
-    p.innerHTML = `<div class="arte" style="background:${FORMAS[k]}, linear-gradient(135deg, rgb(${a}), rgb(${b}))"></div><div class="velo"></div>`
-      + `<div class="chips">${trozo ? '<span class="chip trozo">CLIP</span>' : ""}<span class="chip tecla">${tecla}</span></div>`
-      + `<div class="info"><b>${nom}</b><span>${quien}</span></div><div class="tiempo">0:0${seg}</div>`
-      + `<div class="eq"><i></i><i></i><i></i></div><div class="progreso"><i></i></div><div class="onda"></div>`;
-    p.addEventListener("click", () => tocar(k, false));
-    rejilla.appendChild(p);
-    return p;
+  const titulo = document.querySelector(".portada h1");
+  const logo = titulo.querySelector("img");
+  const letras = titulo.querySelectorAll(".letra");
+  logo.addEventListener("animationend", (e) => {
+    if (e.animationName === "logoEntra") { logo.classList.add("listo"); }
+    if (e.animationName === "vuelta") { logo.classList.remove("gira"); }
   });
-
-  function parar(k) {
-    sonando.get(k)?.cancel();
-    sonando.delete(k);
-    pads[k].classList.remove("suena");
-  }
-  function tocar(k, porTecla) {
-    const p = pads[k];
-    sonando.get(k)?.cancel();
-    p.classList.remove("golpe");
-    void p.offsetWidth;
-    p.classList.add("golpe", "suena", "hunde");
-    setTimeout(() => p.classList.remove("hunde"), 110);
-    if (porTecla) {
-      const t = p.querySelector(".tecla");
-      t.classList.add("pulsada");
-      setTimeout(() => t.classList.remove("pulsada"), 280);
-    }
-    const a = p.querySelector(".progreso i").animate([{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }], { duration: PADS[k][3] * 1000 });
-    sonando.set(k, a);
-    a.finished.then(() => { if (sonando.get(k) === a) { parar(k); } }, () => {});
-  }
-  caja.querySelector(".parar").addEventListener("click", () => [...sonando.keys()].forEach(parar));
-
-  const medidores = Object.fromEntries([...caja.querySelectorAll(".canal")].map((c) => [c.dataset.c, c.querySelector("i")]));
-  const poner = (c, v) => medidores[c].style.setProperty("--v", v.toFixed(2));
-  let habla = false;
-  function medir() {
-    poner("musica", .5 + Math.random() * .18);
-    poner("pads", sonando.size ? Math.min(.95, .4 + sonando.size * .18 + Math.random() * .14) : .02);
-    if (Math.random() < .09) { habla = !habla; }
-    poner("voz", habla ? .3 + Math.random() * .5 : .03 + Math.random() * .03);
-  }
-  medir();
-  if (quieto) { return; }
-  setInterval(() => { if (seVe(caja)) { medir(); } }, 140);
-  setInterval(() => {
-    if (!seVe(caja) || caja.matches(":hover")) { return; }
-    const libres = pads.map((_, k) => k).filter((k) => !sonando.has(k));
-    if (libres.length) { tocar(libres[Math.floor(Math.random() * libres.length)], true); }
-  }, 2300);
+  logo.addEventListener("click", () => {
+    logo.classList.remove("gira");
+    void logo.offsetWidth;
+    logo.classList.add("gira");
+  });
+  letras[letras.length - 1].addEventListener("animationend", (e) => {
+    if (e.animationName === "letraEntra") { titulo.classList.add("entrado"); }
+    if (e.animationName === "ola") { titulo.classList.remove("ola"); }
+  });
+  titulo.querySelector(".marcaGrande").addEventListener("pointerenter", () => {
+    if (titulo.classList.contains("entrado") && !titulo.classList.contains("ola")) { titulo.classList.add("ola"); }
+  });
+  if (quieto) { logo.classList.add("listo"); titulo.classList.add("entrado"); }
 })();
 
-// ── Las demos: cada una a su tamaño real, encogida a lo que haya ──
-const demos = document.querySelectorAll(".demo");
+// ── El recorrido ──
+(() => {
+  const pasos = [...document.querySelectorAll(".paso")];
+  const escena = document.querySelector(".escena");
+  const cuenta = document.querySelector(".cuenta");
+  const avance = document.querySelector(".avance");
+  const marcos = [];
+  let actual = -1;
+
+  const ajustar = (f) => {
+    const W = escena.clientWidth, H = escena.clientHeight;
+    const w = Number(f.dataset.w), h = Number(f.dataset.h);
+    const k = Math.min(W / w, H / h);
+    f.style.width = w + "px";
+    f.style.height = h + "px";
+    f.style.transform = "translate(" + ((W - w * k) / 2).toFixed(1) + "px," + ((H - h * k) / 2).toFixed(1) + "px) scale(" + k.toFixed(5) + ")";
+  };
+
+  // El tema elegido, tambien en lo que carga despues.
+  const tenir = (f) => {
+    try { f.contentWindow.relayTema && f.contentWindow.relayTema(window.__relayTemaHex); } catch (e) { }
+  };
+
+  const marco = (i) => {
+    if (marcos[i]) { return marcos[i]; }
+    const p = pasos[i];
+    const f = document.createElement("iframe");
+    f.dataset.w = p.dataset.w;
+    f.dataset.h = p.dataset.h;
+    f.title = "Relay: " + p.querySelector("button").lastChild.textContent.trim();
+    f.src = p.dataset.src;
+    f.addEventListener("load", () => {
+      tenir(f);
+      // Puesta la que se ve, se adelanta la siguiente.
+      if (i === actual) { setTimeout(() => marco((i + 1) % pasos.length), 600); }
+    });
+    escena.appendChild(f);
+    ajustar(f);
+    marcos[i] = f;
+    return f;
+  };
+
+  const ir = (i) => {
+    i = (i + pasos.length) % pasos.length;
+    if (i === actual) { return; }
+    actual = i;
+    pasos.forEach((p, k) => {
+      p.classList.toggle("activo", k === i);
+      p.querySelector("button").setAttribute("aria-expanded", String(k === i));
+    });
+    const f = marco(i);
+    marcos.forEach((m) => m && m.classList.toggle("activo", m === f));
+    cuenta.textContent = String(i + 1).padStart(2, "0") + " / " + String(pasos.length).padStart(2, "0");
+    avance.style.setProperty("--p", ((i + 1) / pasos.length).toFixed(4));
+  };
+
+  pasos.forEach((p, i) => p.querySelector("button").addEventListener("click", () => ir(i)));
+  document.querySelector(".flecha.atras").addEventListener("click", () => ir(actual - 1));
+  document.querySelector(".flecha.alante").addEventListener("click", () => ir(actual + 1));
+
+  // Con las flechas del teclado, mientras el recorrido esta a la vista.
+  let aLaVista = false;
+  new IntersectionObserver((es) => { aLaVista = es[0].isIntersecting; }, { threshold: .4 }).observe(escena);
+  addEventListener("keydown", (e) => {
+    if (!aLaVista || e.altKey || e.ctrlKey || e.metaKey || /input|textarea|select/i.test(document.activeElement?.tagName || "")) { return; }
+    if (e.key === "ArrowRight") { ir(actual + 1); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { ir(actual - 1); e.preventDefault(); }
+  });
+
+  // Pulsar una pantalla en la barra lateral de la demo pasa a su paso.
+  addEventListener("message", (e) => {
+    const v = e.data && e.data.relayVista;
+    if (!v) { return; }
+    const i = pasos.findIndex((p) => p.dataset.vista === v);
+    if (i >= 0) { ir(i); }
+  });
+
+  new ResizeObserver(() => marcos.forEach((f) => f && ajustar(f))).observe(escena);
+  ir(0);
+})();
+
+// ── Las demas demos: cada una a su tamano real, encogida a lo que haya ──
 const medirDemo = new ResizeObserver((es) => es.forEach((e) => {
   const d = e.target;
   d.style.setProperty("--k", (d.clientWidth / Number(d.dataset.w)).toFixed(5));
 }));
-demos.forEach((d) => {
+document.querySelectorAll(".demo").forEach((d) => {
   d.style.setProperty("--w", d.dataset.w);
   d.style.setProperty("--h", d.dataset.h);
   medirDemo.observe(d);
 });
 
-// Las pestañas que cambian de demo (Online: Home o Search; compartir).
+// Las pestanas del Recap: el resumen o la tarjeta de una cancion.
 document.querySelectorAll(".cambia").forEach((grupo) => {
   const marco = grupo.closest("section").querySelector(".demo iframe");
   grupo.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => {
@@ -1124,7 +722,7 @@ document.querySelectorAll(".cambia").forEach((grupo) => {
     grupo.querySelectorAll("button").forEach((o) => o.setAttribute("aria-selected", String(o === b)));
     marco.classList.add("cambiando");
     setTimeout(() => {
-      // Cada demo a su tamaño: la tarjeta de una cancion es mas baja que el Recap.
+      // Cada demo a su tamano: la tarjeta de una cancion es mas baja que el Recap.
       const caja = marco.closest(".demo");
       if (b.dataset.alto) {
         caja.dataset.h = b.dataset.alto;
@@ -1132,7 +730,7 @@ document.querySelectorAll(".cambia").forEach((grupo) => {
       }
       marco.src = "demos/" + b.dataset.demo + ".html";
       marco.addEventListener("load", () => marco.classList.remove("cambiando"), { once: true });
-    }, 220);
+    }, 200);
   }));
 });
 
@@ -1148,10 +746,10 @@ document.querySelectorAll(".cambia").forEach((grupo) => {
     window.relayTema(hex);
     caja.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.hex.toUpperCase() === hex.toUpperCase())));
     try { localStorage.setItem("relay.web.tema", hex); } catch (e) { }
-    document.dispatchEvent(new CustomEvent("relaytema"));
   };
   window.relayTemas.forEach((t) => {
     const b = document.createElement("button");
+    b.type = "button";
     b.dataset.hex = t.hex;
     b.style.setProperty("--c", t.hex);
     b.title = t.nombre;
@@ -1170,14 +768,13 @@ document.querySelectorAll(".cambia").forEach((grupo) => {
 
 // Lo que entra en pantalla aparece, una vez.
 const ojo = new IntersectionObserver((vistos) => {
-  vistos.forEach((v, i) => {
+  vistos.forEach((v) => {
     if (v.isIntersecting) {
-      v.target.style.transitionDelay = (i * 60) + "ms";
       v.target.classList.add("visto");
       ojo.unobserve(v.target);
     }
   });
-}, { threshold: .15 });
+}, { threshold: .12 });
 document.querySelectorAll(".aparece").forEach((e) => ojo.observe(e));
 </script>
 </body>
