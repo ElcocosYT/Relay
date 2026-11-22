@@ -634,7 +634,7 @@ html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-ac
 }
 html[data-sonando] :is(#artistGrid, #artistList) .relayArtSuena .relayArtPlay::before { mask-position: 50% 50%; }
 :is(#artistGrid, #artistList) .relayArtPin { width: 32px; height: 32px; border-radius: 50%; box-sizing: border-box; background: rgba(14, 10, 12, 0.46); border: 1px solid rgba(255, 255, 255, 0.16); filter: none; box-shadow: rgba(0, 0, 0, 0.6) 0px 6px 16px -6px; }
-:is(#artistGrid, #artistList) .relayArtPin::before { width: 16px; height: 16px; mask-size: 15px 15px; }
+:is(#artistGrid, #artistList) .relayArtPin::before { width: 16px; height: 16px; mask-size: 16px 16px; mask-position: 50% calc(50% - 0.72px); }
 @keyframes relayEstGira { 
   100% { rotate: 360deg; }
 }
@@ -823,11 +823,11 @@ html,body{margin:0;overflow:hidden;background:transparent}
 </head>
 <body data-vista="albums" class="">
 <div id="bg">
-    <div id="bgMain"><i class="a"></i><i class="b"></i><i class="c"></i><i id="bgAlbum"></i><img src="arte/a33.png" class="" id="bgArtLado" style="" alt=""></div>
+    <div id="bgMain"><i class="a"></i><i class="b"></i><i class="c"></i><i id="bgAlbum"></i><img src="arte/album_ventana-album-16.png" class="" id="bgArtLado" style="" alt=""></div>
     <div id="bgNow">
       <i id="bgNowCover" style="--npAcento: 247,182,13; --npX: 640px; --npY: 412px; --npTam: 1266px;" class="encendido"></i>
       <i class="d"></i><i class="e"></i><i class="f"></i><i class="g"></i>
-      <div id="bgNowFondo" class="encendido" style="--npFondo: url(&quot;arte/a31.jpg&quot;);"></div>
+      <div id="bgNowFondo" class="encendido" style="--npFondo: url(&quot;arte/album_ventana-album-17.jpg&quot;);"></div>
     </div>
     <div id="bgMixer"><i class="h"></i><i class="i2"></i><i class="j"></i></div>
     <div id="bgSettings"><i class="k"></i><i class="l"></i><i class="m"></i></div>
