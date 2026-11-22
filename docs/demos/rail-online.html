@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-sinluz="">
+<html >
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,6 +53,11 @@ html::after { content: ""; position: fixed; left: 0px; top: 0px; width: 1px; hei
   0%, 100% { opacity: 0.45; }
   50% { opacity: 1; }
 }
+#navList [data-act="toggle-expand"] svg { transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1), color 140ms ease-out; }
+#navList [data-act="navigate"] > [data-act="toggle-expand"] { color: rgba(238, 238, 244, 0.5); transition: background 140ms ease-out, color 140ms ease-out, transform 110ms ease-out; }
+#navList [data-act="navigate"] > [data-act="toggle-expand"]:hover { background: rgba(255, 255, 255, 0.09); color: rgba(238, 238, 244, 0.95); }
+#navList [data-act="navigate"] > [data-act="toggle-expand"]:active { transform: scale(0.86); background: rgba(255, 255, 255, 0.13); }
+#navList [data-act="toggle-expand"]:hover svg { color: rgba(238, 238, 244, 0.95); }
 div:has(> div > #relayMasDer) { align-content: start; }
 @keyframes zEntra { 
   0% { opacity: 0; transform: scale(1.03); }
@@ -88,8 +93,25 @@ html { user-select: none; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
 @property --relayFinal { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --vb1 { syntax: "<color>"; inherits: true; initial-value: #FF2A3A; }
+@property --vb2 { syntax: "<color>"; inherits: true; initial-value: #FFC533; }
+@property --vb3 { syntax: "<color>"; inherits: true; initial-value: #3DDC97; }
+@property --vb4 { syntax: "<color>"; inherits: true; initial-value: #38BDF8; }
 html:not([data-sinvelo]) :is(#trackList, #albumGrid, #artistGrid, #artistList, #onlineList, #relayInicioOnline, #relayDetCuerpo, #settingsGrid, #themesCuerpo, .sbResultados, .relayVelada, #queueList) { --relayFinal: 18px; }
 @property --relayTope { syntax: "<length>"; inherits: false; initial-value: 0px; }
+:is(#albumGrid, #artistGrid, #artistList)[data-velo-tope] { --relayTope: 34px; }
+html:not([data-sinvelo]) :is(#albumGrid, #artistGrid, #artistList) { --relayLargo: 18px; }
+:is(#relayVistaOnline, #relayVistaArtistas) span:hover { color: rgb(242, 242, 244); }
+:is(#relayVistaOnline, #relayVistaArtistas) span.on { color: rgb(255, 255, 255); }
+:is(#relayVistaOnline, #relayVistaArtistas) span::before { content: ""; width: 14px; height: 14px; background: currentcolor; mask: var(--i) center/contain no-repeat; }
+:is(#relayVistaOnline, #relayVistaArtistas) span[data-vista="list"] { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='5' width='18' height='2.6' rx='1.3'/><rect x='3' y='10.7' width='18' height='2.6' rx='1.3'/><rect x='3' y='16.4' width='18' height='2.6' rx='1.3'/></svg>"); }
+:is(#relayVistaOnline, #relayVistaArtistas) span[data-vista="covers"] { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='3' width='8' height='8' rx='2.4'/><rect x='13' y='3' width='8' height='8' rx='2.4'/><rect x='3' y='13' width='8' height='8' rx='2.4'/><rect x='13' y='13' width='8' height='8' rx='2.4'/></svg>"); }
+@keyframes relayPreguntaFondo { 
+  0% { opacity: 0; }
+}
+@keyframes relayPreguntaEntra { 
+  0% { opacity: 0; transform: translateY(8px) scale(0.96); }
+}
 @keyframes relayListaEntra { 
   0% { opacity: 0; transform: translateY(-6px); }
   100% { opacity: 1; transform: none; }
@@ -227,18 +249,28 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   100% { scale: 1; }
 }
 [data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child { --resorte: cubic-bezier(.2,1.5,.3,1); transition: background 140ms ease-out, border-color 140ms ease-out !important; }
-#reloadBtn, #footerActions > [data-act="navigate"] { transition: background 160ms, border-color 160ms, color 160ms, box-shadow 220ms, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4) !important; }
-#reloadBtn:hover, #footerActions > [data-act="navigate"]:hover { translate: 0px -1px; box-shadow: rgba(0, 0, 0, 0.9) 0px 8px 18px -10px; }
-#reloadBtn:active, #footerActions > [data-act="navigate"]:active { translate: 0px; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+#reloadBtn, #footerActions > [data-act]:not(#reloadBtn) { transition: background 160ms, border-color 160ms, color 160ms, box-shadow 220ms, translate 180ms cubic-bezier(0.2, 0.9, 0.3, 1.4) !important; }
+#reloadBtn:hover, #footerActions > [data-act]:not(#reloadBtn):hover { translate: 0px -1px; box-shadow: rgba(0, 0, 0, 0.9) 0px 8px 18px -10px; }
+#reloadBtn:active, #footerActions > [data-act]:not(#reloadBtn):active { translate: 0px; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
 #reloadBtn:active { scale: 0.95 0.82; }
-#footerActions > [data-act="navigate"]:active { scale: 0.84 0.78; }
+#footerActions > [data-act]:not(#reloadBtn):active { scale: 0.84 0.78; }
 #reloadBtn { --botaX: .95; --botaY: .82; }
-#footerActions > [data-act="navigate"] { --botaX: .84; --botaY: .78; }
+#footerActions > [data-act]:not(#reloadBtn) { --botaX: .84; --botaY: .78; }
 #navList [data-act="navigate"], #navList [data-act="open-source"] { --botaX: .97; --botaY: .9; }
 #navList [data-act="navigate"]:active, #navList [data-act="open-source"]:active { scale: 0.97 0.9; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
 #navList [data-act="navigate"], #navList [data-act="open-source"] { transform-origin: 12% 50%; transition: transform 260ms cubic-bezier(0.2, 0.9, 0.3, 1.25), background 180ms, border-color 180ms, color 180ms, box-shadow 220ms !important; }
 #navList [data-act="navigate"]:hover, #navList [data-act="open-source"]:hover { transform: scale(1.045); }
 #navList [data-act="navigate"], #navList [data-act="open-source"] { border-color: transparent; }
+[data-act="open-album"]:not(.relayAlb):active:not(:has([data-act]:active)), [data-act="open-artist"]:not(.relayArt):active:not(:has([data-act]:active, .relayArtPin:active)) { scale: 0.96; transition: scale 90ms cubic-bezier(0.33, 0, 0.68, 1) !important; }
+html[data-filtros] :is(#albumSearchScope, #artistSearchScope) { top: calc(100% + 8px); right: 0px; z-index: 40; min-width: 150px; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px) scale(0.94); transform-origin: right top; transition: opacity 160ms, transform 240ms cubic-bezier(0.3, 1.25, 0.4, 1), visibility linear 240ms; position: absolute !important; flex-direction: column !important; align-items: stretch !important; height: auto !important; gap: 2px !important; box-shadow: rgba(0, 0, 0, 0.95) 0px 26px 50px -18px, rgba(255, 255, 255, 0.04) 0px 0px 0px 1px, rgba(255, 255, 255, 0.14) 0px 1px 0px inset !important; }
+html[data-filtros][data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition: opacity 160ms, transform 300ms cubic-bezier(0.3, 1.25, 0.4, 1), visibility; }
+html[data-filtros] :is(#albumSearchScope, #artistSearchScope) > [data-act="set-search-field"] { justify-content: flex-start; opacity: 0; transform: translateY(-4px); height: 32px !important; padding: 0px 14px 0px 12px !important; transition: color 240ms, scale 90ms, opacity 160ms, transform 220ms cubic-bezier(0.3, 1.3, 0.4, 1) !important; }
+html[data-filtros][data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act="set-search-field"] { opacity: 1; transform: none; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(2) { transition-delay: 0s, 0s, 25ms, 25ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(3) { transition-delay: 0s, 0s, 50ms, 50ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(4) { transition-delay: 0s, 0s, 75ms, 75ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(5) { transition-delay: 0s, 0s, 100ms, 100ms !important; }
+html[data-filtros-abierto] :is(#albumSearchScope, #artistSearchScope) > [data-act]:nth-child(6) { transition-delay: 0s, 0s, 125ms, 125ms !important; }
 @keyframes relayFiltra { 
   0% { opacity: 0.25; transform: translateY(8px); }
   100% { opacity: 1; transform: none; }
@@ -278,15 +310,20 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
         ); }}
 @media (prefers-reduced-motion: reduce) {[data-act="toggle-shuffle"], [data-act="cycle-loop"], [data-act="toggle-mic-mute"], [data-act="clear-queue"], [data-act="toggle-autoplay"], div:has(> #outputTrack) > div:first-child, [data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { transition: background 140ms ease-out, border-color 140ms ease-out !important; }
 [data-act="toggle-shuffle"]:active, [data-act="cycle-loop"]:active, [data-act="toggle-mic-mute"]:active, [data-act="clear-queue"]:active, [data-act="toggle-autoplay"]:active, div:has(> #outputTrack) > div:first-child:active { scale: 0.92; }}
-@keyframes relayArtLate { 
-  0%, 100% { scale: 1; opacity: 0.6; }
-  50% { scale: 1.12; opacity: 0.9; }
-}
-@keyframes relayArtBrillo { 
-  0% { transform: rotate(16deg) translate3d(0px, 0px, 0px); opacity: 0; }
+@keyframes relayArtBarrido { 
+  0% { transform: rotate(16deg) translateX(0px); opacity: 0; }
   15% { opacity: 0.9; }
-  100% { transform: rotate(16deg) translate3d(420px, 0px, 0px); opacity: 0; }
+  100% { transform: rotate(16deg) translateX(520px); opacity: 0; }
 }
+#artistGrid .relayArt:hover :is(.relayArtPlay, .relayArtPin) { will-change: transform; }
+#artistList .relayArtFila:hover :is(.relayArtPlay, .relayArtPin) { will-change: transform; }
+@keyframes relayArtEq { 
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+html[data-sonando] :is(#artistGrid, #artistList) .relayArtSuena .relayArtPlay::before { mask-position: 50% 50%; }
+:is(#artistGrid, #artistList) .relayArtPin { width: 32px; height: 32px; border-radius: 50%; box-sizing: border-box; background: rgba(14, 10, 12, 0.46); border: 1px solid rgba(255, 255, 255, 0.16); filter: none; box-shadow: rgba(0, 0, 0, 0.6) 0px 6px 16px -6px; }
+:is(#artistGrid, #artistList) .relayArtPin::before { width: 16px; height: 16px; mask-size: 15px 15px; }
 @keyframes relayEstGira { 
   100% { rotate: 360deg; }
 }
@@ -299,14 +336,29 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
 @keyframes relayAlbAro { 
   100% { opacity: 0; box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 14px inset; }
 }
+#artistList [data-act="open-artist"]:active:not(:has(.relayArtPlay:active, .relayArtPin:active)) { transform: scale(0.985); }
 @keyframes relayDetEntra { 
   0% { opacity: 0; transform: translateY(14px); }
   100% { opacity: 1; transform: translateY(0px); }
+}
+@keyframes relayDetAlbEqSube { 
+  0%, 100% { transform: scaleY(0.26); }
+  50% { transform: scaleY(1); }
 }
 #footerActions [data-act="navigate"][data-id="settings"] { position: relative; }
 #footerActions [data-act="navigate"][data-id="settings"] > span { display: none !important; }
 #footerActions [data-act="navigate"][data-id="settings"]::before { content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; margin: -8px 0px 0px -8px; background-color: rgba(238, 238, 244, 0.62); mask: url("activos/icono-biblioteca.svg") center center / contain no-repeat; transition: background-color 140ms ease-out; }
 #footerActions [data-act="navigate"][data-id="settings"]:hover::before { background-color: rgb(255, 255, 255); }
+@keyframes relayArtSube { 
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-1000px); }
+}
+@keyframes relayFavSalta { 
+  0% { transform: scale(1) rotate(0deg); }
+  35% { transform: scale(1.35) rotate(-14deg); }
+  70% { transform: scale(0.92) rotate(6deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
 @keyframes relayNpVaga { 
   0% { transform: translate3d(-3px, -2px, 0px) scale(1); }
   35% { transform: translate3d(3px, -4px, 0px) scale(1.05); }
@@ -363,6 +415,33 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   0%, 100% { box-shadow: 0 0 0 0 rgba(var(--t0,255,42,58),0); }
   50% { box-shadow: 0 0 22px 2px rgba(var(--t0,255,42,58),.45); }
 }
+@keyframes tmVivoGira { 
+  100% { transform: rotate(360deg); }
+}
+@keyframes vbUno { 
+  0% { transform: translate(0px, 0px) scale(1); }
+  35% { transform: translate(42%, 30%) scale(1.25); }
+  70% { transform: translate(12%, 52%) scale(0.85); }
+  100% { transform: translate(34%, 8%) scale(1.1); }
+}
+@keyframes vbDos { 
+  0% { transform: translate(0px, 0px) scale(1.1); }
+  40% { transform: translate(-46%, 36%) scale(0.85); }
+  75% { transform: translate(-20%, 56%) scale(1.25); }
+  100% { transform: translate(-40%, 6%) scale(1); }
+}
+@keyframes vbTres { 
+  0% { transform: translate(0px, 0px) scale(0.9); }
+  30% { transform: translate(38%, -40%) scale(1.2); }
+  65% { transform: translate(56%, -10%) scale(1); }
+  100% { transform: translate(10%, -48%) scale(1.25); }
+}
+@keyframes vbCuatro { 
+  0% { transform: translate(0px, 0px) scale(1.2); }
+  45% { transform: translate(-50%, -30%) scale(0.9); }
+  80% { transform: translate(-14%, -52%) scale(1.15); }
+  100% { transform: translate(-36%, -6%) scale(0.95); }
+}
 @property --tmGiro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 @keyframes tmGiro { 
   100% { --tmGiro: 360deg; }
@@ -408,6 +487,30 @@ div:has(> #outputTrack) > div:first-child { cursor: pointer; transform: translat
   0% { transform: scale(1); }
   40% { transform: scale(1.35); background: rgb(var(--t0,255,42,58)); color: rgb(255, 255, 255); }
   100% { transform: scale(1); }
+}
+#sleepTimerBtn svg { transition: transform 420ms cubic-bezier(0.2, 0.9, 0.3, 1.4); }
+#sleepTimerBtn:hover svg { transform: rotate(-14deg); }
+@keyframes sleepTic { 
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-28deg); }
+  60% { transform: rotate(14deg); }
+  100% { transform: rotate(0deg); }
+}
+#sleepTimerBtn .sleepQueda { position: absolute; right: -6px; top: -7px; min-width: 15px; height: 15px; padding: 0px 4px; box-sizing: border-box; border-radius: 8px; display: none; align-items: center; justify-content: center; font: 700 9px / 1 Inter, sans-serif; color: rgb(var(--t0,255,42,58)); background: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.7) 0px 3px 8px -2px; pointer-events: none; }
+@keyframes sleepEntra { 
+  0% { transform: scale(0.3); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes sleepAbre { 
+  0% { opacity: 0; transform: translateY(10px) scale(0.86); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sleepCierra { 
+  100% { opacity: 0; transform: translateY(8px) scale(0.9); }
+}
+@keyframes sleepOpcion { 
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: none; }
 }
 .scp0:hover { background: linear-gradient(100deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)) !important; }
 .scp1:hover { background: linear-gradient(100deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)) !important; }
@@ -470,8 +573,8 @@ html,body{margin:0;overflow:hidden;background:transparent}
                 
 
                 
-                  <div data-dc-tpl="82" data-act="toggle-expand" data-id="library" style="margin-left: 8px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; cursor: pointer; position: relative;">
-                    <div data-dc-tpl="83" style="width: 0px; height: 0px; border-left: 4.5px solid rgba(238, 238, 244, 0.5); border-top: 3.5px solid transparent; border-bottom: 3.5px solid transparent; transition: transform 160ms ease-out; transform: rotate(90deg);"></div>
+                  <div data-dc-tpl="82" data-act="toggle-expand" data-id="library" title="Show or hide the lists" style="margin-left: -6px; margin-right: -6px; width: 24px; height: 24px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; cursor: pointer; position: relative;">
+                    <svg data-dc-tpl="83" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width: 12px; height: 12px; display: block; flex: 0 0 auto; transform: rotate(90deg);"><path data-dc-tpl="84" d="M6 3.5 10.5 8 6 12.5"></path></svg>
                   </div>
                 
               </div>
@@ -490,10 +593,10 @@ html,body{margin:0;overflow:hidden;background:transparent}
             
 
             
-              <div data-dc-tpl="90" data-act="open-source" data-id="35" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
-                <div data-dc-tpl="91" style="flex: 0 0 auto; width: 17px; height: 17px; background-image: url(&quot;arte/a1.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px;"></div>
-                <span data-dc-tpl="92" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Late night</span></span>
-                <span data-dc-tpl="93" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">64</span></span>
+              <div data-dc-tpl="92" data-act="open-source" data-id="35" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="93" style="flex: 0 0 auto; width: 17px; height: 17px; background-image: url(&quot;arte/a1.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px;"></div>
+                <span data-dc-tpl="94" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Late night</span></span>
+                <span data-dc-tpl="95" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">64</span></span>
               </div>
             
 
@@ -506,10 +609,10 @@ html,body{margin:0;overflow:hidden;background:transparent}
             
 
             
-              <div data-dc-tpl="90" data-act="open-source" data-id="36" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
-                <div data-dc-tpl="91" style="flex: 0 0 auto; background-image: url(&quot;arte/a4.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px; width: 17px; height: 17px;"></div>
-                <span data-dc-tpl="92" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Workout</span></span>
-                <span data-dc-tpl="93" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">38</span></span>
+              <div data-dc-tpl="92" data-act="open-source" data-id="36" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="93" style="flex: 0 0 auto; background-image: url(&quot;arte/a4.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px; width: 17px; height: 17px;"></div>
+                <span data-dc-tpl="94" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Workout</span></span>
+                <span data-dc-tpl="95" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">38</span></span>
               </div>
             
 
@@ -522,10 +625,10 @@ html,body{margin:0;overflow:hidden;background:transparent}
             
 
             
-              <div data-dc-tpl="90" data-act="open-source" data-id="38" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
-                <div data-dc-tpl="91" style="flex: 0 0 auto; background-image: url(&quot;arte/a7.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px; width: 17px; height: 17px;"></div>
-                <span data-dc-tpl="92" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Road trip</span></span>
-                <span data-dc-tpl="93" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">51</span></span>
+              <div data-dc-tpl="92" data-act="open-source" data-id="38" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="93" style="flex: 0 0 auto; background-image: url(&quot;arte/a7.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px; width: 17px; height: 17px;"></div>
+                <span data-dc-tpl="94" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Road trip</span></span>
+                <span data-dc-tpl="95" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">51</span></span>
               </div>
             
 
@@ -538,10 +641,26 @@ html,body{margin:0;overflow:hidden;background:transparent}
             
 
             
-              <div data-dc-tpl="90" data-act="open-source" data-id="37" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
-                <div data-dc-tpl="91" style="flex: 0 0 auto; background-image: url(&quot;arte/a10.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px; width: 17px; height: 17px;"></div>
-                <span data-dc-tpl="92" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Throwbacks</span></span>
-                <span data-dc-tpl="93" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">27</span></span>
+              <div data-dc-tpl="92" data-act="open-source" data-id="37" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="93" style="flex: 0 0 auto; background-image: url(&quot;arte/a10.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px; width: 17px; height: 17px;"></div>
+                <span data-dc-tpl="94" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Throwbacks</span></span>
+                <span data-dc-tpl="95" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">27</span></span>
+              </div>
+            
+
+            
+
+          
+
+            
+
+            
+
+            
+              <div data-dc-tpl="92" data-act="open-source" data-id="55" data-drop="list" data-edit="si" data-zoom="medium" class="scp1" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; border-radius: 12px; margin-left: 24px; min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="93" style="flex: 0 0 auto; width: 17px; height: 17px; background-image: url(&quot;arte/a13.jpg&quot;); background-size: cover; background-position: center center; border-radius: 5px;"></div>
+                <span data-dc-tpl="94" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; min-width: 0px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(238, 238, 244, 0.62);"><span class="sc-interp">Sunday morning</span></span>
+                <span data-dc-tpl="95" style="margin-left: auto; font: 500 11px / 1 Inter, sans-serif; flex: 0 0 auto; color: rgba(238, 238, 244, 0.34);"><span class="sc-interp">19</span></span>
               </div>
             
 
@@ -556,9 +675,9 @@ html,body{margin:0;overflow:hidden;background:transparent}
             
 
             
-              <div data-dc-tpl="95" data-act="new-list" class="scp2" style="display: flex; align-items: center; gap: 11px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; margin-top: 7px; margin-left: 24px; border-radius: 11px; border: 1px dashed rgba(255, 255, 255, 0.14); min-width: 0px; cursor: pointer;">
-                <div data-dc-tpl="96" style="position: relative; width: 12px; height: 12px; flex: 0 0 auto;"><div data-dc-tpl="97" style="position: absolute; left: 0px; top: 5.2px; width: 12px; height: 1.6px; background: rgba(238, 238, 244, 0.5);"></div><div data-dc-tpl="98" style="position: absolute; left: 5.2px; top: 0px; width: 1.6px; height: 12px; background: rgba(238, 238, 244, 0.5);"></div></div>
-                <span data-dc-tpl="99" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.5); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">New list</span></span>
+              <div data-dc-tpl="97" data-act="new-list" class="scp2" style="display: flex; align-items: center; gap: 11px; padding: 10px 12px; box-sizing: border-box; min-height: 34px; margin-top: 7px; margin-left: 24px; border-radius: 11px; border: 1px dashed rgba(255, 255, 255, 0.14); min-width: 0px; cursor: pointer;">
+                <div data-dc-tpl="98" style="position: relative; width: 12px; height: 12px; flex: 0 0 auto;"><div data-dc-tpl="99" style="position: absolute; left: 0px; top: 5.2px; width: 12px; height: 1.6px; background: rgba(238, 238, 244, 0.5);"></div><div data-dc-tpl="100" style="position: absolute; left: 5.2px; top: 0px; width: 1.6px; height: 12px; background: rgba(238, 238, 244, 0.5);"></div></div>
+                <span data-dc-tpl="101" style="font: 500 13px / 1 Inter, sans-serif; padding: 3px 0px; margin: -3px 0px; color: rgba(238, 238, 244, 0.5); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">New list</span></span>
               </div>
             
 
@@ -892,28 +1011,31 @@ html,body{margin:0;overflow:hidden;background:transparent}
     
   </div>
 
-  <div data-dc-tpl="100" style="flex: 0 0 auto; padding: 14px; box-sizing: border-box; border-radius: 14px; background: linear-gradient(120deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)); border: 1px solid rgba(255, 255, 255, 0.08); min-width: 0px;">
-    <div data-dc-tpl="101" style="display: flex; justify-content: space-between; gap: 10px; font: 700 9px / 1 Inter, sans-serif; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4);">
-      <span data-dc-tpl="102" style="white-space: nowrap;">LIBRARY</span>
-      <span data-dc-tpl="103" id="footerTotal" style="white-space: nowrap;"><span class="sc-interp">214 SONGS</span></span>
+  <div data-dc-tpl="102" style="flex: 0 0 auto; padding: 14px; box-sizing: border-box; border-radius: 14px; background: linear-gradient(120deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)); border: 1px solid rgba(255, 255, 255, 0.08); min-width: 0px;">
+    <div data-dc-tpl="103" style="display: flex; justify-content: space-between; gap: 10px; font: 700 9px / 1 Inter, sans-serif; letter-spacing: 0.12em; color: rgba(238, 238, 244, 0.4);">
+      <span data-dc-tpl="104" style="white-space: nowrap;">LIBRARY</span>
+      <span data-dc-tpl="105" id="footerTotal" style="white-space: nowrap;"><span class="sc-interp">214 SONGS</span></span>
     </div>
-    <div data-dc-tpl="104" style="margin-top: 10px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.1); overflow: hidden;">
-      <div data-dc-tpl="105" id="scanProgress" style="height: 100%; background: linear-gradient(90deg,rgb(var(--t1,196,18,32)),rgb(var(--t0,255,42,58))); width: 100%;"></div>
+    <div data-dc-tpl="106" style="margin-top: 10px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.1); overflow: hidden;">
+      <div data-dc-tpl="107" id="scanProgress" style="height: 100%; background: linear-gradient(90deg,rgb(var(--t1,196,18,32)),rgb(var(--t0,255,42,58))); width: 100%;"></div>
     </div>
-    <div data-dc-tpl="106" id="footerCaption" style="margin-top: 9px; font: 500 11px / 1.4 Inter, sans-serif; color: rgba(238, 238, 244, 0.45); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">5 sources · Checked seconds ago</span></div>
-    <div data-dc-tpl="107" id="footerActions" style="margin-top: 11px; display: flex; gap: 6px;">
-      <div data-dc-tpl="108" id="reloadBtn" data-act="reload" title="Reload Library" class="scp3" style="flex: 1 1 0%; min-width: 0px; display: flex; align-items: center; justify-content: center; gap: 6px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); font: 700 9px / 1 Inter, sans-serif; letter-spacing: 0.1em; color: rgba(238, 238, 244, 0.62); cursor: pointer; user-select: none;">
-        <span data-dc-tpl="109" id="reloadSpin" style="width:10px;height:10px;border-top-left-radius:50%;border-top-right-radius:50%;border-bottom-right-radius:50%;border-bottom-left-radius:50%;border-top-color:rgb(var(--t0,255,42,58));border-top-style:solid;border-top-width:2px;border-right-color:rgba(var(--t0,255,42,58),0.25);border-right-style:solid;border-right-width:2px;border-bottom-color:rgba(var(--t0,255,42,58),0.25);border-bottom-style:solid;border-bottom-width:2px;border-left-color:rgba(var(--t0,255,42,58),0.25);border-left-style:solid;border-left-width:2px;border-image-source:none;border-image-slice:100%;border-image-width:1;border-image-outset:0;border-image-repeat:stretch;flex-grow:0;flex-shrink:0;flex-basis:auto;display:none"></span>
-        <span data-dc-tpl="110" id="reloadText" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">RELOAD</span></span>
+    <div data-dc-tpl="108" id="footerCaption" style="margin-top: 9px; font: 500 11px / 1.4 Inter, sans-serif; color: rgba(238, 238, 244, 0.45); min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><span class="sc-interp">6 sources · Checked seconds ago</span></div>
+    <div data-dc-tpl="109" id="footerActions" style="margin-top: 11px; display: flex; gap: 6px;">
+      <div data-dc-tpl="110" id="reloadBtn" data-act="reload" title="Reload albums" class="scp3" style="flex: 1 1 0%; min-width: 0px; display: flex; align-items: center; justify-content: center; gap: 6px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); font: 700 9px / 1 Inter, sans-serif; letter-spacing: 0.1em; color: rgba(238, 238, 244, 0.62); cursor: pointer; user-select: none;">
+        <span data-dc-tpl="111" id="reloadSpin" style="width:10px;height:10px;border-top-left-radius:50%;border-top-right-radius:50%;border-bottom-right-radius:50%;border-bottom-left-radius:50%;border-top-color:rgb(var(--t0,255,42,58));border-top-style:solid;border-top-width:2px;border-right-color:rgba(var(--t0,255,42,58),0.25);border-right-style:solid;border-right-width:2px;border-bottom-color:rgba(var(--t0,255,42,58),0.25);border-bottom-style:solid;border-bottom-width:2px;border-left-color:rgba(var(--t0,255,42,58),0.25);border-left-style:solid;border-left-width:2px;border-image-source:none;border-image-slice:100%;border-image-width:1;border-image-outset:0;border-image-repeat:stretch;flex-grow:0;flex-shrink:0;flex-basis:auto;display:none"></span>
+        <span data-dc-tpl="112" id="reloadText" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="sc-interp">RELOAD</span></span>
       </div>
-      <div data-dc-tpl="111" data-act="open-party" title="Listening party: listen together with friends, in sync" class="scp4" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(238, 238, 244, 0.7);">
-        <svg data-dc-tpl="112" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle data-dc-tpl="113" cx="9" cy="8" r="3.5"></circle><path data-dc-tpl="114" d="M2.5 20c1-3.6 3.6-5.5 6.5-5.5s5.5 1.9 6.5 5.5"></path><path data-dc-tpl="115" d="M16 4.8a3.5 3.5 0 0 1 0 6.4M18.5 14.8c1.5.8 2.5 2.5 3 5.2"></path></svg>
+      <div data-dc-tpl="113" data-act="open-party" title="Listening party: listen together with friends, in sync" class="scp4" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(238, 238, 244, 0.7);">
+        <svg data-dc-tpl="114" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle data-dc-tpl="115" cx="9" cy="8" r="3.5"></circle><path data-dc-tpl="116" d="M2.5 20c1-3.6 3.6-5.5 6.5-5.5s5.5 1.9 6.5 5.5"></path><path data-dc-tpl="117" d="M16 4.8a3.5 3.5 0 0 1 0 6.4M18.5 14.8c1.5.8 2.5 2.5 3 5.2"></path></svg>
       </div>
-      <div data-dc-tpl="116" data-act="open-recap" title="Your Relay Recap: your top songs and artists, as an image to share" class="scp5" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 8px; background: rgba(var(--t0,255,42,58),.12); border: 1px solid rgba(var(--t0,255,42,58),.32); display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgb(var(--t4,255,143,152));">
-        <svg data-dc-tpl="117" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path data-dc-tpl="118" d="M5 20V13M12 20V5M19 20v-9"></path></svg>
+      <div data-dc-tpl="118" data-act="open-recap" title="Your Relay Recap: your top songs and artists, as an image to share" class="scp5" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 8px; background: rgba(var(--t0,255,42,58),.12); border: 1px solid rgba(var(--t0,255,42,58),.32); display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgb(var(--t4,255,143,152));">
+        <svg data-dc-tpl="119" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path data-dc-tpl="120" d="M5 20V13M12 20V5M19 20v-9"></path></svg>
       </div>
-      <div data-dc-tpl="119" data-act="navigate" data-id="settings" title="Library sources" class="scp6" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); display: flex; align-items: center; justify-content: center; cursor: pointer;">
-        <span data-dc-tpl="120" style="width: 11px; height: 11px; border-radius: 3px; border: 1.6px solid rgba(238, 238, 244, 0.62); box-sizing: border-box;"></span>
+      <div data-dc-tpl="121" id="sleepTimerBtn" data-act="sleep-timer" title="Sleep timer: stop the music after a while" class="scp4" style="position: relative; flex: 0 0 auto; width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(238, 238, 244, 0.7);">
+        <svg data-dc-tpl="122" width="14" height="14" viewBox="0 0 512 512" fill="currentColor"><mask data-dc-tpl="123" id="sleepTimerManecillas"><rect data-dc-tpl="124" width="512" height="512" fill="#fff"></rect><path data-dc-tpl="125" d="M248 196v100h88" fill="none" stroke="#000" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"></path></mask><rect data-dc-tpl="126" x="192" y="6" width="112" height="38" rx="19"></rect><path data-dc-tpl="127" d="M424 82l44 44" stroke="currentColor" stroke-width="40" stroke-linecap="round"></path><circle data-dc-tpl="128" cx="248" cy="292" r="214" mask="url(#sleepTimerManecillas)"></circle></svg>
+      <span class="sleepQueda"></span></div>
+      <div data-dc-tpl="129" data-act="navigate" data-id="settings" title="Library sources" class="scp6" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.09); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+        <span data-dc-tpl="130" style="width: 11px; height: 11px; border-radius: 3px; border: 1.6px solid rgba(238, 238, 244, 0.62); box-sizing: border-box;"></span>
       </div>
     </div>
   </div></div></div></div>
